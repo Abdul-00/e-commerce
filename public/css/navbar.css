@@ -1,0 +1,169 @@
+.first-frase{
+    font-size: 9pt;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: white;
+    height: 30px;
+    background-color: black;
+    margin: 0%;
+}
+
+.second-div{
+    max-height: 60px;
+    margin: 0%;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .second-div ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  .second-div li {
+    float: left;
+  }
+
+  .second-div li a, .uomo-donna { /*classe uomo-donna della classe second div che si applica ad li ed a*/
+    display: inline-block;
+    font-size: 12pt;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    color: black;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  .second-div .sub_cont ul li a:hover{ /*significa che quando nella classe sub_cont sono sopra col la freccia ad un link, contenuto in un li che è contenuto in un ul, il back si fa nero*/
+    background-color: black;
+    color: white;
+  }
+  .second-div .sub_cont ul li img{
+    padding-left: 10px;
+  }
+
+  .sub_cont li.tendina {
+    display: inline-block;
+  }
+  .sub_cont .tendina-contenuti { /*questa funzione ha lo scopo vero e proprio di tendina, mi nasconde i contenuti, per vederli dovrò specificare un'azione*/
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .sub_cont .tendina-contenuti a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  .sub_cont .tendina:hover .tendina-contenuti {display: block;} /*quando sono sopra si estende la tendina*/
+  .sub_cont .tendina-contenuti a:hover {background-color: #f1f1f1;}
+
+/*----------Inizia il terzo div----------*/  
+
+.third-div{
+    margin: 0%;
+    padding-left: 9%;
+    padding-right: 10%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: white;
+    border-bottom: 1px solid gray;
+  }
+
+  .third-div ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  .third-div li {
+    float: left;
+  }
+
+  .third-div li a, .intestazione { /*classe dropthird della classe third div che si applica ad li ed a*/
+    display: inline-block;
+    font-size: 12pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #1d1d1d;
+    text-align: center;
+    padding: 2px 25px;
+    text-decoration: none;
+  }
+
+  .third-div li a:hover, .tendina:hover .intestazione { /*quando nella classe tendina sono sopra con la freccia, si sottolinea, lo stesso vale per dropthird*/
+    border-bottom: 2px solid black;
+  }
+
+  .third-div li.tendina {
+    display: inline-block;
+  }
+  .third-div .tendina-contenuti { /*questa funzione ha lo scopo vero e proprio di tendina, mi nasconde i contenuti, per vederli dovrò specificare un'azione*/
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-height: 40%;
+    min-width: 80%;
+    max-width: 80%;
+    max-height: 80%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    margin-left: 40px;
+    left: 0;
+    z-index: 1;
+  }
+
+  .third-div .tendina-contenuti a {
+    font-size: 12pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #1d1d1d;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    width: auto;
+    text-align: left;
+  }
+  .third-div .tendina:hover .tendina-contenuti {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .third-div .tendina-contenuti a:hover {background-color: #f1f1f1;}
+
+  .tendina-contenuti .single_cont{
+    width: 50%;
+    height: auto;
+  }
+
+#vetrina{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  background-color: rgb(190, 190, 190);
+  width: 300px;
+  height: 100%;
+  margin: 10px;
+}
+.img_vetrina{
+  width: 90%;
+  margin: 0 0 10px 10px;
+}
+
+#vetrina a:hover{
+  background-color: rgb(190, 190, 190);
+}
+
+ 
