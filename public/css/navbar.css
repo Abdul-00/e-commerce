@@ -112,7 +112,12 @@
     display: inline-block;
   }
   .third-div .tendina-contenuti { /*questa funzione ha lo scopo vero e proprio di tendina, mi nasconde i contenuti, per vederli dovrò specificare un'azione*/
-    display: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    transition: .5s;
+    transform-origin: top;
+    transform: perspective(2000px) rotateX(-90deg);
     position: absolute;
     background-color: #f9f9f9;
     min-height: 40%;
@@ -138,9 +143,7 @@
   }
 
   .third-div .tendina:hover .tendina-contenuti {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    transform: perspective(2000px) rotateX(0deg);
   }
   .third-div .tendina-contenuti a:hover {background-color: #f1f1f1;}
 
