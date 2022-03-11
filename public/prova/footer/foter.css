@@ -1,0 +1,78 @@
+@font-face {
+    font-family: MainFont;
+    src: url(../fonts/Roboto/Roboto-Regular.ttf);
+}
+footer{
+    font-family: "MainFont";
+    background-color: white;
+    color: black;
+    height: 500px;
+    max-height: 500px;
+    margin: 0%;
+    border-top: 5px solid black;
+}
+h1, h3{
+    color: black;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.div{
+    display: flex;
+    justify-content: space-between; /*mi permette di dividere equamente i div presenti in questa classe*/
+    align-items: flex-start;
+}
+.div ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 8px;
+    overflow: hidden;
+}
+.div li{
+    padding-left: 10px;
+    padding-bottom: 3px;
+}
+
+#logo{
+    background-color: rgb(24, 24, 24);
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.div a{
+    text-decoration: none;
+    font-size: 16px;
+    color: black;
+}
+.div a:hover{
+    border-bottom: 2px solid black;
+}
+
+.second-div{
+    background-color: rgb(24, 24, 24);
+    margin: 0%;
+    height: 150px;
+    max-height: 150px;
+    color: white;
+    padding: 10px 20px;
+    border-bottom: 10px solid rgb(6, 192, 0);
+}
+.sub_cont{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    color: white;
+}
+.sub_cont ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  .sub_cont li {
+    float: left;
+    padding-right: 10px;
+  }
+  .sub_cont li a{
+    display: inline-block;  /*mi permette di posizionare uno difianco all'altro i link, in questo caso quelli all'interno di un li*/
+  }
