@@ -11,7 +11,7 @@ footer{
     margin: 0%;
     border-top: 5px solid black;
 }
-h1, h3{
+h2, h3{
     color: black;
     display: flex;
     justify-content: flex-start;
@@ -22,12 +22,17 @@ h1, h3{
     justify-content: space-between; /*mi permette di dividere equamente i div presenti in questa classe*/
     align-items: flex-start;
 }
+
+.div div{
+    width: 100%;
+}
 .div ul {
     list-style-type: none;
     margin: 0;
     padding: 8px;
     overflow: hidden;
 }
+
 .div li{
     padding-left: 10px;
     padding-bottom: 3px;
@@ -36,8 +41,9 @@ h1, h3{
 #logo{
     background-color: rgb(24, 24, 24);
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
+    align-self:flex-end;
 }
 .div a{
     text-decoration: none;
