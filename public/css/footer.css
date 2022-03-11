@@ -1,0 +1,41 @@
+html{
+    background-color:black;
+    padding-left: 3rem;
+}
+body{
+    color: white;
+}
+.titolo_1{
+    font-style: normal;
+    font-size: 30px;
+}
+.elenco_1{
+    display: flex;
+}
+.elenco_1_a{
+    padding-top: 6rem;
+}
+.gg{
+    align-items: center;
+}
+.gg_2{
+    align-items: center;
+    padding-left: 3rem;
+}
+.gg_3{
+    align-items: center;
+    padding-left: 3rem;
+}
+.gg_4{
+    display: flex;
+}
+.gg_5
+{
+    align-items: center;
+    padding-left: 3rem;
+}
+.gg_6
+{
+    align-items: center;
+    padding-left: 3rem;
+}
