@@ -52,6 +52,9 @@ input:focus{
 }
 
 p{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   content:attr(type);
   font-size:14pt;
   color: black;
