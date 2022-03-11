@@ -3,113 +3,90 @@
     src: url(../fonts/Roboto/Roboto-Regular.ttf);
 }
 header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-height: 25px;
-    width: 100%;
-    margin: 0%;
-    background-color: rgb(107, 189, 87);
-    border-bottom: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-height: 25px;
+  width: 100%;
+  margin: 0%;
+  border-bottom: 1px solid black;
 }
-    header a{
-        text-decoration: none;
-        padding-top: 2px;
-        padding-right: 5px;
-        font-family: "MainFont";
-        font-weight: 600;
-        text-align: center;
-        color: black;
-    }
+  header a{
+      text-decoration: none;
+      padding-top: 2px;
+      padding-right: 5px;
+      font-family: "MainFont";
+      font-weight: 600;
+      text-align: center;
+      color: black;
+  }
 
 h2{
-    font-family: "MainFont";
-    font-size: 14pt;
-    font-weight: 900;
-    color: black;
-    text-align: left;
+  font-size: 14pt;
+  font-weight: 900;
+  color: black;
+  text-align: left;
 }
 
-form{
-    width:500px;
-    height: auto;
-    max-width:calc(100vw - 40px);
-    box-sizing:border-box;
-    font-family: "MainFont";
-    position: relative;
-  }
-  
-  input{
-    height: 50px;
-    width:100%;
-    color: rgb(61, 61, 61);
-    box-sizing: border-box;
-    margin: 0%;
-    font-family: "MainFont";
-    font-size: 14pt;
-    font-weight: 500;
-    border: 1px solid black;
-    padding-left: 10px;
-  }
-  
-  input:focus{
-    border: 2px solid black;
-  }
-  
-  p:before{
-    content: attr(type);
-    display: block;
-    float: left;
-    padding: 5px 5px;
-    margin: 0%;
-    font-size: 9pt;
-    font-weight: 500;
-    color: rgb(61, 61, 61);
-    border: 1px solid black;
-  }
+form, section{
+  width: 500px;
+  height: auto;
+  margin:calc(50vh - 400px) auto;
+  padding:20px 30px;
+  max-width:calc(100vw - 40px);
+  box-sizing:border-box;
+  font-family: "MainFont";
+  position:relative;
+}
 
-  
-  button{
-    font-size: 12pt;
-    font-weight: 800;
-    height: 45px;
-    width: 100%;
-    padding-top: 10px;
-    padding-bottom: 13px;
-    font-family: "MainFont";
-    background-color: black;
-    color: white;
-    cursor:pointer;
-  }
-  
-  button:hover{
-    background: rgb(48, 48, 48);
-    color: white;
-  }
+input{
+  width:100%;
+  padding:10px;
+  color: black;
+  box-sizing:border-box;
+  font-family: "MainFont";
+}
+
+input:focus{
+  border-bottom: 2px solid black;
+}
+
+p{
+  content:attr(type);
+  font-size:14pt;
+  color: black;
+  margin: 28px 0 0;
+}
+
+form button, section div button{
+  float:center;
+  font-size: 11pt;
+  height: 40px;
+  width: 100%;
+  padding:8px 12px;
+  margin: 18px 0 0;
+  font-family: "MainFont";
+  border:3px solid whitesmoke;
+  background-color: rgb(24, 24, 24);
+  color: white;
+  cursor:pointer;
+  transition: all .3s;
+}
+
+form button:hover, section div button:hover{
+  background: black;
+  color: white;
+  border: 3px solid #65ac13;
+}
 
 #link{
-    text-decoration: none;
-    font-family: "MainFont";
-    font-size: 11pt;
-    font-weight: 800;
-    color: rgb(140, 0, 255);
-    text-align: left;
+  font-family: "MainFont";
+  font-size: 16px; 
+  color: rgb(0, 153, 255);
 }
-#div-registra{
-    width: 500px;
-    height: 20px;
-    border: 2px solid black;
-    background-color: black;
-}
-#registra{
-    text-decoration: none;
-    font-family: "MainFont";
-    font-size: 10pt;
-    font-weight: 800;
-    color: white;
-    width: 100%;
-    text-align: justify;
-}
-#div-registra:hover{
-    background: rgb(48, 48, 48);
+#link-registra{
+  text-decoration: none;
+  font-family: "MainFont";
+  font-size: 16px; 
+  color: white;
 }
