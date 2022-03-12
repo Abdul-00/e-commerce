@@ -2,3 +2,61 @@
     font-family: MainFont;
     src: url(../fonts/Roboto/Roboto-Regular.ttf);
 }
+main{
+    font-family: "MainFont";
+}
+section{
+    margin: 0%;
+}
+section h2{
+    color: black;
+    text-align: center;
+    font-size: 24pt;
+}
+.in-line{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    list-style-type: none;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+    .in-line li{
+        padding-right: 10px;
+    }
+    .in-line li h3{
+        text-align: center;
+    }
+    .in-line li p{
+        text-align: center;
+    }
+
+.prod-in-line{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    list-style-type: none;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+    .prod-in-line li{
+        padding-right: 15px;
+    }
+    .prod-in-line li h3{
+        text-align: center;
+        color: gray;
+        margin: 0%;
+    }
+    .prod-in-line li p{
+        text-align: center;
+        margin: 0%;
+    }
+.stile-in-line{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    list-style-type: none;
+}
+    .stile-in-line li{
+        padding-right: 15px;
+    }
