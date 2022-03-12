@@ -54,7 +54,7 @@ h2, h3{
     border-bottom: 2px solid black;
 }
 
-.second-div{
+.secondo-div{
     background-color: rgb(24, 24, 24);
     margin: 0%;
     height: 150px;
@@ -63,22 +63,22 @@ h2, h3{
     padding: 10px 20px;
     border-bottom: 10px solid rgb(6, 192, 0);
 }
-.sub_cont{
+.cont{
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     color: white;
 }
-.sub_cont ul {
+.cont ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
   }
-  .sub_cont li {
+  .cont li {
     float: left;
     padding-right: 10px;
   }
-  .sub_cont li a{
+  .cont li a{
     display: inline-block;  /*mi permette di posizionare uno difianco all'altro i link, in questo caso quelli all'interno di un li*/
   }
