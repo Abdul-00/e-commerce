@@ -11,7 +11,7 @@ footer{
     margin: 0%;
     border-top: 5px solid black;
 }
-footer h2, h3{
+footer h2{
     color: black;
     display: flex;
     justify-content: flex-start;

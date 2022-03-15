@@ -136,7 +136,7 @@ nav .third-div{
     padding: 12px 16px;
     text-decoration: none;
     width: auto;
-
+    z-index: 5;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -144,6 +144,7 @@ nav .third-div{
 
   nav .third-div .tendina:hover .tendina-contenuti {
     transform: perspective(2000px) rotateX(0deg);
+    z-index: 10;
   }
   nav .third-div .tendina-contenuti a:hover {background-color: #f1f1f1;}
 
