@@ -79,7 +79,6 @@ form button, section div button{
   color: white;
   cursor:pointer;
   transition: all .3s;
-
 }
 
 form button:hover, section div button:hover{

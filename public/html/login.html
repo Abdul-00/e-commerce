@@ -15,15 +15,15 @@
                 <a href="../html/index.html"> <img src="../img/img_login/close.png" alt="Chiudi" style="height: auto; width: 20px; padding-top: 2px; padding-left: 5px;"></a>
                 <a href="../html/register.html">Registrati</a>
             </header>
-            <div>
-                <a href="../html/index.html"><img src="../img/Logo.png" alt="Next Gen Agency" style="height: auto; width: 150px; margin-left: 150px; margin-top: 20px;"></a>
+            <div style="display: flex; justify-content: center;">
+                <a href="../html/index.html"><img src="../img/Logo.png" alt="Next Gen Agency" style="height: auto; width: 150px; margin-top: 20px;"></a>
             </div>
         </span>
     </div>
     <div>
         <main>
-            <div>
-                <form action="">
+            <div class="container_1">
+                <form action="" method="post" id="myform">
                     <div><h2>Inserisci le credenziali!</h2></div>
                     <div>
                         <p> <img src="../img/img_login/email.png" alt="" style="height: auto; width: 35px;"> Email</p><input type="text" name="email" id="email" placeholder="Inserisci la tua email">
@@ -31,16 +31,19 @@
                     <div>
                         <p> <img src="../img/img_login/password.png" alt="" style="height: auto; width: 35px;"> Password</p><input type="password" name="password" id="password" placeholder="Inserisci la tua password">
                     </div>
-                    <button type="submit">Accedi</button>
-                    <div style="margin-top: 20px; margin-bottom: 20px;">
-                        <a href="#" id="link">Hai dimenticato la password?</a>
-                    </div>
+                    
+                    <section class="mybuttons_1">
+                        <div>
+                            <button type="submit">Accedi</button>
+                        </div>
+                        <div class="pswd"><a href="#" id="link">Hai dimenticato la password?</a></div>
+                    </section>
                 </form>
             </div>
         </main>
     </div>
     <hr>
-    <section>
+    <section class="mybuttons_2">
         <div><h2>Sono un nuovo cliente!</h2></div>
         <div>
             <button><a href="./register.html" id="link-registra">Registrati</a></button>
