@@ -2,7 +2,6 @@
     font-family: MainFont;
     src: url(../fonts/Roboto/Roboto-Regular.ttf);
 }
-
 *{
   box-sizing: border-box;
 }
@@ -51,7 +50,9 @@ input{
   box-sizing:border-box;
   font-family: "MainFont";
 }
-
+::-ms-reveal{
+  filter: invert(100%);
+}
 input:focus{
   border-bottom: 2px solid black;
 }

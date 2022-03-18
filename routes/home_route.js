@@ -2,7 +2,7 @@ const express=require('express');
 const { default: mongoose } = require('mongoose');
 const router=express.Router();
 const myuser=require('../models/user');
-const myproduct=requre('../models/prodotto');
+const myproduct=require('../models/prodotto');
 
 //MAIN ROOT
 router.get('/', (req, res) =>{
