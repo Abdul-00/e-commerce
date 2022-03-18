@@ -1,8 +1,8 @@
 const mongoose=require('mongoose');
 
-var schema=mongoose.schema;
+var Schema = mongoose.Schema;
 
-var prodotto=new schema({
+var prodotto=new Schema({
     categorie:{type:String,required:true,max:80},
     mf:{type:String,required:true},
     nome:{type:String,required:true},
