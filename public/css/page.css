@@ -1,0 +1,44 @@
+main{
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+.index{
+  display: flex;
+  flex-direction: column;
+}
+.list_element{
+  font-size: 20px;
+  font-style: italic;
+}
+.grid_container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: #2196F3;
+    padding: 10px;
+  }
+  .button_style{
+    width: auto;
+    height: auto;
+    font-size: 20px;
+    margin: 1rem;
+
+  }
+
+  .grid_button{
+    display: flex;
+    justify-content: left;
+    margin-bottom: 2rem;
+    border: 1px solid blue;
+  }
+  .grid_item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+    row-gap: 5px;
+  }
+  .grid_text{
+    font-size: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
