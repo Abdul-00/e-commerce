@@ -1,3 +1,4 @@
+//Documento prodoto
 const mongoose=require('mongoose');
 
 var Schema = mongoose.Schema;
@@ -26,6 +27,13 @@ var prodotto=new Schema({
         colletto:{type:String,max:100},
         chiusura:{type:String,max:100},
         tasche:{type:String,max:100},
+    },
+    taglia_fit:{
+        vestibilita:{type:String},
+        lunghezza:{type:String},
+        lunghezza_manica:{type:String},
+        lung_delle_maniche:{type:String},
+        lung_dello_schienale:{type:String},
     }
 
 });
