@@ -13,7 +13,6 @@ main{
 .grid_container {
     display: grid;
     grid-template-columns: auto auto auto;
-    background-color: #2196F3;
     padding: 10px;
   }
   .button_style{
@@ -28,7 +27,6 @@ main{
     display: flex;
     justify-content: left;
     margin-bottom: 2rem;
-    border: 1px solid blue;
   }
   .grid_item {
     background-color: rgba(255, 255, 255, 0.8);
