@@ -1,0 +1,54 @@
+main{
+  font-family: "MainFont";
+  display: grid;
+  grid-template-columns: 25% 75%;
+}
+.filter {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  padding: 20px;
+  row-gap: 10px;
+}
+.filter .button{
+  width: 95%;
+  height: 60px;
+  border: 2px solid black;
+  background-color: whitesmoke;
+  text-align: center;
+  font-size: 16pt;
+  font-weight: 600;
+  color: black;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    border: 1px solid black;
+    padding: 10px;
+    row-gap: 20px;
+  }
+
+.prodotto {
+    box-sizing: border-box;
+    width: 360px;
+    height: 600px;
+    padding: 20px;
+    border: 1px solid black;
+}
+  .prodotto .image {
+    width: 100%;
+    height: 73%;
+    overflow: hidden;
+  }
+  .prodotto .image img {
+    width: 100%;
+    transition: .5s;
+  }
+  .prodotto:hover .image img {
+    transform: translateY(-5%);
+  }
+  .prodotto .dettagli{
+    text-align: left;
+    color: black;
+  }
+  
