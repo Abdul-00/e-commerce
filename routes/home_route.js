@@ -10,15 +10,27 @@ router.get('/', (req, res) =>{
 });
 
 //Login root
-router.get('/login' ,(req,res) =>{
-    
-   /* var awesome_instance = new myschema({ 'nome': 'alex','indirizzo':'via mario 25','email':'alex.b@gmail.com'});
-    // Save the new model instance, passing a callback
-    awesome_instance.save(function (err) {
-    if (err) return handleError(err);
-        res.send("controlla mongodb atlas");
-    });*/
-});
+    router.get('/login' ,(req,res) =>{
+        res.render('login');
+    });
+
+    router.post('/login', async (req,res) =>{
+        var result=req.body;
+        
+        //query per verificare i dati
+        myuser.findOne({ 'email':result.email},async function(err,myres){
+            if (err) return handleError(err);
+            console.log(myres.password);
+
+            //comparazione delle due password
+            bcrypte.compare(result.password,myres.password,function(err,log){
+                console.log(log);
+                // if log true then start session 
+            });
+        });
+        //creare il token per l'accesso
+        //reindirizzare verso la home
+    });
 
 //Registration root
     router.get('/register',(req,res)=>{
@@ -30,7 +42,8 @@ router.get('/login' ,(req,res) =>{
     router.post('/register', async (req,res)=>{
         var result=req.body;
         //verificare i dati
-        if(result.email[0]!=result.email[1] || result.password[0]!=result.password[1] || result.codice_fiscale.lenght>16 || result.codice_fiscale.lenght<16 ){
+        console.log(result.password[0].length);
+        if(result.email[0]!=result.email[1] || result.password[0]!=result.password[1] || result.codice_fiscale.length>16 || result.codice_fiscale.length<16 || result.password[0].length<8){
             req.flash('infoError'," Errore di compilazione");
             res.redirect('/register');
             return;
@@ -63,7 +76,6 @@ router.get('/login' ,(req,res) =>{
 
             })
 
-        //creare il token per l'accesso
         //mandare email di avvenuta registraione <-----Opzionale
 
     });
