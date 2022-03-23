@@ -15,6 +15,16 @@ main{
     grid-template-columns: auto auto auto;
     padding: 10px;
   }
+  .ul_style{
+    list-style-type: none;
+    display: none;
+  }
+
+.list_element:hover .ul_style{
+    display: flex;
+    flex-direction: column;
+}
+
   .button_style{
     width: auto;
     height: auto;
