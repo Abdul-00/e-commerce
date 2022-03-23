@@ -12,24 +12,24 @@
     <div>
         <span>
             <header>
-                <a href="../html/index.html"> <img src="../img/img_login/close.png" alt="Chiudi" style="height: auto; width: 20px; padding-top: 2px; padding-left: 5px;"></a>
-                <a href="../html/register.html">Registrati</a>
+                <a href="/"> <img src="../img/img_login/close.png" alt="Chiudi" style="height: auto; width: 20px; padding-top: 2px; padding-left: 5px;"></a>
+                <a href="/register">Registrati</a>
             </header>
             <div style="display: flex; justify-content: center;">
-                <a href="../html/index.html"><img src="../img/Logo.png" alt="Next Gen Agency" style="height: auto; width: 150px; margin-top: 20px;"></a>
+                <a href="/"><img src="../img/Logo.png" alt="Next Gen Agency" style="height: auto; width: 150px; margin-top: 20px;"></a>
             </div>
         </span>
     </div>
     <div>
         <main>
             <div class="container_1">
-                <form action="" method="post" id="myform">
+                <form action="/login" method="post" id="myform" enctype="application/x-www-form-urlencoded">
                     <div><h2>Inserisci le credenziali!</h2></div>
                     <div>
-                        <p> <img src="../img/img_login/email.png" alt="" style="height: auto; width: 35px;"> Email</p><input type="text" name="email" id="email" placeholder="Inserisci la tua email">
+                        <p> <img src="../img/img_login/email.png" alt="" style="height: auto; width: 35px;"> Email</p><input type="text" name="email" id="email" placeholder="Inserisci la tua email" required>
                     </div>
                     <div>
-                        <p> <img src="../img/img_login/password.png" alt="" style="height: auto; width: 35px;"> Password</p><input type="password" name="password" id="password" placeholder="Inserisci la tua password">
+                        <p> <img src="../img/img_login/password.png" alt="" style="height: auto; width: 35px;"> Password</p><input type="password" name="password" id="password" placeholder="Inserisci la tua password" required>
                     </div>
                     
                     <section class="mybuttons_1">
@@ -52,7 +52,7 @@
     <footer>
         <center>
             <div>
-                <a href="../html/index.html"> <img src="../img/Logo.png" alt="Next Gen Agency" style="height: auto; width: 150px; margin-top: 50px;"></a>
+                <a href="/"> <img src="../img/Logo.png" alt="Next Gen Agency" style="height: auto; width: 150px; margin-top: 50px;"></a>
             </div>
         </center>
     </footer>
