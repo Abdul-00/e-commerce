@@ -5,17 +5,29 @@ const app=express();
 const myroutes=require('./routes/home_route');
 const fileupload=require('express-fileupload');
 const session=require('express-session');
-const cookieparser=require('cookie-parser');
+const mongoDBSession=require('connect-mongodb-session')(session);
+//const cookieparser=require('cookie-parser');
 const flash=require('connect-flash');
 require('dotenv/config');
 
 
+//DATABASE CONNCETION
+    mongoose.connect(process.env.db_connection,{useNewUrlParser: true});
+    const db=mongoose.connection;
+    db.on('error',()=>console.log("errore di connessione al db"));
+    db.once('open',()=>console.log("connesso al db"));
+
 //session and cookies
-    app.use(cookieparser(process.env.secure_cookie));
+    //app.use(cookieparser(process.env.secure_cookie));
+    const store=new mongoDBSession({
+        uri:process.env.db_connection,
+        collection:'mysessions'
+    });
     app.use(session({
         secret: process.env.session_sec,
-        saveUninitialized: true,
-        resave: true
+        saveUninitialized: false,
+        resave: false,
+        store: store
     }));
     app.use(flash());
     app.use(fileupload());
@@ -32,11 +44,6 @@ require('dotenv/config');
     app.use(express.urlencoded({extended:true}));
     app.use(express.static('public'));
 
-//DATABASE CONNCETION
-    mongoose.connect(process.env.db_connection,{useNewUrlParser: true});
-    const db=mongoose.connection;
-    db.on('error',()=>console.log("errore di connessione al db"));
-    db.once('open',()=>console.log("connesso al db"));
 
 //Start Server
     app.listen(3000);

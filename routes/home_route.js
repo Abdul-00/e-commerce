@@ -4,12 +4,25 @@ const router=express.Router();
 const myuser=require('../models/user');
 const myproduct=require('../models/prodotto');
 const bcrypte=require('bcryptjs');
+
+
+//Auth function
+const isAuth = (req, res, next) => {
+    if (req.session.result) {
+        next();
+    } else {
+        res.redirect('/login');
+    }
+}
+
+
 //MAIN ROOT
-router.get('/', (req, res) =>{
+router.get('/', isAuth, (req, res,next) =>{
     res.render('home_page');
 });
 
 //Login root
+
     router.get('/login' ,(req,res) =>{
         res.render('login');
     });
@@ -26,10 +39,17 @@ router.get('/', (req, res) =>{
             bcrypte.compare(result.password,myres.password,function(err,log){
                 console.log(log);
                 // if log true then start session 
+                if(log){
+                    console.log("im if");
+                    //creare il token per l'accesso
+                    req.session.result=result;
+                    //reindirizzare verso la home
+                    return res.redirect('/');
+                }else{
+                    return res.redirect('/login');
+                }
             });
         });
-        //creare il token per l'accesso
-        //reindirizzare verso la home
     });
 
 //Registration root
