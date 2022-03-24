@@ -92,5 +92,10 @@ router.get('/find',(req,res)=>{
     */
 });
 
+//ROOTE PROVA
+    router.get('/product-list',(req,res)=>{
+        res.render('product-list')
+    });
+
 module.exports=router;
 
