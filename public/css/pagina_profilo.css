@@ -45,3 +45,9 @@
     background-color: white;
     color: black;
   }
+
+.centra_bottone
+{
+  display: flex;
+  align-items: center;
+}
