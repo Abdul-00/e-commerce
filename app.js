@@ -10,6 +10,11 @@ const mongoDBSession=require('connect-mongodb-session')(session);
 const flash=require('connect-flash');
 require('dotenv/config');
 
+//set views
+    app.set('views','./views');
+    app.set('view engine','ejs');
+    app.use(express.urlencoded({extended:true}));
+    app.use(express.static('public'));
 
 //DATABASE CONNCETION
     mongoose.connect(process.env.db_connection,{useNewUrlParser: true});
@@ -36,13 +41,6 @@ require('dotenv/config');
     app.use(bodyparser.json());
     app.use(bodyparser.urlencoded({extended:true}));
     app.use('/',myroutes);
-
-
-//set views
-    app.set('views','./views');
-    app.set('view engine','ejs');
-    app.use(express.urlencoded({extended:true}));
-    app.use(express.static('public'));
 
 
 //Start Server

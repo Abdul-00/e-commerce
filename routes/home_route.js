@@ -7,19 +7,19 @@ const bcrypte=require('bcryptjs');
 
 
 //Auth function
-const isAuth = (req, res, next) => {
-    if (req.session.result) {
-        next();
-    } else {
-        res.redirect('/login');
+    const isAuth = (req, res, next) => {
+        if (req.session.result) {
+            next();
+        } else {
+            res.redirect('/login');
+        }
     }
-}
 
 
 //MAIN ROOT
-router.get('/', isAuth, (req, res,next) =>{
-    res.render('home_page');
-});
+    router.get('/', isAuth, (req, res,next) =>{
+        res.render('home_page');
+    });
 
 //Login root
     router.get('/login' ,(req,res) =>{
@@ -107,21 +107,62 @@ router.get('/', isAuth, (req, res,next) =>{
 
     });
 
-//General Porpuse
-router.get('/find',(req,res)=>{
+//Upload Product route --->WHAITING FOR UPLOAD PAGE
+   /*router.get('/Upload',isAuth,(req,res)=>{
+        res.render('Upload-product');
+    });*/
 
-    /*var ali = mongoose.model('user');
+    router.get('/upload',(req,res)=>{
+        var upload= new myproduct({
 
-    ali.find({ 'nome': 'ali' }, function (err, result) {
-        if (err) return handleError(err);
-        res.send(result);
-        })
-    */
-});
+            categorie:"t-shirt",
+            mf:"male",
+            nome:"jeans couture",
+            brand:"versace",
+            usato: false,
+            foto:{
+                colore:"bianco",
+                url:"t-shirt_versace.jpeg"
+            },
+            taglai_prezzo:{
+                colore:"bianco",
+                taglia:{
+                    quantità:"20",
+                    size:"M",
+                    prezzo: 300
+                }
+            },
+            dettagli:{
+                composizione:"cotone",
+                avvertenze:"EHHH",
+                colletto:"crew",
+                chiusura:"nessuna",
+                tasche:"nessuna",
+            },
+            taglia_fit:{
+                vestibilita:"normale",
+                lunghezza:"normale",
+                lunghezza_manica:"media",
+                lung_delle_maniche:"media",
+                lung_dello_schienale:"uniforme",
+            }
+        });
+        upload.save();
+        res.send("Inserimento completato");
+    });
 
-//ROOTE PROVA
-    router.get('/product-list',(req,res)=>{
-        res.render('product-list')
+//Product-list Route 
+    router.get('/product-list/:category',(req,res)=>{
+        var cat=req.params.category;
+        myproduct.find({categorie:"t-shirt"},function(err,myres){
+            if(err) return handleError(err);
+            //contolli necessari sul risultato 
+            var conta=myres.length;
+            var mess;
+            if(conta<1) return res.render('product-list',{ mess:"NON CI SONO PRODOTTI PER QUESTA CATEGORIA",myres});
+            
+            return res.render('product-list',{myres,mess});
+        });
     });
 
 module.exports=router;

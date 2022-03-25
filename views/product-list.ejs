@@ -11,8 +11,9 @@
 
 </head>
 <body>
+    <!--INCLUDING  NAV BAR -->
     <%- include('../public/html/navbar.html') %>
-    <br><br> 
+    <br>
     <main>
         <div></div>
         <div>
@@ -91,46 +92,29 @@
                 <div><button class="button">Filtro8</button></div>
             </div>
             <div class="container">
-                <div class="prodotto">
-                    <div class="image">
-                        <a href="#"><img src="../img/img_product-list/img1.jpg"></a>
-                    </div>
-                    <div class="dettagli">
-                        <h2>Marca del prodotto</h2>
-                        <h4>Nome del prodotto - categoria del prodotto - colore del prodotto</h4>
-                        <h4>Prezzo del prodotto</h4>
-                    </div>
-                </div>
-                <div class="prodotto">
-                    <div class="image">
-                        <a href="#"><img src="../img/img_product-list/mg2.jpg"></a>
-                    </div>
-                    <div class="dettagli">
-                        <h2>Marca del prodotto</h2>
-                        <h4>Nome del prodotto - categoria del prodotto - colore del prodotto</h4>
-                        <h4>Prezzo del prodotto</h4>
-                    </div>
-                </div>
-                <div class="prodotto">
-                    <div class="image">
-                        <a href="#"><img src="../img/img_product-list/img3.jpg"></a>
-                    </div>
-                    <div class="dettagli">
-                        <h2>Marca del prodotto</h2>
-                        <h4>Nome del prodotto - categoria del prodotto - colore del prodotto</h4>
-                        <h4>Prezzo del prodotto</h4>
-                    </div>
-                </div>
-                <div class="prodotto">
-                    <div class="image">
-                        <a href="#"><img src="../img/img_product-list/img4.jpg"></a>
-                    </div>
-                    <div class="dettagli">
-                        <h2>Marca del prodotto</h2>
-                        <h4>Nome del prodotto - categoria del prodotto - colore del prodotto</h4>
-                        <h4>Prezzo del prodotto</h4>
-                    </div>
-                </div>
+                
+                <!-- E J S   Q U I -->
+                <% if(mess){ %>
+                     <div class="prodotto">
+                        <h2> <%= mess %> </h2>
+                     </div>
+                <% } else{ %>
+                    <% myres.forEach(function(value,key){ %>
+                    
+                        <div class="prodotto">
+                            <div class="image">
+                                <a href="#"><img src="../upload/<%= value.foto[0].url %>"></a>
+                            </div>
+                            <div class="dettagli">
+                                <h2> <%= value.brand %> </h2>
+                                <h4> <%= value.nome %> - <%= value.categorie %> - <%= value.taglai_prezzo[0].colore %></h4>
+                                <h4><%= value.taglai_prezzo[0].taglia.prezzo %>$</h4>
+                            </div>
+                        </div>
+                    
+                    <% });  %>
+                <% }; %>
+                
             </div>
         </div>
         <div></div>
