@@ -22,7 +22,6 @@ router.get('/', isAuth, (req, res,next) =>{
 });
 
 //Login root
-
     router.get('/login' ,(req,res) =>{
         res.render('login');
     });
@@ -40,9 +39,9 @@ router.get('/', isAuth, (req, res,next) =>{
                 console.log(log);
                 // if log true then start session 
                 if(log){
-                    console.log("im if");
+
                     //creare il token per l'accesso
-                    req.session.result=result;
+                    req.session.result=myres;
                     //reindirizzare verso la home
                     return res.redirect('/');
                 }else{
@@ -50,6 +49,14 @@ router.get('/', isAuth, (req, res,next) =>{
                 }
             });
         });
+    });
+
+//LOG-OUT
+    router.get('/logout',(req,res)=>{
+        req.session.destroy((err)=>{
+            if(err) throw err;
+            res.redirect('/');
+        })
     });
 
 //Registration root
