@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/inserisci.css">
+</head>
+<body>
+    <main>
+        <div>
+            <h1>Caratteristiche scarpe eleganti</h1>
+            <div>
+                <form action="" class="grid">
+                    <div>
+                        <fieldset>
+                            <legend><h3>Offerta <span>*(campo obbligatorio)</span></h3></legend>
+                            <hr>
+                            <div class="flex">
+                                <label>Genere*</label>
+                                <select name="sesso" id="sesso">
+                                    <option value="uomo">Scarpe eleganti da uomo</option>
+                                    <option value="Donna">Scaroe eleganti da donna</option>
+                                </select>
+                            </div>
+                            <div class="flex">
+                                <label>Marca(brand)*</label>
+                                <input type="text" name="brand">
+                            </div>
+                            <div class="flex">
+                                <label>Condizione*</label>
+                                <select name="condizione" id="condizione">
+                                    <option value="Unrow">Mai indossato(nuovo e senza segni di usura)</option>
+                                    <option value="Ottimo">Ottimo(di seconda mano, segni di usura assenti o appena visibili)</option>
+                                    <option value="Buono">Buono(segni di usura poco visibili o visibili)</option>
+                                    <option value="Soddisfacente">Soddisfacente(segni di usura ben visibili)</option>
+                                    <option value="Indossabile">Indossabile(segni di usura evidenti)</option>
+                                </select>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend><h3>Dati basilari <span>*(campo obbligatorio)</span></h3></legend>
+                            <hr>
+                            <div class="flex">
+                                <label>Nome*</label>
+                                <input type="nome_prodotto" name="nome_prodotto">
+                            </div>
+                            <div class="flex">
+                                <label>Taglia*</label>
+                                <select name="taglia" id="taglia">
+                                    <option value="36">36</option>
+                                    <option value="37">37</option>
+                                    <option value="38">38</option>
+                                    <option value="39">39</option>
+                                    <option value="40">40</option>
+                                    <option value="41">41</option>
+                                    <option value="42">42</option>
+                                    <option value="43">43</option>
+                                    <option value="44">44</option>
+                                    <option value="45">45</option>
+                                    <option value="46">46</option>
+                                    <option value="47">47</option>
+                                    <option value="48">48</option>
+                                </select>
+                            </div>
+                            <div class="flex">
+                                <label>Vestibilità*</label>
+                                <select name="vestibilita" id="vestibilita">
+                                    <option value="stretto">Vestibilità stretta</option>
+                                    <option value="regolare">Vestibilità regolare</option>
+                                    <option value="comoda">Vestibilità comoda</option>
+                                    <option value="larga">Vestibilità larga</option>
+                                </select>
+                            </div>
+                            <div class="flex">
+                                <label>Composizione (materiali)*</label>
+                                <input type="text" name="composizione">
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend><h3>Dati basilari primo colore <span>*(campo obbligatorio)</span></h3></legend>
+                            <hr>
+                            <div class="flex">
+                                <label>Colore*</label>
+                                <select name="colore_superiore" id="colore_superiore">
+                                    <option value="nero">Nero /Tendente al nero</option>
+                                    <option value="bianco">Bianco /Tendente al bianco</option>
+                                    <option value="blu">Blu /Tendente al blu</option>
+                                    <option value="marrone">Marrone /Tendente al marrone</option>
+                                    <option value="rosso">Rosso-Bordeaou /Tendente al rosso-bordeaou</option>
+                                    <option value="vedre">Vedre /Tendente al verde</option>
+                                    <option value="giallo">Giallo /Tendente al giallo</option>
+                                    <option value="arancione">Marrone /Tendente all'arancio</option>
+                                </select>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend><h3>Dati basilari secondo colore <span>*(campo obbligatorio)</span></h3></legend>
+                            <hr>
+                            <div class="flex">
+                                <label>Colore*</label>
+                                <select name="colore_secondario" id="colore_secondario">
+                                    <option value="nessuno">Nessuno</option>
+                                    <option value="nero">Nero /Tendente al nero</option>
+                                    <option value="bianco">Bianco /Tendente al bianco</option>
+                                    <option value="blu">Blu /Tendente al blu</option>
+                                    <option value="marrone">Marrone /Tendente al marrone</option>
+                                    <option value="rosso">Rosso-Bordeaou /Tendente al rosso-bordeaou</option>
+                                    <option value="vedre">Verde /Tendente al verde</option>
+                                    <option value="giallo">Giallo /Tendente al giallo</option>
+                                    <option value="arancione">Marrone /Tendente all'arancio</option>
+                                </select>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend><h3>Immagini del prodotto <span>*(campo obbligatorio)</span></h3></legend>
+                            <hr>
+                            <div class="flex">
+                                <label>carica le immagini del prodotto (*le prime 4 sono obbligatorie)</label>
+                                <input type="file" name="immagine1">
+                                <!-- non riesco a dare lo stile (avete tempo guardate applicando css e javascript)
+                                <input type="file" name="immagine2">
+                                <input type="file" name="immagine3">
+                                <input type="file" name="immagine4">
+                                <input type="file" name="immagine5">
+                                <input type="file" name="immagine6">
+                                -->
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend><h3>Ulteriori indicazioni <span>*(campo obbligatorio)</span></h3></legend>
+                            <hr>
+                            <div class="flex">
+                                <label>Descrizione e dettagli del prodotto*</label>
+                                <textarea name="descrizione" id="descrizione" cols="30" rows="10"></textarea>
+                            </div>
+                            <div class="flex">
+                                <label>Avvertenze</label>
+                                <input type="text" name="avvertenze">
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend><h3>Prezzo del prodotto <span>*(campo obbligatorio)</span></h3></legend>
+                            <hr>
+                            <div class="flex">
+                                <label>Inserisci il prezzo del prodotto*</label>
+                                <input type="text" name="prezzo" id="prezzo">
+                            </div>
+                        </fieldset>
+                        <div style="width: 100%;"><a href="#"><button id="button" type="submit">Salva & Continua</button></a></div>
+                    </div>
+                    <div></div>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
