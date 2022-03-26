@@ -1,3 +1,7 @@
+@font-face {
+  font-family: MainFont;
+  src: url(../fonts/Roboto/Roboto-Regular.ttf);
+}
 main{
   font-family: "MainFont";
 }

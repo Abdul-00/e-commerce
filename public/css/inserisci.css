@@ -1,6 +1,11 @@
+@font-face {
+    font-family: MainFont;
+    src: url(../fonts/Roboto/Roboto-Regular.ttf);
+}
 main{
     padding-left: 5%;
     padding-right: 5%;
+    font-family: "MainFont";
 }
 .grid{
     display: grid;
@@ -100,4 +105,42 @@ textarea{
 #button:hover{
     background-color: rgb(165, 80, 1);
     color: black;
+}
+
+.second_div{
+    position: fixed;
+    border: 1px solid grey;
+    box-sizing: border-box;
+    width: 380px;
+    height: 90vh;
+    margin-left: 10%;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+#image_anteprima{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    box-sizing: border-box;
+    width: 330px;
+    height: 50%;
+}
+.image{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.image img{
+    width: 100%;
+}
+#titolo_anteprima{
+    margin-left: 5%;
+    padding-bottom: 2px;
+    border-bottom: 1px solid gray;
+}
+#nome{
+    margin-left: 5%;
+    padding-bottom: 2px;
+    color: black;
+    font-size: 16pt;
+    font-weight: 400;
 }

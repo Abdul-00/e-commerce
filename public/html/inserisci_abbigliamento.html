@@ -9,10 +9,10 @@
 <body>
     <main>
         <div>
-            <h1>Caratteristiche del completo</h1>
             <div>
                 <form action="" class="grid">
                     <div>
+                        <h1>Caratteristiche del completo</h1>
                         <fieldset>
                             <legend><h3>Offerta <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
@@ -21,6 +21,19 @@
                                 <select name="sesso" id="sesso">
                                     <option value="uomo">Completo da uomo</option>
                                     <option value="Donna">Completo da donna</option>
+                                </select>
+                            </div>
+                            <div class="flex">
+                                <label>Categoria*</label>
+                                <select name="sesso" id="sesso">
+                                    <option value="manica_corta">T-shirt & Polo</option>
+                                    <option value="camicia">Camicie</option>
+                                    <option value="maglieria">Maglieria & Felpe</option>
+                                    <option value="completo">Completo</option>
+                                    <option value="giacca">Giacca</option>
+                                    <option value="cappotto">Cappotti</option>
+                                    <option value="jeans">Jeans</option>
+                                    <option value="pantalone">Pantaloni</option>
                                 </select>
                             </div>
                             <div class="flex">
@@ -158,7 +171,25 @@
                         </fieldset>
                         <div style="width: 100%;"><a href="#"><button id="button" type="submit">Salva & Continua</button></a></div>
                     </div>
-                    <div></div>
+                    <div style="width: 100%; margin-top: 5%;">
+                        <div class="second_div">
+                            <div id="image_anteprima">
+                                <img src="./img2.jpg" alt="" class="image">
+                            </div>
+                            <div>
+                                <h4 id="titolo_anteprima">BRAND</h4>
+                                <p id="nome">Salvatore Ferragamo</p>
+                            </div>
+                            <div>
+                                <h4 id="titolo_anteprima">NOME PRODOTTO</h4>
+                                <p id="nome">Completo elegante</p>
+                            </div>
+                            <div>
+                                <h4 id="titolo_anteprima">PREZZO</h4>
+                                <p id="nome">450$</p>
+                            </div>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
