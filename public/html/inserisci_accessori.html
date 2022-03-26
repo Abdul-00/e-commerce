@@ -9,7 +9,7 @@
 <body>
     <main>
         <div>
-            <h1>Caratteristiche scarpe eleganti</h1>
+            <h1>Caratteristiche dell'accessorio</h1>
             <div>
                 <form action="" class="grid">
                     <div>
@@ -17,10 +17,15 @@
                             <legend><h3>Offerta <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Genere*</label>
-                                <select name="sesso" id="sesso">
-                                    <option value="uomo">Scarpe eleganti da uomo</option>
-                                    <option value="Donna">Scaroe eleganti da donna</option>
+                                <label>Tipologia*</label>
+                                <select name="tipologia" id="tipologia">
+                                    <option value="sciarpa">Sciarpa</option>
+                                    <option value="cravatte">Cravatte</option>
+                                    <option value="papillon">Papillon</option>
+                                    <option value="fazzoletti">Fazzoletti da taschino</option>
+                                    <option value="occhiali">Occhiali</option>
+                                    <option value="cintura">Cintura</option>
+                                    <option value="portafoglio">Portafoglio</option>
                                 </select>
                             </div>
                             <div class="flex">
@@ -48,29 +53,16 @@
                             <div class="flex">
                                 <label>Taglia*</label>
                                 <select name="taglia" id="taglia">
-                                    <option value="36">36</option>
-                                    <option value="37">37</option>
-                                    <option value="38">38</option>
-                                    <option value="39">39</option>
-                                    <option value="40">40</option>
-                                    <option value="41">41</option>
-                                    <option value="42">42</option>
-                                    <option value="43">43</option>
-                                    <option value="44">44</option>
-                                    <option value="45">45</option>
-                                    <option value="46">46</option>
-                                    <option value="47">47</option>
-                                    <option value="48">48</option>
+                                    <option value="one_size">One Size</option>
+                                    <option value="xs">XS</option>
+                                    <option value="s">S</option>
+                                    <option value="m">M</option>
+                                    <option value="l">L</option>
+                                    <option value="xl">XL</option>
+                                    <option value="xxl">XXL</option>
                                 </select>
                             </div>
                             <div class="flex">
-                                <label>Vestibilità*</label>
-                                <select name="vestibilita" id="vestibilita">
-                                    <option value="stretto">Vestibilità stretta</option>
-                                    <option value="regolare">Vestibilità regolare</option>
-                                    <option value="comoda">Vestibilità comoda</option>
-                                    <option value="larga">Vestibilità larga</option>
-                                </select>
                             </div>
                             <div class="flex">
                                 <label>Composizione (materiali)*</label>
@@ -82,7 +74,7 @@
                             <hr>
                             <div class="flex">
                                 <label>Colore*</label>
-                                <select name="colore_superiore" id="colore_superiore">
+                                <select name="primo_colore" id="primo_colore">
                                     <option value="nero">Nero /Tendente al nero</option>
                                     <option value="bianco">Bianco /Tendente al bianco</option>
                                     <option value="blu">Blu /Tendente al blu</option>
@@ -93,23 +85,13 @@
                                     <option value="arancione">Marrone /Tendente all'arancio</option>
                                 </select>
                             </div>
-                        </fieldset>
-                        <fieldset>
-                            <legend><h3>Dati basilari secondo colore <span>*(campo obbligatorio)</span></h3></legend>
-                            <hr>
                             <div class="flex">
-                                <label>Colore*</label>
-                                <select name="colore_secondario" id="colore_secondario">
-                                    <option value="nessuno">Nessuno</option>
-                                    <option value="nero">Nero /Tendente al nero</option>
-                                    <option value="bianco">Bianco /Tendente al bianco</option>
-                                    <option value="blu">Blu /Tendente al blu</option>
-                                    <option value="marrone">Marrone /Tendente al marrone</option>
-                                    <option value="rosso">Rosso-Bordeaou /Tendente al rosso-bordeaou</option>
-                                    <option value="vedre">Verde /Tendente al verde</option>
-                                    <option value="giallo">Giallo /Tendente al giallo</option>
-                                    <option value="arancione">Marrone /Tendente all'arancio</option>
-                                </select>
+                                <label>lunghezza in centimentri manico*</label>
+                                <input type="text" name="lun_cm_manico">
+                            </div>
+                            <div class="flex">
+                                <label>ampiezza in centimetri manico*</label>
+                                <input type="text" name="amp_cm_manico">
                             </div>
                         </fieldset>
                         <fieldset>
@@ -118,7 +100,7 @@
                             <div class="flex">
                                 <label>carica le immagini del prodotto (*le prime 4 sono obbligatorie)</label>
                                 <input type="file" name="immagine1">
-                                <!-- non riesco a dare lo stile (avete tempo guardate applicando css e javascript)
+                                <!-- non riesco a dare lo stile (avete tempo guardate applicadno css e javascript)
                                 <input type="file" name="immagine2">
                                 <input type="file" name="immagine3">
                                 <input type="file" name="immagine4">
