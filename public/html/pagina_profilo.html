@@ -7,172 +7,164 @@
     <link rel="stylesheet" href="../css/pagina_profilo.css">
     <title>Panoramica</title>
 </head>
-<body>
-    <main>
-        <div>
-            <center>
+    <body>
+        <main>
+            <div>
                 <section>
-                    <a href="../html/index.html"> <img src="../img/img_login/close.png" alt="Chiudi" style="height: auto; width: 20px; padding-top: 2px; padding-left: 5px;"></a>
+                    <a href="/"> <img src="../img/img_login/close.png" alt="Chiudi" style="height: auto; width: 18px; padding-top: 2px; padding-left: 5px;"></a>
                     <hr>
                 </section>
-                <section class="section_benvenuto">
-                    <div class="div_benvenuto">
-                        <img src="" alt="" width="35%">
-                        <h1>Benvenuto utente</h1>
-                    </div>
-                </section>
-                <hr>
-                <section>
-                    <div>
-                        <h1 style="font-size: 45px;">Dati personali</h1>
-                        <p style="font-size: 20px;">Visualizza i miei dati Impostazioni di log-in e password.</p>
-                    </div>
-                    <div class="grid_container">
-                        <div class="grid_item centra_bottone">
-                            <img src="../img/img_navbar/user.png" alt="">
+                <center>
+                    
+                    <section class="section_benvenuto">
+                        <div class="div_benvenuto">
+                            <img src="" alt="" width="35%">
+                            <h1>Benvenuto utente</h1>
                         </div>
-                        <div class="grid_item">
-                            <div class="dati_personali">
-                                <p><b>Nome</b></p>
-                                <p>Giorgio</p>
+                    </section>
+                    <hr>
+                    <section>
+                        <div>
+                            <h1 style="font-size: 45px;">Dati personali</h1>
+                            <p style="font-size: 20px;">Visualizza i miei dati Impostazioni di log-in e password.</p>
+                        </div>
+                        <div class="grid_container">
+                            <div class="grid_item centra_bottone">
+                                <img src="../img/img_navbar/user.png" alt="">
                             </div>
-                            <hr>
-                            <div class="dati_personali">
-                                <p><b>Preferenze</b></p>
-                                <p>Moda uomo</p>
+                            <div class="grid_item">
+                                <div class="dati_personali">
+                                    <p><b>Nome & Cognome</b></p>
+                                    <input type="text" value="ciccio miccio" class="myin"> 
+                                </div>
+                                <hr>
+                                <div class="dati_personali">
+                                    <p><b>Codice-Fiscale</b></p>
+                                    <input type="text" value="ciccio miccio" class="myin">
+                                </div>
                             </div>
-                        </div>
-                        <div class="grid_item">
-                            <div class="dati_personali">
-                                <p><b>Telefono</b></p>
-                                <p>+39 371 981 6351</p>
+                            <div class="grid_item">
+                                <div class="dati_personali">
+                                    <p><b>Telefono</b></p>
+                                    <input type="text" value="ciccio miccio" class="myin">
+                                </div>
+                                <hr>
+                                <div class="dati_personali">
+                                    <p><b>Data Nascita</b></p>
+                                    <input type="date" value="2000-01-01" class="myin">
+                                </div>
                             </div>
-                            <hr>
-                            <div class="dati_personali">
-                                <p><b>Data Nascita</b></p>
-                                <p>13/03/2000</p>
-                            </div>
-                        </div>
-                        <div class="grid_item centra_bottone">
-                            <button class="bottone_modifica">
-                                <img src="../img/img_login/modifica.png" alt="" style="width: auto; height: 20px;"> <!--matita-->
-                                <b>Modifica</b>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="grid_container">
-                        <div class="grid_item centra_bottone">
-                            <img src="../img/img_login/email.png" alt="">
-                        </div>
-                        <div class="grid_item2">
-                            <p><b>La tua email</b></p>
-                            <p>giorgio@outlook.com</p>
-                        </div>
-                        <div class="grid_item centra_bottone">
-                            <button class="bottone_modifica">
-                                <img src="../img/img_login/modifica.png" alt="" style="width: auto; height: 20px;"> <!--matita-->
-                                <b>Modifica</b>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="grid_container">
-                        <div class="grid_item centra_bottone">
-                            <img src="../img/img_login/password.png" alt="">
-                        </div>
-                        <div class="grid_item2">
-                            <p><b>La tua password</b></p>
-                            <p>************</p>
-                        </div>
-                        <div class="grid_item centra_bottone">
-                            <button class="bottone_modifica">
-                                <img src="../img/img_login/modifica.png" alt="" style="width: auto; height: 20px;"> <!--matita-->
-                                <b>Modifica</b>
-                            </button>
-                        </div>
-                    </div>
-                </section>
-                <hr>
-                <section>
-                    <h1>Indirizzi</h1>
-                    <p style="font-size: 20px;">Visualizza i miei indirizzi salvati:</p>
-                    <div class="grid_container" style="padding-left: 13%;">
-                        <div class="grid_item">
-                            <p>+</p>
-                            <a href="#" style="font-size: 17px;">Aggiungi indirizzo</a>
-                        </div>
-                        <div class="grid_item">
-                            <p><b>Indirizzo di casa</b></p>
-                            <p>Giorgio Abdullah</p>
-                            <p>Via Prati, 2</p>
-                            <p>42015, Correggio (RE)</p>
-                            <p>Italia</p>
-                            <div style="display: flex; justify-content: space-between;">
-                                <img src="../img/img_profilo/cestino_1.png" alt="" width="14%"> <!--cestino-->
+                            <div class="grid_item centra_bottone">
                                 <button class="bottone_modifica">
-                                    <img src="../img/img_login/modifica.png" alt="Modifica indirizzo" style="width: auto; height: 20px;"> <!--matita-->
+                                    <img src="../img/img_login/modifica.png" alt="" style="width: auto; height: 20px;"> <!--matita-->
                                     <b>Modifica</b>
                                 </button>
                             </div>
                         </div>
-                        <div class="grid_item">
-                            <p><b>Indirizzo di lavoro</b></p>
-                            <p>Giorgio Abdullah</p>
-                            <p>Via Carl Marx, 666</p>
-                            <p>70029, Bari (BA)</p>
-                            <p>Italia</p>
-                            <div style="display: flex; justify-content: space-between;">
-                                <img src="../img/img_profilo/cestino_1.png" alt="" width="14%"> <!--cestino-->
+                        <div class="grid_container">
+                            <div class="grid_item centra_bottone">
+                                <img src="../img/img_login/email.png" alt="">
+                            </div>
+                            <div class="grid_item2">
+                                <p><b>La tua email</b></p>
+                                <input type="email" value="prova@gmail.com" class="myin">
+                            </div>
+                            <div class="grid_item centra_bottone">
                                 <button class="bottone_modifica">
-                                    <img src="../img/img_login/modifica.png" alt="Modifica indirizzo" style="width: auto; height: 20px;"> <!--matita-->
+                                    <img src="../img/img_login/modifica.png" alt="" style="width: auto; height: 20px;"> <!--matita-->
                                     <b>Modifica</b>
                                 </button>
                             </div>
                         </div>
-                    </div>
-                    <h1><b>I miei metodi di pagamento:</b></h1>
-                    <div class="grid_container" style="padding-left: 13%;">
-                        <div class="grid_item">
-                            <p>+</p>
-                            <a href="#" style="font-size: 17px;">Aggiungi metodo di pagamento</a>
-                        </div>
-                        <div class="grid_item">
-                            <div style="display: flex; justify-content: center;">
-                                <p>Nome carta:</p>
-                                <p style="margin-left: 1px;">Visa di Giorgio</p>
+                        <div class="grid_container">
+                            <div class="grid_item centra_bottone">
+                                <img src="../img/img_login/password.png" alt="">
                             </div>
-                            <div style="display: flex; justify-content: center;">
-                                <a href="https://www.visaitalia.com/" style="margin-top: 5%; margin-right: 5%;"><img src="../img/img_footer/visa.png" alt="" style="height: auto; width: 55px;"></a>
-                                <p>Numero Carta: *5812 <br> Scadenza: 12/2026 <br> CVV: ***</p>
+                            <div class="grid_item2">
+                                <p><b>La tua password</b></p>
+                                <input type="password" value="ehVolevi" class="myin">
                             </div>
-                            <div style="display: flex; justify-content: space-between;">
-                                <img src="../img/img_profilo/cestino_1.png" alt="" width="14%"> <!--cestino-->
+                            <div class="grid_item centra_bottone">
                                 <button class="bottone_modifica">
-                                    <img src="../img/img_login/modifica.png" alt="Modifica indirizzo" style="width: auto; height: 20px;"> <!--matita-->
+                                    <img src="../img/img_login/modifica.png" alt="" style="width: auto; height: 20px;"> <!--matita-->
                                     <b>Modifica</b>
                                 </button>
                             </div>
                         </div>
-                        <div class="grid_item">
-                            <div style="display: flex; justify-content: center;">
-                                <p>Nome carta:</p>
-                                <p style="margin-left: 1px;">Mastercard di Fatima</p>
+                    </section>
+                    <hr>
+                    
+                    <section>
+                        <h1>Indirizzi</h1>
+                        <p style="font-size: 20px;">Visualizza i miei indirizzi salvati:</p>
+                        
+                        <div class="grid_container" style="padding-left: 13%;">
+                            <div class="grid_item">
+                                <p>+</p>
+                                <a href="#" style="font-size: 17px;">Aggiungi indirizzo</a>
                             </div>
-                            <div style="display: flex; justify-content: center;">
-                                <a href="https://www.mastercard.it/it-it.html" style="margin-top: 5%; margin-right: 5%;"><img src="../img/img_footer/mastercard.png" alt="" style="height: auto; width: 55px;"></a>
-                                <p>Numero Carta: *0092 <br> Scadenza: 01/2023 <br> CVV: ***</p>
+                            
+                            <div class="grid_item">
+                                <p><b>Indirizzo di Spedizione</b></p>
+                                <p>Giorgio Abdullah</p>
+                                <p>Via Prati, 2</p>
+                                <p>42015, Correggio (RE)</p>
+                                <p>Italia</p>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <img src="../img/img_profilo/cestino_1.png" alt="" width="14%"> <!--cestino-->
+                                    <button class="bottone_modifica">
+                                        <img src="../img/img_login/modifica.png" alt="Modifica indirizzo" style="width: auto; height: 20px;"> <!--matita-->
+                                        <b>Modifica</b>
+                                    </button>
+                                </div>
                             </div>
-                            <div style="display: flex; justify-content: space-between;">
-                                <img src="../img/img_profilo/cestino_1.png" alt="" width="14%"> <!--cestino-->
-                                <button class="bottone_modifica">
-                                    <img src="../img/img_login/modifica.png" alt="Modifica indirizzo" style="width: auto; height: 20px;"> <!--matita-->
-                                    <b>Modifica</b>
-                                </button>
+                            
+                        </div>
+                        
+                        <h1><b>I miei metodi di pagamento:</b></h1>
+                        <div class="grid_container" style="padding-left: 13%;">
+                            <div class="grid_item">
+                                <p>+</p>
+                                <a href="#" style="font-size: 17px;">Aggiungi metodo di pagamento</a>
+                            </div>
+                            <div class="grid_item">
+                                <div style="display: flex; justify-content: center;">
+                                    <p>Nome carta:</p>
+                                    <p style="margin-left: 1px;">Visa di Giorgio</p>
+                                </div>
+                                <div style="display: flex; justify-content: center;">
+                                    <a href="https://www.visaitalia.com/" style="margin-top: 5%; margin-right: 5%;"><img src="../img/img_footer/visa.png" alt="" style="height: auto; width: 55px;"></a>
+                                    <p>Numero Carta: *5812 <br> Scadenza: 12/2026 <br> CVV: ***</p>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <img src="../img/img_profilo/cestino_1.png" alt="" width="14%"> <!--cestino-->
+                                    <button class="bottone_modifica">
+                                        <img src="../img/img_login/modifica.png" alt="Modifica indirizzo" style="width: auto; height: 20px;"> <!--matita-->
+                                        <b>Modifica</b>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="grid_item">
+                                <div style="display: flex; justify-content: center;">
+                                    <p>Nome carta:</p>
+                                    <p style="margin-left: 1px;">Mastercard di Fatima</p>
+                                </div>
+                                <div style="display: flex; justify-content: center;">
+                                    <a href="https://www.mastercard.it/it-it.html" style="margin-top: 5%; margin-right: 5%;"><img src="../img/img_footer/mastercard.png" alt="" style="height: auto; width: 55px;"></a>
+                                    <p>Numero Carta: *0092 <br> Scadenza: 01/2023 <br> CVV: ***</p>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <img src="../img/img_profilo/cestino_1.png" alt="" width="14%"> <!--cestino-->
+                                    <button class="bottone_modifica">
+                                        <img src="../img/img_login/modifica.png" alt="Modifica indirizzo" style="width: auto; height: 20px;"> <!--matita-->
+                                        <b>Modifica</b>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-            </center>
-        </div> 
-    </main>
-</body>
+                    </section>
+                </center>
+            </div> 
+        </main>
+    </body>
 </html>

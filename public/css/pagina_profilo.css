@@ -1,4 +1,11 @@
 
+@font-face {
+  font-family: MainFont;
+  src: url(../fonts/Roboto/Roboto-Regular.ttf);
+}
+main{
+  font-family: MainFont;
+}
 .grid_container {
     display: grid;
     width: 70%;
@@ -39,6 +46,7 @@
   {
     font-size: 17px;
   }
+  
   .bottone_modifica{
     width: 85%;
     border: 2.5px solid black;
@@ -51,4 +59,8 @@
 {
   display: flex;
   align-items: center;
+}
+
+.myin{
+  all: unset;
 }

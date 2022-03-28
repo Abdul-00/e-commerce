@@ -106,6 +106,12 @@ const bcrypte=require('bcryptjs');
         //mandare email di avvenuta registraione <-----Opzionale
 
     });
+//Update user root
+    router.get('/updateUser',(req,res)=>{
+        
+        //res.render('update_user',);
+    });
+
 
 //Upload Product route --->WHAITING FOR UPLOAD PAGE
    /*router.get('/Upload',isAuth,(req,res)=>{
@@ -154,7 +160,7 @@ const bcrypte=require('bcryptjs');
 //Product-list Route 
     router.get('/product-list/:category',(req,res)=>{
         var cat=req.params.category;
-        myproduct.find({categorie:"t-shirt"},function(err,myres){
+        myproduct.find({categorie:cat},function(err,myres){
             if(err) return handleError(err);
             //contolli necessari sul risultato 
             var conta=myres.length;

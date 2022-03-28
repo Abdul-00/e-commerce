@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../img/icon.svg">
+    <link rel="stylesheet" href="../css/register.css">
+    <title>Accedi</title>
+</head>
+<body>
+    <div style="margin-bottom: 20px;">
+        <span>
+            <header style="border: none;">
+                <a href="/"> <img src="../img/img_login/close.png" alt="Chiudi" style="height: auto; width: 20px; padding-top: 2px; padding-left: 5px;"></a>
+            </header>
+            <div style=" display: flex; justify-content: center;">
+                <a href="/"><img src="../img/Logo.png" alt="Next Gen Agency" style="height: auto; width: 100px; margin-top: 20px;"></a>
+            </div>
+        </span>
+    </div>
+    <hr>
+    <div style="margin-top: 20px;">
+        <% if(infoSubmitObj != "") { %>
+            <div id="mess">
+                <h3 id="submit">  <%= infoSubmitObj %> </h3>
+            </div>
+        <% } else { %>
+            <% if(infoErrorObj != "") { %>
+                <div id="mess">
+                    <h3 id="error">  <%= infoErrorObj %> </h3>
+                </div>
+            <% } %>
+            <main>
+                <div class="container_1">
+                    
+                    <form action="/register" method="post" enctype="application/x-www-form-urlencoded">
+                        <div><h2>Modifica i tuoi dati!</h2></div>
+                        <div>
+                            <p> <img src="../img/img_login/nominativo.png" alt="" style="height: auto; width: 35px;"> Nome</p><input type="text" name="nome" id="email" placeholder="Inserisci il tuo nome" required>
+                        </div>
+                        <div>
+                            <p> <img src="../img/img_login/nominativo.png" alt="" style="height: auto; width: 35px;"> Cognome</p><input type="text" name="cognome" id="email" placeholder="Inserisci il tuo cognome" required>
+                        </div>
+                        <div>
+                            <p> <img src="../img/img_login/data.png" alt="" style="height: auto; width: 35px;"> Data di nascita</p><input type="date" name="data_nascita" id="email" placeholder="Inserisci la tua data di nascita" required>
+                        </div>
+                        <div>
+                            <p> <img src="../img/img_login/fingerprint.png" alt="" style="height: auto; width: 35px; margin: 2px;"> Codice Fiscale</p><input type="text" name="codice_fiscale" id="email" placeholder="Inserisci il tuo codice fiscale" maxlength="16" minlength="16" required>
+                        </div>
+                        <div>
+                            <p> <img src="../img/img_login/email.png" alt="" style="height: auto; width: 35px;"> Email</p><input type="text" name="email" id="email" placeholder="Inserisci la tua email" required>
+                        </div>
+                        <div>
+                            <p> <img src="../img/img_login/email.png" alt="" style="height: auto; width: 35px;"> Conferma mail</p><input type="text" name="email" id="email" placeholder="Conferma la tua email" required>
+                        </div>
+                        <div>
+                            <p> <img src="../img/img_login/password.png" alt="" style="height: auto; width: 35px;"> Cambia o reinserisci la Password</p><input type="password" name="password" id="password" placeholder="Inserisci la tua password" minlength="8" required>
+                        </div>
+                        <div>
+                            <p> <img src="../img/img_login/password.png" alt="" style="height: auto; width: 35px;"> Conferma password</p><input type="password" name="password" id="password" placeholder="Conferma la tua password" minlength="8" required>
+                        </div>
+                        <button type="submit">Aggiorna</button>
+                    </form>
+                </div>
+            </main>
+        <% } %>
+    </div>
+    <footer>
+        <center>
+            <div>
+                <a href="/"> <img src="../img/Logo.png" alt="Next Gen Agency" style="height: auto; width: 150px; margin-top: 50px;"></a>
+            </div>
+        </center>
+    </footer>
+</body>
+</html>
