@@ -4,6 +4,7 @@ const router=express.Router();
 const myuser=require('../models/user');
 const myproduct=require('../models/prodotto');
 const bcrypte=require('bcryptjs');
+const { update, updateOne } = require('../models/user');
 
 
 //Auth function
@@ -32,11 +33,8 @@ const bcrypte=require('bcryptjs');
         //query per verificare i dati
         myuser.findOne({ 'email':result.email},async function(err,myres){
             if (err) return handleError(err);
-            console.log(myres.password);
-
             //comparazione delle due password
             bcrypte.compare(result.password,myres.password,function(err,log){
-                console.log(log);
                 // if log true then start session 
                 if(log){
 
@@ -69,8 +67,7 @@ const bcrypte=require('bcryptjs');
     router.post('/register', async (req,res)=>{
         var result=req.body;
         //verificare i dati
-        console.log(result.password[0].length);
-        if(result.email[0]!=result.email[1] || result.password[0]!=result.password[1] || result.codice_fiscale.length>16 || result.codice_fiscale.length<16 || result.password[0].length<8){
+        if(result.email[0]!=result.email[1] || result.password[0]!=result.password[1] || result.codice_fiscale.length>16 || result.codice_fiscale.length<16 || result.password[0].length<8 || result.numero_cell.length<10 || result.numero_cell.length>10){
             req.flash('infoError'," Errore di compilazione");
             res.redirect('/register');
             return;
@@ -89,12 +86,14 @@ const bcrypte=require('bcryptjs');
                 res.redirect('/register');
                 //hash the password
                 bcrypte.hash(result.password[0], 10 , function(err, hash) {
+                    if(err) throw handleError(err);
                     //save data to db
                     var registration= new myuser({
                         nome: result.nome,
                         cognome: result.cognome,
                         data_nascita: result.data_nascita,
                         codicefiscale: result.codice_fiscale,
+                        numeroTelefono:result.numero_cell,
                         email: result.email[0],
                         password: hash,
                     });
@@ -106,15 +105,65 @@ const bcrypte=require('bcryptjs');
         //mandare email di avvenuta registraione <-----Opzionale
 
     });
+
 //Update user root
-    router.get('/updateUser',(req,res)=>{
-        
-        //res.render('update_user',);
+    router.get('/updateUser', isAuth ,(req,res)=>{
+        //user from session
+        var user=req.session.result;
+        /**the line bellow is used to get only the date 
+         *console.log(user.data_nascita.toISOString().split('T')[0]);
+        **/
+        const infoErrorObj= req.flash('infoError');
+        const infoSubmitObj= req.flash('infoSubmit');
+        res.render('update_user',{infoErrorObj,infoSubmitObj,user});
     });
+
+    router.post('/updateUser',isAuth, async (req,res)=>{
+        //user from session
+        var user=req.session.result;
+        var result=req.body;
+        if(result.email[0]!=result.email[1] || result.password[0]!=result.password[1] || result.codice_fiscale.length>16 || result.codice_fiscale.length<16 || result.password[0].length<8 || result.numero_cell.length<10 || result.numero_cell.length>10){
+            req.flash('infoError'," Errore di compilazione");
+            res.redirect('/updateUser');
+            return;
+        };
+
+        bcrypte.hash(result.password[0],10, async function(err,hash){
+            if(err) throw handleError(err);
+            await myuser.findByIdAndUpdate(user._id,{
+                nome: result.nome,
+                cognome: result.cognome,
+                data_nascita: result.data_nascita,
+                codicefiscale: result.codice_fiscale,
+                numeroTelefono:result.numero_cell,
+                email: result.email[0],
+                password: hash,
+            });
+        });
+        
+        bcrypte.compare(result.password[0],user.password,function(err,bool){
+            if(err) throw handleError(err);
+            if(bool & result.email[0]==user.email){
+                req.flash('infoSubmit',"Aggiornamento Completato");
+                return res.redirect('/updateUser');
+            }else{
+                return res.redirect('/logout');
+            }
+        });
+
+    });
+
+//Personal Profile root
+    router.get('/profilo',isAuth,(req,res)=>{
+        var user=req.session.result;
+        res.render('pagina_profilo',{user});
+    })
+
 
 
 //Upload Product route --->WHAITING FOR UPLOAD PAGE
-   /*router.get('/Upload',isAuth,(req,res)=>{
+   
+/*router.get('/Upload',isAuth,(req,res)=>{
         res.render('Upload-product');
     });*/
 
@@ -171,5 +220,11 @@ const bcrypte=require('bcryptjs');
         });
     });
 
+
+
+//temp
+    router.get('/input',(req,res)=>{
+        res.render('inserisci_abbigliamento');
+    });
 module.exports=router;
 

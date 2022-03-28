@@ -53,14 +53,13 @@ main{
     height: 3rem;
     background-color: white;
     color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
 .centra_bottone
 {
   display: flex;
   align-items: center;
-}
-
-.myin{
-  all: unset;
 }

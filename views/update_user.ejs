@@ -34,25 +34,28 @@
             <main>
                 <div class="container_1">
                     
-                    <form action="/register" method="post" enctype="application/x-www-form-urlencoded">
+                    <form action="/updateUser" method="post" enctype="application/x-www-form-urlencoded">
                         <div><h2>Modifica i tuoi dati!</h2></div>
                         <div>
-                            <p> <img src="../img/img_login/nominativo.png" alt="" style="height: auto; width: 35px;"> Nome</p><input type="text" name="nome" id="email" placeholder="Inserisci il tuo nome" required>
+                            <p> <img src="../img/img_login/nominativo.png" alt="" style="height: auto; width: 35px;"> Nome</p><input type="text" name="nome" id="email" value="<%= user.nome %>" required>
                         </div>
                         <div>
-                            <p> <img src="../img/img_login/nominativo.png" alt="" style="height: auto; width: 35px;"> Cognome</p><input type="text" name="cognome" id="email" placeholder="Inserisci il tuo cognome" required>
+                            <p> <img src="../img/img_login/nominativo.png" alt="" style="height: auto; width: 35px;"> Cognome</p><input type="text" name="cognome" id="email" value="<%= user.cognome %>" required>
                         </div>
                         <div>
-                            <p> <img src="../img/img_login/data.png" alt="" style="height: auto; width: 35px;"> Data di nascita</p><input type="date" name="data_nascita" id="email" placeholder="Inserisci la tua data di nascita" required>
+                            <p> <img src="../img/img_login/data.png" alt="" style="height: auto; width: 35px;"> Data di nascita</p><input type="date" name="data_nascita" id="email" value="<%= user.data_nascita.toISOString().split('T')[0] %>" required>
                         </div>
                         <div>
-                            <p> <img src="../img/img_login/fingerprint.png" alt="" style="height: auto; width: 35px; margin: 2px;"> Codice Fiscale</p><input type="text" name="codice_fiscale" id="email" placeholder="Inserisci il tuo codice fiscale" maxlength="16" minlength="16" required>
+                            <p> <img src="../img/img_login/fingerprint.png" alt="" style="height: auto; width: 35px; margin: 2px;"> Codice Fiscale</p><input type="text" name="codice_fiscale" id="email" value="<%= user.codicefiscale %>" maxlength="16" minlength="16" required>
                         </div>
                         <div>
-                            <p> <img src="../img/img_login/email.png" alt="" style="height: auto; width: 35px;"> Email</p><input type="text" name="email" id="email" placeholder="Inserisci la tua email" required>
+                            <p> <img src="../img/img_login/smartphone-call.png" alt="" style="height: auto; width: 35px; margin: 2px;"> Numero cellulare </p><input type="text" name="numero_cell" id="email" value="<%= user.numeroTelefono %>" maxlength="10" minlength="10" required>
                         </div>
                         <div>
-                            <p> <img src="../img/img_login/email.png" alt="" style="height: auto; width: 35px;"> Conferma mail</p><input type="text" name="email" id="email" placeholder="Conferma la tua email" required>
+                            <p> <img src="../img/img_login/email.png" alt="" style="height: auto; width: 35px;"> Email</p><input type="text" name="email" id="email" value="<%= user.email%>" required>
+                        </div>
+                        <div>
+                            <p> <img src="../img/img_login/email.png" alt="" style="height: auto; width: 35px;"> Conferma mail</p><input type="text" name="email" id="email" value="<%= user.email %>" required>
                         </div>
                         <div>
                             <p> <img src="../img/img_login/password.png" alt="" style="height: auto; width: 35px;"> Cambia o reinserisci la Password</p><input type="password" name="password" id="password" placeholder="Inserisci la tua password" minlength="8" required>
