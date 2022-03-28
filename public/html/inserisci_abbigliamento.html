@@ -9,14 +9,32 @@
 <body>
     <main>
         <div>
-            <h1>Caratteristiche della borsa a mano</h1>
             <div>
                 <form action="" class="grid">
                     <div>
+                        <h1>Caratteristiche del prodotto</h1>
                         <fieldset>
                             <legend><h3>Offerta <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
+                                <label>Genere*</label>
+                                <select name="sesso" id="sesso">
+                                    <option value="uomo">Abbigliamento da uomo</option>
+                                    <option value="Donna">Abbigliamento da donna</option>
+                                </select>
+                            </div>
+                            <div class="flex">
+                                <label>Categoria*</label>
+                                <select name="categoria" id="categoria">
+                                    <option value="manica_corta">T-shirt & Polo</option>
+                                    <option value="camicia">Camicie</option>
+                                    <option value="maglieria">Maglieria & Felpe</option>
+                                    <option value="completo">Completo</option>
+                                    <option value="giacca">Giacca</option>
+                                    <option value="cappotto">Cappotti</option>
+                                    <option value="jeans">Jeans</option>
+                                    <option value="pantalone">Pantaloni</option>
+                                </select>
                             </div>
                             <div class="flex">
                                 <label>Marca(brand)*</label>
@@ -43,10 +61,23 @@
                             <div class="flex">
                                 <label>Taglia*</label>
                                 <select name="taglia" id="taglia">
-                                    <option value="one_size">One Size</option>
+                                    <option value="xs">XS</option>
+                                    <option value="s">S</option>
+                                    <option value="m">M</option>
+                                    <option value="l">L</option>
+                                    <option value="xl">XL</option>
+                                    <option value="xxl">XXL</option>
                                 </select>
                             </div>
                             <div class="flex">
+                                <label>Vestibilità*</label>
+                                <select name="vestibilita" id="vestibilita">
+                                    <option value="stretto">Vestibilità stretta</option>
+                                    <option value="aderente">Vestibilità aderente</option>
+                                    <option value="regolare">Vestibilità regolare</option>
+                                    <option value="comoda">Vestibilità comoda</option>
+                                    <option value="larga">Vestibilità larga</option>
+                                </select>
                             </div>
                             <div class="flex">
                                 <label>Composizione (materiali)*</label>
@@ -54,11 +85,11 @@
                             </div>
                         </fieldset>
                         <fieldset>
-                            <legend><h3>Dati basilari primo colore <span>*(campo obbligatorio)</span></h3></legend>
+                            <legend><h3>Dati basilari parte superiore <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
                                 <label>Colore*</label>
-                                <select name="primo_colore" id="primo_colore">
+                                <select name="colore_superiore" id="colore_superiore">
                                     <option value="nero">Nero /Tendente al nero</option>
                                     <option value="bianco">Bianco /Tendente al bianco</option>
                                     <option value="blu">Blu /Tendente al blu</option>
@@ -70,21 +101,20 @@
                                 </select>
                             </div>
                             <div class="flex">
-                                <label>lunghezza in centimentri manico*</label>
-                                <input type="text" name="lun_cm_manico">
+                                <label>lunghezza in centimentri manica*</label>
+                                <input type="text" name="cm_manica">
                             </div>
                             <div class="flex">
-                                <label>ampiezza in centimetri manico*</label>
-                                <input type="text" name="amp_cm_manico">
+                                <label>lunghezza in centimetri schienale*</label>
+                                <input type="text" name="cm_schienale">
                             </div>
                         </fieldset>
                         <fieldset>
-                            <legend><h3>Dati basilari secondo colore<span>*(campo obbligatorio)</span></h3></legend>
+                            <legend><h3>Dati basilari parte inferiore <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
                                 <label>Colore*</label>
-                                <select name="secondo_colore" id="secondo_colore">
-                                    <option value="nessuno">Nessuno</option>
+                                <select name="colore_inferiore" id="colore_inferiore">
                                     <option value="nero">Nero /Tendente al nero</option>
                                     <option value="bianco">Bianco /Tendente al bianco</option>
                                     <option value="blu">Blu /Tendente al blu</option>
@@ -94,6 +124,14 @@
                                     <option value="giallo">Giallo /Tendente al giallo</option>
                                     <option value="arancione">Marrone /Tendente all'arancio</option>
                                 </select>
+                            </div>
+                            <div class="flex">
+                                <label>lunghezza in centimentri gamba interna*</label>
+                                <input type="text" name="cm_gamba_interna">
+                            </div>
+                            <div class="flex">
+                                <label>lunghezza in centimetri gamba esterna*</label>
+                                <input type="text" name="cm_gamba_esterna">
                             </div>
                         </fieldset>
                         <fieldset>
@@ -133,7 +171,25 @@
                         </fieldset>
                         <div style="width: 100%;"><a href="#"><button id="button" type="submit">Salva & Continua</button></a></div>
                     </div>
-                    <div></div>
+                    <div style="width: 100%; margin-top: 5%;">
+                        <div class="second_div">
+                            <div id="image_anteprima">
+                                <img src="./img2.jpg" alt="" class="image">
+                            </div>
+                            <div>
+                                <h4 id="titolo_anteprima">BRAND</h4>
+                                <p id="nome">Salvatore Ferragamo</p>
+                            </div>
+                            <div>
+                                <h4 id="titolo_anteprima">NOME PRODOTTO</h4>
+                                <p id="nome">Completo elegante</p>
+                            </div>
+                            <div>
+                                <h4 id="titolo_anteprima">PREZZO</h4>
+                                <p id="nome">450$</p>
+                            </div>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
