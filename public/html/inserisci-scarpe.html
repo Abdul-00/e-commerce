@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/inserisci.css">
+    <script src="../javascript/input_scarpe.js"></script>
 </head>
 <body>
     <main>
@@ -12,7 +13,7 @@
             <div>
                 <form action="" class="grid">
                     <div>
-                        <h1>Caratteristiche delle scarpe</h1>
+                        <h1>Caratteristiche del prodotto</h1>
                         <fieldset>
                             <legend><h3>Offerta <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
@@ -23,14 +24,14 @@
                                     <option value="donna">Donna</option>
                                 </select>
                             </div>
-                            <legend><h3>Tipologia <span>*(campo obbligatorio)</span></h3></legend>
-                            <hr>
                             <div class="flex">
-                                <label>Tipologia*</label>
-                                <select name="sesso" id="sesso">
+                                <label>Categoria*</label>
+                                <select name="categoria" id="categoria" onchange="mycategory(value)">
+                                    <option value="null">Seleziona la categoria</option>
+                                    <option value="scarpe">Scarpe</option>
+                                    <option value="scarpe_eleganti">Scarpe eleganti</option>
                                     <option value="stivali">Stivali</option>
                                     <option value="mocassini">Mocassini</option>
-                                    <option value="scarpe_eleganti">Scarpe eleganti</option>
                                 </select>
                             </div>
                             <div class="flex">
@@ -74,26 +75,10 @@
                                 </select>
                             </div>
                             <div class="flex">
-                                <label>Vestibilità*</label>
-                                <select name="vestibilita" id="vestibilita">
-                                    <option value="stretto">Vestibilità stretta</option>
-                                    <option value="regolare">Vestibilità regolare</option>
-                                    <option value="comoda">Vestibilità comoda</option>
-                                    <option value="larga">Vestibilità larga</option>
-                                </select>
-                            </div>
-                            <div class="flex">
-                                <label>Composizione (materiali)*</label>
-                                <input type="text" name="composizione">
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <legend><h3>Dati basilari primo colore <span>*(campo obbligatorio)</span></h3></legend>
-                            <hr>
-                            <div class="flex">
-                                <label>Colore*</label>
-                                <select name="colore_superiore" id="colore_superiore">
+                                <label>Colore principale*</label>
+                                <select name="colore" id="colore">
                                     <option value="nero">Nero /Tendente al nero</option>
+                                    <option value="grigio">Grigio /Tendente al grigio</option>
                                     <option value="bianco">Bianco /Tendente al bianco</option>
                                     <option value="blu">Blu /Tendente al blu</option>
                                     <option value="marrone">Marrone /Tendente al marrone</option>
@@ -104,6 +89,136 @@
                                 </select>
                             </div>
                         </fieldset>
+
+                        <fieldset id="input_scarpe" style="display: none;">
+                            <legend><h3>Dati basilari delle scarpe<span>*(campo obbligatorio)</span></h3></legend>
+                            <hr>
+                            <div class="flex">
+                                <label>Composizione(materiali) della scarpa*</label>
+                                <input type="text" name="materiale_scarpe">
+                            </div>
+                            <div class="flex">
+                                <label>Materiale delle solette*</label>
+                                <input type="text" name="solette_scarpe">
+                            </div>
+                            <div class="flex">
+                                <label>Materiale della suola*</label>
+                                <input type="text" name="suola_scarpe">
+                            </div>
+                            <div class="flex">
+                                <label>Materiale della fodera*</label>
+                                <input type="text" name="fodera_scarpe">
+                            </div>
+                        </fieldset>
+                        <fieldset id="input_scarpe_eleganti" style="display: none;">
+                            <legend><h3>Dati basilari delle scarpe<span>*(campo obbligatorio)</span></h3></legend>
+                            <hr>
+                            <div class="flex">
+                                <label>Materiale parte superiore della scarpa*</label>
+                                <input type="text" name="materiale_scarpe_eleganti">
+                            </div>
+                            <div class="flex">
+                                <label>Rivestimento della scarpa*</label>
+                                <input type="text" name="rivestimento_scarpe_eleganti">
+                            </div>
+                            <div class="flex">
+                                <label>Materiale delle solette*</label>
+                                <input type="text" name="solette_scarpe_eleganti">
+                            </div>
+                            <div class="flex">
+                                <label>Materiale della suola*</label>
+                                <input type="text" name="suola_scarpe_eleganti">
+                            </div>
+                            <div class="flex">
+                                <label>Materiale della fodera*</label>
+                                <input type="text" name="fodera_scarpe_eleganti">
+                            </div>
+                            <div class="flex">
+                                <label>Tipo di punta della scarpa*</label>
+                                <input type="text" name="punta_scarpe_eleganti">
+                            </div>
+                            <div class="flex">
+                                <label>Tipo di tacco della scarpa*</label>
+                                <input type="text" name="tacco_scarpe_eleganti">
+                            </div>
+                            <div class="flex">
+                                <label>Tipologia di chiusura della scarpa*</label>
+                                <input type="text" name="chiusura_scarpe_eleganti">
+                            </div>
+                        </fieldset>
+                        <fieldset id="input_stivali" style="display: none;">
+                            <legend><h3>Dati basilari dello stivale<span>*(campo obbligatorio)</span></h3></legend>
+                            <hr>
+                            <div class="flex">
+                                <label>Materiale parte superiore dello stivale*</label>
+                                <input type="text" name="materiale_stivali">
+                            </div>
+                            <div class="flex">
+                                <label>Rivestimento dello stivale*</label>
+                                <input type="text" name="rivestimento_stivali">
+                            </div>
+                            <div class="flex">
+                                <label>Materiale delle solette*</label>
+                                <input type="text" name="solette_stivali">
+                            </div>
+                            <div class="flex">
+                                <label>Materiale della suola*</label>
+                                <input type="text" name="suola_stivali">
+                            </div>
+                            <div class="flex">
+                                <label>Materiale della fodera*</label>
+                                <input type="text" name="fodera_stivali">
+                            </div>
+                            <div class="flex">
+                                <label>Tipo di punta dello stivale*</label>
+                                <input type="text" name="punta_stivale">
+                            </div>
+                            <div class="flex">
+                                <label>Tipo di tacco dello stivale*</label>
+                                <input type="text" name="tacco_stivale">
+                            </div>
+                            <div class="flex">
+                                <label>Tipologia di chiusura dello stivale*</label>
+                                <input type="text" name="chiusura_stivale">
+                            </div>
+                        </fieldset>
+                        <fieldset id="input_mocassini" style="display: none;">
+                            <legend><h3>Dati basilari del mocassino<span>*(campo obbligatorio)</span></h3></legend>
+                            <hr>
+                            <div class="flex">
+                                <label>Materiale parte superiore del mocassino*</label>
+                                <input type="text" name="materiale_mocassino">
+                            </div>
+                            <div class="flex">
+                                <label>Rivestimento del mocassino*</label>
+                                <input type="text" name="rivestimento_mocassino">
+                            </div>
+                            <div class="flex">
+                                <label>Materiale delle solette*</label>
+                                <input type="text" name="solette_mocassino">
+                            </div>
+                            <div class="flex">
+                                <label>Materiale della suola*</label>
+                                <input type="text" name="suola_mocassino">
+                            </div>
+                            <div class="flex">
+                                <label>Materiale della fodera*</label>
+                                <input type="text" name="fodera_mocassino">
+                            </div>
+                            <div class="flex">
+                                <label>Tipo di punta del mocassino*</label>
+                                <input type="text" name="punta_mocassino">
+                            </div>
+                            <div class="flex">
+                                <label>Tipo di tacco del mocassino*</label>
+                                <input type="text" name="tacco_mocassino">
+                            </div>
+                            <div class="flex">
+                                <label>Tipologia di chiusura del mocassino*</label>
+                                <input type="text" name="chiusura_mocassino">
+                            </div>
+                        </fieldset>
+
                         <fieldset>
                             <legend><h3>Immagini del prodotto <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>

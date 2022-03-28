@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/inserisci.css">
+    <script src="../javascript/input_abbigliamento.js"></script>
 </head>
 <body>
     <main>
@@ -25,7 +26,8 @@
                             </div>
                             <div class="flex">
                                 <label>Categoria*</label>
-                                <select name="categoria" id="categoria">
+                                <select name="categoria" id="categoria" onchange="mycategory(value)">
+                                    <option value="null">Seleziona la categoria</option>
                                     <option value="manica_corta">T-shirt & Polo</option>
                                     <option value="camicia">Camicie</option>
                                     <option value="maglieria">Maglieria & Felpe</option>
@@ -84,13 +86,14 @@
                                 <input type="text" name="composizione">
                             </div>
                         </fieldset>
-                        <fieldset>
+                        <fieldset id="input_parte_superiore" style="display: none;">
                             <legend><h3>Dati basilari parte superiore <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
                                 <label>Colore*</label>
                                 <select name="colore_superiore" id="colore_superiore">
                                     <option value="nero">Nero /Tendente al nero</option>
+                                    <option value="grigio">Grigio /Tendente al grigio</option>
                                     <option value="bianco">Bianco /Tendente al bianco</option>
                                     <option value="blu">Blu /Tendente al blu</option>
                                     <option value="marrone">Marrone /Tendente al marrone</option>
@@ -109,7 +112,8 @@
                                 <input type="text" name="cm_schienale">
                             </div>
                         </fieldset>
-                        <fieldset>
+                        
+                        <fieldset id="input_parte_inferiore" style="display: none;">
                             <legend><h3>Dati basilari parte inferiore <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">

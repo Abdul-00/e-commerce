@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/inserisci.css">
-    <script src="../javascript/index.js"></script>
+    <script src="../javascript/input_accessori.js"></script>
 </head>
 <body>
     <main>
@@ -13,7 +13,7 @@
             <div>
                 <form action="" class="grid">
                     <div>
-                        <h1>Caratteristiche dell'accessorio</h1>
+                        <h1>Caratteristiche del prodotto</h1>
                         <fieldset>
                             <legend><h3>Offerta <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
@@ -31,9 +31,10 @@
                             <div class="flex">
                                 <label>Categoria*</label>
                                 <select name="categoria" id="categoria" onchange="mycategory(value)">
+                                    <option value="null">Seleziona la categoria</option>
                                     <option value="borsa">Borsa</option>
                                     <option value="cintura">Cintura</option>
-                                    <option value="cravatte">Cravatte</option>
+                                    <option value="cravatta">Cravatte</option>
                                     <option value="papillon">Papillon</option>
                                     <option value="sciarpa">Sciarpa</option>
                                     <option value="portafoglio">Portafoglio</option>
@@ -71,20 +72,10 @@
                                 </select>
                             </div>
                             <div class="flex">
-                            </div>
-                            <div class="flex">
-                                <label>Composizione (materiali)*</label>
-                                <input type="text" name="composizione">
-                            </div>
-                        </fieldset>
-                        
-                        <fieldset id="input_borse">
-                            <legend><h3>Dati basilari della borsa <span>*(campo obbligatorio)</span></h3></legend>
-                            <hr>
-                            <div class="flex">
-                                <label>Colore esterno <span>*(campo obbligatorio)</span></label>
-                                <select name="colore_esterno_borsa" id="colore_esterno_borsa">
+                                <label>Colore*</label>
+                                <select name="colore" id="colore">
                                     <option value="nero">Nero /Tendente al nero</option>
+                                    <option value="grigio">Grigio /Tendente al grigio</option>
                                     <option value="bianco">Bianco /Tendente al bianco</option>
                                     <option value="blu">Blu /Tendente al blu</option>
                                     <option value="marrone">Marrone /Tendente al marrone</option>
@@ -93,6 +84,107 @@
                                     <option value="giallo">Giallo /Tendente al giallo</option>
                                     <option value="arancione">Marrone /Tendente all'arancio</option>
                                 </select>
+                            </div>
+                        </fieldset>
+                        
+                        <fieldset id="input_borse" style="display: none;">
+                            <legend><h3>Dati basilari della borsa <span>*(campo obbligatorio)</span></h3></legend>
+                            <hr>
+                            <div class="flex">
+                                <label>Materiale esterno della borsa*</label>
+                                <input type="text" name="materiale_esterno_borsa">
+                            </div>
+                            <div class="flex">
+                                <label>Materiale della fodera*</label>
+                                <input type="text" name="fodera_borsa">
+                            </div>
+                            <div class="flex">
+                                <label>Lunghezza della borsa*</label>
+                                <input type="text" name="lunghezza_borsa">
+                            </div>
+                            <div class="flex">
+                                <label>Altezza della borsa*</label>
+                                <input type="text" name="altezza_borsa">
+                            </div>
+                        </fieldset>
+                        <fieldset id="input_cinture" style="display: none;">
+                            <legend><h3>Dati basilari della cintura <span>*(campo obbligatorio)</span></h3></legend>
+                            <hr>
+                            <div class="flex">
+                                <label>Composizione (materiali)*</label>
+                                <input type="text" name="composizione_cintura">
+                            </div>
+                            <div class="flex">
+                                <label>Tipologia di chiusura*</label>
+                                <input type="text" name="chiusura_cintura">
+                            </div>
+                            <div class="flex">
+                                <label>Lunghezza della cintura in centimetri*</label>
+                                <input type="text" name="lunghezza_cintura">
+                            </div>
+                        </fieldset>
+                        <fieldset id="input_cravatte" style="display: none;">
+                            <legend><h3>Dati basilari della cravatta <span>*(campo obbligatorio)</span></h3></legend>
+                            <hr>
+                            <div class="flex">
+                                <label>Composizione (materiali)*</label>
+                                <input type="text" name="composizione_cravatta">
+                            </div>
+                        </fieldset>
+                        <fieldset id="input_papillon" style="display: none;">
+                            <legend><h3>Dati basilari del papillon <span>*(campo obbligatorio)</span></h3></legend>
+                            <hr>
+                            <div class="flex">
+                                <label>Composizione (materiali)*</label>
+                                <input type="text" name="composizione_papillon">
+                            </div>
+                        </fieldset>
+                        <fieldset id="input_sciarpe" style="display: none;">
+                            <legend><h3>Dati basilari della sciarpa <span>*(campo obbligatorio)</span></h3></legend>
+                            <hr>
+                            <div class="flex">
+                                <label>Composizione (materiali)*</label>
+                                <input type="text" name="composizione_sciarpa">
+                            </div>
+                        </fieldset>
+                        <fieldset id="input_portafogli" style="display: none;">
+                            <legend><h3>Dati basilari del portafogli <span>*(campo obbligatorio)</span></h3></legend>
+                            <hr>
+                            <div class="flex">
+                                <label>Materiale esterno del portafoglio*</label>
+                                <input type="text" name="materiale_esterno_portafoglio">
+                            </div>
+                            <div class="flex">
+                                <label>Materiale della fodera*</label>
+                                <input type="text" name="fodera_portafoglio">
+                            </div>
+                            <div class="flex">
+                                <label>Lunghezza delvportafoglio*</label>
+                                <input type="text" name="lunghezza_portafoglio">
+                            </div>
+                            <div class="flex">
+                                <label>Altezza della prtafoglio*</label>
+                                <input type="text" name="altezza_portafoglio">
+                            </div>
+                        </fieldset>
+                        <fieldset id="input_occhiali" style="display: none;">
+                            <legend><h3>Dati basilari occhiale <span>*(campo obbligatorio)</span></h3></legend>
+                            <hr>
+                            <div class="flex">
+                                <label>Froma dell'occhiale*</label>
+                                <input type="text" name="froma_occhiale">
+                            </div>
+                            <div class="flex">
+                                <label>Colore delle lenti*</label>
+                                <input type="text" name="colore_lenti_occhiale">
+                            </div>
+                            <div class="flex">
+                                <label>Livello protezione UV*</label>
+                                <input type="text" name="uv_occhiale">
+                            </div>
+                            <div class="flex">
+                                <label>Tipologia astine dell'occhiale*</label>
+                                <input type="text" name="astine_occhiale">
                             </div>
                         </fieldset>
 
@@ -125,15 +217,15 @@
                             </div>
                             <div>
                                 <h4 id="titolo_anteprima">BRAND</h4>
-                                <p id="nome">Salvatore Ferragamo</p>
+                                <p id="nome">Luois Vuitton</p>
                             </div>
                             <div>
                                 <h4 id="titolo_anteprima">NOME PRODOTTO</h4>
-                                <p id="nome">Completo elegante</p>
+                                <p id="nome">Borsa a spalla</p>
                             </div>
                             <div>
                                 <h4 id="titolo_anteprima">PREZZO</h4>
-                                <p id="nome">450$</p>
+                                <p id="nome">1100$</p>
                             </div>
                         </div>
                     </div>
