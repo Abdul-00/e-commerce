@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/inserisci.css">
+    <script src="../javascript/index.js"></script>
 </head>
 <body>
     <main>
@@ -17,19 +18,10 @@
                             <legend><h3>Offerta <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Tipologia*</label>
-                                <select name="tipologia" id="tipologia">
-                                    <option value="sciarpa">Sciarpa</option>
-                                    <option value="cravatte">Cravatte</option>
-                                    <option value="papillon">Papillon</option>
-                                    <option value="fazzoletti">Fazzoletti da taschino</option>
-                                    <option value="occhiali">Occhiali</option>
-                                    <option value="cintura">Cintura</option>
-                                    <option value="portafoglio">Portafoglio</option>
-                                    <option value="borsa_a_spalla">Borsa a spalla</option>
-                                    <option value="borsa_a_tracolla">Borsa a tracolla</option>
-                                    <option value="borsa_a_mano">Borsa a mano</option>
-                                    <option value="porchetta">Porchetta</option>
+                                <label>Genere*</label>
+                                <select name="sesso" id="sesso">
+                                    <option value="uomo">Accessorio da uomo</option>
+                                    <option value="Donna">Accessorio da donna</option>
                                 </select>
                             </div>
                             <div class="flex">
@@ -37,13 +29,25 @@
                                 <input type="text" name="brand">
                             </div>
                             <div class="flex">
+                                <label>Categoria*</label>
+                                <select name="categoria" id="categoria" onchange="mycategory(value)">
+                                    <option value="borsa">Borsa</option>
+                                    <option value="cintura">Cintura</option>
+                                    <option value="cravatte">Cravatte</option>
+                                    <option value="papillon">Papillon</option>
+                                    <option value="sciarpa">Sciarpa</option>
+                                    <option value="portafoglio">Portafoglio</option>
+                                    <option value="occhiali">Occhiali</option>
+                                </select>
+                            </div>
+                            <div class="flex">
                                 <label>Condizione*</label>
                                 <select name="condizione" id="condizione">
-                                    <option value="Unrow">Mai indossato(nuovo e senza segni di usura)</option>
-                                    <option value="Ottimo">Ottimo(di seconda mano, segni di usura assenti o appena visibili)</option>
-                                    <option value="Buono">Buono(segni di usura poco visibili o visibili)</option>
-                                    <option value="Soddisfacente">Soddisfacente(segni di usura ben visibili)</option>
-                                    <option value="Indossabile">Indossabile(segni di usura evidenti)</option>
+                                    <option value="Unrow">Mai indossato(nuovo e senza segni di usura o graffi)</option>
+                                    <option value="Ottimo">Ottimo(di seconda mano, segni di usura e graffi assenti o appena visibili)</option>
+                                    <option value="Buono">Buono(segni di usura e graffi poco visibili o visibili)</option>
+                                    <option value="Soddisfacente">Soddisfacente(segni di usura e graffi ben visibili)</option>
+                                    <option value="Indossabile">Indossabile(segni di usura e graffi evidenti)</option>
                                 </select>
                             </div>
                         </fieldset>
@@ -73,12 +77,13 @@
                                 <input type="text" name="composizione">
                             </div>
                         </fieldset>
-                        <fieldset>
-                            <legend><h3>Dati basilari primo colore <span>*(campo obbligatorio)</span></h3></legend>
+                        
+                        <fieldset id="input_borse">
+                            <legend><h3>Dati basilari della borsa <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Colore*</label>
-                                <select name="primo_colore" id="primo_colore">
+                                <label>Colore esterno <span>*(campo obbligatorio)</span></label>
+                                <select name="colore_esterno_borsa" id="colore_esterno_borsa">
                                     <option value="nero">Nero /Tendente al nero</option>
                                     <option value="bianco">Bianco /Tendente al bianco</option>
                                     <option value="blu">Blu /Tendente al blu</option>
@@ -89,30 +94,8 @@
                                     <option value="arancione">Marrone /Tendente all'arancio</option>
                                 </select>
                             </div>
-                            <div class="flex">
-                                <label>lunghezza in centimentri manico*</label>
-                                <input type="text" name="lun_cm_manico">
-                            </div>
-                            <div class="flex">
-                                <label>ampiezza in centimetri manico*</label>
-                                <input type="text" name="amp_cm_manico">
-                            </div>
                         </fieldset>
-                        <fieldset>
-                            <legend><h3>Immagini del prodotto <span>*(campo obbligatorio)</span></h3></legend>
-                            <hr>
-                            <div class="flex">
-                                <label>carica le immagini del prodotto (*le prime 4 sono obbligatorie)</label>
-                                <input type="file" name="immagine1">
-                                <!-- non riesco a dare lo stile (avete tempo guardate applicadno css e javascript)
-                                <input type="file" name="immagine2">
-                                <input type="file" name="immagine3">
-                                <input type="file" name="immagine4">
-                                <input type="file" name="immagine5">
-                                <input type="file" name="immagine6">
-                                -->
-                            </div>
-                        </fieldset>
+
                         <fieldset>
                             <legend><h3>Ulteriori indicazioni <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
@@ -138,7 +121,7 @@
                     <div style="width: 100%; margin-top: 5%;">
                         <div class="second_div">
                             <div id="image_anteprima">
-                                <img src="./img2.jpg" alt="" class="image">
+                                <img src="" alt="" class="image">
                             </div>
                             <div>
                                 <h4 id="titolo_anteprima">BRAND</h4>
