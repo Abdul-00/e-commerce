@@ -28,6 +28,7 @@ main{
   padding-top: 50px;
   padding-left: 70px;
   padding-bottom: 50px;
+  background-color: blanchedalmond;
 }
 
 .container {
@@ -35,7 +36,7 @@ main{
     width: 360px;
     height: 450px;
     padding: 20px;
-    border: 1px solid black;
+    border: 3px solid black;
   }
   .container .image {
     width: 100%;
@@ -54,7 +55,7 @@ main{
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: beige;
+    background-color: white;
     overflow: hidden;
     width: 0;
     height: 100%;
