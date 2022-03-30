@@ -153,11 +153,39 @@ const { update, updateOne } = require('../models/user');
 
     });
 
+
 //Personal Profile root
     router.get('/profilo',isAuth,(req,res)=>{
+        const infoErrorObj= req.flash('infoError');
+        const infoSubmitObj= req.flash('infoSubmit');
         var user=req.session.result;
-        res.render('pagina_profilo',{user});
-    })
+        res.render('pagina_profilo',{user,infoErrorObj,infoSubmitObj});
+    });
+    
+    //ADD ADDRESS ROOT
+        router.post('/addAdress',isAuth, async(req,res)=>{
+            //my var
+            var user=req.session.result;
+            var data=req.body;
+
+            if(data.via.length==0 || data.numero_civico.length==0 || data.citta.length==0 || data.cap.length==0){
+                req.flash('infoError','Errore di compilazione')
+                return res.redirect('/profilo');
+            }
+            await myuser.findByIdAndUpdate(user._id,{$push:{
+                indirizzi:{
+                    via:data.via,
+                    numero_civico:data.numero_civico,
+                    citta:data.citta,
+                    cap:data.cap,
+                }
+            }});
+            console.log("inserimento completato");
+            req.flash('infoSubmit','Inserimento completato');
+            return res.redirect('/profilo');
+
+        })
+
 
 
 

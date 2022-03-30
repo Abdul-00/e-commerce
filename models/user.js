@@ -21,6 +21,7 @@ var user = new Schema({
     indirizzi:[{
         via:{type:String,required:true},
         numero_civico:{type:Number,max:5,required:true},
+        citta:{type:String,required:true},
         cap:{type:Number,min:5,max:5},
     }],
     /**venditore:[{

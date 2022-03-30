@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/pagina_profilo.css">
+    <script src="/javascript/add_address.js"></script>
     <title>Panoramica</title>
 </head>
     <body>
@@ -101,26 +102,67 @@
                         <div class="grid_container" style="padding-left: 13%;">
                             <div class="grid_item">
                                 <p>+</p>
-                                <a href="#" style="font-size: 17px;">Aggiungi indirizzo</a>
+                                <a href="#" style="font-size: 17px;" onclick="add_address()">Aggiungi indirizzo</a>
                             </div>
-                            
-                            <div class="grid_item">
-                                <p><b>Indirizzo di Spedizione</b></p>
-                                <p>Giorgio Abdullah</p>
-                                <p>Via Prati, 2</p>
-                                <p>42015, Correggio (RE)</p>
-                                <p>Italia</p>
-                                <div style="display: flex; justify-content: space-between;">
-                                    <img src="../img/img_profilo/cestino_1.png" alt="" width="14%"> <!--cestino-->
-                                    <button class="bottone_modifica">
-                                        <img src="../img/img_login/modifica.png" alt="Modifica indirizzo" style="width: auto; height: 20px;"> <!--matita-->
-                                        <b>Modifica</b>
-                                    </button>
+                            <% user.indirizzi.forEach(function(value,key){ %>
+                                <div class="grid_item">
+                                    
+                                    <p><b>Indirizzo di Spedizione</b></p>
+                                    <p><%= user.nome %> <%= user.cognome %></p>
+                                    <p><%= value.via %>, <%= value.numero_civico %></p>
+                                    <p><%= value.cap %>, <%= value.citta %></p>
+                                    <p>Italia</p>
+                                    
+                                    <div style="display: flex; justify-content: space-between;" >
+                                        <img src="../public/img/img_login/cestino_1.png" alt="" width="14%"> <!--cestino-->
+                                        <button class="bottone_modifica">
+                                            <img src="../img/img_login/modifica.png" alt="Modifica indirizzo" style="width: auto; height: 20px;"> <!--matita-->
+                                            <b>Modifica</b>
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
+                            <% });  %>
                             
                         </div>
-                        
+
+                        <!--pop up add address-->
+                        <% if(infoErrorObj != "" || infoSubmitObj != ""){ %>
+                                <% if(infoErrorObj){ %>
+                                    <div id="add_address" onload="add_address()">
+                                        <div id="address_form">
+                                            <img src="../img/img_login/close.png" alt="close" onclick="close_form()" style="width: 15px;">
+                                            <h3> <%= infoErrorObj %> </h3>
+                                        </div>
+                                    </div>
+                                <% } %>
+                                <% if(infoSubmitObj){ %>
+                                    <div id="add_address" onload="add_address()">
+                                        <div id="address_form">
+                                            <img src="../img/img_login/close.png" alt="close" onclick="close_form()" style="width: 15px;">
+                                            <h3> <%= infoSubmitObj %> </h3>
+                                        </div>
+                                    </div>
+                                <% } %>
+
+
+                        <% }else{ %>
+                            <div id="add_address">
+                                <div id="address_form">
+                                    
+                                    <img src="../img/img_login/close.png" alt="close" onclick="close_form()" style="width: 15px;">
+                                    <center><h3>Iserisci un nuovo indirizzo</h3></center>
+                                    
+                                    <form action="/addAdress" method="post" enctype="application/x-www-form-urlencoded">
+                                        <input type="text" placeholder="Inserire la via" name="via">
+                                        <input type="number" placeholder="Inserire il numero civico" name="numero_civico">
+                                        <input type="text" placeholder="Inserire la citta" name="citta">
+                                        <input type="text" placeholder="Inserire il cap della citta" name="cap">
+                                        <button type="submit">add</button>
+                                    </form>
+                                </div>
+                            </div>
+                        <% } %>
+
                         <h1><b>I miei metodi di pagamento:</b></h1>
                         <div class="grid_container" style="padding-left: 13%;">
                             <div class="grid_item">
