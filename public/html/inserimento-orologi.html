@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/inserisci.css">
+</head>
+<body>
+    <main>
+        <div>
+            <div>
+                <form action="" class="grid">
+                    <div>
+                        <h1>Caratteristiche del prodotto</h1>
+                        <fieldset>
+                            <legend><h3>Offerta <span>*(campo obbligatorio)</span></h3></legend>
+                            <hr>
+                            <div class="flex">
+                                <label>Tipologio orologio*</label>
+                                <select name="tipologia" id="tipologia">
+                                    <option value="null">Seleziona un'opzione</option>
+                                    <option value="polso">Orologio da polso</option>
+                                    <option value="tasca">Orologio da tasca</option>
+                                    <option value="altro">Altro tipo di orologio</option>
+                                </select>
+                            </div>
+                            <div class="flex">
+                                <label>Marca dell'orologio*</label>
+                                <input type="text" name="marca" placeholder=" (esempio) Rolex">
+                            </div>
+                            <div class="flex">
+                                <label>Modello dell'orologio*</label>
+                                <input type="text" name="modello" placeholder=" (esempio) Submarine">
+                            </div>
+                            <div class="flex">
+                                <label>Categoria*</label>
+                                <select name="categoria" id="categoria">
+                                    <option value="null">Seleziona una categoria</option>
+                                    <option value="cronografo">Cronografo</option>
+                                    <option value="automatico">Orologio automatico</option>
+                                    <option value="aviatore">Orologio da aviatore</option>
+                                    <option value="meccanico">Orologio meccanico</option>
+                                    <option value="militare">Orologio militare</option>
+                                    <option value="nautico">Orologio nautico</option>
+                                    <option value="vintage">Orologio vintage</option>
+                                    <option value="subacqueo">Orologio subacqueo</option>
+                                    <option value="svizzero">Orologio svizzero</option>
+                                </select>
+                            </div>
+                            <div class="flex">
+                                <label>Condizione*</label>
+                                <select name="condizione" id="condizione">
+                                    <option value="null">Seleziona un'opzione</option>
+                                    <option value="Unrow">Mai indossato(nuovo e senza segni di usura)</option>
+                                    <option value="Ottimo">Ottimo(di seconda mano, segni di usura o graffi assenti o appena visibili)</option>
+                                    <option value="Buono">Buono(segni di usura o graffi poco visibili o visibili)</option>
+                                    <option value="Soddisfacente">Soddisfacente(segni di usura o graffi ben visibili)</option>
+                                </select>
+                            </div>
+                            <div class="flex">
+                                <label>Corredo*</label>
+                                <select name="condizione" id="condizione">
+                                    <option value="null">Seleziona un'opzione</option>
+                                    <option value="orologio">Solo orologio</option>
+                                    <option value="orologio_scatola">Orologio con scatola originale</option>
+                                    <option value="orologio_documenti">Orologio con documenti originali</option>
+                                    <option value="orologio_scatola_documenti">Orologio con scatola e documenti originali</option>
+                                </select>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend><h3>Dati basilari <span>*(campo obbligatorio)</span></h3></legend>
+                            <hr>
+                            <div class="flex">
+                                <label>Genere*</label>
+                                <select name="sesso" id="sesso">
+                                    <option value="uomo">Orologio da uomo</option>
+                                    <option value="donna">Orologio da donna</option>
+                                </select>
+                            </div>
+                            <div class="flex">
+                                <label>Anno di produzione*</label>
+                                <input type="text" name="anno_produzione" id="anno_produzione" placeholder=" (esempio) 2002">
+                            </div>
+                            <div class="flex">
+                                <label>Diametro in millimetri*</label>
+                                <input type="text" name="diametro" id="diametro" placeholder=" (esempio) 50x40">
+                            </div>
+                            <div class="flex">
+                                <label>Carica*</label>
+                                <select name="carica" id="carica">
+                                    <option value="null">Seleziona un'opzione</option>
+                                    <option value="automatico">Automatico</option>
+                                    <option value="manuale">Manulae</option>
+                                    <option value="quarzo">Quarzo</option>
+                                </select>
+                            </div>
+                            <div class="flex">
+                                <label>Descrizione e dettagli del prodotto*</label>
+                                <textarea name="descrizione" id="descrizione" cols="30" rows="10"></textarea>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend><h3>Prezzo del prodotto <span>*(campo obbligatorio)</span></h3></legend>
+                            <hr>
+                            <div class="flex">
+                                <label>Inserisci il prezzo dell'orologio*</label>
+                                <input type="text" name="prezzo" id="prezzo">
+                            </div>
+                        </fieldset>
+
+                        <div style="width: 100%;"><a href="#"><button id="button" type="submit">Salva & Continua</button></a></div>
+                    </div>
+
+                    <div style="width: 100%; margin-top: 5%;">
+                        <div class="second_div">
+                            <div id="image_anteprima">
+                                <img src="" alt="" class="image">
+                            </div>
+                            <div>
+                                <h4 id="titolo_anteprima">MARCA</h4>
+                                <p id="nome">Rolex</p>
+                            </div>
+                            <div>
+                                <h4 id="titolo_anteprima">MODELLO</h4>
+                                <p id="nome">Submarine</p>
+                            </div>
+                            <div>
+                                <h4 id="titolo_anteprima">PREZZO</h4>
+                                <p id="nome">10.000$</p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>  
+    </main>
+</body>
+</html>
