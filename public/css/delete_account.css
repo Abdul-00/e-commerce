@@ -1,0 +1,44 @@
+@font-face {
+    font-family: MainFont;
+    src: url(../fonts/Roboto/Roboto-Regular.ttf);
+}
+main{
+    font-family: "MainFont";
+}
+h1{
+    margin: 0;
+    padding: 20px;
+    color: slategrey;
+}
+section h1 {
+    padding-left: 15%;
+    background-color: slategrey;
+    color: white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#myinfo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sez_immagini{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+#text_box_motivazione_altro{
+    display: none;
+}
+
+.grid_item_bottone{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid_item_bottone button{
+    margin-bottom: 10px;
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/delete_account.css">
+        <script src="../javascript/delete_account.js"></script>
+    </head>
+    <body>
+        <main>
+            <section>
+                <a href="../html/index.html"> <img src="../img/img_login/close.png" alt="Chiudi" style="height: auto; width: 20px; padding-top: 2px; padding-left: 5px;"></a>
+                <hr>
+            </section>
+            <section class="section_benvenuto">
+                <div class="div_benvenuto">
+                    <img src="" alt="" width="35%">
+                    <h1>Vuoi eliminare il tuo account?</h1>
+                </div>
+            </section>
+            <hr>
+            <section id="myinfo">
+                <form action="" method="post" name="delete_account">
+                    <div>
+                        <p style="font-size: 20px;">Inserisci le tue credenziali per confermare l'eliminazione</p>
+                    </div>
+                    <hr>
+                    <div class="container_1">
+                        <div class="grid_container">
+                            <div class="sez_immagini">
+                                <img src="../img/img_login/email.png" alt="">
+                                <div>
+                                    <label for="Del_Email">Indirizzo email: </label><br><br>
+                                    <input type="email" id="Del_Email" name="Del_Email" placeholder="nome.cognome@email.com" size="50" required>
+                                </div>
+                            </div>           
+                            <br><br>
+                            <div class="grid_item">
+                                <div class="sez_immagini">
+                                    <img src="../img/img_login/password.png" alt="">
+                                    <div>
+                                        <label for="Del_Password">Password: </label><br>
+                                        <input type="password" id="Del_Password" name="Del_Password" size="40" required>
+                                        <label for="Del_Convalida-Password" class="sez_immagini">Convalida password: </label><input type="password" id="Del_Convalida-Password" name="Del_Convalida-Password" size="40" required>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <hr>
+                            <div class="grid_item">
+                                <label for = "drop_down_motivazione">Motivazione dell'eliminazione: </label>
+                                <select name="EliminazioneAccount_PossibiliMotivazioni" id="drop_down_motivazione" onchange="EnableDisableTextBox(this)" required>
+                                    <option value="Campo_Vuoto" >---</option>
+                                    <option value="Creato_Altro_Account">Ho creato un altro account</option>
+                                    <option value="Perso_Interesse">Ho perso interesse nella piattaforma</option>
+                                    <option value="Account_Non_Più_Utile">L'account non mi serve più</option>
+                                    <option value="Altro">Altro</option>
+                                </select>
+                            </div>
+                            <br>
+                            <div id ="text_box_motivazione_altro">
+                                <label for ="Motivazione_Scelta-Altro">Scrivi nel box la tua motivazione: </label> <br>
+                                <textarea rows="5" cols="60" maxlength="300" id="Motivazione_Scelta-Altro" style="resize: none;" required placeholder="Perché vuoi eliminare il tuo account? Scrivicelo in questo box."></textarea>
+                            </div>
+                            <br><br>
+                            <div class="grid_item_bottone">
+                                <button  type="submit" class="grid_item_bottone">
+                                    <img src="../img/img_profilo/cestino.jpg" alt="" style="width: auto; height: 20px;">
+                                    <div><b>Conferma eliminazione</b></div>
+                                </button>
+                            </div>                           
+                        </div>
+                </form>
+            </section>
+        </main>
+    </body>
+</html>
