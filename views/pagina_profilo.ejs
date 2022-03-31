@@ -6,207 +6,217 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/pagina_profilo.css">
     <script src="/javascript/add_address.js"></script>
-    <title>Panoramica</title>
+
+    <!--NAV BAR-->
+    <link rel="stylesheet" href="../css/navbar.css">
+    <!--FOOETR-->
+    <link rel="stylesheet" href="../css/foter.css">
+    
+    <title>User</title>
 </head>
     <body>
+        <%- include('../public/html/navbar.html') %>
         <main>
             <div>
-                <section>
-                    <a href="/"> <img src="../img/img_login/close.png" alt="Chiudi" style="height: auto; width: 18px; padding-top: 2px; padding-left: 5px;"></a>
-                    <hr>
-                </section>
                 <center>
                     
                     <section class="section_benvenuto">
                         <div class="div_benvenuto">
-                            <img src="" alt="" width="35%">
                             <h1>Benvenuto utente</h1>
                         </div>
                     </section>
                     <hr>
-                    <section>
-                        <div>
-                            <h1 style="font-size: 45px;">Dati personali</h1>
-                            <p style="font-size: 20px;">Visualizza i miei dati Impostazioni di log-in e password.</p>
+                    
+                    <section id="mySection">
+                        <div id="nav_bar">
+                            <a href="#"> <img src="/img/img_navbar/user.png" alt="user"> <div>Profilo</div></a>
+                            <a href="#"> <img src="/img/img_navbar/carrello.png" alt="carrello"> <div>Carrello</div></a>
+                            <a href="#"> <img src="/img/img_footer/pagamenti.png" alt="Aquisti"> <div>Acquisti</div></a>
+                            <a href="#"> <img src="/img/img_footer/aiuto.png" alt="carta"> <div>vendite</div></a>
+                            <a href="#"> <img src="/img/img_navbar/preferiti.png" alt="cuore"> <div>Preferiti</div></a>
                         </div>
-                        <div class="grid_container">
-                            <div class="grid_item centra_bottone">
-                                <img src="../img/img_navbar/user.png" alt="">
+                        <div style="width: 82%; border: solid 1px black; border-radius: 4px;">
+                            <div>
+                                <h1 style="font-size: 45px;">Dati personali</h1>
+                                <p style="font-size: 20px;">Visualizza i miei dati Impostazioni di log-in e password.</p>
                             </div>
-                            <div class="grid_item">
-                                <div class="dati_personali">
-                                    <p><b>Nome & Cognome</b></p>
-                                    <p><%= user.nome %> <%= user.cognome%></p> 
+    
+                            <div class="grid_container">
+                                <div class="grid_item centra_bottone">
+                                    <img src="../img/img_navbar/user.png" alt="">
                                 </div>
-                                <hr>
-                                <div class="dati_personali">
-                                    <p><b>Codice-Fiscale</b></p>
-                                    <p><%= user.codicefiscale %></p>
+                                <div class="grid_item">
+                                    <div class="dati_personali">
+                                        <p><b>Nome & Cognome</b></p>
+                                        <p><%= myres.nome %> <%= myres.cognome%></p> 
+                                    </div>
+                                    <hr>
+                                    <div class="dati_personali">
+                                        <p><b>Codice-Fiscale</b></p>
+                                        <p><%= myres.codicefiscale %></p>
+                                    </div>
+                                </div>
+                                <div class="grid_item">
+                                    <div class="dati_personali">
+                                        <p><b>Telefono</b></p>
+                                        <p><%= myres.numeroTelefono %></p>
+                                    </div>
+                                    <hr>
+                                    <div class="dati_personali">
+                                        <p><b>Data Nascita</b></p>
+                                        <p><%= myres.data_nascita.toISOString().split('T')[0] %></p>
+                                    </div>
+                                </div>
+                                <div class="grid_item centra_bottone">
+                                    <a href="/updateUser" class="bottone_modifica">
+                                        <img src="../img/img_login/modifica.png" alt="" style="width: auto; height: 20px;"> <!--matita-->
+                                        <b>Modifica</b>
+                                    </a>
                                 </div>
                             </div>
-                            <div class="grid_item">
-                                <div class="dati_personali">
-                                    <p><b>Telefono</b></p>
-                                    <p><%= user.numeroTelefono %></p>
+                            <div class="grid_container">
+                                <div class="grid_item centra_bottone">
+                                    <img src="../img/img_login/email.png" alt="">
                                 </div>
-                                <hr>
-                                <div class="dati_personali">
-                                    <p><b>Data Nascita</b></p>
-                                    <p><%= user.data_nascita.toISOString().split('T')[0] %></p>
+                                <div class="grid_item2">
+                                    <p><b>La tua email</b></p>
+                                    <p><%= myres.email %></p>
+                                </div>
+                                <div class="grid_item centra_bottone">
+                                    <a href="/updateUser" class="bottone_modifica">
+                                        <img src="../img/img_login/modifica.png" alt="" style="width: auto; height: 20px;"> <!--matita-->
+                                        <b>Modifica</b>
+                                    </a>
                                 </div>
                             </div>
-                            <div class="grid_item centra_bottone">
-                                <a href="/updateUser" class="bottone_modifica">
-                                    <img src="../img/img_login/modifica.png" alt="" style="width: auto; height: 20px;"> <!--matita-->
-                                    <b>Modifica</b>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="grid_container">
-                            <div class="grid_item centra_bottone">
-                                <img src="../img/img_login/email.png" alt="">
-                            </div>
-                            <div class="grid_item2">
-                                <p><b>La tua email</b></p>
-                                <p><%= user.email %></p>
-                            </div>
-                            <div class="grid_item centra_bottone">
-                                <a href="/updateUser" class="bottone_modifica">
-                                    <img src="../img/img_login/modifica.png" alt="" style="width: auto; height: 20px;"> <!--matita-->
-                                    <b>Modifica</b>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="grid_container">
-                            <div class="grid_item centra_bottone">
-                                <img src="../img/img_login/password.png" alt="">
-                            </div>
-                            <div class="grid_item2">
-                                <p><b>La tua password</b></p>
-                                <p>*********</p>
-                            </div>
-                            <div class="grid_item centra_bottone">
-                                <a href="/updateUser" class="bottone_modifica">
-                                    <img src="../img/img_login/modifica.png" alt="" style="width: auto; height: 20px;"> <!--matita-->
-                                    <b>Modifica</b>
-                                </a>
+                            <div class="grid_container">
+                                <div class="grid_item centra_bottone">
+                                    <img src="../img/img_login/password.png" alt="">
+                                </div>
+                                <div class="grid_item2">
+                                    <p><b>La tua password</b></p>
+                                    <p>*********</p>
+                                </div>
+                                <div class="grid_item centra_bottone">
+                                    <a href="/updateUser" class="bottone_modifica">
+                                        <img src="../img/img_login/modifica.png" alt="" style="width: auto; height: 20px;"> <!--matita-->
+                                        <b>Modifica</b>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </section>
+                    
                     <hr>
                     
                     <section>
                         <h1>Indirizzi</h1>
                         <p style="font-size: 20px;">Visualizza i miei indirizzi salvati:</p>
                         
-                        <div class="grid_container" style="padding-left: 13%;">
-                            <div class="grid_item">
-                                <p>+</p>
-                                <a href="#" style="font-size: 17px;" onclick="add_address()">Aggiungi indirizzo</a>
-                            </div>
-                            <% user.indirizzi.forEach(function(value,key){ %>
-                                <div class="grid_item">
+                        <div class="main_container">
+
+                            <% myres.indirizzi.forEach(function(value,key){ %>
+                                <div class="myAddress">
                                     
                                     <p><b>Indirizzo di Spedizione</b></p>
-                                    <p><%= user.nome %> <%= user.cognome %></p>
+                                    <p><%= myres.nome %> <%= myres.cognome %></p>
                                     <p><%= value.via %>, <%= value.numero_civico %></p>
                                     <p><%= value.cap %>, <%= value.citta %></p>
                                     <p>Italia</p>
                                     
-                                    <div style="display: flex; justify-content: space-between;" >
-                                        <img src="../public/img/img_login/cestino_1.png" alt="" width="14%"> <!--cestino-->
-                                        <button class="bottone_modifica">
-                                            <img src="../img/img_login/modifica.png" alt="Modifica indirizzo" style="width: auto; height: 20px;"> <!--matita-->
-                                            <b>Modifica</b>
-                                        </button>
+                                    <div>
+                                        <a href="/deleteAddress/<%=value._id%>" class="bottone_modifica">
+                                            <img src="/img/img_login/cestino_1.png" alt="" width="12%">
+                                            <b>Elimina</b>
+                                        </a>
                                     </div>
                                 </div>
                             <% });  %>
-                            
+
+                        </div>
+
+                        <div class="myAddress">
+                            <a href="#" style="font-size: 17px;" onclick="add_address()"> <b>+</b> Aggiungi indirizzo</a>
                         </div>
 
                         <!--pop up add address-->
-                        <% if(infoErrorObj != "" || infoSubmitObj != ""){ %>
-                                <% if(infoErrorObj){ %>
-                                    <div id="add_address" onload="add_address()">
-                                        <div id="address_form">
-                                            <img src="../img/img_login/close.png" alt="close" onclick="close_form()" style="width: 15px;">
-                                            <h3> <%= infoErrorObj %> </h3>
-                                        </div>
-                                    </div>
-                                <% } %>
-                                <% if(infoSubmitObj){ %>
-                                    <div id="add_address" onload="add_address()">
-                                        <div id="address_form">
-                                            <img src="../img/img_login/close.png" alt="close" onclick="close_form()" style="width: 15px;">
-                                            <h3> <%= infoSubmitObj %> </h3>
-                                        </div>
-                                    </div>
-                                <% } %>
-
-
-                        <% }else{ %>
-                            <div id="add_address">
-                                <div id="address_form">
-                                    
-                                    <img src="../img/img_login/close.png" alt="close" onclick="close_form()" style="width: 15px;">
-                                    <center><h3>Iserisci un nuovo indirizzo</h3></center>
-                                    
-                                    <form action="/addAdress" method="post" enctype="application/x-www-form-urlencoded">
-                                        <input type="text" placeholder="Inserire la via" name="via">
-                                        <input type="number" placeholder="Inserire il numero civico" name="numero_civico">
-                                        <input type="text" placeholder="Inserire la citta" name="citta">
-                                        <input type="text" placeholder="Inserire il cap della citta" name="cap">
-                                        <button type="submit">add</button>
-                                    </form>
-                                </div>
-                            </div>
-                        <% } %>
-
-                        <h1><b>I miei metodi di pagamento:</b></h1>
-                        <div class="grid_container" style="padding-left: 13%;">
-                            <div class="grid_item">
-                                <p>+</p>
-                                <a href="#" style="font-size: 17px;">Aggiungi metodo di pagamento</a>
-                            </div>
-                            <div class="grid_item">
-                                <div style="display: flex; justify-content: center;">
-                                    <p>Nome carta:</p>
-                                    <p style="margin-left: 1px;">Visa di Giorgio</p>
-                                </div>
-                                <div style="display: flex; justify-content: center;">
-                                    <a href="https://www.visaitalia.com/" style="margin-top: 5%; margin-right: 5%;"><img src="../img/img_footer/visa.png" alt="" style="height: auto; width: 55px;"></a>
-                                    <p>Numero Carta: *5812 <br> Scadenza: 12/2026 <br> CVV: ***</p>
-                                </div>
-                                <div style="display: flex; justify-content: space-between;">
-                                    <img src="../img/img_profilo/cestino_1.png" alt="" width="14%"> <!--cestino-->
-                                    <button class="bottone_modifica">
-                                        <img src="../img/img_login/modifica.png" alt="Modifica indirizzo" style="width: auto; height: 20px;"> <!--matita-->
-                                        <b>Modifica</b>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="grid_item">
-                                <div style="display: flex; justify-content: center;">
-                                    <p>Nome carta:</p>
-                                    <p style="margin-left: 1px;">Mastercard di Fatima</p>
-                                </div>
-                                <div style="display: flex; justify-content: center;">
-                                    <a href="https://www.mastercard.it/it-it.html" style="margin-top: 5%; margin-right: 5%;"><img src="../img/img_footer/mastercard.png" alt="" style="height: auto; width: 55px;"></a>
-                                    <p>Numero Carta: *0092 <br> Scadenza: 01/2023 <br> CVV: ***</p>
-                                </div>
-                                <div style="display: flex; justify-content: space-between;">
-                                    <img src="../img/img_profilo/cestino_1.png" alt="" width="14%"> <!--cestino-->
-                                    <button class="bottone_modifica">
-                                        <img src="../img/img_login/modifica.png" alt="Modifica indirizzo" style="width: auto; height: 20px;"> <!--matita-->
-                                        <b>Modifica</b>
-                                    </button>
-                                </div>
+                        <div id="add_address">
+                            <div id="address_form">
+                                
+                                <img src="../img/img_login/close.png" alt="close" onclick="close_form()" style="width: 15px;">
+                                <center><h3>Iserisci un nuovo indirizzo</h3></center>
+                                
+                                <form action="/addAdress" method="post" enctype="application/x-www-form-urlencoded">
+                                    <input type="text" placeholder="Inserire la via" name="via" required>
+                                    <input type="number" placeholder="Inserire il numero civico" name="numero_civico" required>
+                                    <input type="text" placeholder="Inserire la citta" name="citta" required>
+                                    <input type="text" placeholder="Inserire il cap della citta" name="cap" required>
+                                    <button type="submit">add</button>
+                                </form>
                             </div>
                         </div>
+
+                        <h1><b>I miei metodi di pagamento:</b></h1>
+                        
+
+                        <div class="main_container">
+
+                            <% myres.carte.forEach(function(value,key){ %>
+                                <div class="myAddress">
+                                    <p><b> Nome Carta: <%= value.nome_carta%> </b></p>
+                                    <div id="info_carta">
+                                        <img src="/img/img_footer/<%= value.nome_carta %>.png" alt="carta" width="20%" height="20%">
+                                        <div>
+                                            <p>Numero Carta: <%= value.numero_carta %></p>
+                                            <p>Scadenza: <%= value.scadenza.toISOString().split('T')[0] %></p>
+                                            <p>CVV: <%= value.cvv %></p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <a href="/deleteCard/<%=value._id%>" class="bottone_modifica">
+                                            <img src="/img/img_login/cestino_1.png" alt="" width="12%">
+                                            <b>Elimina</b>
+                                        </a>
+                                    </div>
+                                </div>
+                            <% });  %>
+
+                        </div>
+
+                        <div class="myAddress">
+                            <a href="#" style="font-size: 17px;" onclick="add_card()"> <b>+</b> Aggiungi Carta</a>
+                        </div>
+
+                        <!--pop up add address-->
+                        <div id="add_card">
+                            <div id="address_form">
+                                
+                                <img src="../img/img_login/close.png" alt="close" onclick="close_card()" style="width: 15px;">
+                                <center><h3>Aggiungi un metodo di pagamento</h3></center>
+                                
+                                <form action="/addCard" method="post" enctype="application/x-www-form-urlencoded">
+                                    <select name="nome_carta" required>
+                                        <option value="postepay">Poste Pay</option>
+                                        <option value="paypal">PayPal</option>
+                                        <option value="visa">Visa</option>
+                                        <option value="mastercard">Mastercard</option>
+                                        <option value="nexi">Nexi pay</option>
+                                        <option value="maestro">maestro</option>
+                                    </select>
+                                    <input type="text" placeholder="numero_carta" name="numero_carta" required minlength="16" maxlength="16">
+                                    <input type="date" placeholder="La data di Scadenza" name="scadenza" required>
+                                    <input type="text" placeholder="CVV" name="cvv" required minlength="3" maxlength="3">
+                                    <button type="submit">add</button>
+                                </form>
+                            </div>
+                        </div>
+
                     </section>
                 </center>
             </div> 
         </main>
+        <br>
+        <%- include('../public/html/foter.html')%>
     </body>
 </html>

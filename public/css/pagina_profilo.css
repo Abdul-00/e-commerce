@@ -69,6 +69,58 @@ main{
   align-items: center;
 }
 
+/**ALI'S CSS**/
+#mySection{
+  display: flex;
+  justify-content: space-around;
+}
+#nav_bar{
+  border: solid black 1px;
+  border-radius: 4px;
+  margin-left: 20px;
+  width: 9%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+#nav_bar a{
+  margin: 10px;
+  color: black;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+}
+#nav_bar a img{
+  width: 42%;
+}
+#nav_bar a div{
+  display: none;
+  transition: 0.5s;
+}
+
+#nav_bar a:hover div{
+  display: flex;
+}
+
+.main_container{
+  display: flex;
+  justify-content:space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.myAddress{
+  border: black solid 1px;
+  width: 22%;
+  padding: 5px;
+  margin-top: 9px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 #add_address{
   width: 100%;
   height: 100%;
@@ -78,6 +130,35 @@ main{
   display: none;
   align-items: center;
   justify-content: center;
+}
+
+#add_card{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+#info_carta{
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+#info_carta div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#info_carta div p{
+  margin:0 0 0 9px;
+  text-align: start;
 }
 
 #address_form{
@@ -98,6 +179,11 @@ main{
 
 #address_form form input{
   width: 45%;
+  height: 25px;
+  margin: 4px;
+}
+#address_form form select{
+  width: 46%;
   height: 25px;
   margin: 4px;
 }

@@ -155,11 +155,14 @@ const { update, updateOne } = require('../models/user');
 
 
 //Personal Profile root
-    router.get('/profilo',isAuth,(req,res)=>{
-        const infoErrorObj= req.flash('infoError');
-        const infoSubmitObj= req.flash('infoSubmit');
-        var user=req.session.result;
-        res.render('pagina_profilo',{user,infoErrorObj,infoSubmitObj});
+    router.get('/profilo',isAuth, async(req,res)=>{
+        var user_s=req.session.result;
+
+        myuser.findById(user_s._id,function(err,myres){
+            if(err) return handleError(err);
+            return res.render('pagina_profilo',{myres}); 
+        });
+    
     });
     
     //ADD ADDRESS ROOT
@@ -167,11 +170,7 @@ const { update, updateOne } = require('../models/user');
             //my var
             var user=req.session.result;
             var data=req.body;
-
-            if(data.via.length==0 || data.numero_civico.length==0 || data.citta.length==0 || data.cap.length==0){
-                req.flash('infoError','Errore di compilazione')
-                return res.redirect('/profilo');
-            }
+        
             await myuser.findByIdAndUpdate(user._id,{$push:{
                 indirizzi:{
                     via:data.via,
@@ -180,11 +179,48 @@ const { update, updateOne } = require('../models/user');
                     cap:data.cap,
                 }
             }});
-            console.log("inserimento completato");
-            req.flash('infoSubmit','Inserimento completato');
             return res.redirect('/profilo');
 
         })
+    //Delete Address ROOT
+        router.get('/deleteAddress/:indice', isAuth,async(req,res)=>{
+            var parm=req.params.indice;
+            var user=req.session.result;
+            console.log(parm);
+            myuser.updateOne({ _id: user._id }, { "$pull": { "indirizzi": { "_id": parm } }}, { safe: true, multi:true }, function(err, obj) {
+                if(err)return handleError(err);
+                return res.redirect('/profilo');
+            });
+            
+        });
+
+        //ADD CARD ROOT
+        router.post('/addCard',isAuth, async(req,res)=>{
+            //my var
+            var user=req.session.result;
+            var data=req.body;
+        
+            await myuser.findByIdAndUpdate(user._id,{$push:{
+                carte:{
+                    nome_carta:data.nome_carta,
+                    numero_carta:data.numero_carta,
+                    scadenza:data.scadenza,
+                    cvv:data.cvv,
+                }
+            }});
+            return res.redirect('/profilo');
+
+        })
+    //Delete CARD ROOT
+        router.get('/deleteCard/:indice', isAuth,async(req,res)=>{
+            var parm=req.params.indice;
+            var user=req.session.result;
+            myuser.updateOne({ _id: user._id }, { "$pull": { "carte": { "_id": parm } }}, { safe: true, multi:true }, function(err, obj) {
+                if(err)return handleError(err);
+                return res.redirect('/profilo');
+            });
+            
+        });
 
 
 
@@ -254,5 +290,6 @@ const { update, updateOne } = require('../models/user');
     router.get('/input',(req,res)=>{
         res.render('inserisci_abbigliamento');
     });
+
 module.exports=router;
 

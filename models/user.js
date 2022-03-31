@@ -24,6 +24,12 @@ var user = new Schema({
         citta:{type:String,required:true},
         cap:{type:Number,min:5,max:5},
     }],
+    carte:[{
+        nome_carta:{type:String,required:true},
+        numero_carta:{type:String,required:true,min:16,max:16},
+        scadenza:{type:Date,required:true},
+        cvv:{type:String,max:3,min:3}
+    }],
     /**venditore:[{
         partita_iva:{type:String,min:11,max:11},
         iban:{type:String,required:true}
