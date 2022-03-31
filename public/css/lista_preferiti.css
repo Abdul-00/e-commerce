@@ -23,6 +23,7 @@
    .prodotto {
       box-sizing: border-box;
       width: auto;
+      min-height: 600px;
       max-height: 600px;
       height: 600px;
       padding: 20px;
@@ -32,23 +33,26 @@
       height: 73%;
       overflow: hidden;
     }
+    .flex{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
     #bottone1{
       position: relative;
-      margin-top: 15px;
-      top: 0;
-      float: right;
+      background-color: white;
+      border: none;
+      cursor: pointer;
     }
     #bottone2{
       position: relative;
-      bottom: -88%;
-      float: left;
+      background-color: white;
+      border: none;
+      cursor: pointer;
+      padding-right: 10px;
     }
     .prodotto .image img {
       width: 100%;
-      transition: .5s;
-    }
-    .prodotto:hover .image img {
-      transform: translateY(-4%);
     }
     .prodotto .dettagli{
       text-align: left;
