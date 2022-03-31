@@ -14,6 +14,7 @@ main{
 h1{
     font-size: 26pt;
     font-weight: 800;
+    color: slategrey;
 }
 .flex{
     display: flex;
@@ -38,14 +39,18 @@ span{
 label{
     padding-left: 1%;
     padding-right: 4%;
-    color: black;
+    color: rgb(70, 70, 70);
     text-align: right;
     font-size: 12pt;
-    font-weight: 600;
+    font-weight: 500;
     box-sizing: border-box;
     width: 30%;
     max-width: 30%;
     min-width: 30%;
+}
+label span{
+    color: black;
+    font-weight: 600;
 }
 input{
     box-sizing: border-box;

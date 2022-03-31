@@ -25,14 +25,14 @@
                             <legend><h3>Offerta <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Genere*</label>
+                                <label>Genere <span>*</span> </label>
                                 <select name="sesso" id="sesso">
                                     <option value="uomo">Abbigliamento da uomo</option>
                                     <option value="Donna">Abbigliamento da donna</option>
                                 </select>
                             </div>
                             <div class="flex">
-                                <label>Categoria*</label>
+                                <label>Categoria <span>*</span> </label>
                                 <select name="categoria" id="categoria" onchange="mycategory(value)">
                                     <option value="null">Seleziona la categoria</option>
                                     <option value="manica_corta">T-shirt & Polo</option>
@@ -46,11 +46,11 @@
                                 </select>
                             </div>
                             <div class="flex">
-                                <label>Marca(brand)*</label>
-                                <input type="text" name="brand">
+                                <label>Marca(brand) <span>*</span> </label>
+                                <input type="text" name="brand" placeholder="(esempio) Salvatore Ferragamo">
                             </div>
                             <div class="flex">
-                                <label>Condizione*</label>
+                                <label>Condizione <span>*</span> </label>
                                 <select name="condizione" id="condizione">
                                     <option value="Unrow">Mai indossato(nuovo e senza segni di usura)</option>
                                     <option value="Ottimo">Ottimo(di seconda mano, segni di usura assenti o appena visibili)</option>
@@ -64,11 +64,11 @@
                             <legend><h3>Dati basilari <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Nome*</label>
-                                <input type="nome_prodotto" name="nome_prodotto">
+                                <label>Nome <span>*</span> </label>
+                                <input type="nome_prodotto" name="nome_prodotto"placeholder="(esempio) Giacca leggera">
                             </div>
                             <div class="flex">
-                                <label>Taglia*</label>
+                                <label>Taglia <span>*</span> </label>
                                 <select name="taglia" id="taglia">
                                     <option value="xs">XS</option>
                                     <option value="s">S</option>
@@ -79,7 +79,7 @@
                                 </select>
                             </div>
                             <div class="flex">
-                                <label>Vestibilità*</label>
+                                <label>Vestibilità <span>*</span> </label>
                                 <select name="vestibilita" id="vestibilita">
                                     <option value="stretto">Vestibilità stretta</option>
                                     <option value="aderente">Vestibilità aderente</option>
@@ -88,16 +88,16 @@
                                     <option value="larga">Vestibilità larga</option>
                                 </select>
                             </div>
-                            <div class="flex">
-                                <label>Composizione (materiali)*</label>
-                                <input type="text" name="composizione">
-                            </div>
                         </fieldset>
                         <fieldset id="input_parte_superiore" style="display: none;">
                             <legend><h3>Dati basilari parte superiore <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Colore*</label>
+                                <label>Composizione (materiali) <span>*</span> </label>
+                                <input type="text" name="composizione_superiore" placeholder="(esempio) Poliestere, duvet e piume">
+                            </div>
+                            <div class="flex">
+                                <label>Colore <span>*</span> </label>
                                 <select name="colore_superiore" id="colore_superiore">
                                     <option value="nero">Nero /Tendente al nero</option>
                                     <option value="grigio">Grigio /Tendente al grigio</option>
@@ -111,12 +111,12 @@
                                 </select>
                             </div>
                             <div class="flex">
-                                <label>lunghezza in centimentri manica*</label>
-                                <input type="text" name="cm_manica">
+                                <label>lunghezza in centimentri manica <span>*</span> </label>
+                                <input type="text" name="cm_manica" placeholder="(esempio) 75cm">
                             </div>
                             <div class="flex">
-                                <label>lunghezza in centimetri schienale*</label>
-                                <input type="text" name="cm_schienale">
+                                <label>lunghezza in centimetri schienale <span>*</span> </label>
+                                <input type="text" name="cm_schienale" placeholder="(esempio) 46cm">
                             </div>
                         </fieldset>
                         
@@ -124,7 +124,11 @@
                             <legend><h3>Dati basilari parte inferiore <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Colore*</label>
+                                <label>Composizione (materiali) <span>*</span> </label>
+                                <input type="text" name="composizione_inferiore" placeholder="(esempio) Cotone">
+                            </div>
+                            <div class="flex">
+                                <label>Colore <span>*</span> </label>
                                 <select name="colore_inferiore" id="colore_inferiore">
                                     <option value="nero">Nero /Tendente al nero</option>
                                     <option value="bianco">Bianco /Tendente al bianco</option>
@@ -137,47 +141,40 @@
                                 </select>
                             </div>
                             <div class="flex">
-                                <label>lunghezza in centimentri gamba interna*</label>
-                                <input type="text" name="cm_gamba_interna">
+                                <label>lunghezza in centimentri gamba interna <span>*</span> </label>
+                                <input type="text" name="cm_gamba_interna" placeholder="(esempio) 73cm">
                             </div>
                             <div class="flex">
-                                <label>lunghezza in centimetri gamba esterna*</label>
-                                <input type="text" name="cm_gamba_esterna">
+                                <label>lunghezza in centimetri gamba esterna <span>*</span> </label>
+                                <input type="text" name="cm_gamba_esterna" placeholder="(esempio) 103cm">
                             </div>
                         </fieldset>
                         <fieldset>
                             <legend><h3>Immagini del prodotto <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>carica le immagini del prodotto (*le prime 4 sono obbligatorie)</label>
+                                <label>carica le immagini del prodotto (4 sono obbligatorie <span>*</span> )</label>
                                 <input type="file" name="immagine1">
-                                <!-- non riesco a dare lo stile (avete tempo guardate applicadno css e javascript)
-                                <input type="file" name="immagine2">
-                                <input type="file" name="immagine3">
-                                <input type="file" name="immagine4">
-                                <input type="file" name="immagine5">
-                                <input type="file" name="immagine6">
-                                -->
                             </div>
                         </fieldset>
                         <fieldset>
                             <legend><h3>Ulteriori indicazioni <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Descrizione e dettagli del prodotto*</label>
+                                <label>Descrizione e dettagli del prodotto <span>*</span> </label>
                                 <textarea name="descrizione" id="descrizione" cols="30" rows="10"></textarea>
                             </div>
                             <div class="flex">
                                 <label>Avvertenze</label>
-                                <input type="text" name="avvertenze">
+                                <input type="text" name="avvertenze" placeholder="(esempio) Lavaggio a macchina 30 gradi">
                             </div>
                         </fieldset>
                         <fieldset>
                             <legend><h3>Prezzo del prodotto <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Inserisci il prezzo del prodotto*</label>
-                                <input type="text" name="prezzo" id="prezzo">
+                                <label>Inserisci il prezzo del prodotto <span>*</span> </label>
+                                <input type="text" name="prezzo" id="prezzo" placeholder="(esempio) 170">
                             </div>
                         </fieldset>
                         <div style="width: 100%;"><a href="#"><button id="button" type="submit">Salva & Continua</button></a></div>

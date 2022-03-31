@@ -18,18 +18,18 @@
                             <legend><h3>Offerta <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Genere*</label>
+                                <label>Genere <span>*</span> </label>
                                 <select name="sesso" id="sesso">
                                     <option value="uomo">Gioiello da uomo</option>
                                     <option value="donna">Gioiello da donna</option>
                                 </select>
                             </div>
                             <div class="flex">
-                                <label>Marca del gioiello*</label>
-                                <input type="text" name="marca">
+                                <label>Marca del gioiello <span>*</span> </label>
+                                <input type="text" name="marca" placeholder="(esempio) Bulgari">
                             </div>
                             <div class="flex">
-                                <label>Categoria*</label>
+                                <label>Categoria <span>*</span> </label>
                                 <select name="categoria" id="categoria" onchange="mycategory(value)">
                                     <option value="null">Seleziona una categoria</option>
                                     <option value="anello">Anello</option>
@@ -39,7 +39,7 @@
                                 </select>
                             </div>
                             <div class="flex">
-                                <label>Condizione*</label>
+                                <label>Condizione <span>*</span> </label>
                                 <select name="condizione" id="condizione">
                                     <option value="null">Seleziona un'opzione</option>
                                     <option value="Unrow">Mai indossato(nuovo e senza segni di usura)</option>
@@ -54,11 +54,11 @@
                             <legend><h3>Dati basilari <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Nome*</label>
-                                <input type="nome_prodotto" name="nome_prodotto">
+                                <label>Nome <span>*</span> </label>
+                                <input type="nome_prodotto" name="nome_prodotto" placeholder="(esempio) Anello oro bianco con smeraldo">
                             </div>
                             <div class="flex">
-                                <label>Il gioiello è composto da più materiali?*</label>
+                                <label>Il gioiello è composto da più materiali? <span>*</span> </label>
                                 <select name="more_materials" id="more_materials" onchange="mymaterials(value)">
                                     <option value="null">Seleziona un'opzione</option>
                                     <option value="no">No, il gioiello è composto da un solo materiale</option>
@@ -69,45 +69,45 @@
                             </div>
                             <div id="primo_materiale" style="display: none;">
                                 <div class="flex">
-                                    <label>Inserisci il materiale del gioiello*</label>
-                                    <input type="text" name="materiale1" id="materiale1">
+                                    <label>Inserisci il materiale del gioiello <span>*</span> </label>
+                                    <input type="text" name="materiale1" id="materiale1" placeholder="(esempio) Oro giallo">
                                 </div>
                                 <div class="flex">
-                                    <label>Inserisci i CARATI del materiale inserito*</label>
-                                    <input type="text" name="carati_materiale1" id="carati_materiale1">
+                                    <label>Inserisci i CARATI del materiale inserito <span>*</span> </label>
+                                    <input type="text" name="carati_materiale1" id="carati_materiale1" placeholder="(esempio) 24">
                                 </div>
                             </div>
 
                             <div id="secondo_materiale" style="display: none;">
                                 <hr>
                                 <div class="flex">
-                                    <label>Inserisci il <span style="color: red;">secondo materiale</span> (o pietra) del gioiello*</label>
+                                    <label>Inserisci il <span style="color: black;">secondo materiale</span> (o pietra) del gioiello <span>*</span> </label>
                                     <input type="text" name="materiale2" id="materiale2">
                                 </div>
                                 <div class="flex">
-                                    <label>Inserisci i CARATI del secondo materiale (o pietra)*</label>
+                                    <label>Inserisci i CARATI del secondo materiale (o pietra) <span>*</span> </label>
                                     <input type="text" name="carati_materiale2" id="carati_materiale2">
                                 </div>
                             </div>
                             <div id="terzo_materiale" style="display: none;">
                                 <hr>
                                 <div class="flex">
-                                    <label>Inserisci il <span style="color: red;">terzo materiale</span> (o pietra) del gioiello*</label>
+                                    <label>Inserisci il <span style="color: black;">terzo materiale</span> (o pietra) del gioiello <span>*</span> </label>
                                     <input type="text" name="materiale3" id="materiale3">
                                 </div>
                                 <div class="flex">
-                                    <label>Inserisci i CARATI del terzo materiale (o pietra)*</label>
+                                    <label>Inserisci i CARATI del terzo materiale (o pietra) <span>*</span> </label>
                                     <input type="text" name="carati_materiale3" id="carati_materiale3">
                                 </div>
                             </div>
                             <div id="quarto_materiale" style="display: none;">
                                 <hr>
                                 <div class="flex">
-                                    <label>Inserisci il <span style="color: red;">quarto materiale</span> (o pietra) del gioiello*</label>
+                                    <label>Inserisci il <span style="color: black;">quarto materiale</span> (o pietra) del gioiello*</label>
                                     <input type="text" name="materiale4" id="materiale4">
                                 </div>
                                 <div class="flex">
-                                    <label>Inserisci i CARATI del quarto materiale (o pietra)*</label>
+                                    <label>Inserisci i CARATI del quarto materiale (o pietra) <span>*</span> </label>
                                     <input type="text" name="carati_materiale4" id="carati_materiale4">
                                 </div>
                                 <hr>
@@ -118,12 +118,12 @@
                             <legend><h3>Dati basilari dell'anello <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Diametro dell'anello in centimetri*</label>
-                                <input type="text" name="diamentro_anello">
+                                <label>Diametro dell'anello in millimetri <span>*</span> </label>
+                                <input type="text" name="diamentro_anello" placeholder="(esempio) 8mmx8mm">
                             </div>
                             <div class="flex">
-                                <label>Spessore dell'anello in centimetri*</label>
-                                <input type="text" name="spessore_anello">
+                                <label>Spessore dell'anello in millimetri <span>*</span> </label>
+                                <input type="text" name="spessore_anello" placeholder="(esempio) 10mm">
                             </div>
                         </fieldset>
 
@@ -131,12 +131,12 @@
                             <legend><h3>Dati basilari del bracciale <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Lunghezza del bracciale in centimetri*</label>
-                                <input type="text" name="lunghezza_bracciale">
+                                <label>Lunghezza del bracciale in centimetri <span>*</span> </label>
+                                <input type="text" name="lunghezza_bracciale" placeholder="(esempio) 10cm">
                             </div>
                             <div class="flex">
-                                <label>Spessore del bracciale in centimetri*</label>
-                                <input type="text" name="spessore_bracciale">
+                                <label>Spessore del bracciale in millimetri <span>*</span> </label>
+                                <input type="text" name="spessore_bracciale" placeholder="(esempio) 14mm">
                             </div>
                         </fieldset>
 
@@ -144,15 +144,15 @@
                             <legend><h3>Dati basilari della collana <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Lunghezza della collana in centimetri*</label>
-                                <input type="text" name="lunghezza_collana">
+                                <label>Lunghezza della collana in centimetri <span>*</span> </label>
+                                <input type="text" name="lunghezza_collana" placeholder="(esempio) 20cm">
                             </div>
                             <div class="flex">
-                                <label>Spessore della collana in centimetri*</label>
-                                <input type="text" name="spessore_collana">
+                                <label>Spessore della collana in millimetri <span>*</span> </label>
+                                <input type="text" name="spessore_collana" placeholder="(esempio) 22mm">
                             </div>
                             <div class="flex">
-                                <label>La collana ha un pendente?</label>
+                                <label>La collana ha un pendente? <span>*</span> </label>
                                 <select name="Pendente" id="Pendente">
                                     <option value="null">Seleziona un'opzione</option>
                                     <option value="si">Si, la collana ha un pendente</option>
@@ -165,15 +165,15 @@
                             <legend><h3>Dati basilari dell'orecchino <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Diametro dell'orecchino in centimetri*</label>
-                                <input type="text" name="diamentro_orecchino">
+                                <label>Diametro dell'orecchino in millimetri <span>*</span> </label>
+                                <input type="text" name="diamentro_orecchino" placeholder="(esempio) 5mmx5mm">
                             </div>
                             <div class="flex">
-                                <label>Spessore dell'orecchino in centimetri*</label>
-                                <input type="text" name="spessore_orecchino">
+                                <label>Spessore dell'orecchino in millimetri <span>*</span> </label>
+                                <input type="text" name="spessore_orecchino" placeholder="(esempio) 3mm">
                             </div>
                             <div class="flex">
-                                <label>L'orecchino ha un pendente?</label>
+                                <label>L'orecchino ha un pendente? <span>*</span> </label>
                                 <select name="Pendente" id="Pendente">
                                     <option value="null">Seleziona un'opzione</option>
                                     <option value="si">Si, l'orecchino ha un pendente</option>
@@ -186,11 +186,11 @@
                             <legend><h3>Carta d'identità del gioiello </h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Anno di produzione del gioiello</label>
-                                <input type="text" name="anno">
+                                <label>Anno di produzione del gioiello <span>*</span> </label>
+                                <input type="text" name="anno" placeholder="(esempio) 2021">
                             </div>
                             <div class="flex">
-                                <label>Provenienza del gioiello</label>
+                                <label>Provenienza del gioiello <span>*</span> </label>
                                 <select name="" id="">
                                     <option value="Provenienza"></option>
                                     <option value="">Comprato in prima persona da venditore autorizzato</option>
@@ -200,24 +200,34 @@
                                 </select>
                             </div>
                         </fieldset>
+
+                        <fieldset>
+                            <legend><h3>Immagini del prodotto <span>*(campo obbligatorio)</span></h3></legend>
+                            <hr>
+                            <div class="flex">
+                                <label>carica le immagini del prodotto (4 sono obbligatorie <span>*</span> )</label>
+                                <input type="file" name="immagine1">
+                            </div>
+                        </fieldset>
+
                         <fieldset>
                             <legend><h3>Ulteriori indicazioni <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Descrizione e dettagli del prodotto*</label>
+                                <label>Descrizione e dettagli del prodotto <span>*</span> </label>
                                 <textarea name="descrizione" id="descrizione" cols="30" rows="10"></textarea>
                             </div>
                             <div class="flex">
                                 <label>Avvertenze</label>
-                                <input type="text" name="avvertenze">
+                                <input type="text" name="avvertenze" placeholder="Non obbligatorie">
                             </div>
                         </fieldset>                      
                        <fieldset>
                             <legend><h3>Prezzo del prodotto <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Inserisci il prezzo del gioiello*</label>
-                                <input type="text" name="prezzo" id="prezzo">
+                                <label>Inserisci il prezzo del gioiello <span>*</span> </label>
+                                <input type="text" name="prezzo" id="prezzo" placeholder="(esempio) 1450">
                             </div>
                         </fieldset>
 

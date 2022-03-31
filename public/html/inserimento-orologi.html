@@ -17,7 +17,7 @@
                             <legend><h3>Offerta <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Tipologio orologio*</label>
+                                <label>Tipologio orologio <span>*</span> </label>
                                 <select name="tipologia" id="tipologia">
                                     <option value="null">Seleziona un'opzione</option>
                                     <option value="polso">Orologio da polso</option>
@@ -26,15 +26,15 @@
                                 </select>
                             </div>
                             <div class="flex">
-                                <label>Marca dell'orologio*</label>
+                                <label>Marca dell'orologio <span>*</span> </label>
                                 <input type="text" name="marca" placeholder=" (esempio) Rolex">
                             </div>
                             <div class="flex">
-                                <label>Modello dell'orologio*</label>
+                                <label>Modello dell'orologio <span>*</span> </label>
                                 <input type="text" name="modello" placeholder=" (esempio) Submarine">
                             </div>
                             <div class="flex">
-                                <label>Categoria*</label>
+                                <label>Categoria <span>*</span> </label>
                                 <select name="categoria" id="categoria">
                                     <option value="null">Seleziona una categoria</option>
                                     <option value="cronografo">Cronografo</option>
@@ -49,7 +49,7 @@
                                 </select>
                             </div>
                             <div class="flex">
-                                <label>Condizione*</label>
+                                <label>Condizione <span>*</span> </label>
                                 <select name="condizione" id="condizione">
                                     <option value="null">Seleziona un'opzione</option>
                                     <option value="Unrow">Mai indossato(nuovo e senza segni di usura)</option>
@@ -59,7 +59,7 @@
                                 </select>
                             </div>
                             <div class="flex">
-                                <label>Corredo*</label>
+                                <label>Corredo <span>*</span> </label>
                                 <select name="condizione" id="condizione">
                                     <option value="null">Seleziona un'opzione</option>
                                     <option value="orologio">Solo orologio</option>
@@ -74,22 +74,22 @@
                             <legend><h3>Dati basilari <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Genere*</label>
+                                <label>Genere <span>*</span> </label>
                                 <select name="sesso" id="sesso">
                                     <option value="uomo">Orologio da uomo</option>
                                     <option value="donna">Orologio da donna</option>
                                 </select>
                             </div>
                             <div class="flex">
-                                <label>Anno di produzione*</label>
+                                <label>Anno di produzione <span>*</span> </label>
                                 <input type="text" name="anno_produzione" id="anno_produzione" placeholder=" (esempio) 2002">
                             </div>
                             <div class="flex">
-                                <label>Diametro in millimetri*</label>
-                                <input type="text" name="diametro" id="diametro" placeholder=" (esempio) 50x40">
+                                <label>Diametro in millimetri <span>*</span> </label>
+                                <input type="text" name="diametro" id="diametro" placeholder=" (esempio) 50mmx40mm">
                             </div>
                             <div class="flex">
-                                <label>Carica*</label>
+                                <label>Carica <span>*</span> </label>
                                 <select name="carica" id="carica">
                                     <option value="null">Seleziona un'opzione</option>
                                     <option value="automatico">Automatico</option>
@@ -98,16 +98,26 @@
                                 </select>
                             </div>
                             <div class="flex">
-                                <label>Descrizione e dettagli del prodotto*</label>
+                                <label>Descrizione e dettagli del prodotto <span>*</span> </label>
                                 <textarea name="descrizione" id="descrizione" cols="30" rows="10"></textarea>
                             </div>
                         </fieldset>
+
+                        <fieldset>
+                            <legend><h3>Immagini del prodotto <span>*(campo obbligatorio)</span></h3></legend>
+                            <hr>
+                            <div class="flex">
+                                <label>carica le immagini del prodotto (4 sono obbligatorie <span>*</span> )</label>
+                                <input type="file" name="immagine1">
+                            </div>
+                        </fieldset>
+                        
                         <fieldset>
                             <legend><h3>Prezzo del prodotto <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Inserisci il prezzo dell'orologio*</label>
-                                <input type="text" name="prezzo" id="prezzo">
+                                <label>Inserisci il prezzo dell'orologio <span>*</span> </label>
+                                <input type="text" name="prezzo" id="prezzo" placeholder="(esempio) 10000">
                             </div>
                         </fieldset>
 

@@ -18,18 +18,18 @@
                             <legend><h3>Offerta <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Genere*</label>
+                                <label>Genere <span>*</span> </label>
                                 <select name="sesso" id="sesso">
                                     <option value="uomo">Accessorio da uomo</option>
                                     <option value="Donna">Accessorio da donna</option>
                                 </select>
                             </div>
                             <div class="flex">
-                                <label>Marca(brand)*</label>
-                                <input type="text" name="brand">
+                                <label>Marca(brand) <span>*</span> </label>
+                                <input type="text" name="brand" placeholder="(esempio) Prada">
                             </div>
                             <div class="flex">
-                                <label>Categoria*</label>
+                                <label>Categoria <span>*</span> </label>
                                 <select name="categoria" id="categoria" onchange="mycategory(value)">
                                     <option value="null">Seleziona la categoria</option>
                                     <option value="borsa">Borsa</option>
@@ -42,7 +42,7 @@
                                 </select>
                             </div>
                             <div class="flex">
-                                <label>Condizione*</label>
+                                <label>Condizione <span>*</span> </label>
                                 <select name="condizione" id="condizione">
                                     <option value="Unrow">Mai indossato(nuovo e senza segni di usura o graffi)</option>
                                     <option value="Ottimo">Ottimo(di seconda mano, segni di usura e graffi assenti o appena visibili)</option>
@@ -56,11 +56,11 @@
                             <legend><h3>Dati basilari <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Nome*</label>
-                                <input type="nome_prodotto" name="nome_prodotto">
+                                <label>Nome <span>*</span> </label>
+                                <input type="nome_prodotto" name="nome_prodotto" placeholder="(esempio) Borsa a spalla">
                             </div>
                             <div class="flex">
-                                <label>Taglia*</label>
+                                <label>Taglia <span>*</span> </label>
                                 <select name="taglia" id="taglia">
                                     <option value="one_size">One Size</option>
                                     <option value="xs">XS</option>
@@ -72,7 +72,7 @@
                                 </select>
                             </div>
                             <div class="flex">
-                                <label>Colore*</label>
+                                <label>Colore <span>*</span> </label>
                                 <select name="colore" id="colore">
                                     <option value="nero">Nero /Tendente al nero</option>
                                     <option value="grigio">Grigio /Tendente al grigio</option>
@@ -91,100 +91,109 @@
                             <legend><h3>Dati basilari della borsa <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Materiale esterno della borsa*</label>
-                                <input type="text" name="materiale_esterno_borsa">
+                                <label>Materiale esterno della borsa <span>*</span> </label>
+                                <input type="text" name="materiale_esterno_borsa" placeholder="(esempio) Pelle">
                             </div>
                             <div class="flex">
-                                <label>Materiale della fodera*</label>
-                                <input type="text" name="fodera_borsa">
+                                <label>Materiale della fodera <span>*</span> </label>
+                                <input type="text" name="fodera_borsa" placeholder="(esempio) Piume d'oca">
                             </div>
                             <div class="flex">
-                                <label>Lunghezza della borsa*</label>
-                                <input type="text" name="lunghezza_borsa">
+                                <label>Lunghezza della borsa in centimetri<span>*</span> </label>
+                                <input type="text" name="lunghezza_borsa" placeholder="(esempio) 24cm">
                             </div>
                             <div class="flex">
-                                <label>Altezza della borsa*</label>
-                                <input type="text" name="altezza_borsa">
+                                <label>Altezza della borsa in centimetri<span>*</span> </label>
+                                <input type="text" name="altezza_borsa" placeholder="(esempio) 15cm">
                             </div>
                         </fieldset>
                         <fieldset id="input_cinture" style="display: none;">
                             <legend><h3>Dati basilari della cintura <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Composizione (materiali)*</label>
-                                <input type="text" name="composizione_cintura">
+                                <label>Composizione (materiali) <span>*</span> </label>
+                                <input type="text" name="composizione_cintura" placeholder="(esempio) Pelle">
                             </div>
                             <div class="flex">
-                                <label>Tipologia di chiusura*</label>
-                                <input type="text" name="chiusura_cintura">
+                                <label>Tipologia di chiusura <span>*</span> </label>
+                                <input type="text" name="chiusura_cintura" placeholder="(esempio) Classica">
                             </div>
                             <div class="flex">
-                                <label>Lunghezza della cintura in centimetri*</label>
-                                <input type="text" name="lunghezza_cintura">
+                                <label>Lunghezza della cintura in centimetri <span>*</span> </label>
+                                <input type="text" name="lunghezza_cintura" placeholder="(esempio) 55cm">
                             </div>
                         </fieldset>
                         <fieldset id="input_cravatte" style="display: none;">
                             <legend><h3>Dati basilari della cravatta <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Composizione (materiali)*</label>
-                                <input type="text" name="composizione_cravatta">
+                                <label>Composizione (materiali) <span>*</span> </label>
+                                <input type="text" name="composizione_cravatta" placeholder="(esempio) Tessuto">
                             </div>
                         </fieldset>
                         <fieldset id="input_papillon" style="display: none;">
                             <legend><h3>Dati basilari del papillon <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Composizione (materiali)*</label>
-                                <input type="text" name="composizione_papillon">
+                                <label>Composizione (materiali) <span>*</span> </label>
+                                <input type="text" name="composizione_papillon" placeholder="(esempio) Tessuto">
                             </div>
                         </fieldset>
                         <fieldset id="input_sciarpe" style="display: none;">
                             <legend><h3>Dati basilari della sciarpa <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Composizione (materiali)*</label>
-                                <input type="text" name="composizione_sciarpa">
+                                <label>Composizione (materiali) <span>*</span> </label>
+                                <input type="text" name="composizione_sciarpa" placeholder="(esempio) Cotone">
                             </div>
                         </fieldset>
                         <fieldset id="input_portafogli" style="display: none;">
                             <legend><h3>Dati basilari del portafogli <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Materiale esterno del portafoglio*</label>
-                                <input type="text" name="materiale_esterno_portafoglio">
+                                <label>Materiale esterno del portafoglio <span>*</span> </label>
+                                <input type="text" name="materiale_esterno_portafoglio" placeholder="(esempio) Pelle">
                             </div>
                             <div class="flex">
-                                <label>Materiale della fodera*</label>
-                                <input type="text" name="fodera_portafoglio">
+                                <label>Materiale della fodera <span>*</span> </label>
+                                <input type="text" name="fodera_portafoglio" placeholder="(esempio) Tessuto">
                             </div>
                             <div class="flex">
-                                <label>Lunghezza delvportafoglio*</label>
-                                <input type="text" name="lunghezza_portafoglio">
+                                <label>Lunghezza del portafoglio in centimetri <span>*</span> </label>
+                                <input type="text" name="lunghezza_portafoglio" placeholder="(esempio) 20cm">
                             </div>
                             <div class="flex">
-                                <label>Altezza della prtafoglio*</label>
-                                <input type="text" name="altezza_portafoglio">
+                                <label>Altezza della prtafoglio in centimetri <span>*</span> </label>
+                                <input type="text" name="altezza_portafoglio" placeholder="(esempio) 12cm">
                             </div>
                         </fieldset>
                         <fieldset id="input_occhiali" style="display: none;">
                             <legend><h3>Dati basilari occhiale <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Froma dell'occhiale*</label>
-                                <input type="text" name="froma_occhiale">
+                                <label>Forma dell'occhiale <span>*</span> </label>
+                                <input type="text" name="forma_occhiale" placeholder="(esempio) Tonda">
                             </div>
                             <div class="flex">
-                                <label>Colore delle lenti*</label>
-                                <input type="text" name="colore_lenti_occhiale">
+                                <label>Colore delle lenti <span>*</span> </label>
+                                <input type="text" name="colore_lenti_occhiale" placeholder="(esempio) Nero">
                             </div>
                             <div class="flex">
-                                <label>Livello protezione UV*</label>
-                                <input type="text" name="uv_occhiale">
+                                <label>Livello protezione UV <span>*</span> </label>
+                                <input type="text" name="uv_occhiale" placeholder="(esempio) 12">
                             </div>
                             <div class="flex">
-                                <label>Tipologia astine dell'occhiale*</label>
-                                <input type="text" name="astine_occhiale">
+                                <label>Tipologia astine dell'occhiale <span>*</span> </label>
+                                <input type="text" name="astine_occhiale" placeholder="(esempio) Classica">
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend><h3>Immagini del prodotto <span>*(campo obbligatorio)</span></h3></legend>
+                            <hr>
+                            <div class="flex">
+                                <label>carica le immagini del prodotto (4 sono obbligatorie <span>*</span> )</label>
+                                <input type="file" name="immagine1">
                             </div>
                         </fieldset>
 
@@ -192,20 +201,20 @@
                             <legend><h3>Ulteriori indicazioni <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Descrizione e dettagli del prodotto*</label>
+                                <label>Descrizione e dettagli del prodotto <span>*</span> </label>
                                 <textarea name="descrizione" id="descrizione" cols="30" rows="10"></textarea>
                             </div>
                             <div class="flex">
                                 <label>Avvertenze</label>
-                                <input type="text" name="avvertenze">
+                                <input type="text" name="avvertenze" placeholder="(esempio) Non obbligatorie">
                             </div>
                         </fieldset>
                         <fieldset>
                             <legend><h3>Prezzo del prodotto <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Inserisci il prezzo del prodotto*</label>
-                                <input type="text" name="prezzo" id="prezzo">
+                                <label>Inserisci il prezzo del prodotto <span>*</span> </label>
+                                <input type="text" name="prezzo" id="prezzo" placeholder="(esempio) 250">
                             </div>
                         </fieldset>
                         <div style="width: 100%;"><a href="#"><button id="button" type="submit">Salva & Continua</button></a></div>
