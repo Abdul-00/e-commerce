@@ -11,10 +11,12 @@ main{
   color: black;
   padding-left: 20px;
   border-bottom: 2px solid black;
+  background-color: slategrey;
+  color: white;
   text-align: center;
 }
 .second_frase{
-  color: black;
+  color: slategrey;
   margin-top: 10px;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -36,7 +38,7 @@ main{
     width: 360px;
     height: 450px;
     padding: 20px;
-    border: 3px solid black;
+    border: 3px solid slategrey;
   }
   .container .image {
     width: 100%;
@@ -74,5 +76,21 @@ main{
     left: 50%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
+  }
+  .text h2{
+    color: slategrey;
+    cursor: pointer;
+  }
+  .text h2:hover{
+    border-bottom: 2px solid slategrey;
+  }
+  .text ul{
+    list-style-type: none;
+  }
+  .text ul li{
+    font-size: 14pt;
+    font-weight: 600;
+    padding-bottom: 10px;
+    cursor: auto;
   }
   
