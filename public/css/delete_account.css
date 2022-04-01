@@ -28,6 +28,7 @@ section h1 {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+
 }
 #text_box_motivazione_altro{
     display: none;
@@ -41,4 +42,8 @@ section h1 {
 
 .grid_item_bottone button{
     margin-bottom: 10px;
+}
+
+.myin{
+    width: 100%;
 }

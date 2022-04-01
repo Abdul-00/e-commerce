@@ -33,19 +33,24 @@ const { update, updateOne } = require('../models/user');
         //query per verificare i dati
         myuser.findOne({ 'email':result.email},async function(err,myres){
             if (err) return handleError(err);
-            //comparazione delle due password
-            bcrypte.compare(result.password,myres.password,function(err,log){
-                // if log true then start session 
-                if(log){
+            if(myres){
+                //comparazione delle due password
+                bcrypte.compare(result.password,myres.password,function(err,log){
+                    // if log true then start session 
+                    if(log){
 
-                    //creare il token per l'accesso
-                    req.session.result=myres;
-                    //reindirizzare verso la home
-                    return res.redirect('/');
-                }else{
-                    return res.redirect('/login');
-                }
-            });
+                        //creare il token per l'accesso
+                        req.session.result=myres;
+                        //reindirizzare verso la home
+                        return res.redirect('/');
+                    }else{
+                        return res.redirect('/login');
+                    }
+                });
+            }else{
+                return res.redirect('/login');
+            }
+            
         });
     });
 
@@ -222,8 +227,32 @@ const { update, updateOne } = require('../models/user');
             
         });
 
+    //Delete user Root
+        router.get('/eliminaProfilo',isAuth,(req,res)=>{
+            res.render('delete_account');
+        });
 
+        router.post('/eliminaProfilo',isAuth,(req,res)=>{
+            var data=req.body;
+            var user=req.session.result;
+            if(data.email==user.email){
+                bcrypte.compare(data.password,user.password,function(err,log){
+                    if(err) throw handleError(err);
+                    if(log){
+                        myuser.findByIdAndDelete(user._id,(err,res)=>{
+                            if(err) throw handleError(err);
+                        });
+                        res.redirect('/logout');
+                    }else{
+                        res.redirect('/eliminaProfilo');
+                    }
+                });
+            }
+            else{
+                res.redirect('/eliminaProfilo');
+            }
 
+        });
 
 //Upload Product route --->WHAITING FOR UPLOAD PAGE
    
