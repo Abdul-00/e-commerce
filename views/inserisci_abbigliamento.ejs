@@ -7,33 +7,36 @@
     <link rel="stylesheet" href="../css/inserisci.css">
     <script src="../javascript/input_abbigliamento.js"></script>
     <script src="../javascript/Steky_anteprima.js"></script>
+    <script src="../javascript/anteprima_prodotti.js"></script>
 
      <!--NAV BAR-->
      <link rel="stylesheet" href="../css/navbar.css">
      <!--FOOETR-->
      <link rel="stylesheet" href="../css/foter.css">
 </head>
-    <body>
-        <%- include('../public/html/navbar.html') -%>
-        <br>
-        <main>
-            <div id="main_container">
+<body>
+    <%- include('../public/html/navbar.html') -%>
+    <br>
+    <main>
+        <div class="main">
+            <div>
                 <form action="" class="grid">
-                    <div>
+                    <div class="first_div">
                         <h1>Caratteristiche del prodotto</h1>
                         <fieldset>
                             <legend><h3>Offerta <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
                                 <label>Genere <span>*</span> </label>
-                                <select name="sesso" id="sesso">
+                                <select name="sesso" id="input_genere" onchange="mygenere(value)">
+                                    <option value="null">Seleziona un'opzione</option>
                                     <option value="uomo">Abbigliamento da uomo</option>
                                     <option value="donna">Abbigliamento da donna</option>
                                 </select>
                             </div>
                             <div class="flex">
                                 <label>Categoria <span>*</span> </label>
-                                <select name="categoria" id="categoria" onchange="mycategory(value)">
+                                <select name="categoria" id="input_categoria" onchange="mycategory(value); mycategoria(value)">
                                     <option value="null">Seleziona la categoria</option>
                                     <option value="tshirt_polo">T-shirt & Polo</option>
                                     <option value="camicia">Camicie</option>
@@ -47,18 +50,20 @@
                             </div>
                             <div class="flex">
                                 <label>Marca(brand) <span>*</span> </label>
-                                <input type="text" name="brand" placeholder="(esempio) Salvatore Ferragamo">
+                                <input type="text" name="brand" placeholder="(esempio) Salvatore Ferragamo" id="input_marca" onchange="mymarca(value)">
                             </div>
                             <div class="flex">
                                 <label>Il prodotto è usato?</label>
-                                <select name="usato" id="usato" onchange="second_hand(value)">
+                                <select name="usato" id="usato" onchange="second_hand(value); myusato(value)">
+                                    <option value="null">Seleziona un'opzione</option>
                                     <option value="false">No, il prodotto non è mai stato indossato (nuovo e senza segni di usura)</option>
                                     <option value="true">Si, il prodotto è usato</option>
                                 </select>
                             </div>
                             <div class="flex" id="condizione" style="display: none;">
                                 <label>Specifica la condizione del prodotto usato<span>*</span> </label>
-                                <select name="condizione" id="condizione">
+                                <select name="condizione" id="input_condizione" onchange="mycondizione(value)">
+                                    <option value="null">Seleziona un'opzione</option>
                                     <option value="Ottimo">Ottimo(di seconda mano, segni di usura assenti o appena visibili)</option>
                                     <option value="Buono">Buono(segni di usura poco visibili o visibili)</option>
                                     <option value="Soddisfacente">Soddisfacente(segni di usura ben visibili)</option>
@@ -71,11 +76,12 @@
                             <hr>
                             <div class="flex">
                                 <label>Nome <span>*</span> </label>
-                                <input type="nome_prodotto" name="nome_prodotto"placeholder="(esempio) Giacca leggera">
+                                <input type="text" name="nome_prodotto"placeholder="(esempio) Giacca leggera" id="input_nome" onchange="mynome(value)">
                             </div>
                             <div class="flex">
                                 <label>Taglia <span>*</span> </label>
-                                <select name="taglia" id="taglia">
+                                <select name="taglia" id="input_taglia" onchange="mytaglia(value)">
+                                    <option value="null">Seleziona un'opzione</option>
                                     <option value="xs">XS</option>
                                     <option value="s">S</option>
                                     <option value="m">M</option>
@@ -86,7 +92,8 @@
                             </div>
                             <div class="flex">
                                 <label>Vestibilità <span>*</span> </label>
-                                <select name="vestibilita" id="vestibilita">
+                                <select name="vestibilita" id="input_vestibilita" onchange="myvestibilita(value)">
+                                    <option value="null">Seleziona un'opzione</option>
                                     <option value="stretto">Vestibilità stretta</option>
                                     <option value="aderente">Vestibilità aderente</option>
                                     <option value="regolare">Vestibilità regolare</option>
@@ -105,6 +112,7 @@
                             <div class="flex">
                                 <label>Colore <span>*</span> </label>
                                 <select name="colore">
+                                    <option value="null">Seleziona un'opzione</option>
                                     <option value="nero">Nero /Tendente al nero</option>
                                     <option value="grigio">Grigio /Tendente al grigio</option>
                                     <option value="bianco">Bianco /Tendente al bianco</option>
@@ -136,6 +144,7 @@
                             <div class="flex">
                                 <label>Colore <span>*</span> </label>
                                 <select name="colore">
+                                    <option value="null">Seleziona un'opzione</option>
                                     <option value="nero">Nero /Tendente al nero</option>
                                     <option value="bianco">Bianco /Tendente al bianco</option>
                                     <option value="blu">Blu /Tendente al blu</option>
@@ -166,6 +175,7 @@
                             <div class="flex">
                                 <label>Colore <span>*</span> </label>
                                 <select name="colore">
+                                    <option value="null">Seleziona un'opzione</option>
                                     <option value="nero">Nero /Tendente al nero</option>
                                     <option value="bianco">Bianco /Tendente al bianco</option>
                                     <option value="blu">Blu /Tendente al blu</option>
@@ -199,13 +209,19 @@
                             <hr>
                             <div class="flex">
                                 <label>carica le immagini del prodotto (4 sono obbligatorie <span>*</span> )</label>
-                                <div>
-                                    <input type="file" name="immagine1">
-                                    <input type="file" name="immagine2">
-                                    <input type="file" name="immagine3">
-                                    <input type="file" name="immagine4">
-                                    <input type="file" name="immagine5">
-                                    <input type="file" name="immagine6">
+                                <div style="width: 100%;">
+                                    <p>Foto principale :</p> 
+                                    <input type="file" name="immagine1" class="background">
+                                    <p>Seconda foto :</p>
+                                    <input type="file" name="immagine2" class="background">
+                                    <p>Terza foto :</p>
+                                    <input type="file" name="immagine3" class="background">
+                                    <p>Quarta foto :</p>
+                                    <input type="file" name="immagine4" class="background">
+                                    <p>Quinta foto :</p>
+                                    <input type="file" name="immagine5" class="background">
+                                    <p>Sesta foto :</p>
+                                    <input type="file" name="immagine6" class="background">
                                 </div>
                             </div>
                         </fieldset>
@@ -214,50 +230,88 @@
                             <hr>
                             <div class="flex">
                                 <label>Descrizione e dettagli del prodotto <span>*</span> </label>
-                                <textarea name="descrizione" id="descrizione" cols="30" rows="10"></textarea>
+                                <textarea name="descrizione" id="input_descrizione" cols="30" rows="10" onchange="mydescrizione(value)"></textarea>
                             </div>
                             <div class="flex">
                                 <label>Avvertenze</label>
                                 <input type="text" name="avvertenze" placeholder="(esempio) Lavaggio a macchina 30 gradi">
                             </div>
                         </fieldset>
+
                         <fieldset>
-                            <legend><h3>Quantità e prezzo dell'offerta <span>*(campo obbligatorio)</span></h3></legend>
+                            <legend><h3>Prezzo del prodotto <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
                                 <label>Inserisci la quanitita del prodotto <span>*</span> </label>
                                 <input type="text" name="quanitita" id="quantita" placeholder="(esempio) 1">
                             </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend><h3>Quantità dei prodotti <span>*(campo obbligatorio)</span></h3></legend>
+                            <hr>
                             <div class="flex">
-                                <label>Inserisci il prezzo del prodotto <span>*</span> </label>
-                                <input type="text" name="prezzo" id="prezzo" placeholder="(esempio) 170">
+                                <label>Inserisci il numero dei prodotti che vuoi vendere <span>*</span> </label>
+                                <input type="text" name="quanitita" id="input_quantita" placeholder="(esempio) 1" onchange="myquantita(value)">
                             </div>
                         </fieldset>
+
                         <div style="width: 100%;"><a href="#"><button id="button" type="submit">Salva & Continua</button></a></div>
                     </div>
 
-                </form>
-
-                <div id="anteprima" >
-                    <div class="second_div">
-                        <div id="image_anteprima">
-                            <img src="" alt="" class="image">
-                        </div>
-                        <div>
-                            <h4 id="titolo_anteprima">BRAND</h4>
-                            <p id="nome">Salvatore Ferragamo</p>
-                        </div>
-                        <div>
-                            <h4 id="titolo_anteprima">NOME PRODOTTO</h4>
-                            <p id="nome">Completo elegante</p>
-                        </div>
-                        <div>
-                            <h4 id="titolo_anteprima">PREZZO</h4>
-                            <p id="nome">2450$</p>
+                    <div style="width: 100%; margin-top: 25%; margin-bottom: 25%;">
+                        <div class="second_div">
+                            <h3  id="titolo">ANTEPRIMA DEL PRODOTTO</h3>
+                            <div id="image_anteprima">
+                                <img src="" alt="" class="image">
+                            </div>
+                            <div>
+                                <h4 id="titolo_anteprima">GENERE</h4>
+                                <input type="text" value="" readonly="readonly" id="output_genere">
+                            </div>
+                            <div>
+                                <h4 id="titolo_anteprima">MARCA</h4>
+                                <input type="text" value="" readonly="readonly" id="output_marca">
+                            </div>
+                            <div>
+                                <h4 id="titolo_anteprima">NOME PRODOTTO</h4>
+                                <input type="text" value="" readonly="readonly" id="output_nome">
+                            </div>
+                            <div>
+                                <h4 id="titolo_anteprima">CATEGORIA</h4>
+                                <input type="text" value="" readonly="readonly" id="output_categoria">
+                            </div>
+                            <div>
+                                <h4 id="titolo_anteprima">VESTIBILITA</h4>
+                                <input type="text" value="" readonly="readonly" id="output_vestibilita">
+                            </div>
+                            <div>
+                                <h4 id="titolo_anteprima">TAGLIA</h4>
+                                <input type="text" value="" readonly="readonly" id="output_taglia">
+                            </div>
+                            <div>
+                                <h4 id="titolo_anteprima">TIPOLOGIA DI PRODOTTO</h4>
+                                <input type="text" value="" readonly="readonly" id="output_usato">
+                            </div>
+                            <div id="sezione_condizione" style="display: none;">
+                                <h4 id="titolo_anteprima">CONDIZIONE</h4>
+                                <input type="text" value="" readonly="readonly" id="output_condizione">
+                            </div>
+                            <div>
+                                <h4 id="titolo_anteprima">DESCRIZIONE</h4>
+                                <input type="text" value="" readonly="readonly" id="output_descrizione">
+                            </div>
+                            <div>
+                                <h4 id="titolo_anteprima">PREZZO SINGOLO PRODOTTO IN €</h4>
+                                <div class="second_div_flex">
+                                    <input type="text" value="" readonly="readonly" id="output_prezzo">
+                                    <p>€</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                </form>
             </div>
         </main>
         <br>

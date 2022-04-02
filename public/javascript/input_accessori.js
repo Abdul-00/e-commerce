@@ -61,6 +61,13 @@ function mycategory(category){
         document.getElementById("input_borse").style.display="none";
         document.getElementById("input_cravatte").style.display="none";
     }
-    
+}
 
+function second_hand(usato){
+    if(usato=="true"){
+        document.getElementById("condizione").style.display="flex";
+    }
+    if(usato=="false"){
+        document.getElementById("condizione").style.display="none";
+    }
 }

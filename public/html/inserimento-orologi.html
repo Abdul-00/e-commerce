@@ -5,20 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/inserisci.css">
+    <script src="../javascript/anteprima_prodotti.js"></script>
 </head>
 <body>
     <main>
-        <div>
+        <div class="main">
             <div>
                 <form action="" class="grid">
-                    <div>
+                    <div class="first_div">
                         <h1>Caratteristiche del prodotto</h1>
                         <fieldset>
                             <legend><h3>Offerta <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
                                 <label>Tipologio orologio <span>*</span> </label>
-                                <select name="tipologia" id="tipologia">
+                                <select name="tipologia" id="input_tipologia" onchange="mytipologia(value)">
                                     <option value="null">Seleziona un'opzione</option>
                                     <option value="polso">Orologio da polso</option>
                                     <option value="tasca">Orologio da tasca</option>
@@ -27,15 +28,15 @@
                             </div>
                             <div class="flex">
                                 <label>Marca dell'orologio <span>*</span> </label>
-                                <input type="text" name="marca" placeholder=" (esempio) Rolex">
+                                <input type="text" name="marca" placeholder=" (esempio) Rolex" id="input_marca" onchange="mymarca(value)">
                             </div>
                             <div class="flex">
                                 <label>Modello dell'orologio <span>*</span> </label>
-                                <input type="text" name="modello" placeholder=" (esempio) Submarine">
+                                <input type="text" name="modello" placeholder=" (esempio) Submarine" id="input_modello" onchange="mymodello(value)">
                             </div>
                             <div class="flex">
                                 <label>Categoria <span>*</span> </label>
-                                <select name="categoria" id="categoria">
+                                <select name="categoria" id="input_categoria" onchange="mycategoria(value)">
                                     <option value="null">Seleziona una categoria</option>
                                     <option value="cronografo">Cronografo</option>
                                     <option value="automatico">Orologio automatico</option>
@@ -49,18 +50,26 @@
                                 </select>
                             </div>
                             <div class="flex">
-                                <label>Condizione <span>*</span> </label>
-                                <select name="condizione" id="condizione">
+                                <label>Il prodotto è usato?</label>
+                                <select name="usato" id="usato" onchange="second_hand(value); myusato(value)">
                                     <option value="null">Seleziona un'opzione</option>
-                                    <option value="Unrow">Mai indossato(nuovo e senza segni di usura)</option>
-                                    <option value="Ottimo">Ottimo(di seconda mano, segni di usura o graffi assenti o appena visibili)</option>
-                                    <option value="Buono">Buono(segni di usura o graffi poco visibili o visibili)</option>
-                                    <option value="Soddisfacente">Soddisfacente(segni di usura o graffi ben visibili)</option>
+                                    <option value="false">No, il prodotto non è mai stato indossato (nuovo e senza segni di usura)</option>
+                                    <option value="true">Si, il prodotto è usato</option>
+                                </select>
+                            </div>
+                            <div class="flex" id="condizione" style="display: none;">
+                                <label>Specifica la condizione del prodotto usato<span>*</span> </label>
+                                <select name="condizione" id="input_condizione" onchange="mycondizione(value)">
+                                    <option value="null">Seleziona un'opzione</option>
+                                    <option value="Ottimo">Ottimo(di seconda mano, segni di usura assenti o appena visibili)</option>
+                                    <option value="Buono">Buono(segni di usura poco visibili o visibili)</option>
+                                    <option value="Soddisfacente">Soddisfacente(segni di usura ben visibili)</option>
+                                    <option value="Indossabile">Indossabile(segni di usura evidenti)</option>
                                 </select>
                             </div>
                             <div class="flex">
                                 <label>Corredo <span>*</span> </label>
-                                <select name="condizione" id="condizione">
+                                <select name="corredo" id="input_corredo" onchange="mycorredo(value)">
                                     <option value="null">Seleziona un'opzione</option>
                                     <option value="orologio">Solo orologio</option>
                                     <option value="orologio_scatola">Orologio con scatola originale</option>
@@ -75,7 +84,8 @@
                             <hr>
                             <div class="flex">
                                 <label>Genere <span>*</span> </label>
-                                <select name="sesso" id="sesso">
+                                <select name="sesso" id="input_genere" onchange="mygenere(value)">
+                                    <option value="null">Seleziona un'opzione</option>
                                     <option value="uomo">Orologio da uomo</option>
                                     <option value="donna">Orologio da donna</option>
                                 </select>
@@ -99,7 +109,7 @@
                             </div>
                             <div class="flex">
                                 <label>Descrizione e dettagli del prodotto <span>*</span> </label>
-                                <textarea name="descrizione" id="descrizione" cols="30" rows="10"></textarea>
+                                <textarea name="descrizione" id="input_descrizione" cols="30" rows="10" onchange="mydescrizione(value)"></textarea>
                             </div>
                         </fieldset>
 
@@ -108,13 +118,19 @@
                             <hr>
                             <div class="flex">
                                 <label>carica le immagini del prodotto (4 sono obbligatorie <span>*</span> )</label>
-                                <div>
-                                    <input type="file" name="immagine1">
-                                    <input type="file" name="immagine2">
-                                    <input type="file" name="immagine3">
-                                    <input type="file" name="immagine4">
-                                    <input type="file" name="immagine5">
-                                    <input type="file" name="immagine6">
+                                <div style="width: 100%;">
+                                    <p>Foto principale :</p> 
+                                    <input type="file" name="immagine1" class="background">
+                                    <p>Seconda foto :</p>
+                                    <input type="file" name="immagine2" class="background">
+                                    <p>Terza foto :</p>
+                                    <input type="file" name="immagine3" class="background">
+                                    <p>Quarta foto :</p>
+                                    <input type="file" name="immagine4" class="background">
+                                    <p>Quinta foto :</p>
+                                    <input type="file" name="immagine5" class="background">
+                                    <p>Sesta foto :</p>
+                                    <input type="file" name="immagine6" class="background">
                                 </div>
                             </div>
                         </fieldset>
@@ -123,33 +139,75 @@
                             <legend><h3>Prezzo del prodotto <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Inserisci il prezzo dell'orologio <span>*</span> </label>
-                                <input type="text" name="prezzo" id="prezzo" placeholder="(esempio) 10000">
+                                <label>Inserisci il prezzo del singolo prodotto <span>*</span> </label>
+                                <input type="text" name="prezzo" id="input_prezzo" placeholder="(esempio) 170" onchange="myprezzo(value)">
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend><h3>Quantità dei prodotti <span>*(campo obbligatorio)</span></h3></legend>
+                            <hr>
+                            <div class="flex">
+                                <label>Inserisci il numero dei prodotti che vuoi vendere <span>*</span> </label>
+                                <input type="text" name="quanitita" id="input_quantita" placeholder="(esempio) 1" onchange="myquantita(value)">
                             </div>
                         </fieldset>
 
                         <div style="width: 100%;"><a href="#"><button id="button" type="submit">Salva & Continua</button></a></div>
                     </div>
 
-                    <div style="width: 100%; margin-top: 5%;">
+                    <div style="width: 100%; margin-top: 25%; margin-bottom: 25%;">
                         <div class="second_div">
+                            <h3  id="titolo">ANTEPRIMA DEL PRODOTTO</h3>
                             <div id="image_anteprima">
                                 <img src="" alt="" class="image">
                             </div>
                             <div>
+                                <h4 id="titolo_anteprima">GENERE</h4>
+                                <input type="text" value="" readonly="readonly" id="output_genere">
+                            </div>
+                            <div>
                                 <h4 id="titolo_anteprima">MARCA</h4>
-                                <p id="nome">Rolex</p>
+                                <input type="text" value="" readonly="readonly" id="output_marca">
                             </div>
                             <div>
                                 <h4 id="titolo_anteprima">MODELLO</h4>
-                                <p id="nome">Submarine</p>
+                                <input type="text" value="" readonly="readonly" id="output_modello">
                             </div>
                             <div>
-                                <h4 id="titolo_anteprima">PREZZO</h4>
-                                <p id="nome">10.000$</p>
+                                <h4 id="titolo_anteprima">TIPOLOGIA</h4>
+                                <input type="text" value="" readonly="readonly" id="output_tipologia">
+                            </div>
+                            <div>
+                                <h4 id="titolo_anteprima">CATEGORIA</h4>
+                                <input type="text" value="" readonly="readonly" id="output_categoria">
+                            </div>
+                            <div>
+                                <h4 id="titolo_anteprima">CORREDO</h4>
+                                <input type="text" value="" readonly="readonly" id="output_corredo">
+                            </div>
+                            <div>
+                                <h4 id="titolo_anteprima">TIPOLOGIA DI PRODOTTO</h4>
+                                <input type="text" value="" readonly="readonly" id="output_usato">
+                            </div>
+                            <div id="sezione_condizione" style="display: none;">
+                                <h4 id="titolo_anteprima">CONDIZIONE</h4>
+                                <input type="text" value="" readonly="readonly" id="output_condizione">
+                            </div>
+                            <div>
+                                <h4 id="titolo_anteprima">DESCRIZIONE</h4>
+                                <input type="text" value="" readonly="readonly" id="output_descrizione">
+                            </div>
+                            <div>
+                                <h4 id="titolo_anteprima">PREZZO SINGOLO PRODOTTO IN €</h4>
+                                <div class="second_div_flex">
+                                    <input type="text" value="" readonly="readonly" id="output_prezzo">
+                                    <p>€</p>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </form>
             </div>
         </div>  
