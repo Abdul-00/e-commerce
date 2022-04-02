@@ -30,10 +30,7 @@ var user = new Schema({
         scadenza:{type:Date,required:true},
         cvv:{type:String,max:3,min:3}
     }],
-    /**venditore:[{
-        partita_iva:{type:String,min:11,max:11},
-        iban:{type:String,required:true}
-    }],**/
+    iban:{type:String,min:27,max:27}
         
 });
 

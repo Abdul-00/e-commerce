@@ -112,8 +112,40 @@ textarea{
     color: black;
 }
 
-.second_div{
+/**Ali's css**/
+
+/**Main container**/
+#main_container{
+    display: flex;
+    justify-content: space-around;
+}
+
+
+/*Anteprima*/
+
+#anteprima{
+    border: red solid 1px;
+    overflow: hidden;
+    width: 100%;
+    margin-top: 5px;
+}
+
+
+/**********STEKY**************/
+.sticky {
     position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  
+  .sticky + .second_div {
+    padding-top: 60px;
+  }
+
+
+.second_div{
+    border: green solid 1px;
+    /*position: fixed;*/
     border: 1px solid grey;
     box-sizing: border-box;
     width: 380px;

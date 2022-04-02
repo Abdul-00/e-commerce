@@ -36,7 +36,7 @@
                             <a href="#"> <img src="/img/img_navbar/preferiti.png" alt="cuore"> <div>Preferiti</div></a>
                             <a href="/eliminaProfilo"> <img src="/img/img_login/cestino_1.png" alt="cuore"> <div>Elimina</div></a>
                         </div>
-                        <div style="width: 82%; border: solid 1px black; border-radius: 4px;">
+                        <div style="width: 82%; border-radius: 4px;">
                             <div>
                                 <h1 style="font-size: 45px;">Dati personali</h1>
                                 <p style="font-size: 20px;">Visualizza i miei dati Impostazioni di log-in e password.</p>
@@ -75,6 +75,24 @@
                                     </a>
                                 </div>
                             </div>
+                            <!--IBAN-->
+                            <% if(myres.iban) { %>
+                                <div class="grid_container">
+                                    <div class="grid_item centra_bottone">
+                                        <img src="../img/img_footer/pagamenti.png" alt="carta" width="38px">
+                                    </div>
+                                    <div class="grid_item2">
+                                        <p><b>Il tuo iban</b></p>
+                                        <p><%= myres.iban %></p>
+                                    </div>
+                                    <div class="grid_item centra_bottone">
+                                        <a href="/updateUser" class="bottone_modifica">
+                                            <img src="../img/img_login/modifica.png" alt="" style="width: auto; height: 20px;"> <!--matita-->
+                                            <b>Modifica</b>
+                                        </a>
+                                    </div>
+                                </div>
+                            <% };%>
                             <div class="grid_container">
                                 <div class="grid_item centra_bottone">
                                     <img src="../img/img_login/email.png" alt="">

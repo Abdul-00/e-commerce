@@ -6,20 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/choose-prodotto.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.2.1/flickity.min.css" integrity="sha512-ztsAq/T5Mif7onFaDEa5wsi2yyDn5ygdVwSSQ4iok5BPJQGYz1CoXWZSA7OgwGWrxrSrbF0K85PD5uLpimu4eQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!--NAV BAR-->
+    <link rel="stylesheet" href="../css/navbar.css">
+    <!--FOOETR-->
+    <link rel="stylesheet" href="../css/foter.css">
+
 </head>
 <body>
+
+    <%- include('../public/html/navbar.html') %>
+    <br><br>
     <main>
         <div>
             <h1 class="first_frase">Quale categoria di prodotto vuoi vendere?</h1>
             <section style="margin-top: 5px;">
                 <h1 class="second_frase">Seleziona la categoria</h1>
+                <!-- EJS -->
+                <% if(flag==false){ %>
+                <div id="cont_iban">
+                    <div id="iban">
+                        <form action="/addIban" method="post" enctype="application/x-www-form-urlencoded">
+                            <p><b> Completa la Registrazione </b></p>
+                            <div>
+                                <b>Inserire l'iban per vendere un prodotto:</b> <br>
+                                <input type="text" name="iban" maxlength="27" minlength="27" required placeholder="Iban"><br>
+                                <button type="submit"><b>Completa</b></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <% } %>
+                
                 <div class="main-carousel" data-flickity='{ "cellAlign": "left", "contain": true }'>
                     <div class="carousel-cell">
                         <div class="container">
                             <div class="image"><img src="../img/img_choose_product/abbigliamento.jpg" alt="Immagine"></div>
                             <div class="overlay">
                                 <div class="text">
-                                    <h2>VENDI ABBIGLIAMENTO</h2>
+                                    <a href="/uploadType/abbigliamento"> <h2>VENDI ABBIGLIAMENTO</h2> </a>
                                     <ul>
                                         <li>T-shirt & Polo</li>
                                         <li>Maglieria & Felpe</li>
@@ -40,7 +65,7 @@
                             <div class="image"><img src="../img/img_choose_product/scarpe.jpg" alt="Immagine"></div>
                             <div class="overlay">
                                 <div class="text">
-                                    <h2>VENDI SCARPE</h2>
+                                    <a href=""> <h2>VENDI SCARPE</h2> </a>
                                     <ul>
                                         <li>Scarpe</li>
                                         <li>Scarpe eleganti</li>
@@ -56,7 +81,7 @@
                             <div class="image"><img src="../img/img_choose_product/accessori.jpg" alt="Immagine"></div>
                             <div class="overlay">
                                 <div class="text">
-                                    <h2>VENDI ACCESSORI</h2>
+                                    <a href=""> <h2>VENDI ACCESSORI</h2> </a>
                                     <ul>
                                         <li>Borse</li>
                                         <li>Cinture</li>
@@ -75,7 +100,7 @@
                             <div class="image"><img src="../img/img_choose_product/gioielli.jpg" alt="Immagine"></div>
                             <div class="overlay">
                                 <div class="text">
-                                    <h2>VENDI GIOIELLI</h2>
+                                    <a href=""> <h2>VENDI GIOIELLI</h2> </a>
                                     <ul>
                                         <li>Anelli</li>
                                         <li>Collane</li>
@@ -91,7 +116,7 @@
                             <div class="image"><img src="../img/img_choose_product/orologi.jpg" alt="Immagine"></div>
                             <div class="overlay">
                                 <div class="text">
-                                    <h2>VENDI OROLOGI</h2>
+                                    <a href=""> <h2>VENDI OROLOGI</h2> </a>
                                     <ul>
                                         <li>Cronografo</li>
                                         <li>Orologio automatico</li>
@@ -112,5 +137,7 @@
         </div>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.2.1/flickity.pkgd.min.js" integrity="sha512-Nx/M3T/fWprNarYOrnl+gfWZ25YlZtSNmhjHeC0+2gCtyAdDFXqaORJBj1dC427zt3z/HwkUpPX+cxzonjUgrA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <br><br>
+    <%- include('../public/html/foter.html')%>
 </body>
 </html>

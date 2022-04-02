@@ -141,6 +141,7 @@ const { update, updateOne } = require('../models/user');
                 data_nascita: result.data_nascita,
                 codicefiscale: result.codice_fiscale,
                 numeroTelefono:result.numero_cell,
+                iban:result.iban,
                 email: result.email[0],
                 password: hash,
             });
@@ -254,11 +255,40 @@ const { update, updateOne } = require('../models/user');
 
         });
 
-//Upload Product route --->WHAITING FOR UPLOAD PAGE
-   
-/*router.get('/Upload',isAuth,(req,res)=>{
-        res.render('Upload-product');
-    });*/
+//Choose prodotto and Add iban
+    router.get('/chooseProduct',isAuth,(req,res)=>{
+        var user= req.session.result;
+        var flag=null;
+        myuser.find({_id:user._id},('iban'),function(err,myres){
+            if(err) return handleError(err);
+            if(myres[0].iban){
+                flag=true;
+                res.render('choose-prodotto',{flag});
+            }else{
+                flag=false;
+                res.render('choose-prodotto',{flag});
+            }
+        });
+    });
+
+    //Add IBAN
+    router.post('/addIban',isAuth,async(req,res)=>{
+        var user=req.session.result;
+        var iban=req.body;
+        await myuser.findByIdAndUpdate(user._id,{
+            iban:iban.iban
+        });
+        res.redirect('/chooseProduct');
+    })
+
+
+//Upload Product route    
+    router.get('/uploadType/:type',isAuth,(req,res)=>{
+            var type=req.params.type;
+            var myroute="inserisci_"+type;
+            console.log(myroute);
+            res.render(myroute);
+        });
 
     router.get('/upload',(req,res)=>{
         var upload= new myproduct({
@@ -315,10 +345,6 @@ const { update, updateOne } = require('../models/user');
 
 
 
-//temp
-    router.get('/input',(req,res)=>{
-        res.render('inserisci_abbigliamento');
-    });
 
 module.exports=router;
 

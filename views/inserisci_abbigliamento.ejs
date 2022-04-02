@@ -6,18 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/inserisci.css">
     <script src="../javascript/input_abbigliamento.js"></script>
+    <script src="../javascript/Steky_anteprima.js"></script>
 
      <!--NAV BAR-->
      <link rel="stylesheet" href="../css/navbar.css">
      <!--FOOETR-->
      <link rel="stylesheet" href="../css/foter.css">
 </head>
-<body>
-    <%- include('../public/html/navbar.html') -%>
-    <br>
-    <main>
-        <div>
-            <div>
+    <body>
+        <%- include('../public/html/navbar.html') -%>
+        <br>
+        <main>
+            <div id="main_container">
                 <form action="" class="grid">
                     <div>
                         <h1>Caratteristiche del prodotto</h1>
@@ -225,7 +225,7 @@
                             <legend><h3>Quantità e prezzo dell'offerta <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Inserisci il prezzo del prodotto <span>*</span> </label>
+                                <label>Inserisci la quanitita del prodotto <span>*</span> </label>
                                 <input type="text" name="quanitita" id="quantita" placeholder="(esempio) 1">
                             </div>
                             <div class="flex">
@@ -235,30 +235,32 @@
                         </fieldset>
                         <div style="width: 100%;"><a href="#"><button id="button" type="submit">Salva & Continua</button></a></div>
                     </div>
-                    <div style="width: 100%; margin-top: 5%;">
-                        <div class="second_div">
-                            <div id="image_anteprima">
-                                <img src="./img2.jpg" alt="" class="image">
-                            </div>
-                            <div>
-                                <h4 id="titolo_anteprima">BRAND</h4>
-                                <p id="nome">Salvatore Ferragamo</p>
-                            </div>
-                            <div>
-                                <h4 id="titolo_anteprima">NOME PRODOTTO</h4>
-                                <p id="nome">Completo elegante</p>
-                            </div>
-                            <div>
-                                <h4 id="titolo_anteprima">PREZZO</h4>
-                                <p id="nome">2450$</p>
-                            </div>
+
+                </form>
+
+                <div id="anteprima" >
+                    <div class="second_div">
+                        <div id="image_anteprima">
+                            <img src="" alt="" class="image">
+                        </div>
+                        <div>
+                            <h4 id="titolo_anteprima">BRAND</h4>
+                            <p id="nome">Salvatore Ferragamo</p>
+                        </div>
+                        <div>
+                            <h4 id="titolo_anteprima">NOME PRODOTTO</h4>
+                            <p id="nome">Completo elegante</p>
+                        </div>
+                        <div>
+                            <h4 id="titolo_anteprima">PREZZO</h4>
+                            <p id="nome">2450$</p>
                         </div>
                     </div>
-                </form>
+                </div>
+
             </div>
-        </div>
-    </main>
-    <br>
-    <%- include('../public/html/foter.html')%>
-</body>
+        </main>
+        <br>
+        <%- include('../public/html/foter.html')%>
+    </body>
 </html>
