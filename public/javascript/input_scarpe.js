@@ -24,3 +24,12 @@ function mycategory(category){
         document.getElementById("input_scarpe").style.display="none";
     }
 }
+
+function second_hand(usato){
+    if(usato=="true"){
+        document.getElementById("condizione").style.display="flex";
+    }
+    if(usato=="false"){
+        document.getElementById("condizione").style.display="none";
+    }
+}

@@ -51,3 +51,12 @@ function mycategory(category){
         document.getElementById("input_orecchino").style.display="block";
     }
 }
+
+function second_hand(usato){
+    if(usato=="true"){
+        document.getElementById("condizione").style.display="flex";
+    }
+    if(usato=="false"){
+        document.getElementById("condizione").style.display="none";
+    }
+}

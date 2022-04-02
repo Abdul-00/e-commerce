@@ -3,15 +3,20 @@
     src: url(../fonts/Roboto/Roboto-Regular.ttf);
 }
 main{
-    padding-left: 5%;
-    padding-right: 5%;
     font-family: "MainFont";
+}
+.main{
+    margin-left: 5%;
+    margin-right: 5%;
+    height: auto;
+    background-color: rgb(238, 238, 238);
+    padding: 20px;
 }
 .grid{
     display: grid;
     grid-template-columns: 60% 40%;
 }
-h1{
+.first_div h1{
     font-size: 26pt;
     font-weight: 800;
     color: slategrey;
@@ -23,20 +28,25 @@ h1{
     padding-top: 5px;
     padding-bottom: 10px;
 }
-fieldset{
+.first_div .background{
+    background-color: rgb(238, 238, 238);
+    border-bottom: 1px solid slategray;
+    margin-bottom: 2px;
+}
+.first_div fieldset{
     width: 100%;
     border: none;
 }
-h3{
+.first_div h3{
     font-size: 18pt;
     font-weight: 600;
 }
-span{
+.first_div span{
     font-size: 12pt;
     font-weight: 500;
     color: rgb(70, 70, 70);
 }
-label{
+.first_div label{
     padding-left: 1%;
     padding-right: 4%;
     color: rgb(70, 70, 70);
@@ -48,11 +58,11 @@ label{
     max-width: 30%;
     min-width: 30%;
 }
-label span{
+.first_div label span{
     color: black;
     font-weight: 600;
 }
-input{
+.first_div input{
     box-sizing: border-box;
     width: 70%;
     max-width: 70%;
@@ -62,19 +72,7 @@ input{
     background-color: #fff;
     color: black;
 }
-#prezzo{
-    box-sizing: border-box;
-    margin-left: 25%;
-    margin-right: 25%;
-    width: 20%;
-    max-width: 20%;
-    min-width: 20%;
-    height: 40px;
-    max-height: 40px;
-    background-color: #fff;
-    color: black;
-}
-select{
+.first_div select{
     box-sizing: border-box;
     width: 70%;
     max-width: 70%;
@@ -84,7 +82,7 @@ select{
     background-color: #fff;
     color: black;
 }
-textarea{
+.first_div textarea{
     box-sizing: border-box;
     width: 70%;
     max-width: 70%;
@@ -101,24 +99,25 @@ textarea{
     padding-bottom: 10px;
     width: 60%;
     float: right;
-    background-color: rgb(197, 95, 0);
-    border: 2px solid black;
+    background-color: green;
+    color: white;
+    border: none;
     color: white;
     font-size: 16pt;
     font-weight: 600;
+    transition: .5s;
 }
 #button:hover{
-    background-color: rgb(165, 80, 1);
-    color: black;
+    background-color: rgb(0, 89, 0);
 }
 
 .second_div{
-    position: fixed;
-    border: 1px solid grey;
+    background-color: white;
+    border: 1px solid black;
     box-sizing: border-box;
-    width: 380px;
-    height: 90vh;
-    margin-left: 10%;
+    width: 80%;
+    height: auto;
+    margin-left: 15%;
     padding-left: 25px;
     padding-right: 25px;
 }
@@ -126,8 +125,8 @@ textarea{
     margin-top: 5%;
     margin-bottom: 5%;
     box-sizing: border-box;
-    width: 330px;
-    height: 50%;
+    width: 100%;
+    height: 400px;
 }
 .image{
     width: 100%;
@@ -137,15 +136,30 @@ textarea{
 .image img{
     width: 100%;
 }
+#titolo{
+    text-align: center;
+    background-color: white;
+    font-size: 20pt;
+    font-weight: 600;
+    color: slategrey;
+}
 #titolo_anteprima{
     margin-left: 5%;
-    padding-bottom: 2px;
+    margin: 0%;
     border-bottom: 1px solid gray;
+    font-size: 11pt;
 }
-#nome{
-    margin-left: 5%;
-    padding-bottom: 2px;
+.second_div input{
+    border: none;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
     color: black;
-    font-size: 16pt;
+    font-size: 12pt;
     font-weight: 400;
+    width: 100%;
+}
+.second_div_flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
