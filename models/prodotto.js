@@ -1,39 +1,37 @@
-//Documento prodoto
+//Documento prodotto
 const mongoose=require('mongoose');
 
 var Schema = mongoose.Schema;
 
 var prodotto=new Schema({
-    categorie:{type:String,required:true,max:80},
-    mf:{type:String,required:true},
-    nome:{type:String,required:true},
+    categoria:{type:String,required:true,max:80},
+    sesso:{type:String,required:true},
+    nome_prodotto:{type:String,required:true},
     brand:{type:String,required:true},
-    usato:{type:Boolean},
+    second_hand:{usato:{type:Boolean,required:true},condizione:{type:String,required:true}},
     foto:[{
         colore:{type:String,required:true},
         url:{type:String}
     }],
-    taglai_prezzo:[{
+    taglia_prezzo:[{
         colore:String,
         taglia:{
-            quantità:{type:String,required:true},
+            quantita:{type:String,required:true},
             size:{type:String,max:4,required:true},
             prezzo:{type:Number,required:true}
         }
     }],
     dettagli:{
         composizione:{type:String,max:100},
-        avvertenze:{type:String,max:100},
-        colletto:{type:String,max:100},
-        chiusura:{type:String,max:100},
-        tasche:{type:String,max:100},
+        descrizione:{type:String, max:200},
+        avvertenze:{type:String,max:100}
     },
     taglia_fit:{
         vestibilita:{type:String},
-        lunghezza:{type:String},
-        lunghezza_manica:{type:String},
-        lung_delle_maniche:{type:String},
-        lung_dello_schienale:{type:String},
+        cm_manica:{type:String},
+        cm_schienale:{type:String},
+        cm_gamba_interna:{type:String},
+        cm_gamba_esterna:{type:String}
     }
 
 });
