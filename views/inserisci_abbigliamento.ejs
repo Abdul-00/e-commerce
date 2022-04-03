@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/inserisci.css">
     <script src="../javascript/input_abbigliamento.js"></script>
-    <script src="../javascript/Steky_anteprima.js"></script>
     <script src="../javascript/anteprima_prodotti.js"></script>
 
      <!--NAV BAR-->
@@ -20,7 +19,7 @@
     <main>
         <div class="main">
             <div>
-                <form action="" class="grid">
+                <form action="/upload_abbigliamento" method="post" class="grid" enctype="multipart/form-data">
                     <div class="first_div">
                         <h1>Caratteristiche del prodotto</h1>
                         <fieldset>
@@ -28,7 +27,7 @@
                             <hr>
                             <div class="flex">
                                 <label>Genere <span>*</span> </label>
-                                <select name="sesso" id="input_genere" onchange="mygenere(value)">
+                                <select name="sesso" id="input_genere" onchange="mygenere(value)" required>
                                     <option value="null">Seleziona un'opzione</option>
                                     <option value="uomo">Abbigliamento da uomo</option>
                                     <option value="donna">Abbigliamento da donna</option>
@@ -36,7 +35,7 @@
                             </div>
                             <div class="flex">
                                 <label>Categoria <span>*</span> </label>
-                                <select name="categoria" id="input_categoria" onchange="mycategory(value); mycategoria(value)">
+                                <select name="categoria" id="input_categoria" onchange="mycategory(value); mycategoria(value)" required>
                                     <option value="null">Seleziona la categoria</option>
                                     <option value="tshirt_polo">T-shirt & Polo</option>
                                     <option value="camicia">Camicie</option>
@@ -50,11 +49,11 @@
                             </div>
                             <div class="flex">
                                 <label>Marca(brand) <span>*</span> </label>
-                                <input type="text" name="brand" placeholder="(esempio) Salvatore Ferragamo" id="input_marca" onchange="mymarca(value)">
+                                <input type="text" name="brand" placeholder="(esempio) Salvatore Ferragamo" id="input_marca" onchange="mymarca(value)" required>
                             </div>
                             <div class="flex">
                                 <label>Il prodotto è usato?</label>
-                                <select name="usato" id="usato" onchange="second_hand(value); myusato(value)">
+                                <select name="usato" id="usato" onchange="second_hand(value); myusato(value)" required>
                                     <option value="null">Seleziona un'opzione</option>
                                     <option value="false">No, il prodotto non è mai stato indossato (nuovo e senza segni di usura)</option>
                                     <option value="true">Si, il prodotto è usato</option>
@@ -76,11 +75,11 @@
                             <hr>
                             <div class="flex">
                                 <label>Nome <span>*</span> </label>
-                                <input type="text" name="nome_prodotto"placeholder="(esempio) Giacca leggera" id="input_nome" onchange="mynome(value)">
+                                <input type="text" name="nome_prodotto"placeholder="(esempio) Giacca leggera" id="input_nome" onchange="mynome(value)" required>
                             </div>
                             <div class="flex">
                                 <label>Taglia <span>*</span> </label>
-                                <select name="taglia" id="input_taglia" onchange="mytaglia(value)">
+                                <select name="taglia" id="input_taglia" onchange="mytaglia(value)" required>
                                     <option value="null">Seleziona un'opzione</option>
                                     <option value="xs">XS</option>
                                     <option value="s">S</option>
@@ -92,7 +91,7 @@
                             </div>
                             <div class="flex">
                                 <label>Vestibilità <span>*</span> </label>
-                                <select name="vestibilita" id="input_vestibilita" onchange="myvestibilita(value)">
+                                <select name="vestibilita" id="input_vestibilita" onchange="myvestibilita(value)" required>
                                     <option value="null">Seleziona un'opzione</option>
                                     <option value="stretto">Vestibilità stretta</option>
                                     <option value="aderente">Vestibilità aderente</option>
@@ -102,12 +101,14 @@
                                 </select>
                             </div>
                         </fieldset>
+
+                        <!--CONTROLLO NEL BACKEND -->
                         <fieldset id="input_parte_superiore" style="display: none;">
                             <legend><h3>Dati basilari parte superiore <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
                                 <label>Composizione (materiali) <span>*</span> </label>
-                                <input type="text" name="composizione" placeholder="(esempio) Poliestere, duvet e piume">
+                                <input type="text" name="composizione" placeholder="(esempio) Poliestere, duvet e piume" >
                             </div>
                             <div class="flex">
                                 <label>Colore <span>*</span> </label>
@@ -203,6 +204,7 @@
                                 <input type="text" name="cm_gamba_esterna" placeholder="(esempio) 103cm">
                             </div>
                         </fieldset>
+                        <!--------------------------->
 
                         <fieldset>
                             <legend><h3>Immagini del prodotto <span>*(campo obbligatorio)</span></h3></legend>
@@ -211,13 +213,13 @@
                                 <label>carica le immagini del prodotto (4 sono obbligatorie <span>*</span> )</label>
                                 <div style="width: 100%;">
                                     <p>Foto principale :</p> 
-                                    <input type="file" name="immagine1" class="background">
+                                    <input type="file" name="immagine1" class="background" required onchange="previewImage(event)">
                                     <p>Seconda foto :</p>
-                                    <input type="file" name="immagine2" class="background">
+                                    <input type="file" name="immagine2" class="background" required>
                                     <p>Terza foto :</p>
-                                    <input type="file" name="immagine3" class="background">
+                                    <input type="file" name="immagine3" class="background" required>
                                     <p>Quarta foto :</p>
-                                    <input type="file" name="immagine4" class="background">
+                                    <input type="file" name="immagine4" class="background" required>
                                     <p>Quinta foto :</p>
                                     <input type="file" name="immagine5" class="background">
                                     <p>Sesta foto :</p>
@@ -230,7 +232,7 @@
                             <hr>
                             <div class="flex">
                                 <label>Descrizione e dettagli del prodotto <span>*</span> </label>
-                                <textarea name="descrizione" id="input_descrizione" cols="30" rows="10" onchange="mydescrizione(value)"></textarea>
+                                <textarea name="descrizione" id="input_descrizione" cols="30" rows="10" onchange="mydescrizione(value)" required></textarea>
                             </div>
                             <div class="flex">
                                 <label>Avvertenze</label>
@@ -239,20 +241,20 @@
                         </fieldset>
 
                         <fieldset>
-                            <legend><h3>Prezzo del prodotto <span>*(campo obbligatorio)</span></h3></legend>
+                            <legend><h3>Quantità dei prodotti <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Inserisci la quanitita del prodotto <span>*</span> </label>
-                                <input type="text" name="quanitita" id="quantita" placeholder="(esempio) 1">
+                                <label>Inserisci il numero dei prodotti che vuoi vendere<span>*</span> </label>
+                                <input type="text" name="quanitita" id="input_quantita" placeholder="(esempio) 1" required>
                             </div>
                         </fieldset>
 
                         <fieldset>
-                            <legend><h3>Quantità dei prodotti <span>*(campo obbligatorio)</span></h3></legend>
+                            <legend><h3> Prezzo del prodotto<span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
-                                <label>Inserisci il numero dei prodotti che vuoi vendere <span>*</span> </label>
-                                <input type="text" name="quanitita" id="input_quantita" placeholder="(esempio) 1" onchange="myquantita(value)">
+                                <label>Inserisci il prezzo del singolo <span>*</span> </label>
+                                <input type="text" name="prezzo" id="input_prezzo" placeholder="(esempio) 99€" onchange="myprezzo(value)">
                             </div>
                         </fieldset>
 
@@ -263,7 +265,7 @@
                         <div class="second_div">
                             <h3  id="titolo">ANTEPRIMA DEL PRODOTTO</h3>
                             <div id="image_anteprima">
-                                <img src="" alt="" class="image">
+                                <img src="" alt="" class="image" id="output_img">
                             </div>
                             <div>
                                 <h4 id="titolo_anteprima">GENERE</h4>

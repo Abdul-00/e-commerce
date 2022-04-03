@@ -30,7 +30,11 @@ var user = new Schema({
         scadenza:{type:Date,required:true},
         cvv:{type:String,max:3,min:3}
     }],
-    iban:{type:String,min:27,max:27}
+    iban:{type:String,min:27,max:27},
+    vendite:[{
+        prodotto:{type:Schema.Types.ObjectId,required:true},
+        data:{type:Date,default:()=>Date.now()+7*24*60*60*1000}
+    }]
         
 });
 

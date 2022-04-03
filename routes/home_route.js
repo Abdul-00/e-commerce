@@ -2,7 +2,7 @@ const express=require('express');
 const { default: mongoose } = require('mongoose');
 const router=express.Router();
 const myuser=require('../models/user');
-const myproduct=require('../models/prodotto');
+const myabbigliamento=require('../models/abbigliamento');
 const bcrypte=require('bcryptjs');
 const { update, updateOne } = require('../models/user');
 
@@ -282,51 +282,50 @@ const { update, updateOne } = require('../models/user');
     })
 
 
-//Upload Product route    
+//Upload Product route
+    //       A SECONDA DEL PARAMETRO PASSATOMI DA "choose-prodotto" RENDERIZZO LA PAGINA GIUSTA    
     router.get('/uploadType/:type',isAuth,(req,res)=>{
             var type=req.params.type;
             var myroute="inserisci_"+type;
+            const infoErrorObj= req.flash('infoError');
+            const infoSubmitObj= req.flash('infoSubmit');
             console.log(myroute);
-            res.render(myroute);
+            res.render(myroute,{infoErrorObj,infoSubmitObj});
         });
+        
+    //   INPUT_ABBIGLIAMENTO
+    router.post('/upload_abbigliamento',isAuth,(req,res)=>{
+        var data=req.body;
+        var file=req.files;
 
-    router.get('/upload',(req,res)=>{
-        var upload= new myproduct({
-
-            categorie:"t-shirt",
-            mf:"male",
-            nome:"jeans couture",
-            brand:"versace",
-            usato: false,
-            foto:{
-                colore:"bianco",
-                url:"t-shirt_versace.jpeg"
-            },
-            taglai_prezzo:{
-                colore:"bianco",
-                taglia:{
-                    quantità:"20",
-                    size:"M",
-                    prezzo: 300
-                }
-            },
-            dettagli:{
-                composizione:"cotone",
-                avvertenze:"EHHH",
-                colletto:"crew",
-                chiusura:"nessuna",
-                tasche:"nessuna",
-            },
-            taglia_fit:{
-                vestibilita:"normale",
-                lunghezza:"normale",
-                lunghezza_manica:"media",
-                lung_delle_maniche:"media",
-                lung_dello_schienale:"uniforme",
+        if(data.sesso=='null' || data.categoria=='null' || data.usato=='null' ||data.taglia=='null' || data.vestibilita=='null'){
+            req.flash('infoError','Errore di Compilazione');
+            res.redirect('/uploadType/abbigliamento');
+        }
+        if(data.categoria=="tshirt_polo" || data.categoria=="camicia" || data.categoria=="maglieria" || data.categoria=="giacca" || data.categoria=="cappotto"){
+            //controllo parte superiore
+            if(data.composizione[0]=="" || data.colore[0]=="null" || data.cm_manica[0]=="" || data.cm_schienale[0]==""){
+                req.flash('infoError','Errore di Compilazione "parte superiore"');
+                res.redirect('/uploadType/abbigliamento');
             }
+        }else{
+            if(data.categoria=="jeans" || data.categoria=="pantalone"){
+                //controllo parte inferiore
+                if(data.composizione[1]=="" || data.colore[1]=="null" || data.cm_gamba_interna=="" || data.cm_gamba_esterna==""){
+                    req.flash('infoError','Errore di Compilazione "parte inferiore"');
+                    res.redirect('/uploadType/abbigliamento');
+                }
+            }else{
+                
+            }
+        }
+
+        res.send(data);
+        /*var upload= new myproduct({
+  
         });
         upload.save();
-        res.send("Inserimento completato");
+        res.send("Inserimento completato");*/
     });
 
 //Product-list Route 

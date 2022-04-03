@@ -161,3 +161,9 @@ function myvestibilita(input){
         document.getElementById("output_vestibilita").value = "";
     }
 }
+//Don't ask me what this dose :)
+const previewImage = e => {
+    const preview = document.getElementById('output_img');
+    preview.src = URL.createObjectURL(e.target.files[0]);
+    preview.onload = () => URL.revokeObjectURL(preview.src);
+ };

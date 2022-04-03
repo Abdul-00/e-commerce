@@ -1,3 +1,4 @@
+//--------------------------------NON VIENE USATO ---PER IL MOMENTO
 // When the user scrolls the page, execute myFunction
 //window.onscroll = function() {myFunction()};
 

@@ -1,5 +1,5 @@
 function mycategory(category){
-    if(category=="manica_corta" || category=="camicia" || category=="maglieria" || category=="giacca" || category=="cappotto"){
+    if(category=="manica_corta" || category=="camicia" || category=="maglieria" || category=="giacca" || category=="cappotto" ||category=="tshirt_polo"){
         document.getElementById("input_parte_superiore").style.display="block";
         document.getElementById("input_parte_inferiore").style.display="none";
         document.getElementById("input_completo").style.display="none";

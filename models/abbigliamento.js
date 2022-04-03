@@ -3,7 +3,7 @@ const mongoose=require('mongoose');
 
 var Schema = mongoose.Schema;
 
-var prodotto=new Schema({
+var abbigliamento=new Schema({
     categoria:{type:String,required:true,max:80},
     sesso:{type:String,required:true},
     nome_prodotto:{type:String,required:true},
@@ -36,4 +36,4 @@ var prodotto=new Schema({
 
 });
 
-module.exports=mongoose.model('prodotto',prodotto);
+module.exports=mongoose.model('abbigliamento',abbigliamento);
