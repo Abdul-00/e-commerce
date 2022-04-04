@@ -20,7 +20,6 @@
         <% if(infoErrorObj){ %>
             <center><h3 style="background-color: red;"> <%= infoErrorObj %> </h3></center>
         <% }; %>
-
         <% if(infoSubmitObj){ %>
             <center><h3 style="background-color: green;"> <%= infoSubmitObj %> </h3></center>
         <% }; %>
@@ -261,7 +260,7 @@
                             <hr>
                             <div class="flex">
                                 <label>Inserisci il prezzo del singolo <span>*</span> </label>
-                                <input type="text" name="prezzo" id="input_prezzo" placeholder="(esempio) 99€" onchange="myprezzo(value)">
+                                <input type="text" name="prezzo" id="input_prezzo" placeholder="(esempio) 99€" onchange="myprezzo(value)" required>
                             </div>
                         </fieldset>
 

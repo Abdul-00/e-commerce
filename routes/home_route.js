@@ -296,49 +296,63 @@ const { update, updateOne } = require('../models/user');
     //   INPUT_ABBIGLIAMENTO
     router.post('/upload_abbigliamento',isAuth,(req,res)=>{
         var data=req.body;
-        var file=req.files;
-
+        var user=req.session.result;
         if(data.sesso=='null' || data.categoria=='null' || data.usato=='null' ||data.taglia=='null' || data.vestibilita=='null'){
-            req.flash('infoError','Errore di Compilazione');
-            res.redirect('/uploadType/abbigliamento');
+            req.flash('infoError','Errore di Compilazione "nelle opzioni a tendina"');
         }
-        if(data.categoria=="tshirt_polo" || data.categoria=="camicia" || data.categoria=="maglieria" || data.categoria=="giacca" || data.categoria=="cappotto"){
-            //controllo parte superiore
-            if(data.composizione=="" || data.colore[0]=="null" || data.cm_manica=="" || data.cm_schienale==""){
-                req.flash('infoError','Errore di Compilazione "parte superiore"');
-                res.redirect('/uploadType/abbigliamento');
-            }else{
-                req.flash('infoSubmit','Inserimento completato');
-                res.redirect('/uploadType/abbigliamento');
-            }
-        }else{
-            if(data.categoria=="jeans" || data.categoria=="pantalone"){
-                //controllo parte inferiore
-                if(data.composizione=="" || data.colore[1]=="null" || data.cm_gamba_interna=="" || data.cm_gamba_esterna==""){
-                    req.flash('infoError','Errore di Compilazione "parte inferiore"');
-                    res.redirect('/uploadType/abbigliamento');
-                }else{
-                    req.flash('infoSubmit','Inserimento completato');
-                    res.redirect('/uploadType/abbigliamento');
-                }
-            }else{
-                //Controllo completo
-                if(data.composizione=="" || data.colore[2]=="null" || data.cm_gamba_interna=="" || data.cm_gamba_esterna=="" || data.cm_manica=="" || data.cm_schienale==""){
-                    req.flash('infoError','Errore di Compilazione "parte completo"');
-                    res.redirect('/uploadType/abbigliamento');
-                }else{
-                    req.flash('infoSubmit','Inserimento completato');
-                    res.redirect('/uploadType/abbigliamento');
-                }
-                
-            }
-        }
+        else{
 
+            if(data.categoria=="tshirt_polo" || data.categoria=="camicia" || data.categoria=="maglieria" || data.categoria=="giacca" || data.categoria=="cappotto"){
+                //controllo parte superiore
+                if(data.composizione=="" || data.colore[0]=="null" || data.cm_manica=="" || data.cm_schienale==""){
+                    req.flash('infoError','!Errore di Compilazione "Nella sezione superiore"!');
+                }else{
+                    req.flash('infoSubmit','Inserimento completato');
+                }
+            }else{
+                if(data.categoria=="jeans" || data.categoria=="pantalone"){
+                    //controllo parte inferiore
+                    if(data.composizione=="" || data.colore[1]=="null" || data.cm_gamba_interna=="" || data.cm_gamba_esterna==""){
+                        req.flash('infoError','!Errore di Compilazione "Nella sezione inferiore"!');
+                    }else{
+                        req.flash('infoSubmit','Inserimento completato');
+                    }
+                }else{
+                    //Controllo completo
+                    if(data.composizione=="" || data.colore[2]=="null" || data.cm_gamba_interna=="" || data.cm_gamba_esterna=="" || data.cm_manica=="" || data.cm_schienale==""){
+                        req.flash('infoError','!Errore di Compilazione "Nella sezione completo"!');
+                    }else{
+                        req.flash('infoSubmit','Inserimento completato');
+                    }
+                    
+                }
+            }
+            //contollo compilazione campo condizioni
+            if(data.usato=="true" & data.condizione=="null"){
+                req.flash('infoError','!Errore di Compilazione "Nella sezione Condizione prodotto"!');
+                req.flash('infoSubmit',null);
+            }
+        }
+        //save imagine
+        var fileKeys = Object.keys(req.files);
+
+        fileKeys.forEach(function(key) {
+            console.log(key);
+            console.log(req.files[key].name);
+            
+            var upload_path='../e-commerce/public/upload/'+user._id+req.files[key].name;
+            req.files[key].mv(upload_path, function(err) {
+                if (err) return console.log(err);
+            
+                console.log('File uploaded!');
+            });
+        });
+        
         /*var upload= new myproduct({
   
         });
-        upload.save();
-        res.send("Inserimento completato");*/
+        upload.save();*/
+        res.redirect('/uploadType/abbigliamento');
     });
 
 //Product-list Route 

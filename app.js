@@ -6,7 +6,6 @@ const myroutes=require('./routes/home_route');
 const fileupload=require('express-fileupload');
 const session=require('express-session');
 const mongoDBSession=require('connect-mongodb-session')(session);
-//const cookieparser=require('cookie-parser');
 const flash=require('connect-flash');
 require('dotenv/config');
 
