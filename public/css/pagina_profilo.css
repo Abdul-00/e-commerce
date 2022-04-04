@@ -20,6 +20,7 @@ main{
   margin-left: 2%;
   margin-right: 2%;
   margin-top: 30px;
+  height: auto;
 }
 #section1{
   width: 10%;
@@ -61,7 +62,9 @@ main{
 
 .main{
   background-color: rgb(238, 238, 238);
-  padding: 20px
+  padding: 20px;
+  box-sizing: border-box;
+  height: 100%;
 }
 .titolo{
   padding: 10px;
@@ -117,44 +120,54 @@ main{
 
 .main-carousel{
   width: 100%;
+  height: auto;
 }
 .carousel-cell{
-  height: 200px;
+  height: auto;
   width: 300px;
   justify-content: center;
   margin-left: 10px;
 }
 .myAddress{
+  height: auto;
+  border: 1px solid black;
   background-color: white;
   color: black;
+  padding: 10px;
 }
 
-/*.main_container{
-  display: flex;
-  justify-content:space-evenly;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.myAddress{
+.myButton{
+  font-size: 12pt;
+  font-weight: 600;
   background-color: white;
   color: black;
-  border: black solid 1px;
-  width: 22%;
-  padding: 5px;
-  margin-top: 9px;
+  padding: 10px;
+  margin-top: 35px;
+  width: 100%;
+  transition: .5s;
+  cursor: pointer;
+  border: 1px solid slategray;
+}
+.myButton:hover{
+  background-color: rgb(228, 228, 228);
+}
+
+#info_carta{
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+#info_carta div{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-}*/
+  align-items: flex-start;
+}
 
-.myAddress_button{
-  background-color: white;
-  color: black;
-  border: black solid 1px;
-  width: 100%;
-  padding: 5px;
-  margin-top: 9px;
+#info_carta div p{
+  margin:0 0 0 9px;
+  text-align: start;
 }
 
 #add_address{
@@ -179,24 +192,6 @@ main{
   justify-content: center;
 }
 
-#info_carta{
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-#info_carta div{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-#info_carta div p{
-  margin:0 0 0 9px;
-  text-align: start;
-}
-
 #address_form{
   padding: 10px;
   height: auto;
@@ -214,16 +209,16 @@ main{
 }
 
 #address_form form input{
-  width: 45%;
+  width: 65%;
   height: 25px;
   margin: 4px;
 }
 #address_form form select{
-  width: 46%;
+  width: 66%;
   height: 25px;
   margin: 4px;
 }
 
 #address_form form button{
-  width: 25%;
+  width: 35%;
 }

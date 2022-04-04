@@ -67,7 +67,7 @@
                     <div class="main">
                         <div class="titolo">
                             <h1>Dati personali</h1>
-                            <h2>Visualizza i miei dati Impostazioni di log-in e password.</h2>
+                            <h2>Visualizza i miei dati personali :</h2>
                         </div>
 
                         <div class="grid_container">
@@ -81,7 +81,7 @@
                                 </div>
                                 <hr>
                                 <div>
-                                    <p><b>Codice-Fiscale</b></p>
+                                    <p><b>Codice Fiscale</b></p>
                                     <p><%= myres.codicefiscale %></p>
                                 </div>
                             </div>
@@ -92,7 +92,7 @@
                                 </div>
                                 <hr>
                                 <div>
-                                    <p><b>Data Nascita</b></p>
+                                    <p><b>Data di nascita</b></p>
                                     <p><%= myres.data_nascita.toISOString().split('T')[0] %></p>
                                 </div>
                             </div>
@@ -110,7 +110,7 @@
                                     <img src="../img/img_footer/pagamenti.png" alt="carta" style="width: auto; height: 20px;">
                                 </div>
                                 <div class="grid_item2">
-                                    <p><b>Il tuo iban</b></p>
+                                    <p><b>Il mio IBAN</b></p>
                                     <p><%= myres.iban %></p>
                                 </div>
                                 <div class="grid_item grid_button">
@@ -126,7 +126,7 @@
                                 <img src="../img/img_login/email.png" alt="Email" style="width: auto; height: 20px;">
                             </div>
                             <div class="grid_item2">
-                                <p><b>La tua email</b></p>
+                                <p><b>La mia E-mail</b></p>
                                 <p><%= myres.email %></p>
                             </div>
                             <div class="grid_item grid_button">
@@ -141,7 +141,7 @@
                                 <img src="../img/img_login/password.png" alt="Password" style="width: auto; height: 20px;">
                             </div>
                             <div class="grid_item2">
-                                <p><b>La tua password</b></p>
+                                <p><b>La mia Password</b></p>
                                 <p>*********</p>
                             </div>
                             <div class="grid_item grid_button">
@@ -157,30 +157,9 @@
                     <div class="main">
                         <div class="titolo">
                             <h1>Indirizzi</h1>
-                            <h2>Visualizza i miei indirizzi salvati:</h2>
+                            <h2>Visualizza i miei indirizzi e le carte di pagamento :</h2>
                         </div>
-                        
-                        <!--<div class="main_container">
-                            <% myres.indirizzi.forEach(function(value,key){ %>
-                                <div class="myAddress">
-                                    
-                                    <p><b>Indirizzo di Spedizione</b></p>
-                                    <p><%= myres.nome %> <%= myres.cognome %></p>
-                                    <p><%= value.via %>, <%= value.numero_civico %></p>
-                                    <p><%= value.cap %>, <%= value.citta %></p>
-                                    <p>Italia</p>
-                                    
-                                    <div>
-                                        <a href="/deleteAddress/<%=value._id%>" class="bottone_modifica">
-                                            <img src="/img/img_login/cestino_1.png" alt="" width="12%">
-                                            <b>Elimina</b>
-                                        </a>
-                                    </div>
-                                </div>
-                            <% });  %>
-                            
-                        </div>-->
-
+                        <h1><b>I miei indirizzi di consegna :</b></h1>
                         <div class="main-carousel" data-flickity='{ "cellAlign": "left", "contain": true }'>
                             <% myres.indirizzi.forEach(function(value,key){ %>
                                 <div class="carousel-cell">
@@ -200,61 +179,55 @@
                                 </div>
                             <% });  %> 
                         </div>
-
-                        <div class="myAddress_button">
-                            <a href="#" style="font-size: 17px;" onclick="add_address()"> <b>+</b> Aggiungi indirizzo</a>
+                        <div>
+                            <button onclick="add_address()" class="myButton">+ Aggiungi indirizzo</button>
                         </div>
 
-                        
+                        <br>
 
-                        <h1><b>I miei metodi di pagamento:</b></h1>
-                        
-
-                        <div class="main_container">
-
+                        <h1><b>I miei metodi di pagamento :</b></h1>
+                        <div class="main-carousel" data-flickity='{ "cellAlign": "left", "contain": true }'>
                             <% myres.carte.forEach(function(value,key){ %>
-                                <div class="myAddress">
-                                    <p><b> Nome Carta: <%= value.nome_carta%> </b></p>
-                                    <div id="info_carta">
-                                        <img src="/img/img_footer/<%= value.nome_carta %>.png" alt="carta" width="20%" height="20%">
+                                <div class="carousel-cell">
+                                    <div class="myAddress">
+                                        <p><b> Nome Carta: <%= value.nome_carta%> </b></p>
+                                        <div id="info_carta">
+                                            <img src="/img/img_footer/<%= value.nome_carta %>.png" alt="carta" width="20%" height="20%">
+                                            <div>
+                                                <p>Numero Carta: <%= value.numero_carta %></p>
+                                                <p>Scadenza: <%= value.scadenza.toISOString().split('T')[0] %></p>
+                                                <p>CVV: <%= value.cvv %></p>
+                                            </div>
+                                        </div> 
                                         <div>
-                                            <p>Numero Carta: <%= value.numero_carta %></p>
-                                            <p>Scadenza: <%= value.scadenza.toISOString().split('T')[0] %></p>
-                                            <p>CVV: <%= value.cvv %></p>
+                                            <a href="/deleteCard/<%=value._id%>">
+                                                <img src="/img/img_login/cestino_1.png" alt="" style="width: 20px; height: 20x;">
+                                                <b>Elimina</b>
+                                            </a>
                                         </div>
-                                    </div>
-                                    
-                                    <div>
-                                        <a href="/deleteCard/<%=value._id%>" class="bottone_modifica">
-                                            <img src="/img/img_login/cestino_1.png" alt="" width="12%">
-                                            <b>Elimina</b>
-                                        </a>
                                     </div>
                                 </div>
                             <% });  %>
-
                         </div>
-
-                        <div class="myAddress">
-                            <a href="#" style="font-size: 17px;" onclick="add_card()"> <b>+</b> Aggiungi Carta</a>
+                        <div>
+                            <button onclick="add_card()" class="myButton">+ Aggiungi Carta</button>
                         </div>
                     </div>
                 </section>
             </div>
-
             <!--pop up add address-->
             <div id="add_address">
                 <div id="address_form">
                     
                     <img src="../img/img_login/close.png" alt="close" onclick="close_form()" style="width: 15px;">
-                    <center><h3>Iserisci un nuovo indirizzo</h3></center>
+                    <center><h3>Aggiugni un nuovo indirizzo di consegna :</h3></center>
                     
                     <form action="/addAdress" method="post" enctype="application/x-www-form-urlencoded">
-                        <input type="text" placeholder="Inserire la via" name="via" required>
-                        <input type="number" placeholder="Inserire il numero civico" name="numero_civico" required>
-                        <input type="text" placeholder="Inserire la citta" name="citta" required>
-                        <input type="text" placeholder="Inserire il cap della citta" name="cap" required>
-                        <button type="submit">add</button>
+                        <input type="text" placeholder="Inserisci la tua via (es.) Via Giuseppe Garibaldi" name="via" required>
+                        <input type="number" placeholder="Inserisci il tuo numero civico (es.) 18" name="numero_civico" required>
+                        <input type="text" placeholder="Inserisci la città (es.) Correggio" name="citta" required>
+                        <input type="text" placeholder="Inserisci il CAP della città (es.) 42015" name="cap" required>
+                        <button type="submit">Salva & aggiungi</button>
                     </form>
                 </div>
             </div>
@@ -263,7 +236,7 @@
                 <div id="address_form">
                     
                     <img src="../img/img_login/close.png" alt="close" onclick="close_card()" style="width: 15px;">
-                    <center><h3>Aggiungi un metodo di pagamento</h3></center>
+                    <center><h3>Aggiungi un nuovo metodo di pagamento</h3></center>
                     
                     <form action="/addCard" method="post" enctype="application/x-www-form-urlencoded">
                         <select name="nome_carta" required>
@@ -274,14 +247,13 @@
                             <option value="nexi">Nexi pay</option>
                             <option value="maestro">maestro</option>
                         </select>
-                        <input type="text" placeholder="numero_carta" name="numero_carta" required minlength="16" maxlength="16">
-                        <input type="date" placeholder="La data di Scadenza" name="scadenza" required>
-                        <input type="text" placeholder="CVV" name="cvv" required minlength="3" maxlength="3">
-                        <button type="submit">add</button>
+                        <input type="text" placeholder="Inserisci il numero della tua carta (es.) 5333-1721-0987-1212" name="numero_carta" required minlength="16" maxlength="16">
+                        <input type="date" placeholder="Inserisci la data di scadenza" name="scadenza" required>
+                        <input type="text" placeholder="Inserisci il CVV della tua carta (es.) 397" name="cvv" required minlength="3" maxlength="3">
+                        <button type="submit">Salva & aggiungi</button>
                     </form>
                 </div>
             </div>
-
         </main>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.2.1/flickity.pkgd.min.js" integrity="sha512-Nx/M3T/fWprNarYOrnl+gfWZ25YlZtSNmhjHeC0+2gCtyAdDFXqaORJBj1dC427zt3z/HwkUpPX+cxzonjUgrA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <br>
