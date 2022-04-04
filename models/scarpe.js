@@ -1,9 +1,9 @@
-//Documento per categoria abbigliamento
-const mongoose=require('mongoose');
+//Documento per categoria scarpe
+const mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
-var abbigliamento=new Schema({
+var scarpe=new Schema({
     categoria:{type:String,required:true,max:80},
     sesso:{type:String,required:true},
     nome_prodotto:{type:String,required:true},
@@ -23,17 +23,17 @@ var abbigliamento=new Schema({
     }],
     dettagli:{
         composizione:{type:String,max:100},
+        materiale_superiore:{type:String},
+        materiale_rivestimento:{type:String},
+        materiale_solette:{type:String},
+        materiale_suola:{type:String},
+        materiale_fodera:{type:String},
+        tipo_punta:{type:String},
+        tipo_chiusura:{type:String},
         descrizione:{type:String, max:200},
         avvertenze:{type:String,max:100}
-    },
-    taglia_fit:{
-        vestibilita:{type:String},
-        cm_manica:{type:String},
-        cm_schienale:{type:String},
-        cm_gamba_interna:{type:String},
-        cm_gamba_esterna:{type:String}
     }
 
 });
 
-module.exports=mongoose.model('abbigliamento',abbigliamento);
+module.exports=mongoose.model('scarpe',scarpe);
