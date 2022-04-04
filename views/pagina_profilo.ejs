@@ -19,6 +19,9 @@
     <body>
         <%- include('../public/html/navbar.html') %>
         <main>
+            <section id="indice">
+                <h1>Il mio profilo</h1>
+            </section>
             <div class="main_flex">
 
                 <section id="section1">
@@ -38,7 +41,7 @@
                                 <img src="/img/img_footer/pagamenti.png" alt="Ordini">
                             </div>
                             <center>
-                                <a href="/profilo">I miei ordini</a>
+                                <a href="#">I miei ordini</a>
                             </center>
                         </div>
 
@@ -47,7 +50,7 @@
                                 <img src="/img/img_navbar/carrello.png" alt="Vendite">
                             </div>
                             <center>
-                                <a href="/profilo">Le mie vendite</a>
+                                <a href="#">Le mie vendite</a>
                             </center>
                         </div>
 
@@ -56,7 +59,7 @@
                                 <img src="/img/img_login/cestino_1.png" alt="Elimina account">
                             </div>
                             <center>
-                                <a href="/profilo">Elimina il mio account</a>
+                                <a href="/eliminaProfilo">Elimina account</a>
                             </center>
                         </div>
 
@@ -72,7 +75,7 @@
 
                         <div class="grid_container">
                             <div class="grid_item grid_button">
-                                <img src="../img/img_navbar/user.png" alt="User" style="width: auto; height: 20px;">
+                                <img src="../img/img_navbar/user.png" alt="User" style="width: 100%; height: auto;">
                             </div>
                             <div class="grid_item">
                                 <div>
@@ -97,8 +100,8 @@
                                 </div>
                             </div>
                             <div class="grid_item grid_button">
-                                <a href="/updateUser" class="bottone_modifica">
-                                    <img src="../img/img_login/modifica.png" alt="" style="width: auto; height: 20px;">
+                                <a href="/updateUser" class="bottone_modifica2">
+                                    <img src="../img/img_login/modifica.png" alt="" class="image">
                                 </a>
                             </div>
                         </div>
@@ -107,7 +110,7 @@
                         <% if(myres.iban) { %>
                             <div class="grid_container">
                                 <div class="grid_item grid_button">
-                                    <img src="../img/img_footer/pagamenti.png" alt="carta" style="width: auto; height: 20px;">
+                                    <img src="../img/img_footer/pagamenti.png" alt="carta" style="width: 100%; height: auto;">
                                 </div>
                                 <div class="grid_item2">
                                     <p><b>Il mio IBAN</b></p>
@@ -115,7 +118,7 @@
                                 </div>
                                 <div class="grid_item grid_button">
                                     <a href="/updateUser" class="bottone_modifica">
-                                        <img src="../img/img_login/modifica.png" alt="" style="width: auto; height: 20px;">
+                                        <img src="../img/img_login/modifica.png" alt="" class="image">
                                     </a>
                                 </div>
                             </div>
@@ -123,7 +126,7 @@
 
                         <div class="grid_container">
                             <div class="grid_item grid_button">
-                                <img src="../img/img_login/email.png" alt="Email" style="width: auto; height: 20px;">
+                                <img src="../img/img_login/email.png" alt="Email" style="width: 100%; height: auto;">
                             </div>
                             <div class="grid_item2">
                                 <p><b>La mia E-mail</b></p>
@@ -131,14 +134,14 @@
                             </div>
                             <div class="grid_item grid_button">
                                 <a href="/updateUser" class="bottone_modifica">
-                                    <img src="../img/img_login/modifica.png" alt="" style="width: auto; height: 20px;">
+                                    <img src="../img/img_login/modifica.png" alt="" class="image">
                                 </a>
                             </div>
                         </div>
 
                         <div class="grid_container">
                             <div class="grid_item  grid_button">
-                                <img src="../img/img_login/password.png" alt="Password" style="width: auto; height: 20px;">
+                                <img src="../img/img_login/password.png" alt="Password" style="width: 100%; height: auto;">
                             </div>
                             <div class="grid_item2">
                                 <p><b>La mia Password</b></p>
@@ -146,7 +149,7 @@
                             </div>
                             <div class="grid_item grid_button">
                                 <a href="/updateUser" class="bottone_modifica">
-                                    <img src="../img/img_login/modifica.png" alt="" style="width: auto; height: 20px;">
+                                    <img src="../img/img_login/modifica.png" alt="" class="image">
                                 </a>
                             </div>
                         </div>
@@ -194,9 +197,9 @@
                                         <div id="info_carta">
                                             <img src="/img/img_footer/<%= value.nome_carta %>.png" alt="carta" width="20%" height="20%">
                                             <div>
-                                                <p>Numero Carta: <%= value.numero_carta %></p>
-                                                <p>Scadenza: <%= value.scadenza.toISOString().split('T')[0] %></p>
-                                                <p>CVV: <%= value.cvv %></p>
+                                                <p><b>Numero Carta :</b> <%= value.numero_carta %></p>
+                                                <p><b>Scadenza :</b> <%= value.scadenza.toISOString().split('T')[0] %></p>
+                                                <p><b>CVV :</b> <%= value.cvv %></p>
                                             </div>
                                         </div> 
                                         <div>

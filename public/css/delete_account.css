@@ -5,30 +5,96 @@
 main{
     font-family: "MainFont";
 }
-h1{
-    margin: 0;
-    padding: 20px;
-    color: slategrey;
+#indice{
+    background-color: slategray;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    margin-top: 10px;
 }
-section h1 {
+#indice h1{
     padding-left: 15%;
-    background-color: slategrey;
     color: white;
-    padding-top: 20px;
-    padding-bottom: 20px;
+}
+.main_flex{
+    display: flex;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 30px;
+    height: auto;
+}
+#section1{
+    width: 5%;
+}
+#section2{
+    width: 95%;
 }
 
+#nav_bar{
+    width: 90%;
+    height: 100%;
+    border: 2px solid black;
+    border-radius: 10px;
+  }
+  .nav_container{
+    margin-top: 35px;
+    margin-bottom: 35px;
+  }
+  #nav_bar .div_img{
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+  }
+  #nav_bar a{
+    color: black;
+    font-size: 11pt;
+    font-weight: 600;
+    text-decoration: none;
+    width: 100%;
+  }
+  #nav_bar a:hover{
+    border-bottom: 1px solid black;
+  }
+  #nav_bar img{
+    width: 100%;
+  }
+.main{
+    background-color: rgb(238, 238, 238);
+    padding: 20px;
+    box-sizing: border-box;
+    height: 100%;
+}
 #myinfo{
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+#myinfo input{
+    background-color: white;
+    color: black;
+    height: 20px;
+    width: 300px;
+    border: 1px solid black;
+}
+#myinfo select{
+    background-color: white;
+    color: black;
+    height: 30px;
+    width: 100%;
+    border: 1px solid black;
+}
+#myinfo textarea{
+    background-color: white;
+    color: black;
+    height: 70px;
+    width: 100%;
+    border: 1px solid black;
+}
+.sez_immagini{
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.sez_immagini{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-
+    margin-top: 10px;
+    margin-bottom: 30px;
 }
 #text_box_motivazione_altro{
     display: none;
@@ -38,12 +104,16 @@ section h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 5px;
+    background-color: white;
+    border: 1px solid slategray;
+    color: black;
+    font-size: 12pt;
+    font-weight: 600;
+    height: 30px;
+    width: 300px;
+    cursor: pointer;
 }
-
-.grid_item_bottone button{
-    margin-bottom: 10px;
-}
-
-.myin{
-    width: 100%;
+.grid_item_bottone:hover{
+    background-color: rgb(233, 233, 233);
 }

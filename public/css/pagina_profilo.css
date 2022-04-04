@@ -6,7 +6,17 @@ body{
   margin: 0;
 }
 main{
-  font-family: MainFont;
+  font-family: "MainFont";
+}
+#indice{
+  background-color: slategray;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  margin-top: 10px;
+}
+#indice h1{
+  padding-left: 15%;
+  color: white;
 }
 #h1{
   font-size: 22pt;
@@ -23,19 +33,19 @@ main{
   height: auto;
 }
 #section1{
-  width: 10%;
+  width: 5%;
 }
 #section2{
   width: 55%;
 }
 #section3{
-  width: 45%;
+  width: 50%;
 }
 #nav_bar{
   width: 90%;
   height: 100%;
-  border: solid black 1px;
-  border-radius: 5px;
+  border: 2px solid black;
+  border-radius: 10px;
 }
 .nav_container{
   margin-top: 35px;
@@ -109,13 +119,31 @@ main{
     display: flex;
     align-items: center;
   }
-  
+.bottone_modifica2{
+  width: 40%;
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-top: 40%;
+  margin-bottom: 40%;
+  height: 20%;
+  box-sizing: border-box;
+}
+.bottone_modifica2 .image{
+  width: 100%;
+  height: 100%;
+} 
 .bottone_modifica{
-    width: 90%;
-    margin-left: 5%;
-    margin-right: 5%;
-    height: 3rem;
-    background-color: rgb(245, 245, 245);
+  width: 40%;
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-top: 32%;
+  margin-bottom: 32%;
+  height: 36%;
+  box-sizing: border-box;
+}
+.bottone_modifica .image{
+  width: 100%;
+  height: 100%;
 }
 
 .main-carousel{
@@ -123,7 +151,7 @@ main{
   height: auto;
 }
 .carousel-cell{
-  height: auto;
+  height: 250px;
   width: 300px;
   justify-content: center;
   margin-left: 10px;
@@ -142,7 +170,7 @@ main{
   background-color: white;
   color: black;
   padding: 10px;
-  margin-top: 35px;
+  margin-top: 50px;
   width: 100%;
   transition: .5s;
   cursor: pointer;
@@ -154,6 +182,7 @@ main{
 
 #info_carta{
   margin-bottom: 10px;
+  padding: 10px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -166,7 +195,7 @@ main{
 }
 
 #info_carta div p{
-  margin:0 0 0 9px;
+  margin: 6px 0 0 9px;
   text-align: start;
 }
 
