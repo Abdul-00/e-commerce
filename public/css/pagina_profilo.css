@@ -1,30 +1,97 @@
-
 @font-face {
   font-family: MainFont;
   src: url(../fonts/Roboto/Roboto-Regular.ttf);
 }
-
 body{
   margin: 0;
-  padding: 0;  
 }
 main{
   font-family: MainFont;
 }
+#h1{
+  font-size: 22pt;
+  color: white;
+  background-color: slategray;
+  border-bottom: 2px solid black;
+  padding: 20px;
+}
+.main_flex{
+  display: flex;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 30px;
+}
+#section1{
+  width: 10%;
+}
+#section2{
+  width: 55%;
+}
+#section3{
+  width: 45%;
+}
+#nav_bar{
+  width: 90%;
+  height: 100%;
+  border: solid black 1px;
+  border-radius: 5px;
+}
+.nav_container{
+  margin-top: 35px;
+  margin-bottom: 35px;
+}
+#nav_bar .div_img{
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+#nav_bar a{
+  color: black;
+  font-size: 11pt;
+  font-weight: 600;
+  text-decoration: none;
+  width: 100%;
+}
+#nav_bar a:hover{
+  border-bottom: 1px solid black;
+}
+#nav_bar img{
+  width: 100%;
+}
+
+.main{
+  background-color: rgb(238, 238, 238);
+  padding: 20px
+}
+.titolo{
+  padding: 10px;
+  color: black;
+  border-bottom: 2px solid black;
+  margin-bottom: 20px;
+}
+.titolo h1{
+  font-size: 24pt;
+  color: black;
+}
+.titolo h2{
+  font-size: 18pt;
+  color: slategray;
+}
+
 .grid_container {
     display: grid;
-    width: 70%;
+    width: 100%;
     height: auto;
-    grid-template-columns: 10% 33% 33% 24%;
-    margin: 10px;
+    grid-template-columns: 10% 36% 36% 18%;
+    
   }
-  .grid_item {
-    background-color: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(0, 0, 0, 0.8);
+  .grid_item{
+    background-color: white;
+    border: 1px solid black;
     padding: 20px;
     font-size: 17px;
     text-align: left;
-    row-gap: 5px;
+    margin-bottom: 15px;
   }
   .grid_item2{
     background-color: rgba(255, 255, 255, 0.8);
@@ -32,88 +99,45 @@ main{
     padding: 20px;
     font-size: 18px;
     text-align: center;
-    row-gap: 5px;
     grid-column: 2/4;
+    margin-bottom: 15px;
   }
   .grid_button{
     display: flex;
     align-items: center;
   }
-  .section_benvenuto{
-    display: flex;
-    justify-content: center;
-  }
-  .div_benvenuto{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .dati_personali
-  {
-    font-size: 17px;
-  }
   
-  .bottone_modifica{
-    width: 85%;
-    border: 2.5px solid black;
+.bottone_modifica{
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
     height: 3rem;
-    background-color: white;
-    color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-.centra_bottone
-{
-  display: flex;
-  align-items: center;
+    background-color: rgb(245, 245, 245);
 }
 
-/**ALI'S CSS**/
-#mySection{
-  display: flex;
-  justify-content: space-around;
+.main-carousel{
+  width: 100%;
 }
-#nav_bar{
-  border: solid black 1px;
-  border-radius: 4px;
-  margin-top: 45px;
-  margin-left: 20px;
-  width: 9%;
-  height: 60%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-#nav_bar a{
-  margin: 10px;
-  color: black;
-  text-decoration: none;
-  display: flex;
+.carousel-cell{
+  height: 200px;
+  width: 300px;
   justify-content: center;
-  align-items: center;
-  transition: 0.5s;
+  margin-left: 10px;
 }
-#nav_bar a img{
-  width: 42%;
-}
-#nav_bar a div{
-  display: none;
-  transition: 0.5s;
+.myAddress{
+  background-color: white;
+  color: black;
 }
 
-#nav_bar a:hover div{
-  display: flex;
-}
-
-.main_container{
+/*.main_container{
   display: flex;
   justify-content:space-evenly;
   align-items: center;
   flex-wrap: wrap;
 }
 .myAddress{
+  background-color: white;
+  color: black;
   border: black solid 1px;
   width: 22%;
   padding: 5px;
@@ -122,6 +146,15 @@ main{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}*/
+
+.myAddress_button{
+  background-color: white;
+  color: black;
+  border: black solid 1px;
+  width: 100%;
+  padding: 5px;
+  margin-top: 9px;
 }
 
 #add_address{
