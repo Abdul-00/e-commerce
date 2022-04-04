@@ -304,23 +304,36 @@ const { update, updateOne } = require('../models/user');
         }
         if(data.categoria=="tshirt_polo" || data.categoria=="camicia" || data.categoria=="maglieria" || data.categoria=="giacca" || data.categoria=="cappotto"){
             //controllo parte superiore
-            if(data.composizione[0]=="" || data.colore[0]=="null" || data.cm_manica[0]=="" || data.cm_schienale[0]==""){
+            if(data.composizione=="" || data.colore[0]=="null" || data.cm_manica=="" || data.cm_schienale==""){
                 req.flash('infoError','Errore di Compilazione "parte superiore"');
+                res.redirect('/uploadType/abbigliamento');
+            }else{
+                req.flash('infoSubmit','Inserimento completato');
                 res.redirect('/uploadType/abbigliamento');
             }
         }else{
             if(data.categoria=="jeans" || data.categoria=="pantalone"){
                 //controllo parte inferiore
-                if(data.composizione[1]=="" || data.colore[1]=="null" || data.cm_gamba_interna=="" || data.cm_gamba_esterna==""){
+                if(data.composizione=="" || data.colore[1]=="null" || data.cm_gamba_interna=="" || data.cm_gamba_esterna==""){
                     req.flash('infoError','Errore di Compilazione "parte inferiore"');
+                    res.redirect('/uploadType/abbigliamento');
+                }else{
+                    req.flash('infoSubmit','Inserimento completato');
                     res.redirect('/uploadType/abbigliamento');
                 }
             }else{
+                //Controllo completo
+                if(data.composizione=="" || data.colore[2]=="null" || data.cm_gamba_interna=="" || data.cm_gamba_esterna=="" || data.cm_manica=="" || data.cm_schienale==""){
+                    req.flash('infoError','Errore di Compilazione "parte completo"');
+                    res.redirect('/uploadType/abbigliamento');
+                }else{
+                    req.flash('infoSubmit','Inserimento completato');
+                    res.redirect('/uploadType/abbigliamento');
+                }
                 
             }
         }
 
-        res.send(data);
         /*var upload= new myproduct({
   
         });

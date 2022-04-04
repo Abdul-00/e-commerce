@@ -17,6 +17,13 @@
     <%- include('../public/html/navbar.html') -%>
     <br>
     <main>
+        <% if(infoErrorObj){ %>
+            <center><h3 style="background-color: red;"> <%= infoErrorObj %> </h3></center>
+        <% }; %>
+
+        <% if(infoSubmitObj){ %>
+            <center><h3 style="background-color: green;"> <%= infoSubmitObj %> </h3></center>
+        <% }; %>
         <div class="main">
             <div>
                 <form action="/upload_abbigliamento" method="post" class="grid" enctype="multipart/form-data">
