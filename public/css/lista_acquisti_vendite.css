@@ -1,0 +1,154 @@
+@font-face {
+    font-family: MainFont;
+    src: url(../fonts/Roboto/Roboto-Regular.ttf);
+}
+main{
+    font-family: "MainFont";
+}
+#indice{
+    background-color: slategray;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    margin-top: 10px;
+}
+#indice h1{
+    padding-left: 15%;
+    color: white;
+}
+.main_flex{
+    display: flex;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 30px;
+    height: auto;
+}
+#section1{
+    width: 7%;
+}
+#section2{
+    width: 93%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+#section2 h1{
+    font-size: 26pt;
+}
+.section_flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.section_flex select{
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    font-size: 12pt;
+    font-weight: 500;
+    height: 50px;
+    width: 500px;
+}
+.section_flex button{
+    background-color: black;
+    color: white;
+    border: none;
+    font-size: 12pt;
+    font-weight: 600;
+    height: 50px;
+    width: 300px;
+    cursor: pointer;
+}
+#nav_bar{
+    width: 90%;
+    height: 900px;
+    border: 1px solid black;
+    border-radius: 10px;
+  }
+  .nav_container{
+    margin-top: 35px;
+    margin-bottom: 35px;
+  }
+  #nav_bar .div_img{
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+  }
+  #nav_bar a{
+    color: black;
+    font-size: 11pt;
+    font-weight: 600;
+    text-decoration: none;
+    width: 100%;
+  }
+  #nav_bar a:hover{
+    border-bottom: 1px solid black;
+  }
+  #nav_bar img{
+    width: 100%;
+  }
+
+.main{
+    background-color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+}
+.main h2{
+    font-size: 24pt;
+    font-weight: 300;
+    color: slategray;
+}
+.main h3{
+    font-size: 20pt;
+    font-weight: 900;
+    color: black;
+}
+.flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.flex b{
+    font-size: 14pt;
+    color: black;
+    margin-bottom: 2px;
+}
+.flex p{
+    margin: 0%;
+    font-size: 14pt;
+    color: gray;
+}
+.carosello {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    row-gap: 10px;
+    column-gap: 10px;
+}
+.prodotti {
+    box-sizing: border-box;
+    width: 100%;
+    height: 300px;
+    max-height: 300px;
+    min-height: 300px;
+    margin-right: 10px;
+}
+.prodotti .image {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    cursor: pointer;
+}
+.prodotti .image img {
+    width: 100%;
+}
+.prodotti h2{
+    font-size: 12pt;
+    color: black;
+    font-weight: 600;
+}
+.prodotti p{
+    font-size: 12pt;
+    color: slategray;
+    font-style: 500;
+}

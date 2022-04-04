@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/lista_acquisti_vendite.css">
+</head>
+<body>
+    <main>
+        <section id="indice">
+            <h1>I miei acquisti</h1>
+        </section>
+        <div class="main_flex">
+            <section id="section1">
+                <div id="nav_bar">
+                    <div class="nav_container">
+                        <div class="div_img">
+                            <img src="../img/img_navbar/user.png" alt="Profilo">
+                        </div>
+                        <center>
+                            <a href="/profilo">Il mio profilo</a>
+                        </center>
+                    </div>
+                    <div class="nav_container">
+                        <div class="div_img">
+                            <img src="../img/img_footer/pagamenti.png" alt="Ordini">
+                        </div>
+                        <center>
+                            <a href="#">I miei ordini</a>
+                        </center>
+                    </div>
+                    <div class="nav_container">
+                        <div class="div_img">
+                            <img src="../img/img_navbar/carrello.png" alt="Vendite">
+                        </div>
+                        <center>
+                            <a href="#">Le mie vendite</a>
+                        </center>
+                    </div>
+                    <div class="nav_container">
+                        <div class="div_img">
+                            <img src="../img/img_login/cestino_1.png" alt="Elimina account">
+                        </div>
+                        <center>
+                            <a href="/eliminaProfilo">Elimina account</a>
+                        </center>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section2">
+                <h1>Ordini</h1>
+                <div class="section_flex">
+                    <select name="filtro_data" id="filtro_data">
+                        <option value="sei_mesi">Ultimi 6 mesi</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                        <option value="2018">2018</option>
+                    </select>
+                    <a href="#"><button>Restituisci un articolo</button></a>
+                </div>
+                <div class="main">
+                    <h2>Mese e anno</h2>
+                    <hr>
+                    <h3>Numero dell'ordine : (ID)</h3>
+                    <div class="flex">
+                        <div>
+                            <b>Data dell'ordine</b>
+                            <p>01-05-2022</p>
+                        </div>
+                        <div>
+                            <b>Totale</b>
+                            <p>2000,00 <span>euro</span></p>
+                        </div>
+                        <div>
+                            <b>Metodo di pagamento</b>
+                            <p>Mastercard</p>
+                        </div>
+                        <div>
+                            <b>Consegnato il</b>
+                            <p>06-05-2022</p>
+                        </div>
+                    </div>
+                    <div class="carosello">
+                        <div class="prodotti">
+                            <a href=""><div class="image">
+                                <img src="../img/img_home/borsa.jpg" alt="">
+                            </div></a>
+                            <h2>Louis Vuitton - Borsa a spalla</h2>
+                            <p>500,00 <span>euro</span></p>
+                        </div>
+                        <div class="prodotti">
+                            <a href=""><div class="image">
+                                <img src="../img/img_home/cintura.jpg" alt="">
+                            </div></a>
+                            <h2>Louis Vuitton - Cintura</h2>
+                            <p>500,00 <span>euro</span></p>
+                        </div>
+                        <div class="prodotti">
+                            <a href=""><div class="image">
+                                <img src="../img/img_home/felpa.jpg" alt="">
+                            </div></a>
+                            <h2>Versace - Felpa</h2>
+                            <p>500,00 <span>euro</span></p>
+                        </div>
+                        <div class="prodotti">
+                            <a href=""><div class="image">
+                                <img src="../img/img_home/sciarpe.jpg" alt="">
+                            </div></a>
+                            <h2>Burberry - Sciarpa</h2>
+                            <p>500,00 <span>euro</span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+</body>
+</html>
