@@ -491,10 +491,15 @@ const { update, updateOne } = require('../models/user');
         res.redirect('/uploadType/abbigliamento');
     });
 
-//Product-list Route 
+    router.post('/upload_scarpe',isAuth,(req,res)=>{
+        console.log(req.body);
+        res.send('okay');
+    });
+
+//Product-list Route  temp 
     router.get('/product-list/:category',(req,res)=>{
         var cat=req.params.category;
-        myproduct.find({categorie:cat},function(err,myres){
+        myabbigliamento.find({categorie:"tshirt_polo"},function(err,myres){
             if(err) return handleError(err);
             //contolli necessari sul risultato 
             var conta=myres.length;
