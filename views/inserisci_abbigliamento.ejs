@@ -114,11 +114,11 @@
                             <hr>
                             <div class="flex">
                                 <label>Composizione (materiali) <span>*</span> </label>
-                                <input type="text" name="composizione" placeholder="(esempio) Poliestere, duvet e piume" >
+                                <input type="text" name="composizione_superiore" placeholder="(esempio) Poliestere, duvet e piume" >
                             </div>
                             <div class="flex">
                                 <label>Colore <span>*</span> </label>
-                                <select name="colore">
+                                <select name="colore_superiore">
                                     <option value="null">Seleziona un'opzione</option>
                                     <option value="nero">Nero /Tendente al nero</option>
                                     <option value="grigio">Grigio /Tendente al grigio</option>
@@ -133,11 +133,11 @@
                             </div>
                             <div class="flex">
                                 <label>lunghezza in centimentri manica <span>*</span> </label>
-                                <input type="text" name="cm_manica" placeholder="(esempio) 75cm">
+                                <input type="text" name="cm_manica_superiore" placeholder="(esempio) 75cm">
                             </div>
                             <div class="flex">
                                 <label>lunghezza in centimetri schienale <span>*</span> </label>
-                                <input type="text" name="cm_schienale" placeholder="(esempio) 46cm">
+                                <input type="text" name="cm_schienale_superiore" placeholder="(esempio) 46cm">
                             </div>
                         </fieldset>
                         
@@ -146,13 +146,14 @@
                             <hr>
                             <div class="flex">
                                 <label>Composizione (materiali) <span>*</span> </label>
-                                <input type="text" name="composizione" placeholder="(esempio) Cotone">
+                                <input type="text" name="composizione_inferiore" placeholder="(esempio) Cotone">
                             </div>
                             <div class="flex">
                                 <label>Colore <span>*</span> </label>
-                                <select name="colore">
+                                <select name="colore_inferiore">
                                     <option value="null">Seleziona un'opzione</option>
                                     <option value="nero">Nero /Tendente al nero</option>
+                                    <option value="grigio">Grigio /Tendente al grigio</option>
                                     <option value="bianco">Bianco /Tendente al bianco</option>
                                     <option value="blu">Blu /Tendente al blu</option>
                                     <option value="marrone">Marrone /Tendente al marrone</option>
@@ -164,11 +165,11 @@
                             </div>
                             <div class="flex">
                                 <label>lunghezza in centimentri gamba interna <span>*</span> </label>
-                                <input type="text" name="cm_gamba_interna" placeholder="(esempio) 73cm">
+                                <input type="text" name="cm_gamba_interna_inferiore" placeholder="(esempio) 73cm">
                             </div>
                             <div class="flex">
                                 <label>lunghezza in centimetri gamba esterna <span>*</span> </label>
-                                <input type="text" name="cm_gamba_esterna" placeholder="(esempio) 103cm">
+                                <input type="text" name="cm_gamba_esterna_inferiore" placeholder="(esempio) 103cm">
                             </div>
                         </fieldset>
 
@@ -184,6 +185,7 @@
                                 <select name="colore">
                                     <option value="null">Seleziona un'opzione</option>
                                     <option value="nero">Nero /Tendente al nero</option>
+                                    <option value="grigio">Grigio /Tendente al grigio</option>
                                     <option value="bianco">Bianco /Tendente al bianco</option>
                                     <option value="blu">Blu /Tendente al blu</option>
                                     <option value="marrone">Marrone /Tendente al marrone</option>
@@ -217,19 +219,75 @@
                             <hr>
                             <div class="flex">
                                 <label>carica le immagini del prodotto (4 sono obbligatorie <span>*</span> )</label>
-                                <div style="width: 100%;">
+                                <div style="width: 100%; display: flex; flex-direction: column; align-items: flex-start;">
                                     <p>Foto principale :</p> 
+                                    <div>
+                                        <label>Colore <span>*</span> </label>
+                                        <select name="colore_1">
+                                            <option value="null">Seleziona un'opzione</option>
+                                            <option value="nero">Nero /Tendente al nero</option>
+                                            <option value="grigio">Grigio /Tendente al grigio</option>
+                                            <option value="bianco">Bianco /Tendente al bianco</option>
+                                            <option value="blu">Blu /Tendente al blu</option>
+                                            <option value="marrone">Marrone /Tendente al marrone</option>
+                                            <option value="rosso">Rosso-Bordeaou /Tendente al rosso-bordeaou</option>
+                                            <option value="vedre">Vedre /Tendente al verde</option>
+                                            <option value="giallo">Giallo /Tendente al giallo</option>
+                                            <option value="arancione">Marrone /Tendente all'arancio</option>
+                                        </select>
+                                    </div>
                                     <input type="file" name="immagine1" class="background" required onchange="previewImage(event)">
                                     <p>Seconda foto :</p>
+                                    <div>
+                                        <label>Colore <span>*</span> </label>
+                                        <select name="colore_2">
+                                            <option value="null">Seleziona un'opzione</option>
+                                            <option value="nero">Nero /Tendente al nero</option>
+                                            <option value="grigio">Grigio /Tendente al grigio</option>
+                                            <option value="bianco">Bianco /Tendente al bianco</option>
+                                            <option value="blu">Blu /Tendente al blu</option>
+                                            <option value="marrone">Marrone /Tendente al marrone</option>
+                                            <option value="rosso">Rosso-Bordeaou /Tendente al rosso-bordeaou</option>
+                                            <option value="vedre">Vedre /Tendente al verde</option>
+                                            <option value="giallo">Giallo /Tendente al giallo</option>
+                                            <option value="arancione">Marrone /Tendente all'arancio</option>
+                                        </select>
+                                    </div>
                                     <input type="file" name="immagine2" class="background" required>
                                     <p>Terza foto :</p>
+                                    <div>
+                                        <label>Colore <span>*</span> </label>
+                                        <select name="colore_3">
+                                            <option value="null">Seleziona un'opzione</option>
+                                            <option value="nero">Nero /Tendente al nero</option>
+                                            <option value="grigio">Grigio /Tendente al grigio</option>
+                                            <option value="bianco">Bianco /Tendente al bianco</option>
+                                            <option value="blu">Blu /Tendente al blu</option>
+                                            <option value="marrone">Marrone /Tendente al marrone</option>
+                                            <option value="rosso">Rosso-Bordeaou /Tendente al rosso-bordeaou</option>
+                                            <option value="vedre">Vedre /Tendente al verde</option>
+                                            <option value="giallo">Giallo /Tendente al giallo</option>
+                                            <option value="arancione">Marrone /Tendente all'arancio</option>
+                                        </select>
+                                    </div>
                                     <input type="file" name="immagine3" class="background" required>
                                     <p>Quarta foto :</p>
+                                    <div>
+                                        <label>Colore <span>*</span> </label>
+                                        <select name="colore_4">
+                                            <option value="null">Seleziona un'opzione</option>
+                                            <option value="nero">Nero /Tendente al nero</option>
+                                            <option value="grigio">Grigio /Tendente al grigio</option>
+                                            <option value="bianco">Bianco /Tendente al bianco</option>
+                                            <option value="blu">Blu /Tendente al blu</option>
+                                            <option value="marrone">Marrone /Tendente al marrone</option>
+                                            <option value="rosso">Rosso-Bordeaou /Tendente al rosso-bordeaou</option>
+                                            <option value="vedre">Vedre /Tendente al verde</option>
+                                            <option value="giallo">Giallo /Tendente al giallo</option>
+                                            <option value="arancione">Marrone /Tendente all'arancio</option>
+                                        </select>
+                                    </div>
                                     <input type="file" name="immagine4" class="background" required>
-                                    <p>Quinta foto :</p>
-                                    <input type="file" name="immagine5" class="background">
-                                    <p>Sesta foto :</p>
-                                    <input type="file" name="immagine6" class="background">
                                 </div>
                             </div>
                         </fieldset>
@@ -251,7 +309,7 @@
                             <hr>
                             <div class="flex">
                                 <label>Inserisci il numero dei prodotti che vuoi vendere<span>*</span> </label>
-                                <input type="text" name="quanitita" id="input_quantita" placeholder="(esempio) 1" required>
+                                <input type="text" name="quantita" id="input_quantita" placeholder="(esempio) 1" required>
                             </div>
                         </fieldset>
 

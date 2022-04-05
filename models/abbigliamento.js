@@ -32,8 +32,8 @@ var abbigliamento=new Schema({
         cm_schienale:{type:String},
         cm_gamba_interna:{type:String},
         cm_gamba_esterna:{type:String}
-    }
-
+    },
+    utente:{type:Schema.Types.ObjectId,required:true},
 });
 
 module.exports=mongoose.model('abbigliamento',abbigliamento);

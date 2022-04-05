@@ -36,7 +36,8 @@ var accessori=new Schema({
     taglia_fit:{
         cm_altezza:{type:String},
         cm_lunghezza:{type:String}
-    }
+    },
+    utente:{type:Schema.Types.ObjectId,required:true},
 
 });
 

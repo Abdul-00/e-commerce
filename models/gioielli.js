@@ -28,7 +28,8 @@ var gioielli=new Schema({
         mm_spessore:{type:String},
         cm_lunghezza:{type:String},
         pendente:{type:Boolean}
-    }
+    },
+    utente:{type:Schema.Types.ObjectId,required:true},
 
 });
 

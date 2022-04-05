@@ -32,7 +32,8 @@ var scarpe=new Schema({
         tipo_chiusura:{type:String},
         descrizione:{type:String, max:200},
         avvertenze:{type:String,max:100}
-    }
+    },
+    utente:{type:Schema.Types.ObjectId,required:true},
 
 });
 

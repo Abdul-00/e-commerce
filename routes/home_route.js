@@ -18,7 +18,7 @@ const { update, updateOne } = require('../models/user');
 
 
 //MAIN ROOT
-    router.get('/', isAuth, (req, res,next) =>{
+    router.get('/',(req, res,next) =>{
         res.render('home_page');
     });
 
@@ -283,46 +283,53 @@ const { update, updateOne } = require('../models/user');
 
 
 //Upload Product route
-    //       A SECONDA DEL PARAMETRO PASSATOMI DA "choose-prodotto" RENDERIZZO LA PAGINA GIUSTA    
+    //A SECONDA DEL PARAMETRO PASSATOMI DA "choose-prodotto" RENDERIZZO LA PAGINA GIUSTA    
     router.get('/uploadType/:type',isAuth,(req,res)=>{
             var type=req.params.type;
             var myroute="inserisci_"+type;
             const infoErrorObj= req.flash('infoError');
             const infoSubmitObj= req.flash('infoSubmit');
-            console.log(myroute);
             res.render(myroute,{infoErrorObj,infoSubmitObj});
         });
         
-    //   INPUT_ABBIGLIAMENTO
-    router.post('/upload_abbigliamento',isAuth,(req,res)=>{
+    // INPUT_ABBIGLIAMENTO
+    router.post('/upload_abbigliamento',isAuth,async(req,res)=>{
         var data=req.body;
         var user=req.session.result;
+        var sezione=["","",""];
         if(data.sesso=='null' || data.categoria=='null' || data.usato=='null' ||data.taglia=='null' || data.vestibilita=='null'){
             req.flash('infoError','Errore di Compilazione "nelle opzioni a tendina"');
+            return res.redirect('/uploadType/abbigliamento');
         }
         else{
 
             if(data.categoria=="tshirt_polo" || data.categoria=="camicia" || data.categoria=="maglieria" || data.categoria=="giacca" || data.categoria=="cappotto"){
                 //controllo parte superiore
-                if(data.composizione=="" || data.colore[0]=="null" || data.cm_manica=="" || data.cm_schienale==""){
+                if(data.composizione_superiore=="" || data.colore_superiore=="null" || data.cm_manica_superiore=="" || data.cm_schienale_superiore==""){
                     req.flash('infoError','!Errore di Compilazione "Nella sezione superiore"!');
+                    return res.redirect('/uploadType/abbigliamento');
                 }else{
                     req.flash('infoSubmit','Inserimento completato');
+                    sezione[0]="superiore";
                 }
             }else{
                 if(data.categoria=="jeans" || data.categoria=="pantalone"){
                     //controllo parte inferiore
-                    if(data.composizione=="" || data.colore[1]=="null" || data.cm_gamba_interna=="" || data.cm_gamba_esterna==""){
+                    if(data.composizione_inferiore=="" || data.colore_inferiore=="null" || data.cm_gamba_interna_inferiore=="" || data.cm_gamba_esterna_inferiore==""){
                         req.flash('infoError','!Errore di Compilazione "Nella sezione inferiore"!');
+                        return res.redirect('/uploadType/abbigliamento');
                     }else{
                         req.flash('infoSubmit','Inserimento completato');
+                        sezione[1]="inferiore";
                     }
                 }else{
                     //Controllo completo
-                    if(data.composizione=="" || data.colore[2]=="null" || data.cm_gamba_interna=="" || data.cm_gamba_esterna=="" || data.cm_manica=="" || data.cm_schienale==""){
+                    if(data.composizione=="" || data.colore=="null" || data.cm_gamba_interna=="" || data.cm_gamba_esterna=="" || data.cm_manica=="" || data.cm_schienale==""){
                         req.flash('infoError','!Errore di Compilazione "Nella sezione completo"!');
+                        return res.redirect('/uploadType/abbigliamento');
                     }else{
                         req.flash('infoSubmit','Inserimento completato');
+                        sezione[2]="completo";
                     }
                     
                 }
@@ -331,27 +338,156 @@ const { update, updateOne } = require('../models/user');
             if(data.usato=="true" & data.condizione=="null"){
                 req.flash('infoError','!Errore di Compilazione "Nella sezione Condizione prodotto"!');
                 req.flash('infoSubmit',null);
+                return res.redirect('/uploadType/abbigliamento');
+            }
+            if(data.colore_1=="null" || data.colore_2=="null" || data.colore_3=="null" || data.colore_4=="null"){
+                req.flash('infoError','!Errore di Compilazione "Nella sezione Colore Immagine"!');
+                req.flash('infoSubmit',null);
+                return res.redirect('/uploadType/abbigliamento');
             }
         }
         //save imagine
         var fileKeys = Object.keys(req.files);
 
         fileKeys.forEach(function(key) {
-            console.log(key);
-            console.log(req.files[key].name);
-            
             var upload_path='../e-commerce/public/upload/'+user._id+req.files[key].name;
             req.files[key].mv(upload_path, function(err) {
                 if (err) return console.log(err);
-            
-                console.log('File uploaded!');
             });
         });
-        
-        /*var upload= new myproduct({
-  
-        });
-        upload.save();*/
+        //QUERY SUPERIORE
+        if(sezione[0]=="superiore" & sezione[1]=="" & sezione[2]==""){
+            var upload= new myabbigliamento({
+                categoria:data.categoria,
+                sesso:data.sesso,
+                nome_prodotto:data.nome_prodotto,
+                brand:data.brand,
+                second_hand:{usato:data.usato,condizione:data.condizione},
+                foto:[{
+                    colore:data.colore_1,
+                    url: user._id+req.files.immagine1.name,
+                },{
+                    colore:data.colore_2,
+                    url:user._id+req.files.immagine2.name,
+                },{
+                    colore:data.colore_3,
+                    url:user._id+req.files.immagine3.name,
+                },{
+                    colore:data.colore_4,
+                    url:user._id+req.files.immagine4.name,
+                }],
+                prodotti_disponibili:[{
+                    colore:data.colore_superiore,
+                    taglia:{
+                        quantita:data.quantita,
+                        size:data.taglia,
+                        prezzo:data.prezzo
+                    }
+                }],
+                dettagli:{
+                    composizione:data.composizione_superiore,
+                    descrizione:data.descrizione,
+                    avvertenze:data.avvertenze
+                },
+                taglia_fit:{
+                    vestibilita:data.vestibilita,
+                    cm_manica:data.cm_manica_superiore,
+                    cm_schienale:data.cm_schienale_superiore,
+                },
+                utente:user._id
+            });
+            upload.save();
+        }
+        // QUERY INFERIORE
+        if(sezione[0]=="" & sezione[1]=="inferiore" & sezione[2]==""){
+            var upload= new myabbigliamento({
+                categoria:data.categoria,
+                sesso:data.sesso,
+                nome_prodotto:data.nome_prodotto,
+                brand:data.brand,
+                second_hand:{usato:data.usato,condizione:data.condizione},
+                foto:[{
+                    colore:data.colore_1,
+                    url:user._id+req.files.immagine1.name,
+                },{
+                    colore:data.colore_2,
+                    url:user._id+req.files.immagine2.name,
+                },{
+                    colore:data.colore_3,
+                    url:user._id+req.files.immagine3.name,
+                },{
+                    colore:data.colore_4,
+                    url:user._id+req.files.immagine4.name,
+                }],
+                prodotti_disponibili:[{
+                    colore:data.colore_inferiore,
+                    taglia:{
+                        quantita:data.quantita,
+                        size:data.taglia,
+                        prezzo:data.prezzo
+                    }
+                }],
+                dettagli:{
+                    composizione:data.composizione_inferiore,
+                    descrizione:data.descrizione,
+                    avvertenze:data.avvertenze
+                },
+                taglia_fit:{
+                    vestibilita:data.vestibilita,
+                    cm_gamba_interna:data.cm_gamba_interna_inferiore,
+                    cm_gamba_esterna:data.cm_gamba_esterna_inferiore
+                },
+                utente:user._id
+            });
+            upload.save();
+        }
+
+        //QUERY COMPLETO
+        if(sezione[0]=="" & sezione[1]=="" & sezione[2]=="completo"){
+            var upload= new myabbigliamento({
+                categoria:data.categoria,
+                sesso:data.sesso,
+                nome_prodotto:data.nome_prodotto,
+                brand:data.brand,
+                second_hand:{usato:data.usato,condizione:data.condizione},
+                foto:[{
+                    colore:data.colore_1,
+                    url:user._id+req.files.immagine1.name,
+                },{
+                    colore:data.colore_2,
+                    url:user._id+req.files.immagine2.name,
+                },{
+                    colore:data.colore_3,
+                    url:user._id+req.files.immagine3.name,
+                },{
+                    colore:data.colore_4,
+                    url:user._id+req.files.immagine4.name,
+                }],
+                prodotti_disponibili:[{
+                    colore:data.colore,
+                    taglia:{
+                        quantita:data.quantita,
+                        size:data.taglia,
+                        prezzo:data.prezzo
+                    }
+                }],
+                dettagli:{
+                    composizione:data.composizione,
+                    descrizione:data.descrizione,
+                    avvertenze:data.avvertenze
+                },
+                taglia_fit:{
+                    vestibilita:data.vestibilita,
+                    cm_manica:data.cm_manica,
+                    cm_schienale:data.cm_schienale,
+                    cm_gamba_interna:data.cm_gamba_interna,
+                    cm_gamba_esterna:data.cm_gamba_esterna
+                },
+                utente:user._id
+            });
+            upload.save();
+        }
+
         res.redirect('/uploadType/abbigliamento');
     });
 
@@ -368,8 +504,6 @@ const { update, updateOne } = require('../models/user');
             return res.render('product-list',{myres,mess});
         });
     });
-
-
 
 
 module.exports=router;

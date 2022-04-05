@@ -23,8 +23,8 @@ var orologi=new Schema({
     },
     taglia_fit:{
         mm_diametro:{type:String},
-    }
-
+    },
+    utente:{type:Schema.Types.ObjectId,required:true},
 });
 
 module.exports=mongoose.model('orologi',orologi);
