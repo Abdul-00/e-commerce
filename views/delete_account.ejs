@@ -81,7 +81,7 @@
                                     <hr>
                                     <div>
                                         <label>Motivazione dell'eliminazione: </label>
-                                        <select name="motivo" id="drop_down_motivazione" class="myin" onchange="EnableDisableTextBox(this)" required>
+                                        <select name="motivo" id="drop_down_motivazione" class="myin" onchange="EnableDisableTextBox(value)" required>
                                             <option value="new_account">Ho creato un altro account</option>
                                             <option value="perso_interesse">Ho perso interesse nella piattaforma</option>
                                             <option value="non_utile">L'account non mi serve più</option>
@@ -89,9 +89,9 @@
                                         </select>
                                     </div>
                                     <br>
-                                    <div id ="text_box_motivazione_altro">
+                                    <div id ="text_box_motivazione_altro" style="display: none;">
                                         <label>Scrivi nel box la tua motivazione: </label> <br>
-                                        <textarea rows="5" cols="70" maxlength="300" id="Motivazione_Scelta-Altro" name="altro" style="resize: none;" placeholder="Perché vuoi eliminare il tuo account? Scrivicelo qui!"></textarea>
+                                        <textarea rows="5" cols="70" maxlength="300" id="motivazione" name="altro" style="resize: none;" placeholder="Perché vuoi eliminare il tuo account? Scrivicelo qui!"></textarea>
                                     </div>
                                     <br><br>
                                     <center>
