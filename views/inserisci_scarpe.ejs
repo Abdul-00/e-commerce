@@ -7,12 +7,23 @@
     <link rel="stylesheet" href="../css/inserisci.css">
     <script src="../javascript/input_scarpe.js"></script>
     <script src="../javascript/anteprima_prodotti.js"></script>
+    <!--NAV BAR-->
+    <link rel="stylesheet" href="../css/navbar.css">
+    <!--FOOETR-->
+    <link rel="stylesheet" href="../css/foter.css">
 </head>
 <body>
+    <%- include('../public/html/navbar.html') -%>
     <main>
+        <% if(infoErrorObj){ %>
+            <center><h3 style="background-color: red;"> <%= infoErrorObj %> </h3></center>
+        <% }; %>
+        <% if(infoSubmitObj){ %>
+            <center><h3 style="background-color: green;"> <%= infoSubmitObj %> </h3></center>
+        <% }; %>
         <div class="main">
             <div>
-                <form action="" class="grid">
+                <form action="/upload_scarpe" method="post" enctype="multipart/form-data" class="grid">
                     <div class="first_div">
                         <h1>Caratteristiche del prodotto</h1>
                         <fieldset>
@@ -20,7 +31,7 @@
                             <hr>
                             <div class="flex">
                                 <label>Genere <span>*</span> </label>
-                                <select name="sesso" id="input_genere" onchange="mygenere(value)">
+                                <select name="sesso" id="input_genere" onchange="mygenere(value)" required>
                                     <option value="null">Seleziona un'opzione</option>
                                     <option value="uomo">Uomo</option>
                                     <option value="donna">Donna</option>
@@ -28,7 +39,7 @@
                             </div>
                             <div class="flex">
                                 <label>Categoria <span>*</span> </label>
-                                <select name="categoria" id="input_categoria" onchange="mycategory(value); mycategoria(value)">
+                                <select name="categoria" id="input_categoria" onchange="mycategory(value); mycategoria(value)" required>
                                     <option value="null">Seleziona la categoria</option>
                                     <option value="scarpe">Scarpe</option>
                                     <option value="scarpe_eleganti">Scarpe eleganti</option>
@@ -38,11 +49,11 @@
                             </div>
                             <div class="flex">
                                 <label>Marca(brand) <span>*</span> </label>
-                                <input type="text" name="brand" placeholder="(esempio) Salvatore Ferragamo" id="input_marca" onchange="mymarca(value)">
+                                <input type="text" name="brand" placeholder="(esempio) Salvatore Ferragamo" id="input_marca" onchange="mymarca(value)" required>
                             </div>
                             <div class="flex">
                                 <label>Il prodotto è usato?</label>
-                                <select name="usato" id="usato" onchange="second_hand(value); myusato(value)">
+                                <select name="usato" id="usato" onchange="second_hand(value); myusato(value)" required>
                                     <option value="null">Seleziona un'opzione</option>
                                     <option value="false">No, il prodotto non è mai stato indossato (nuovo e senza segni di usura)</option>
                                     <option value="true">Si, il prodotto è usato</option>
@@ -64,11 +75,11 @@
                             <hr>
                             <div class="flex">
                                 <label>Nome <span>*</span> </label>
-                                <input type="text" name="nome_prodotto" placeholder="(esempio) Scarpe eleganti per matrimonio" id="input_nome" onchange="mynome(value)">
+                                <input type="text" name="nome_prodotto" placeholder="(esempio) Scarpe eleganti per matrimonio" id="input_nome" onchange="mynome(value)" required>
                             </div>
                             <div class="flex">
                                 <label>Taglia <span>*</span> </label>
-                                <select name="taglia" id="input_taglia" onchange="mytaglia(value)">
+                                <select name="taglia" id="input_taglia" onchange="mytaglia(value)" required>
                                     <option value="null">Seleziona un'opzione</option>
                                     <option value="one_size">One size</option>
                                     <option value="36">36</option>
@@ -88,7 +99,7 @@
                             </div>
                             <div class="flex">
                                 <label>Colore principale <span>*</span> </label>
-                                <select name="colore" id="input_colore" onchange="mycolore(value)">
+                                <select name="colore" id="input_colore" onchange="mycolore(value)" required>
                                     <option value="null">Seleziona un'opzione</option>
                                     <option value="nero">Nero /Tendente al nero</option>
                                     <option value="grigio">Grigio /Tendente al grigio</option>
@@ -102,7 +113,7 @@
                                 </select>
                             </div>
                         </fieldset>
-
+                        <!-- a seconda delle categorie-->
                         <fieldset id="input_scarpe" style="display: none;">
                             <legend><h3>Dati basilari delle scarpe<span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
@@ -123,8 +134,9 @@
                                 <input type="text" name="fodera_scarpe" placeholder="(esempio) Senza imbottitura">
                             </div>
                         </fieldset>
+
                         <fieldset id="input_scarpe_eleganti" style="display: none;">
-                            <legend><h3>Dati basilari delle scarpe<span>*(campo obbligatorio)</span></h3></legend>
+                            <legend><h3>Dati basilari delle scarpe eleganti<span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
                                 <label>Materiale parte superiore della scarpa <span>*</span> </label>
@@ -155,6 +167,7 @@
                                 <input type="text" name="chiusura_scarpe_eleganti" placeholder="(esempio) Lacci">
                             </div>
                         </fieldset>
+
                         <fieldset id="input_stivali" style="display: none;">
                             <legend><h3>Dati basilari dello stivale<span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
@@ -191,6 +204,7 @@
                                 <input type="text" name="chiusura_stivale" placeholder="(esempio) Cerniera">
                             </div>
                         </fieldset>
+
                         <fieldset id="input_mocassini" style="display: none;">
                             <legend><h3>Dati basilari del mocassino<span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
@@ -223,25 +237,83 @@
                                 <input type="text" name="chiusura_mocassino" placeholder="(esempio) Senza chiusura">
                             </div>
                         </fieldset>
+                        <!------------------------------------>
+
 
                         <fieldset>
                             <legend><h3>Immagini del prodotto <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
                                 <label>carica le immagini del prodotto (4 sono obbligatorie <span>*</span> )</label>
-                                <div style="width: 100%;">
-                                    <p>Foto principale :</p> 
-                                    <input type="file" name="immagine1" class="background">
+                                <div style="width: 100%; display: flex; flex-direction: column; align-items: flex-start;">
+                                    <p>Foto principale :</p>
+                                    <div>
+                                        <label>Colore <span>*</span> </label>
+                                        <select name="colore_1" required>
+                                            <option value="null">Seleziona un'opzione</option>
+                                            <option value="nero">Nero /Tendente al nero</option>
+                                            <option value="grigio">Grigio /Tendente al grigio</option>
+                                            <option value="bianco">Bianco /Tendente al bianco</option>
+                                            <option value="blu">Blu /Tendente al blu</option>
+                                            <option value="marrone">Marrone /Tendente al marrone</option>
+                                            <option value="rosso">Rosso-Bordeaou /Tendente al rosso-bordeaou</option>
+                                            <option value="vedre">Vedre /Tendente al verde</option>
+                                            <option value="giallo">Giallo /Tendente al giallo</option>
+                                            <option value="arancione">Marrone /Tendente all'arancio</option>
+                                        </select>
+                                    </div> 
+                                    <input type="file" name="immagine1" class="background" required onchange="previewImage(event)">
                                     <p>Seconda foto :</p>
-                                    <input type="file" name="immagine2" class="background">
+                                    <div>
+                                        <label>Colore <span>*</span> </label>
+                                        <select name="colore_2" required>
+                                            <option value="null">Seleziona un'opzione</option>
+                                            <option value="nero">Nero /Tendente al nero</option>
+                                            <option value="grigio">Grigio /Tendente al grigio</option>
+                                            <option value="bianco">Bianco /Tendente al bianco</option>
+                                            <option value="blu">Blu /Tendente al blu</option>
+                                            <option value="marrone">Marrone /Tendente al marrone</option>
+                                            <option value="rosso">Rosso-Bordeaou /Tendente al rosso-bordeaou</option>
+                                            <option value="vedre">Vedre /Tendente al verde</option>
+                                            <option value="giallo">Giallo /Tendente al giallo</option>
+                                            <option value="arancione">Marrone /Tendente all'arancio</option>
+                                        </select>
+                                    </div>
+                                    <input type="file" name="immagine2" class="background" required>
                                     <p>Terza foto :</p>
-                                    <input type="file" name="immagine3" class="background">
+                                    <div>
+                                        <label>Colore <span>*</span> </label>
+                                        <select name="colore_3" required>
+                                            <option value="null">Seleziona un'opzione</option>
+                                            <option value="nero">Nero /Tendente al nero</option>
+                                            <option value="grigio">Grigio /Tendente al grigio</option>
+                                            <option value="bianco">Bianco /Tendente al bianco</option>
+                                            <option value="blu">Blu /Tendente al blu</option>
+                                            <option value="marrone">Marrone /Tendente al marrone</option>
+                                            <option value="rosso">Rosso-Bordeaou /Tendente al rosso-bordeaou</option>
+                                            <option value="vedre">Vedre /Tendente al verde</option>
+                                            <option value="giallo">Giallo /Tendente al giallo</option>
+                                            <option value="arancione">Marrone /Tendente all'arancio</option>
+                                        </select>
+                                    </div>
+                                    <input type="file" name="immagine3" class="background" required>
                                     <p>Quarta foto :</p>
-                                    <input type="file" name="immagine4" class="background">
-                                    <p>Quinta foto :</p>
-                                    <input type="file" name="immagine5" class="background">
-                                    <p>Sesta foto :</p>
-                                    <input type="file" name="immagine6" class="background">
+                                    <div>
+                                        <label>Colore <span>*</span> </label>
+                                        <select name="colore_4" required>
+                                            <option value="null">Seleziona un'opzione</option>
+                                            <option value="nero">Nero /Tendente al nero</option>
+                                            <option value="grigio">Grigio /Tendente al grigio</option>
+                                            <option value="bianco">Bianco /Tendente al bianco</option>
+                                            <option value="blu">Blu /Tendente al blu</option>
+                                            <option value="marrone">Marrone /Tendente al marrone</option>
+                                            <option value="rosso">Rosso-Bordeaou /Tendente al rosso-bordeaou</option>
+                                            <option value="vedre">Vedre /Tendente al verde</option>
+                                            <option value="giallo">Giallo /Tendente al giallo</option>
+                                            <option value="arancione">Marrone /Tendente all'arancio</option>
+                                        </select>
+                                    </div>
+                                    <input type="file" name="immagine4" class="background" required>
                                 </div>
                             </div>
                         </fieldset>
@@ -251,7 +323,7 @@
                             <hr>
                             <div class="flex">
                                 <label>Descrizione e dettagli del prodotto <span>*</span> </label>
-                                <textarea name="descrizione" id="input_descrizione" cols="30" rows="10" onchange="mydescrizione(value)"></textarea>
+                                <textarea name="descrizione" id="input_descrizione" cols="30" rows="10" onchange="mydescrizione(value)" required></textarea>
                             </div>
                             <div class="flex">
                                 <label>Avvertenze</label>
@@ -264,7 +336,7 @@
                             <hr>
                             <div class="flex">
                                 <label>Inserisci il prezzo del singolo prodotto <span>*</span> </label>
-                                <input type="text" name="prezzo" id="input_prezzo" placeholder="(esempio) 170" onchange="myprezzo(value)">
+                                <input type="text" name="prezzo" id="input_prezzo" placeholder="(esempio) 170" onchange="myprezzo(value)" required>
                             </div>
                         </fieldset>
 
@@ -273,7 +345,7 @@
                             <hr>
                             <div class="flex">
                                 <label>Inserisci il numero dei prodotti che vuoi vendere <span>*</span> </label>
-                                <input type="text" name="quanitita" id="input_quantita" placeholder="(esempio) 1" onchange="myquantita(value)">
+                                <input type="text" name="quanitita" id="input_quantita" placeholder="(esempio) 1" onchange="myquantita(value)" required>
                             </div>
                         </fieldset>
 
@@ -284,7 +356,7 @@
                         <div class="second_div">
                             <h3  id="titolo">ANTEPRIMA DEL PRODOTTO</h3>
                             <div id="image_anteprima">
-                                <img src="" alt="" class="image">
+                                <img src="" alt="" id="output_img" class="image">
                             </div>
                             <div>
                                 <h4 id="titolo_anteprima">GENERE</h4>
@@ -336,5 +408,6 @@
             </div>
         </div>
     </main>
+    <%- include('../public/html/foter.html')%>
 </body>
 </html>
