@@ -12,7 +12,7 @@ var gioielli=new Schema({
     more_materiali:{type:Boolean, required:true},
     materiali_carati:[{
         materiale:{type:String, required:true},
-        carati:{tyope:String, required:true}
+        carati:{type:String, required:true}
     }],
     foto:[{type:String}],
     quantita:{type:String,required:true},

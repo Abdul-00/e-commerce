@@ -8,11 +8,10 @@ var orologi=new Schema({
     tipologia:{type:String,required:true},
     modello:{type:String,required:true,max:80},
     sesso:{type:String,required:true},
-    nome_prodotto:{type:String,required:true},
     brand:{type:String,required:true},
     corredo:{type:String,required:true},
     second_hand:{usato:{type:Boolean,required:true},condizione:{type:String,required:true}},
-    foto:[{type:String}],
+    foto:[{url:{type:String}}],
     quantita:{type:String,required:true},
     prezzo:{type:Number,required:true},
     dettagli:{

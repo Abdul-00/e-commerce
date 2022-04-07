@@ -30,6 +30,7 @@ var scarpe=new Schema({
         materiale_fodera:{type:String},
         tipo_punta:{type:String},
         tipo_chiusura:{type:String},
+        tacco:{type:String},
         descrizione:{type:String, max:200},
         avvertenze:{type:String,max:100}
     },

@@ -27,11 +27,15 @@ require('dotenv/config');
         uri:process.env.db_connection,
         collection:'mysessions'
     });
+    //Parametri  Sessione
     app.use(session({
         secret: process.env.session_sec,
         saveUninitialized: false,
         resave: false,
-        store: store
+        store: store,
+        cookie:{
+            expires: new Date(Date.now() +(1 * 86400 * 1000))//la sessione scade il giorno dopo la creazione
+        }
     }));
     app.use(flash());
     app.use(fileupload());

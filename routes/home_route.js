@@ -3,6 +3,10 @@ const { default: mongoose } = require('mongoose');
 const router=express.Router();
 const myuser=require('../models/user');
 const myabbigliamento=require('../models/abbigliamento');
+const myscarpe=require('../models/scarpe');
+const myaccessori=require('../models/accessori');
+const mygioielli=require('../models/gioielli');
+const myorologi=require('../models/orologi');
 const bcrypte=require('bcryptjs');
 const { update, updateOne } = require('../models/user');
 
@@ -549,17 +553,17 @@ const { update, updateOne } = require('../models/user');
             if(data.usato=="true" & data.condizione=="null"){
                 req.flash('infoError','!Errore di Compilazione "Nella sezione Condizione prodotto"!');
                 req.flash('infoSubmit',null);
-                return res.redirect('/uploadType/abbigliamento');
+                return res.redirect('/uploadType/scarpe');
             }
             if(data.colore_1=="null" || data.colore_2=="null" || data.colore_3=="null" || data.colore_4=="null"){
                 req.flash('infoError','!Errore di Compilazione "Nella sezione Colore Immagine"!');
                 req.flash('infoSubmit',null);
-                return res.redirect('/uploadType/abbigliamento');
+                return res.redirect('/uploadType/scarpe');
             }
         }
         console.log(sezione);
         
-       /* //save imagine
+       //save imagine
         var fileKeys = Object.keys(req.files);
 
         fileKeys.forEach(function(key) {
@@ -568,58 +572,182 @@ const { update, updateOne } = require('../models/user');
                 if (err) return console.log(err);
             });
         });
-        //QUERY SUPERIORE
-        if(sezione[0]=="superiore" & sezione[1]=="" & sezione[2]==""){
-            var upload= new myabbigliamento({
-                categoria:data.categoria,
-                sesso:data.sesso,
-                nome_prodotto:data.nome_prodotto,
-                brand:data.brand,
-                second_hand:{usato:data.usato,condizione:data.condizione},
-                foto:[{
-                    colore:data.colore_1,
-                    url: user._id+req.files.immagine1.name,
-                },{
-                    colore:data.colore_2,
-                    url:user._id+req.files.immagine2.name,
-                },{
-                    colore:data.colore_3,
-                    url:user._id+req.files.immagine3.name,
-                },{
-                    colore:data.colore_4,
-                    url:user._id+req.files.immagine4.name,
-                }],
-                prodotti_disponibili:[{
-                    colore:data.colore_superiore,
-                    taglia:{
-                        quantita:data.quantita,
-                        size:data.taglia,
-                        prezzo:data.prezzo
-                    }
-                }],
-                dettagli:{
-                    composizione:data.composizione_superiore,
-                    descrizione:data.descrizione,
-                    avvertenze:data.avvertenze
-                },
-                taglia_fit:{
-                    vestibilita:data.vestibilita,
-                    cm_manica:data.cm_manica_superiore,
-                    cm_schienale:data.cm_schienale_superiore,
-                },
-                utente:user._id
-            });
-            upload.save();
-        }
-        */
 
-        res.redirect('/uploadType/abbigliamento');
+        //Dettagli a seconsa della categoria
+        var mydettagli;
+        if(sezione[0]=="scarpe" & sezione[1]=="" & sezione[2]=="" & sezione[3]==""){
+            console.log("sono in scarpe");
+            mydettagli={
+                composizione:data.materiale_scarpe,
+                materiale_solette:data.solette_scarpe,
+                materiale_suola:data.suola_scarpe,
+                materiale_fodera:data.fodera_scarpe,
+                descrizione:data.descrizione,
+                avvertenze:data.avvertenze
+            };
+        }
+        if(sezione[0]=="" & sezione[1]=="scarpe_eleganti" & sezione[2]=="" & sezione[3]==""){
+            console.log("sono in scarpe eleganti");
+            mydettagli={
+                materiale_superiore:data.materiale_scarpe_eleganti,
+                materiale_rivestimento:data.rivestimento_scarpe_eleganti,
+                materiale_solette:data.solette_scarpe_eleganti,
+                materiale_suola:data.suola_scarpe_eleganti,
+                materiale_fodera:data.fodera_scarpe_eleganti,
+                tipo_punta:data.punta_scarpe_eleganti,
+                tipo_chiusura:data.tipo_chiusura,
+                descrizione:data.descrizione,
+                avvertenze:data.avvertenze
+            };
+        }
+        if(sezione[0]=="" & sezione[1]=="" & sezione[2]=="stivali" & sezione[3]==""){
+            console.log("sono in stivali");
+            mydettagli={
+                materiale_superiore:data.materiale_stivali,
+                materiale_rivestimento:data.rivestimento_stivali,
+                materiale_solette:data.solette_stivali,
+                materiale_suola:data.suola_stivali,
+                materiale_fodera:data.fodera_stivali,
+                tipo_punta:data.punta_stivale,
+                tipo_chiusura:data.chiusura_stivale,
+                tacco:data.tacco_stivale,
+                descrizione:data.descrizione,
+                avvertenze:data.avvertenze
+            };
+        }
+        if(sezione[0]=="" & sezione[1]=="" & sezione[2]=="" & sezione[3]=="mocassini"){
+            console.log("sono in mocassini");
+            mydettagli={
+                materiale_superiore:data.materiale_mocassini,
+                materiale_rivestimento:data.rivestimento_mocassini,
+                materiale_solette:data.solette_mocassini,
+                materiale_suola:data.suola_mocassini,
+                materiale_fodera:data.fodera_mocassini,
+                tipo_punta:data.punta_mocassi,
+                tipo_chiusura:data.chiusura_mocassini,
+                descrizione:data.descrizione,
+                avvertenze:data.avvertenze
+            };
+        }
+
+
+        //QUERY 
+        var upload= new myscarpe({
+            categoria:data.categoria,
+            sesso:data.sesso,
+            nome_prodotto:data.nome_prodotto,
+            brand:data.brand,
+            second_hand:{usato:data.usato,condizione:data.condizione},
+            foto:[{
+                colore:data.colore_1,
+                url:user._id+req.files.immagine1.name
+            },{
+                colore:data.colore_2,
+                url:user._id+req.files.immagine2.name
+            },{
+                colore:data.colore_3,
+                url:user._id+req.files.immagine3.name
+            },{
+                colore:data.colore_4,
+                url:user._id+req.files.immagine4.name
+            }],
+            prodotti_disponibili:[{
+                colore:data.colore,
+                taglia:{
+                    quantita:data.quantita,
+                    size:data.taglia,
+                    prezzo:data.prezzo
+                }
+            }],
+            dettagli:mydettagli,
+            utente:user._id,
+        });
+        upload.save();
+        
+        res.redirect('/uploadType/scarpe');
     });
 
-//Product-list Route  temp 
+    //UPLOAD OROLOGI ROOT
+    router.post('/upload_orologi',isAuth,(req,res)=>{
+        var data=req.body;
+        var user=req.session.result;
+
+        if(data.tiplogia=="null" || data.categoria=="null" || data.usato=="null" || data.corredo=="null" || data.sesso=="null" || data.carica=="null"){
+            req.flash('infoError','Errore di Compilazione "nelle opzioni a tendina"');
+            return res.redirect('/uploadType/orologi');
+        }
+        else{
+            //contollo compilazione campo condizioni
+            if(data.usato=="true" & data.condizione=="null"){
+                req.flash('infoError','!Errore di Compilazione "Nella sezione Condizione prodotto"!');
+                req.flash('infoSubmit',null);
+                return res.redirect('/uploadType/orologi');
+            }
+            if(data.anno_produzione.length>4 || data.anno_produzione.length<4){
+                req.flash('infoError','!Errore di Compilazione "Anno non valido"!');
+                req.flash('infoSubmit',null);
+                return res.redirect('/uploadType/orologi');
+            }
+        }
+        req.flash('infoSubmit','Inserimento Completato');
+       //save imagine
+        var fileKeys = Object.keys(req.files);
+        fileKeys.forEach(function(key) {
+            var upload_path='../e-commerce/public/upload/'+user._id+req.files[key].name;
+            req.files[key].mv(upload_path, function(err) {
+                if (err) return console.log(err);
+            });
+        });
+    
+        //QUERY 
+        var upload= new myorologi({
+            categoria:data.categoria,
+            tipologia:data.tipologia,
+            modello:data.modello,
+            sesso:data.sesso,
+            brand:data.marca,
+            corredo:data.corredo,
+            second_hand:{usato:data.usato,condizione:data.condizione},
+            foto:[
+                {url:user._id+req.files.immagine1.name},
+                {url:user._id+req.files.immagine1.name},
+                {url:user._id+req.files.immagine1.name},
+                {url:user._id+req.files.immagine1.name}
+            ],
+            quantita:data.quantita,
+            prezzo:data.prezzo,
+            dettagli:{
+                anno_produzione:data.anno_produzione,
+                carica:data.carica,
+                descrizione:data.descrizone,
+                avvertenze:data.avvertenze
+            },
+            taglia_fit:{
+                mm_diametro:data.diametro,
+            },
+            utente:user._id,
+        });
+        upload.save();
+        
+        res.redirect('/uploadType/orologi');
+    });
+
+
+//Product-list Route  TEMP
     router.get('/product-list/:category',(req,res)=>{
         var cat=req.params.category;
-        myabbigliamento.find({categorie:"tshirt_polo"},function(err,myres){
+        console.log(cat);
+        if(cat=="abbigliamento"){
+            myabbigliamento.find({},function(err,myres){
+                if(err) throw handleError(err);
+                var conta=myres.length;
+                var mess;
+                if(conta<1) return res.render('product-list',{ mess:"NON CI SONO PRODOTTI PER QUESTA CATEGORIA",myres});
+                return res.render('product-list',{myres,mess});
+            });
+        }
+        /*
+        myscarpe.find({categorie:cat},function(err,myres){
             if(err) return handleError(err);
             //contolli necessari sul risultato 
             var conta=myres.length;
@@ -627,7 +755,7 @@ const { update, updateOne } = require('../models/user');
             if(conta<1) return res.render('product-list',{ mess:"NON CI SONO PRODOTTI PER QUESTA CATEGORIA",myres});
             
             return res.render('product-list',{myres,mess});
-        });
+        });*/
     });
 
 
