@@ -734,18 +734,39 @@ const { update, updateOne } = require('../models/user');
 
 
 //Product-list Route  TEMP
-    router.get('/product-list/:category',(req,res)=>{
+    router.get('/product-list/:category/:subcategory',(req,res)=>{
         var cat=req.params.category;
-        console.log(cat);
+        var subcat=req.params.subcategory;
+        console.log("categoria--->"+cat);
+        console.log("sub_categotia--->"+subcat);
         if(cat=="abbigliamento"){
-            myabbigliamento.find({},function(err,myres){
-                if(err) throw handleError(err);
-                var conta=myres.length;
-                var mess;
-                if(conta<1) return res.render('product-list',{ mess:"NON CI SONO PRODOTTI PER QUESTA CATEGORIA",myres});
-                return res.render('product-list',{myres,mess});
-            });
+            if(subcat=="tshirt_polo" || subcat=="maglieria" || subcat=="jeans" || subcat=="giacca" || subcat=="cappotto" || subcat=="completo" || subcat=="camicia" || subcat=="pantalone"){
+                myabbigliamento.find({categorie:subcat},function(err,myres){
+                    if(err) return handleError(err);
+                    //contolli necessari sul risultato 
+                    var conta=myres.length;
+                    var mess;
+                    if(conta<1) return res.render('product-list',{ mess:"NON CI SONO PRODOTTI PER QUESTA CATEGORIA",myres});
+                    
+                    return res.render('product-list',{myres,mess});
+                });
+            }else{
+                if(subcat=="prada" || subcat=="dolce_gabbana" || subcat=="louisvuitton" || subcat=="salvatore_ferragamo" || subcat=="bulgari" || subcat=="gucci" || subcat=="fendi" || subcat=="versace" || subcat=="burberry"){
+                    myabbigliamento.find({brand:subcat},function(err,myres){
+                        if(err) return handleError(err);
+                        //contolli necessari sul risultato 
+                        var conta=myres.length;
+                        var mess;
+                        if(conta<1) return res.render('product-list',{ mess:"NON CI SONO PRODOTTI PER QUESTA CATEGORIA",myres});
+                        
+                        return res.render('product-list',{myres,mess});
+                    });
+                }
+            }
         }
+
+        res.send("OKAY");
+
         /*
         myscarpe.find({categorie:cat},function(err,myres){
             if(err) return handleError(err);
