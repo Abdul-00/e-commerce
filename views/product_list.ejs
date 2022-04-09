@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Product list</title>
+    <link rel="icon" href="/img/icon.svg">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -107,8 +109,15 @@
                             </div>
                             <div class="dettagli">
                                 <h2> <%= value.brand %> </h2>
-                                <h4> <%= value.nome_prodotto %> - <%= value.categoria %> - <%= value.prodotti_disponibili[0].colore %></h4>
-                                <h4><%= value.prodotti_disponibili[0].taglia.prezzo %>$</h4>
+                                <% if(value.modello){ %>
+                                    <h4> <%= value.modello %> - <%= value.categoria %> - <%= value.dettagli.carica %></h4>
+                                    <h4><%= value.prezzo %>$</h4>
+                                <% } %>
+                                <% if(value.nome_prodotto){ %>
+                                    <h4> <%= value.nome_prodotto %> - <%= value.categoria %> - <%= value.prodotti_disponibili[0].colore %></h4>
+                                    <h4><%= value.prodotti_disponibili[0].taglia.prezzo %>$</h4>
+                                <% } %>
+
                             </div>
                         </div>
                     

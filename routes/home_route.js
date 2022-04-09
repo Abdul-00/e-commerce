@@ -27,7 +27,7 @@ const { update, updateOne } = require('../models/user');
     });
 
 //Login root
-    router.get('/login' ,(req,res) =>{
+    router.get('/login' ,(req,res,next) =>{
         res.render('login');
     });
 
@@ -349,8 +349,11 @@ const { update, updateOne } = require('../models/user');
                 req.flash('infoSubmit',null);
                 return res.redirect('/uploadType/abbigliamento');
             }
+
+            //CONTROLLI SUL PREZZO . AL POSTO DELLA ,
+            //CONTROLLI BRAND TUTTO MINUSCOLO
         }
-        //save imagine
+        //save imagine------>DA CAMBIARE IN SALVATAGGIO SU DB
         var fileKeys = Object.keys(req.files);
 
         fileKeys.forEach(function(key) {
@@ -734,51 +737,118 @@ const { update, updateOne } = require('../models/user');
 
 
 //Product-list Route  TEMP
-    router.get('/product-list/:category/:subcategory',(req,res)=>{
-        var cat=req.params.category;
-        var subcat=req.params.subcategory;
-        console.log("categoria--->"+cat);
-        console.log("sub_categotia--->"+subcat);
-        if(cat=="abbigliamento"){
-            if(subcat=="tshirt_polo" || subcat=="maglieria" || subcat=="jeans" || subcat=="giacca" || subcat=="cappotto" || subcat=="completo" || subcat=="camicia" || subcat=="pantalone"){
-                myabbigliamento.find({categorie:subcat},function(err,myres){
+    router.get('/product-list/:category&:subcategory',(req,res)=>{
+        
+        const cat=req.params.category;
+        const subcat=req.params.subcategory;
+        //Abbigliamento , sotto categorie e Brand
+        if(req.params.category=="abbigliamento"){
+            if(req.params.subcategory=="all"){
+                myabbigliamento.find({},function(err,myres){
                     if(err) return handleError(err);
                     //contolli necessari sul risultato 
                     var conta=myres.length;
                     var mess;
-                    if(conta<1) return res.render('product-list',{ mess:"NON CI SONO PRODOTTI PER QUESTA CATEGORIA",myres});
-                    
-                    return res.render('product-list',{myres,mess});
+                    console.log(conta);
+                    if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTA CATEGORIA",myres});
+                    console.log("Abbigliamento all")
+                    return res.render('product_list',{mess,myres});
                 });
-            }else{
-                if(subcat=="prada" || subcat=="dolce_gabbana" || subcat=="louisvuitton" || subcat=="salvatore_ferragamo" || subcat=="bulgari" || subcat=="gucci" || subcat=="fendi" || subcat=="versace" || subcat=="burberry"){
-                    myabbigliamento.find({brand:subcat},function(err,myres){
-                        if(err) return handleError(err);
-                        //contolli necessari sul risultato 
-                        var conta=myres.length;
-                        var mess;
-                        if(conta<1) return res.render('product-list',{ mess:"NON CI SONO PRODOTTI PER QUESTA CATEGORIA",myres});
-                        
-                        return res.render('product-list',{myres,mess});
-                    });
-                }
             }
+            if(subcat=="tshirt_polo" || subcat=="maglieria" || subcat=="jeans" || subcat=="giacca" || subcat=="cappotto" || subcat=="completo" || subcat=="camicia" || subcat=="pantalone"){
+                myabbigliamento.find({categoria:subcat},function(err,myres){
+                    if(err) return handleError(err);
+                    //contolli necessari sul risultato 
+                    var conta=myres.length;
+                    var mess;
+                    if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTA CATEGORIA",myres});
+                    console.log("abbigliamento categoria")
+                    return res.render('product_list',{mess,myres});
+                });
+            }
+            if(subcat=="prada" || subcat=="dolce_gabbana" || subcat=="louis_vuitton" || subcat=="salvatore_ferragamo" || subcat=="bulgari" || subcat=="gucci" || subcat=="fendi" || subcat=="versace" || subcat=="Burberry"){
+                myabbigliamento.find({brand:subcat},function(err,myres){
+                    if(err) return handleError(err);
+                    //contolli necessari sul risultato 
+                    var conta=myres.length;
+                    var mess;
+                    if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO BRAND",myres});
+                    console.log("abbigliamento brand")
+                    return res.render('product_list',{mess,myres});
+                });
+            }
+
+        }
+        // Scarpe,sotto categorie e Brand
+        if(req.params.category=="scarpe"){
+            
+            if(req.params.subcategory=="all"){
+                myscarpe.find({},function(err,myres){
+                    if(err) return handleError(err);
+                    //contolli necessari sul risultato 
+                    var conta=myres.length;
+                    var mess;
+                    if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTA CATEGORIA",myres});
+                    return res.render('product_list',{mess,myres});
+                });
+            }
+            if(subcat=="scarpe" || subcat=="scarpe_eleganti" || subcat=="mocassini" ||subcat=="stivali"){
+                myscarpe.find({categoria:subcat},function(err,myres){
+                    if(err) return handleError(err);
+                    //contolli necessari sul risultato 
+                    var conta=myres.length;
+                    var mess;
+                    if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTA CATEGORIA",myres});
+                    return res.render('product_list',{mess,myres});
+                });
+            }
+            if(subcat=="prada" || subcat=="dolce_gabbana" || subcat=="louis_vuitton" || subcat=="salvatore_ferragamo" || subcat=="bulgari" || subcat=="gucci" || subcat=="versace"){
+                myscarpe.find({brand:subcat},function(err,myres){
+                    if(err) return handleError(err);
+                    //contolli necessari sul risultato 
+                    var conta=myres.length;
+                    var mess;
+                    if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTA CATEGORIA",myres});
+                    return res.render('product_list',{mess,myres});
+                });
+            }   
+        }
+        //OROLOGI
+        if(req.params.category=="orologi"){
+            
+            if(req.params.subcategory=="all"){
+                myorologi.find({},function(err,myres){
+                    if(err) return handleError(err);
+                    //contolli necessari sul risultato 
+                    var conta=myres.length;
+                    var mess;
+                    if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTA CATEGORIA",myres});
+                    return res.render('product_list',{mess,myres});
+                });
+            }
+            if(subcat=="meccanico" || subcat=="automatico" || subcat=="vintage" || subcat=="cronografo" || subcat=="subacqueo" || subcat=="aviatore" || subcat=="militare" || subcat=="nautico"){
+                myorologi.find({categoria:subcat},function(err,myres){
+                    if(err) return handleError(err);
+                    //contolli necessari sul risultato 
+                    var conta=myres.length;
+                    var mess;
+                    if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTA CATEGORIA",myres});
+                    return res.render('product_list',{mess,myres});
+                });
+            }
+            if(subcat=="rolex" || subcat=="audemar_piguet" || subcat=="cartier" || subcat=="patek_philippe" || subcat=="bulgari" || subcat=="richard_mille" || subcat=="panerai"){
+                myorologi.find({brand:subcat},function(err,myres){
+                    if(err) return handleError(err);
+                    //contolli necessari sul risultato 
+                    var conta=myres.length;
+                    var mess;
+                    if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTA CATEGORIA",myres});
+                    return res.render('product_list',{mess,myres});
+                });
+            }   
         }
 
-        res.send("OKAY");
-
-        /*
-        myscarpe.find({categorie:cat},function(err,myres){
-            if(err) return handleError(err);
-            //contolli necessari sul risultato 
-            var conta=myres.length;
-            var mess;
-            if(conta<1) return res.render('product-list',{ mess:"NON CI SONO PRODOTTI PER QUESTA CATEGORIA",myres});
-            
-            return res.render('product-list',{myres,mess});
-        });*/
     });
-
 
 module.exports=router;
 
