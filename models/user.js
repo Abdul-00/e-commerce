@@ -18,6 +18,10 @@ var user = new Schema({
             articoli:[{type:Schema.Types.ObjectId, ref:'prodotto'}],
             importo_pagato:{type:Number,required:true}
         }],
+    vendite:{
+        data:{type:Date,default:Date.now},
+        prodotto:{type:Schema.Types.ObjectId,ref:'prodotto'}
+    },
     indirizzi:[{
         via:{type:String,required:true},
         numero_civico:{type:Number,max:5,required:true},

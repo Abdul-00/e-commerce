@@ -350,10 +350,15 @@ const { update, updateOne } = require('../models/user');
                 return res.redirect('/uploadType/abbigliamento');
             }
 
-            //CONTROLLI SUL PREZZO . AL POSTO DELLA ,
-            //CONTROLLI BRAND TUTTO MINUSCOLO
         }
-        //save imagine------>DA CAMBIARE IN SALVATAGGIO SU DB
+        //CONTROLLI SUL PREZZO . AL POSTO DELLA ,
+        var prezzo=data.prezzo.replace(',','.');
+        console.log(prezzo);
+        //brand in minuscolo
+        var brand=data.brand.toLowerCase();
+        brand=brand.replace(' ','_');
+        console.log(brand);
+        //save imagine
         var fileKeys = Object.keys(req.files);
 
         fileKeys.forEach(function(key) {
@@ -368,7 +373,7 @@ const { update, updateOne } = require('../models/user');
                 categoria:data.categoria,
                 sesso:data.sesso,
                 nome_prodotto:data.nome_prodotto,
-                brand:data.brand,
+                brand:brand,
                 second_hand:{usato:data.usato,condizione:data.condizione},
                 foto:[{
                     colore:data.colore_1,
@@ -388,7 +393,7 @@ const { update, updateOne } = require('../models/user');
                     taglia:{
                         quantita:data.quantita,
                         size:data.taglia,
-                        prezzo:data.prezzo
+                        prezzo:prezzo
                     }
                 }],
                 dettagli:{
@@ -411,7 +416,7 @@ const { update, updateOne } = require('../models/user');
                 categoria:data.categoria,
                 sesso:data.sesso,
                 nome_prodotto:data.nome_prodotto,
-                brand:data.brand,
+                brand:brand,
                 second_hand:{usato:data.usato,condizione:data.condizione},
                 foto:[{
                     colore:data.colore_1,
@@ -431,7 +436,7 @@ const { update, updateOne } = require('../models/user');
                     taglia:{
                         quantita:data.quantita,
                         size:data.taglia,
-                        prezzo:data.prezzo
+                        prezzo:prezzo
                     }
                 }],
                 dettagli:{
@@ -455,7 +460,7 @@ const { update, updateOne } = require('../models/user');
                 categoria:data.categoria,
                 sesso:data.sesso,
                 nome_prodotto:data.nome_prodotto,
-                brand:data.brand,
+                brand:brand,
                 second_hand:{usato:data.usato,condizione:data.condizione},
                 foto:[{
                     colore:data.colore_1,
@@ -475,7 +480,7 @@ const { update, updateOne } = require('../models/user');
                     taglia:{
                         quantita:data.quantita,
                         size:data.taglia,
-                        prezzo:data.prezzo
+                        prezzo:prezzo
                     }
                 }],
                 dettagli:{
@@ -564,8 +569,15 @@ const { update, updateOne } = require('../models/user');
                 return res.redirect('/uploadType/scarpe');
             }
         }
-        console.log(sezione);
         
+        //CONTROLLI SUL PREZZO . AL POSTO DELLA ,
+        var prezzo=data.prezzo.replace(',','.');
+        console.log(prezzo);
+        //brand in minuscolo
+        var brand=data.brand.toLowerCase();
+        brand=brand.replace(' ','_');
+        console.log(brand);
+
        //save imagine
         var fileKeys = Object.keys(req.files);
 
@@ -639,7 +651,7 @@ const { update, updateOne } = require('../models/user');
             categoria:data.categoria,
             sesso:data.sesso,
             nome_prodotto:data.nome_prodotto,
-            brand:data.brand,
+            brand:brand,
             second_hand:{usato:data.usato,condizione:data.condizione},
             foto:[{
                 colore:data.colore_1,
@@ -659,7 +671,7 @@ const { update, updateOne } = require('../models/user');
                 taglia:{
                     quantita:data.quantita,
                     size:data.taglia,
-                    prezzo:data.prezzo
+                    prezzo:prezzo
                 }
             }],
             dettagli:mydettagli,
@@ -693,7 +705,15 @@ const { update, updateOne } = require('../models/user');
             }
         }
         req.flash('infoSubmit','Inserimento Completato');
-       //save imagine
+        //CONTROLLI SUL PREZZO . AL POSTO DELLA ,
+        var prezzo=data.prezzo.replace(',','.');
+        console.log(prezzo);
+        //brand in minuscolo
+        var brand=data.marca.toLowerCase();
+        brand=brand.replace(' ','_');
+        console.log(brand);
+       
+        //save imagine
         var fileKeys = Object.keys(req.files);
         fileKeys.forEach(function(key) {
             var upload_path='../e-commerce/public/upload/'+user._id+req.files[key].name;
@@ -708,7 +728,7 @@ const { update, updateOne } = require('../models/user');
             tipologia:data.tipologia,
             modello:data.modello,
             sesso:data.sesso,
-            brand:data.marca,
+            brand:brand,
             corredo:data.corredo,
             second_hand:{usato:data.usato,condizione:data.condizione},
             foto:[
@@ -718,7 +738,7 @@ const { update, updateOne } = require('../models/user');
                 {url:user._id+req.files.immagine1.name}
             ],
             quantita:data.quantita,
-            prezzo:data.prezzo,
+            prezzo:prezzo,
             dettagli:{
                 anno_produzione:data.anno_produzione,
                 carica:data.carica,
