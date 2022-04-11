@@ -11,7 +11,10 @@ const bcrypte=require('bcryptjs');
 const { update, updateOne } = require('../models/user');
 
 
-//Auth function
+/*Funzione che permette di verificare l'identità dell'utente
+*input-->session id
+*output-->reindirizzamento alle pagine/root-->login,pagina richiesta o homepage
+*/
     const isAuth = (req, res, next) => {
         if (req.session.result) {
             next();
@@ -21,16 +24,26 @@ const { update, updateOne } = require('../models/user');
     }
 
 
-//MAIN ROOT
+/*Root principale Home Page
+*input-->richiesta [localhost:3000]
+*output-->reindirizzamento alle pagina/root-->homepage.ejs
+*/
     router.get('/',(req, res) =>{
         res.render('home_page');
     });
 
-//Login root
+/*Root di login per permettere ad un utente registrato di accedere*/
+    /*get login
+    *input-->richiesta di accesso
+    *output-->login.ejs
+    */
     router.get('/login' ,(req,res,next) =>{
         res.render('login');
     });
-
+    /*Post login + controlli sui dati
+    *input-->email e password
+    *output-->reindirizzamento alle pagine/root-->home page,login,register
+    */
     router.post('/login', async (req,res) =>{
         var result=req.body;
         
@@ -58,7 +71,9 @@ const { update, updateOne } = require('../models/user');
         });
     });
 
-//LOG-OUT
+/**Root di logout , permette di terminare la sessione personale iniziata con il login
+ * input-->session id
+ * output-->reindirizzamento alle pagine/root-->home_page.ejs */ 
     router.get('/logout',(req,res)=>{
         req.session.destroy((err)=>{
             if(err) throw err;
@@ -66,13 +81,20 @@ const { update, updateOne } = require('../models/user');
         })
     });
 
-//Registration root
+/**Root per permettere a un utente di registrarsi*/
+    /**Get register 
+     * input-->richiesta di registrazione
+     * output-->reindirizzamento alle pagine/root-->register.ejs
+    */
     router.get('/register',(req,res)=>{
         const infoErrorObj= req.flash('infoError');
         const infoSubmitObj= req.flash('infoSubmit');
         res.render('register',{infoErrorObj,infoSubmitObj});
     });
-
+    /**Post register + controlli sui dati
+     * input-->dati personali del utente + email,password e codicefiscale come identificativo univoco
+     * output-->reindirizzamento alle pagine/root-->login.ejs 
+    */
     router.post('/register', async (req,res)=>{
         var result=req.body;
         //verificare i dati
@@ -115,7 +137,11 @@ const { update, updateOne } = require('../models/user');
 
     });
 
-//Update user root
+/**Route di aggiornamento dati utente */
+    /**Get updateUser
+     * input-->richiesta di aggiornamento
+     * output-->reindirizzamento alle pagine/root-->update_user.ejs + campi pre compilati
+    */
     router.get('/updateUser', isAuth ,(req,res)=>{
         //user from session
         var user=req.session.result;
@@ -126,7 +152,10 @@ const { update, updateOne } = require('../models/user');
         const infoSubmitObj= req.flash('infoSubmit');
         res.render('update_user',{infoErrorObj,infoSubmitObj,user});
     });
-
+    /**Post updateUser + controlli
+     * input-->informazio modificate
+     * output-->reindirizzamento alle pagine/root-->update_user.ejs + messaggio di okay o fail
+     */
     router.post('/updateUser',isAuth, async (req,res)=>{
         //user from session
         var user=req.session.result;
@@ -164,7 +193,10 @@ const { update, updateOne } = require('../models/user');
     });
 
 
-//Personal Profile root
+/**Root profilo personale per vedere e modificare tutte le proprie informazioni
+ * input-->richiesta profilo
+ * output-->reindirizzamento alle pagine/root-->pagina_profilo.ejs + query sui dati personali 
+ */
     router.get('/profilo',isAuth, async(req,res)=>{
         var user_s=req.session.result;
 
@@ -175,7 +207,11 @@ const { update, updateOne } = require('../models/user');
     
     });
     
-    //ADD ADDRESS ROOT
+    /**Root per l'inserimento di nuove vie o metodi di pagamento*/
+        /**Post addAddress
+         * input-->nuovo indirizzo
+         * output-->reindirizzamento alle pagine/root-->pagina_profilo.ejs 
+        */
         router.post('/addAdress',isAuth, async(req,res)=>{
             //my var
             var user=req.session.result;
@@ -192,7 +228,10 @@ const { update, updateOne } = require('../models/user');
             return res.redirect('/profilo');
 
         })
-    //Delete Address ROOT
+        /**get deleteAddress
+         * input-->id indirizzo
+         * output-->reindirizzamento alle pagine/root-->pagina_profilo.ejs 
+        */
         router.get('/deleteAddress/:indice', isAuth,async(req,res)=>{
             var parm=req.params.indice;
             var user=req.session.result;
@@ -204,7 +243,10 @@ const { update, updateOne } = require('../models/user');
             
         });
 
-        //ADD CARD ROOT
+        /**Post addCard
+         * input-->nuova carta
+         * output-->reindirizzamento alle pagine/root-->pagina_profilo.ejs 
+        */
         router.post('/addCard',isAuth, async(req,res)=>{
             //my var
             var user=req.session.result;
@@ -221,7 +263,10 @@ const { update, updateOne } = require('../models/user');
             return res.redirect('/profilo');
 
         })
-    //Delete CARD ROOT
+        /**Get DeleteCard
+         * input-->id carta
+         * output-->reindirizzamento alle pagine/root-->pagina_profilo.ejs
+        */
         router.get('/deleteCard/:indice', isAuth,async(req,res)=>{
             var parm=req.params.indice;
             var user=req.session.result;
@@ -232,11 +277,18 @@ const { update, updateOne } = require('../models/user');
             
         });
 
-    //Delete user Root
+    /**Root per eliminare un utente*/
+        /**Get eliminaProfilo
+         * input-->richiesta di eliminazione
+         * output-->reindirizzamento alle pagine/root-->delete_account.ejs
+        */
         router.get('/eliminaProfilo',isAuth,(req,res)=>{
             res.render('delete_account');
         });
-
+        /**Post eliminaProfilo
+         * input-->email e password + motivazione
+         * output-->reindirizzamento alle pagine/root-->  /logout
+        */
         router.post('/eliminaProfilo',isAuth,(req,res)=>{
             var data=req.body;
             var user=req.session.result;
@@ -259,7 +311,11 @@ const { update, updateOne } = require('../models/user');
 
         });
 
-//Choose prodotto and Add iban
+/**Root alla pagina per selezionare  il tipo di prodotto da vendere */
+    /**Get chooseProduct + verifica se l'utente ha inserito l'iban
+     * input-->richiesta di vendere un prodotto
+     * output-->reindirizzamento alle pagine/root-->choose-prodotto.ejs
+     */
     router.get('/chooseProduct',isAuth,(req,res)=>{
         var user= req.session.result;
         var flag=null;
@@ -275,7 +331,10 @@ const { update, updateOne } = require('../models/user');
         });
     });
 
-    //Add IBAN
+    /**Post addIban aggiunge l'iban per ricevere i pagamenti
+     * input-->l'iban
+     * output-->reindirizzamento alle pagine/root--> /chooseProduct
+    */
     router.post('/addIban',isAuth,async(req,res)=>{
         var user=req.session.result;
         var iban=req.body;
@@ -285,9 +344,12 @@ const { update, updateOne } = require('../models/user');
         res.redirect('/chooseProduct');
     })
 
+/**Root per l'inserimento dei prodotti abbigliamento,scarpe,orologi,gioielli e accessori */
 
-//Upload Product route
-    //A SECONDA DEL PARAMETRO PASSATOMI DA "choose-prodotto" RENDERIZZO LA PAGINA GIUSTA    
+    /**Get uploadType A SECONDA DEL PARAMETRO PASSATOMI DA "choose-prodotto" RENDERIZZO LA PAGINA GIUSTA
+     * input-->richiesta di inserimento del prodotto + il tipo di prodotto
+     * output--> reindirizzamento alle pagine/root--> inserisci_"tipo prodotto".ejs
+     */
     router.get('/uploadType/:type',isAuth,(req,res)=>{
             var type=req.params.type;
             var myroute="inserisci_"+type;
@@ -296,7 +358,10 @@ const { update, updateOne } = require('../models/user');
             res.render(myroute,{infoErrorObj,infoSubmitObj});
         });
         
-    // INPUT_ABBIGLIAMENTO
+    /**Post inserimento abbigliamento Controlli,inserimento immagini e query inserimento prodotto
+     * input-->immagini e informazioni prodotto
+     * output-->reindirizzamento alle pagine/root--> /uploadType/abbigliamento + messaggio di okay o fail
+     */
     router.post('/upload_abbigliamento',isAuth,async(req,res)=>{
         var data=req.body;
         var user=req.session.result;
@@ -358,6 +423,7 @@ const { update, updateOne } = require('../models/user');
         var brand=data.brand.toLowerCase();
         brand=brand.replace(' ','_');
         console.log(brand);
+        
         //save imagine
         var fileKeys = Object.keys(req.files);
 
@@ -367,6 +433,7 @@ const { update, updateOne } = require('../models/user');
                 if (err) return console.log(err);
             });
         });
+        
         //QUERY SUPERIORE
         if(sezione[0]=="superiore" & sezione[1]=="" & sezione[2]==""){
             var upload= new myabbigliamento({
@@ -502,7 +569,10 @@ const { update, updateOne } = require('../models/user');
 
         res.redirect('/uploadType/abbigliamento');
     });
-
+    /**Post inserimento scarpe + controlli,inserimento immagini e query
+     * input-->immagini + informazioni scarpe
+     * output-->reindirizzamento alle pagine/root-->/uploadType/scarpe + messaggio di okay o fail
+    */
     router.post('/upload_scarpe',isAuth,(req,res)=>{
         var data=req.body;
         var user=req.session.result;
@@ -682,7 +752,10 @@ const { update, updateOne } = require('../models/user');
         res.redirect('/uploadType/scarpe');
     });
 
-    //UPLOAD OROLOGI ROOT
+    /**Post inserimento orologi + controlli,inserimento immagini e query
+     * input-->immagini + informazioni orologi
+     * output-->reindirizzamento alle pagine/root-->/uploadType/orologi + messaggio di okay o fail
+    */
     router.post('/upload_orologi',isAuth,(req,res)=>{
         var data=req.body;
         var user=req.session.result;
@@ -754,9 +827,26 @@ const { update, updateOne } = require('../models/user');
         
         res.redirect('/uploadType/orologi');
     });
+    /**Post inserimento GIOIELLI + controlli,inserimento immagini e query
+     * input-->immagini + informazioni gioielli
+     * output-->reindirizzamento alle pagine/root-->/uploadType/gioielli + messaggio di okay o fail
+    */
+    router.post('/upload_gioielli',isAuth,(req,res)=>{
+        res.send("WORK IN PROGRESS");
+    });
+    /**Post inserimento ACCESSORI + controlli,inserimento immagini e query
+     * input-->immagini + informazioni accessori
+     * output-->reindirizzamento alle pagine/root-->/uploadType/accessori + messaggio di okay o fail
+    */
+     router.post('/upload_accessori',isAuth,(req,res)=>{
+        res.send("WORK IN PROGRESS");
+    });
 
 
-//Product-list Route  TEMP
+/**Root per vizualizzare i prodotti a seconda della categoria/sottocategoria o brand
+ * input-->richiesta + categoria(abbigliamneto,scarpe,orologi,...,second hand)+sottocategorie o brand(t-shirt&polo, gucci)
+ * output-->reindirizzamento alle pagine/root--> /product-list + oggetto contenete i prodotti a seconda della categoria/sottocategoria o brand 
+*/
     router.get('/product-list/:category&:subcategory',(req,res)=>{
         
         const cat=req.params.category;
