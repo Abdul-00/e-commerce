@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/inserisci.css">
+    <script src="../javascript/input_accessori.js"></script>
+    <script src="../javascript/anteprima_prodotti.js"></script>
+
+    <!--NAV BAR-->
+    <link rel="stylesheet" href="../css/navbar.css">
+    <!--FOOETR-->
+    <link rel="stylesheet" href="../css/foter.css">
+</head>
+    <body>
+        <%- include('../public/html/navbar.html') %>
+        <br>
+        <main>
+            <% if(infoErrorObj){ %>
+                <center><h3 style="background-color: red;"> <%= infoErrorObj %> </h3></center>
+            <% }; %>
+            <% if(infoSubmitObj){ %>
+                <center><h3 style="background-color: green;"> <%= infoSubmitObj %> </h3></center>
+            <% }; %>
+            <div class="main">
+                <div>
+                    <form action="/upload_accessori" method="post" enctype="multipart/form-data" class="grid">
+                        <div class="first_div">
+                            <h1>Caratteristiche del prodotto</h1>
+                            <fieldset>
+                                <legend><h3>Offerta <span>*(campo obbligatorio)</span></h3></legend>
+                                <hr>
+                                <div class="flex">
+                                    <label>Genere <span>*</span> </label>
+                                    <select name="sesso" id="input_genere" onchange="mygenere(value)">
+                                        <option value="null">Seleziona un'opzione</option>
+                                        <option value="uomo">Accessorio da uomo</option>
+                                        <option value="Donna">Accessorio da donna</option>
+                                    </select>
+                                </div>
+                                <div class="flex">
+                                    <label>Marca(brand) <span>*</span> </label>
+                                    <input type="text" name="marca" placeholder="(esempio) Prada" id="input_marca" onchange="mymarca(value)" required>
+                                </div>
+                                <div class="flex">
+                                    <label>Categoria <span>*</span> </label>
+                                    <select name="categoria" id="input_categoria" onchange="mycategory(value); mycategoria(value)">
+                                        <option value="null">Seleziona la categoria</option>
+                                        <option value="borsa">Borsa</option>
+                                        <option value="cintura">Cintura</option>
+                                        <option value="cravatta">Cravatte</option>
+                                        <option value="papillon">Papillon</option>
+                                        <option value="sciarpa">Sciarpa</option>
+                                        <option value="portafoglio">Portafoglio</option>
+                                        <option value="occhiali">Occhiali</option>
+                                    </select>
+                                </div>
+                                <div class="flex">
+                                    <label>Il prodotto è usato?</label>
+                                    <select name="usato" id="usato" onchange="second_hand(value); myusato(value)">
+                                        <option value="null">Seleziona un'opzione</option>
+                                        <option value="false">No, il prodotto non è mai stato indossato (nuovo e senza segni di usura)</option>
+                                        <option value="true">Si, il prodotto è usato</option>
+                                    </select>
+                                </div>
+                                <div class="flex" id="condizione" style="display: none;">
+                                    <label>Specifica la condizione del prodotto usato<span>*</span> </label>
+                                    <select name="condizione" id="input_condizione" onchange="mycondizione(value)">
+                                        <option value="null">Seleziona un'opzione</option>
+                                        <option value="Ottimo">Ottimo(di seconda mano, segni di usura assenti o appena visibili)</option>
+                                        <option value="Buono">Buono(segni di usura poco visibili o visibili)</option>
+                                        <option value="Soddisfacente">Soddisfacente(segni di usura ben visibili)</option>
+                                        <option value="Indossabile">Indossabile(segni di usura evidenti)</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <legend><h3>Dati basilari <span>*(campo obbligatorio)</span></h3></legend>
+                                <hr>
+                                <div class="flex">
+                                    <label>Nome <span>*</span> </label>
+                                    <input type="text" name="nome_prodotto" placeholder="(esempio) Borsa a spalla" id="input_nome" onchange="mynome(value)" required>
+                                </div>
+                                <div class="flex">
+                                    <label>Taglia <span>*</span> </label>
+                                    <select name="taglia" id="input_taglia" onchange="mytaglia(value)">
+                                        <option value="null">Seleziona un'opzione</option>
+                                        <option value="one_size">One Size</option>
+                                        <option value="43">43</option>
+                                        <option value="44">44</option>
+                                        <option value="45">45</option>
+                                        <option value="46">46</option>
+                                        <option value="47">47</option>
+                                        <option value="48">48</option>
+                                        <option value="49">49</option>
+                                        <option value="50">50</option>
+                                        <option value="51">51</option>
+                                        <option value="52">52</option>
+                                        <option value="53">53</option>
+                                        <option value="54">53</option>
+                                    </select>
+                                </div>
+                                <div class="flex">
+                                    <label>Colore <span>*</span> </label>
+                                    <select name="colore" id="input_colore" onchange="mycolore(value)">
+                                        <option value="null">Seleziona un'opzione</option>
+                                        <option value="nero">Nero /Tendente al nero</option>
+                                        <option value="grigio">Grigio /Tendente al grigio</option>
+                                        <option value="bianco">Bianco /Tendente al bianco</option>
+                                        <option value="blu">Blu /Tendente al blu</option>
+                                        <option value="marrone">Marrone /Tendente al marrone</option>
+                                        <option value="rosso">Rosso-Bordeaou /Tendente al rosso-bordeaou</option>
+                                        <option value="vedre">Vedre /Tendente al verde</option>
+                                        <option value="giallo">Giallo /Tendente al giallo</option>
+                                        <option value="arancione">Marrone /Tendente all'arancio</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+
+                            <!--A seconda della categoria-->
+                            <fieldset id="input_borse" style="display: none;">
+                                <legend><h3>Dati basilari della borsa <span>*(campo obbligatorio)</span></h3></legend>
+                                <hr>
+                                <div class="flex">
+                                    <label>Materiale esterno della borsa <span>*</span> </label>
+                                    <input type="text" name="materiale_esterno_borsa" placeholder="(esempio) Pelle">
+                                </div>
+                                <div class="flex">
+                                    <label>Materiale della fodera <span>*</span> </label>
+                                    <input type="text" name="fodera_borsa" placeholder="(esempio) Piume d'oca">
+                                </div>
+                                <div class="flex">
+                                    <label>Lunghezza della borsa in centimetri<span>*</span> </label>
+                                    <input type="text" name="lunghezza_borsa" placeholder="(esempio) 24cm">
+                                </div>
+                                <div class="flex">
+                                    <label>Altezza della borsa in centimetri<span>*</span> </label>
+                                    <input type="text" name="altezza_borsa" placeholder="(esempio) 15cm">
+                                </div>
+                            </fieldset>
+
+                            <fieldset id="input_cinture" style="display: none;">
+                                <legend><h3>Dati basilari della cintura <span>*(campo obbligatorio)</span></h3></legend>
+                                <hr>
+                                <div class="flex">
+                                    <label>Composizione (materiali) <span>*</span> </label>
+                                    <input type="text" name="composizione_cintura" placeholder="(esempio) Pelle">
+                                </div>
+                                <div class="flex">
+                                    <label>Tipologia di chiusura <span>*</span> </label>
+                                    <input type="text" name="chiusura_cintura" placeholder="(esempio) Classica">
+                                </div>
+                                <div class="flex">
+                                    <label>Lunghezza della cintura in centimetri <span>*</span> </label>
+                                    <input type="text" name="lunghezza_cintura" placeholder="(esempio) 55cm">
+                                </div>
+                            </fieldset>
+
+                            <fieldset id="input_cravatte" style="display: none;">
+                                <legend><h3>Dati basilari della cravatta <span>*(campo obbligatorio)</span></h3></legend>
+                                <hr>
+                                <div class="flex">
+                                    <label>Composizione (materiali) <span>*</span> </label>
+                                    <input type="text" name="composizione_cravatta" placeholder="(esempio) Tessuto">
+                                </div>
+                            </fieldset>
+
+                            <fieldset id="input_papillon" style="display: none;">
+                                <legend><h3>Dati basilari del papillon <span>*(campo obbligatorio)</span></h3></legend>
+                                <hr>
+                                <div class="flex">
+                                    <label>Composizione (materiali) <span>*</span> </label>
+                                    <input type="text" name="composizione_papillon" placeholder="(esempio) Tessuto">
+                                </div>
+                            </fieldset>
+
+                            <fieldset id="input_sciarpe" style="display: none;">
+                                <legend><h3>Dati basilari della sciarpa <span>*(campo obbligatorio)</span></h3></legend>
+                                <hr>
+                                <div class="flex">
+                                    <label>Composizione (materiali) <span>*</span> </label>
+                                    <input type="text" name="composizione_sciarpa" placeholder="(esempio) Cotone">
+                                </div>
+                            </fieldset>
+
+                            <fieldset id="input_portafogli" style="display: none;">
+                                <legend><h3>Dati basilari del portafogli <span>*(campo obbligatorio)</span></h3></legend>
+                                <hr>
+                                <div class="flex">
+                                    <label>Materiale esterno del portafoglio <span>*</span> </label>
+                                    <input type="text" name="materiale_esterno_portafoglio" placeholder="(esempio) Pelle">
+                                </div>
+                                <div class="flex">
+                                    <label>Materiale della fodera <span>*</span> </label>
+                                    <input type="text" name="fodera_portafoglio" placeholder="(esempio) Tessuto">
+                                </div>
+                                <div class="flex">
+                                    <label>Lunghezza del portafoglio in centimetri <span>*</span> </label>
+                                    <input type="text" name="lunghezza_portafoglio" placeholder="(esempio) 20cm">
+                                </div>
+                                <div class="flex">
+                                    <label>Altezza della prtafoglio in centimetri <span>*</span> </label>
+                                    <input type="text" name="altezza_portafoglio" placeholder="(esempio) 12cm">
+                                </div>
+                            </fieldset>
+
+                            <fieldset id="input_occhiali" style="display: none;">
+                                <legend><h3>Dati basilari occhiale <span>*(campo obbligatorio)</span></h3></legend>
+                                <hr>
+                                <div class="flex">
+                                    <label>Forma dell'occhiale <span>*</span> </label>
+                                    <input type="text" name="forma_occhiale" placeholder="(esempio) Tonda">
+                                </div>
+                                <div class="flex">
+                                    <label>Colore delle lenti <span>*</span> </label>
+                                    <input type="text" name="colore_lenti_occhiale" placeholder="(esempio) Nero">
+                                </div>
+                                <div class="flex">
+                                    <label>Livello protezione UV <span>*</span> </label>
+                                    <select type="text" name="uv_occhiale">
+                                        <option value="true">Si, l'occhiale ha protezione a raggi ultravioletti</option>
+                                        <option value="false>No, l'occhiale non ha protezione a raggi ultravioletti</option>
+                                    </select>    
+                                </div>
+                                <div class="flex">
+                                    <label>Tipologia astine dell'occhiale <span>*</span> </label>
+                                    <input type="text" name="astine_occhiale" placeholder="(esempio) Classica">
+                                </div>
+                            </fieldset>
+                            <!----------------------------------------------->
+                            <fieldset>
+                                <legend><h3>Immagini del prodotto <span>*(campo obbligatorio)</span></h3></legend>
+                                <hr>
+                                <div class="flex">
+                                    <label>carica le immagini del prodotto (4 sono obbligatorie <span>*</span> )</label>
+                                    <div style="width: 100%; display: flex; flex-direction: column; align-items: flex-start;">
+                                        <p>Foto principale :</p> 
+                                        <div>
+                                            <label>Colore <span>*</span> </label>
+                                            <select name="colore_1">
+                                                <option value="null">Seleziona un'opzione</option>
+                                                <option value="nero">Nero /Tendente al nero</option>
+                                                <option value="grigio">Grigio /Tendente al grigio</option>
+                                                <option value="bianco">Bianco /Tendente al bianco</option>
+                                                <option value="blu">Blu /Tendente al blu</option>
+                                                <option value="marrone">Marrone /Tendente al marrone</option>
+                                                <option value="rosso">Rosso-Bordeaou /Tendente al rosso-bordeaou</option>
+                                                <option value="vedre">Vedre /Tendente al verde</option>
+                                                <option value="giallo">Giallo /Tendente al giallo</option>
+                                                <option value="arancione">Marrone /Tendente all'arancio</option>
+                                            </select>
+                                        </div>
+                                        <input type="file" name="immagine1" class="background" required onchange="previewImage(event)">
+                                        <p>Seconda foto :</p>
+                                        <div>
+                                            <label>Colore <span>*</span> </label>
+                                            <select name="colore_2">
+                                                <option value="null">Seleziona un'opzione</option>
+                                                <option value="nero">Nero /Tendente al nero</option>
+                                                <option value="grigio">Grigio /Tendente al grigio</option>
+                                                <option value="bianco">Bianco /Tendente al bianco</option>
+                                                <option value="blu">Blu /Tendente al blu</option>
+                                                <option value="marrone">Marrone /Tendente al marrone</option>
+                                                <option value="rosso">Rosso-Bordeaou /Tendente al rosso-bordeaou</option>
+                                                <option value="vedre">Vedre /Tendente al verde</option>
+                                                <option value="giallo">Giallo /Tendente al giallo</option>
+                                                <option value="arancione">Marrone /Tendente all'arancio</option>
+                                            </select>
+                                        </div>
+                                        <input type="file" name="immagine2" class="background" required>
+                                        <p>Terza foto :</p>
+                                        <div>
+                                            <label>Colore <span>*</span> </label>
+                                            <select name="colore_3">
+                                                <option value="null">Seleziona un'opzione</option>
+                                                <option value="nero">Nero /Tendente al nero</option>
+                                                <option value="grigio">Grigio /Tendente al grigio</option>
+                                                <option value="bianco">Bianco /Tendente al bianco</option>
+                                                <option value="blu">Blu /Tendente al blu</option>
+                                                <option value="marrone">Marrone /Tendente al marrone</option>
+                                                <option value="rosso">Rosso-Bordeaou /Tendente al rosso-bordeaou</option>
+                                                <option value="vedre">Vedre /Tendente al verde</option>
+                                                <option value="giallo">Giallo /Tendente al giallo</option>
+                                                <option value="arancione">Marrone /Tendente all'arancio</option>
+                                            </select>
+                                        </div>
+                                        <input type="file" name="immagine3" class="background" required>
+                                        <p>Quarta foto :</p>
+                                        <div>
+                                            <label>Colore <span>*</span> </label>
+                                            <select name="colore_4">
+                                                <option value="null">Seleziona un'opzione</option>
+                                                <option value="nero">Nero /Tendente al nero</option>
+                                                <option value="grigio">Grigio /Tendente al grigio</option>
+                                                <option value="bianco">Bianco /Tendente al bianco</option>
+                                                <option value="blu">Blu /Tendente al blu</option>
+                                                <option value="marrone">Marrone /Tendente al marrone</option>
+                                                <option value="rosso">Rosso-Bordeaou /Tendente al rosso-bordeaou</option>
+                                                <option value="vedre">Vedre /Tendente al verde</option>
+                                                <option value="giallo">Giallo /Tendente al giallo</option>
+                                                <option value="arancione">Marrone /Tendente all'arancio</option>
+                                            </select>
+                                        </div>
+                                        <input type="file" name="immagine4" class="background" required>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <fieldset>
+                                <legend><h3>Ulteriori indicazioni <span>*(campo obbligatorio)</span></h3></legend>
+                                <hr>
+                                <div class="flex">
+                                    <label>Descrizione e dettagli del prodotto <span>*</span> </label>
+                                    <textarea name="descrizione" id="input_descrizione" cols="30" rows="10" onchange="mydescrizione(value)"></textarea>
+                                </div>
+                                <div class="flex">
+                                    <label>Avvertenze</label>
+                                    <input type="text" name="avvertenze" placeholder="(esempio) Non obbligatorie">
+                                </div>
+                            </fieldset>
+
+                            <fieldset>
+                                <legend><h3>Prezzo del prodotto <span>*(campo obbligatorio)</span></h3></legend>
+                                <hr>
+                                <div class="flex">
+                                    <label>Inserisci il prezzo del singolo prodotto <span>*</span> </label>
+                                    <input type="text" name="prezzo" id="input_prezzo" placeholder="(esempio) 170" onchange="myprezzo(value)">
+                                </div>
+                            </fieldset>
+
+                            <fieldset>
+                                <legend><h3>Quantità dei prodotti <span>*(campo obbligatorio)</span></h3></legend>
+                                <hr>
+                                <div class="flex">
+                                    <label>Inserisci il numero dei prodotti che vuoi vendere <span>*</span> </label>
+                                    <input type="text" name="quantita" id="input_quantita" placeholder="(esempio) 1" onchange="myquantita(value)">
+                                </div>
+                            </fieldset>
+
+                            <div style="width: 100%;"><a href="#"><button id="button" type="submit">Salva & Continua</button></a></div>
+                        </div>
+
+                        <div style="width: 100%; margin-top: 25%; margin-bottom: 25%;">
+                            <div class="second_div">
+                                <h3  id="titolo">ANTEPRIMA DEL PRODOTTO</h3>
+                                <div id="image_anteprima">
+                                    <img src="" alt="" class="image" id="output_img">
+                                </div>
+                                <div>
+                                    <h4 id="titolo_anteprima">GENERE</h4>
+                                    <input type="text" value="" readonly="readonly" id="output_genere">
+                                </div>
+                                <div>
+                                    <h4 id="titolo_anteprima">MARCA</h4>
+                                    <input type="text" value="" readonly="readonly" id="output_marca">
+                                </div>
+                                <div>
+                                    <h4 id="titolo_anteprima">NOME PRODOTTO</h4>
+                                    <input type="text" value="" readonly="readonly" id="output_nome">
+                                </div>
+                                <div>
+                                    <h4 id="titolo_anteprima">CATEGORIA</h4>
+                                    <input type="text" value="" readonly="readonly" id="output_categoria">
+                                </div>
+                                <div>
+                                    <h4 id="titolo_anteprima">TAGLIA</h4>
+                                    <input type="text" value="" readonly="readonly" id="output_taglia">
+                                </div>
+                                <div>
+                                    <h4 id="titolo_anteprima">COLORE</h4>
+                                    <input type="text" value="" readonly="readonly" id="output_colore">
+                                </div>
+                                <div>
+                                    <h4 id="titolo_anteprima">TIPOLOGIA DI PRODOTTO</h4>
+                                    <input type="text" value="" readonly="readonly" id="output_usato">
+                                </div>
+                                <div id="sezione_condizione" style="display: none;">
+                                    <h4 id="titolo_anteprima">CONDIZIONE</h4>
+                                    <input type="text" value="" readonly="readonly" id="output_condizione">
+                                </div>
+                                <div>
+                                    <h4 id="titolo_anteprima">DESCRIZIONE</h4>
+                                    <input type="text" value="" readonly="readonly" id="output_descrizione">
+                                </div>
+                                <div>
+                                    <h4 id="titolo_anteprima">PREZZO SINGOLO PRODOTTO IN €</h4>
+                                    <div class="second_div_flex">
+                                        <input type="text" value="" readonly="readonly" id="output_prezzo">
+                                        <p>€</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </main>
+        <br>
+        <%- include('../public/html/foter.html')%>
+    </body>
+</html>

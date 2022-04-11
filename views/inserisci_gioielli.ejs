@@ -7,12 +7,26 @@
     <link rel="stylesheet" href="../css/inserisci.css">
     <script src="../javascript/input_gioielli.js"></script>
     <script src="../javascript/anteprima_prodotti.js"></script>
+
+    <!--NAV BAR-->
+    <link rel="stylesheet" href="../css/navbar.css">
+    <!--FOOETR-->
+    <link rel="stylesheet" href="../css/foter.css">
+
 </head>
 <body>
+    <%- include('../public/html/navbar.html') %>
+    <br>
     <main>
+        <% if(infoErrorObj){ %>
+            <center><h3 style="background-color: red;"> <%= infoErrorObj %> </h3></center>
+        <% }; %>
+        <% if(infoSubmitObj){ %>
+            <center><h3 style="background-color: green;"> <%= infoSubmitObj %> </h3></center>
+        <% }; %>
         <div class="main">
             <div>
-                <form action="" class="grid">
+                <form action="/upload_gioielli" method="post" enctype="multipart/form-data" class="grid">
                     <div class="first_div">
                         <h1>Caratteristiche del prodotto</h1>
                         <fieldset>
@@ -28,7 +42,7 @@
                             </div>
                             <div class="flex">
                                 <label>Marca del gioiello <span>*</span> </label>
-                                <input type="text" name="marca" placeholder="(esempio) Bulgari" id="input_marca" onchange="mymarca(value)">
+                                <input type="text" name="marca" placeholder="(esempio) Bulgari" id="input_marca" onchange="mymarca(value)" required>
                             </div>
                             <div class="flex">
                                 <label>Categoria <span>*</span> </label>
@@ -59,13 +73,15 @@
                                 </select>
                             </div>
                         </fieldset>
+                        
+                        <!--A seconda della categoria-->
 
                         <fieldset>
                             <legend><h3>Dati basilari <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
                             <div class="flex">
                                 <label>Nome <span>*</span> </label>
-                                <input type="nome_prodotto" name="nome_prodotto" placeholder="(esempio) Anello oro bianco con smeraldo" id="input_nome" onchange="mynome(value)">
+                                <input type="nome_prodotto" name="nome_prodotto" placeholder="(esempio) Anello oro bianco con smeraldo" id="input_nome" onchange="mynome(value)" required>
                             </div>
                             <div class="flex">
                                 <label>Il gioiello è composto da più materiali? <span>*</span> </label>
@@ -122,8 +138,9 @@
                                 </div>
                                 <hr>
                             </div>
+                            <!--------------------------------------------------------->
                         </fieldset>
-
+                        
                         <fieldset id="input_anello" style="display: none;">
                             <legend><h3>Dati basilari dell'anello <span>*(campo obbligatorio)</span></h3></legend>
                             <hr>
@@ -163,7 +180,7 @@
                             </div>
                             <div class="flex">
                                 <label>La collana ha un pendente? <span>*</span> </label>
-                                <select name="Pendente" id="Pendente">
+                                <select name="Pendente_collana" id="Pendente">
                                     <option value="null">Seleziona un'opzione</option>
                                     <option value="si">Si, la collana ha un pendente</option>
                                     <option value="no">No, la collana non ha un pendente</option>
@@ -184,7 +201,7 @@
                             </div>
                             <div class="flex">
                                 <label>L'orecchino ha un pendente? <span>*</span> </label>
-                                <select name="Pendente" id="Pendente">
+                                <select name="Pendente_orecchino" id="Pendente">
                                     <option value="null">Seleziona un'opzione</option>
                                     <option value="si">Si, l'orecchino ha un pendente</option>
                                     <option value="no">No, l'orecchino non ha un pendente</option>
@@ -199,14 +216,14 @@
                                 <label>Anno di produzione del gioiello <span>*</span> </label>
                                 <input type="text" name="anno" placeholder="(esempio) 2021">
                             </div>
-                            <div class="flex">
+                            <div class="flex" id="provenienza" style="display: none;">
                                 <label>Provenienza del gioiello <span>*</span> </label>
-                                <select name="" id="">
-                                    <option value="Provenienza"></option>
-                                    <option value="">Comprato in prima persona da venditore autorizzato</option>
-                                    <option value="">Comprato in prima persona da venditore privato</option>
-                                    <option value="">Ricevuto tramite regalo</option>
-                                    <option value="">Ricevuto tramite eredità</option>
+                                <select name="provenienza" id="provenienza">
+                                    <option value="null">Seleziona opzione</option>
+                                    <option value="venditore autorizzato">Comprato in prima persona da venditore autorizzato</option>
+                                    <option value="venditore privato">Comprato in prima persona da venditore privato</option>
+                                    <option value="regalo">Ricevuto tramite regalo</option>
+                                    <option value="eredita">Ricevuto tramite eredità</option>
                                 </select>
                             </div>
                         </fieldset>
@@ -218,17 +235,13 @@
                                 <label>carica le immagini del prodotto (4 sono obbligatorie <span>*</span> )</label>
                                 <div style="width: 100%;">
                                     <p>Foto principale :</p> 
-                                    <input type="file" name="immagine1" class="background">
+                                    <input type="file" name="immagine1" class="background" required onchange="previewImage(event)">
                                     <p>Seconda foto :</p>
-                                    <input type="file" name="immagine2" class="background">
+                                    <input type="file" name="immagine2" class="background" required>
                                     <p>Terza foto :</p>
-                                    <input type="file" name="immagine3" class="background">
+                                    <input type="file" name="immagine3" class="background" required>
                                     <p>Quarta foto :</p>
-                                    <input type="file" name="immagine4" class="background">
-                                    <p>Quinta foto :</p>
-                                    <input type="file" name="immagine5" class="background">
-                                    <p>Sesta foto :</p>
-                                    <input type="file" name="immagine6" class="background">
+                                    <input type="file" name="immagine4" class="background" required>
                                 </div>
                             </div>
                         </fieldset>
@@ -238,7 +251,7 @@
                             <hr>
                             <div class="flex">
                                 <label>Descrizione e dettagli del prodotto <span>*</span> </label>
-                                <textarea name="descrizione" id="input_descrizione" cols="30" rows="10" onchange="mydescrizione(value)"></textarea>
+                                <textarea name="descrizione" id="input_descrizione" cols="30" rows="10" onchange="mydescrizione(value)" required></textarea>
                             </div>
                             <div class="flex">
                                 <label>Avvertenze</label>
@@ -251,7 +264,7 @@
                             <hr>
                             <div class="flex">
                                 <label>Inserisci il prezzo del singolo prodotto <span>*</span> </label>
-                                <input type="text" name="prezzo" id="input_prezzo" placeholder="(esempio) 170" onchange="myprezzo(value)">
+                                <input type="text" name="prezzo" id="input_prezzo" placeholder="(esempio) 170" onchange="myprezzo(value)" required>
                             </div>
                         </fieldset>
 
@@ -260,7 +273,7 @@
                             <hr>
                             <div class="flex">
                                 <label>Inserisci il numero dei prodotti che vuoi vendere <span>*</span> </label>
-                                <input type="text" name="quanitita" id="input_quantita" placeholder="(esempio) 1" onchange="myquantita(value)">
+                                <input type="number" name="quantita" id="input_quantita" placeholder="(esempio) 1" onchange="myquantita(value)" required>
                             </div>
                         </fieldset>
 
@@ -271,7 +284,7 @@
                         <div class="second_div">
                             <h3  id="titolo">ANTEPRIMA DEL PRODOTTO</h3>
                             <div id="image_anteprima">
-                                <img src="" alt="" class="image">
+                                <img src="" alt="" class="image" id="output_img">
                             </div>
                             <div>
                                 <h4 id="titolo_anteprima">GENERE</h4>
@@ -314,5 +327,7 @@
             </div>
         </div>
     </main>
+    <br>
+    <%- include('../public/html/foter.html')%>
 </body>
 </html>

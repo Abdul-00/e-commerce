@@ -55,8 +55,11 @@ function mycategory(category){
 function second_hand(usato){
     if(usato=="true"){
         document.getElementById("condizione").style.display="flex";
+        document.getElementById("provenienza").style.display="flex";
     }
     if(usato=="false"){
         document.getElementById("condizione").style.display="none";
+        document.getElementById("provenienza").style.display="none";
+
     }
 }

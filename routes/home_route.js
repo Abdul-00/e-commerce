@@ -832,14 +832,340 @@ const { update, updateOne } = require('../models/user');
      * output-->reindirizzamento alle pagine/root-->/uploadType/gioielli + messaggio di okay o fail
     */
     router.post('/upload_gioielli',isAuth,(req,res)=>{
-        res.send("WORK IN PROGRESS");
+        var user=req.session.result;
+        var data=req.body;
+        var materiali_carati,pendente;
+        if(data.categoria=="null" || data.usato=="null" || data.more_materials=="null" || data.sesso=="null"){
+            req.flash('infoError','Errore di Compilazione "nelle opzioni a tendina"');
+            return res.redirect('/uploadType/gioielli');
+        }
+        else{
+
+            if(data.more_materials=="no"){
+                if(data.materiale1=="" || data.carati_materiale1==""){
+                    req.flash('infoError','!Errore di Compilazione "Nella sezione meteriale prodotto prodotto"!');
+                    req.flash('infoSubmit',null);
+                    return res.redirect('/uploadType/gioielli');
+                }else{
+                    materiali_carati=[{
+                        materiale:data.materiale1,
+                        carati:data.carati_materiale1
+                    }];
+                }
+            }
+            if(data.more_materials=="due"){
+                if(data.materiale1=="" || data.carati_materiale1=="" || data.materiale2=="" || data.carati_materiale2==""){
+                    req.flash('infoError','!Errore di Compilazione "Nella sezione meteriale prodotto prodotto"!');
+                    req.flash('infoSubmit',null);
+                    return res.redirect('/uploadType/gioielli');
+                }else{
+                    materiali_carati=[{
+                        materiale:data.materiale1,
+                        carati:data.carati_materiale1
+                    },{
+                        materiale:data.materiale2,
+                        carati:data.carati_materiale2
+                    }];
+                }
+            }
+            if(data.more_materials=="tre"){
+                if(data.materiale1=="" || data.carati_materiale1=="" || data.materiale2=="" || data.carati_materiale2=="" || data.materiale3=="" || data.carati_materiale3==""){
+                    req.flash('infoError','!Errore di Compilazione "Nella sezione meteriale prodotto prodotto"!');
+                    req.flash('infoSubmit',null);
+                    return res.redirect('/uploadType/gioielli');
+                }else{
+                    materiali_carati=[{
+                        materiale:data.materiale1,
+                        carati:data.carati_materiale1
+                    },{
+                        materiale:data.materiale2,
+                        carati:data.carati_materiale2
+                    },{
+                        materiale:data.materiale3,
+                        carati:data.carati_materiale3
+                    }];
+                }
+            }
+            if(data.more_materials=="quattro"){
+                if(data.materiale1=="" || data.carati_materiale1=="" || data.materiale2=="" || data.carati_materiale2=="" || data.materiale3=="" || data.carati_materiale3=="" || data.materiale4=="" || data.carati_materiale4==""){
+                    req.flash('infoError','!Errore di Compilazione "Nella sezione meteriale prodotto prodotto"!');
+                    req.flash('infoSubmit',null);
+                    return res.redirect('/uploadType/gioielli');
+                }else{
+                    materiali_carati=[{
+                        materiale:data.materiale1,
+                        carati:data.carati_materiale1
+                    },{
+                        materiale:data.materiale2,
+                        carati:data.carati_materiale2
+                    },{
+                        materiale:data.materiale3,
+                        carati:data.carati_materiale3
+                    },{
+                        materiale:data.materiale4,
+                        carati:data.carati_materiale4
+                    }];
+                }
+            }
+            //contollo compilazione campo condizioni
+            if(data.usato=="true" & data.condizione=="null"){
+                req.flash('infoError','!Errore di Compilazione "Nella sezione Condizione prodotto"!');
+                req.flash('infoSubmit',null);
+                return res.redirect('/uploadType/gioielli');
+            }
+            if(data.usato=="true" & data.provenienza=="null"){
+                req.flash('infoError','!Errore di Compilazione "Nella sezione provenienza prodotto"!');
+                req.flash('infoSubmit',null);
+                return res.redirect('/uploadType/gioielli');
+            }
+            if(data.anno.length>4 || data.anno.length<4){
+                req.flash('infoError','!Errore di Compilazione "Anno non valido"!');
+                req.flash('infoSubmit',null);
+                return res.redirect('/uploadType/gioielli');
+            }
+            if(data.categoria=="collana" || data.categoria=="orecchino"){
+                if(data.categoria=="collana"){
+                    pendente=data.pendente_collana;
+                }else{
+                    pendente=data.pendente_orecchino;
+                }
+            }else{
+                pendente=null;
+            }
+        }
+        req.flash('infoSubmit','Inserimento Completato');
+        //CONTROLLI SUL PREZZO . AL POSTO DELLA ,
+        var prezzo=data.prezzo.replace(',','.');
+        console.log(prezzo);
+        //brand in minuscolo
+        var brand=data.marca.toLowerCase();
+        brand=brand.replace(' ','_');
+        console.log(brand);
+        
+        //save imagine
+        var fileKeys = Object.keys(req.files);
+        fileKeys.forEach(function(key) {
+            var upload_path='../e-commerce/public/upload/'+user._id+req.files[key].name;
+            req.files[key].mv(upload_path, function(err) {
+                if (err) return console.log(err);
+            });
+        });
+
+        //Query di inserimento
+        var upload= new mygioielli({
+            categoria:data.categoria,
+            sesso:data.sesso,
+            nome_prodotto:data.nome_prodotto,
+            brand:brand,
+            second_hand:{usato:data.usato,condizione:data.condizione},
+            materiali_carati:materiali_carati,
+            foto:[
+                {url:req.files.immagine1.name},
+                {url:req.files.immagine2.name},
+                {url:req.files.immagine3.name},
+                {url:req.files.immagine4.name}],
+            quantita:data.quantita,
+            prezzo:prezzo,
+            dettagli:{
+                anno_produzione:data.anno,
+                provenienza:data.provenienza,
+                descrizione:data.descrizione,
+                avvertenze:data.avvertenze
+            },
+            taglia_fit:{
+                mm_diametro:data.mm_diametro,
+                mm_spessore:data.mm_spessore,
+                cm_lunghezza:data.cm_lunghezza,
+                pendente:pendente
+            },
+            utente:user._id,
+        });
+        upload.save();
+
+        res.redirect('/uploadType/gioielli');
+
     });
     /**Post inserimento ACCESSORI + controlli,inserimento immagini e query
      * input-->immagini + informazioni accessori
      * output-->reindirizzamento alle pagine/root-->/uploadType/accessori + messaggio di okay o fail
     */
      router.post('/upload_accessori',isAuth,(req,res)=>{
-        res.send("WORK IN PROGRESS");
+        var user=req.session.result;
+        var data=req.body;
+        var dettagli,taglia_fit;
+        if(data.categoria=="null" || data.usato=="null" || data.sesso=="null" || data.taglia=="null" || data.colore=="null" ){
+            req.flash('infoError','Errore di Compilazione "nelle opzioni a tendina"');
+            return res.redirect('/uploadType/gioielli');
+        }
+        else{
+            if(data.categoria=="borsa"){
+                if(data.materiale_esterno_borsa=="" || data.fodera_borsa=="" || data.lunghezza_borsa=="" || data.altezza_borsa==""){
+                    req.flash('infoError','Errore di Compilazione "nei dati basilari della borsa"');
+                    return res.redirect('/uploadType/gioielli');
+                }else{
+                    dettagli={
+                        materiale_esterno:data.materiale_esterno_borsa,
+                        materiale_fodera:data.fodera_borsa,                                                                 
+                        descrizione:data.descrizione,
+                        avvertenze:data.avvertenze
+                    },
+                    taglia_fit={
+                        cm_altezza:data.lunghezza_borsa,
+                        cm_lunghezza:data.altezza_borsa
+                    }
+                }
+            }
+            if(data.categoria=="cintura"){
+                if(data.composizione_cintura=="" || data.chiusura_cintura=="" || data.lunghezza_cintura==""){
+                    req.flash('infoError','Errore di Compilazione "nei dati basilari della cintura"');
+                    return res.redirect('/uploadType/gioielli');
+                }else{
+                    dettagli={
+                        tipologia_chiusura:data.chiusura_cintura,
+                        composizione:data.composizione_cintura,
+                        descrizione:data,descrizione,
+                        avvertenze:data.avvertenze
+                    },
+                    taglia_fit={
+                        cm_lunghezza:data.lunghezza_cintura
+                    }
+                }
+            }
+            if(data.categoria=="cravatta"){
+                if(data.composizione_cravatta==""){
+                    req.flash('infoError','Errore di Compilazione "nei dati basilari della cravatta"');
+                    return res.redirect('/uploadType/gioielli');
+                }else{
+                    dettagli={
+                        composizione:data.composizione_cravatta,
+                        descrizione:data,descrizione,
+                        avvertenze:data.avvertenze
+                    }
+                }
+            }
+            if(data.categoria=="papillion"){
+                if(data.composizione_papillion==""){
+                    req.flash('infoError','Errore di Compilazione "nei dati basilari della papillion"');
+                    return res.redirect('/uploadType/gioielli');
+                }else{
+                    dettagli={
+                        composizione:data.composizione_papillion,
+                        descrizione:data,descrizione,
+                        avvertenze:data.avvertenze
+                    }
+                }
+            }
+            if(data.categoria=="sciarpa"){
+                if(data.composizione_sciarpa==""){
+                    req.flash('infoError','Errore di Compilazione "nei dati basilari della sciarpa"');
+                    return res.redirect('/uploadType/gioielli');
+                }else{
+                    dettagli={
+                        composizione:data.composizione_sciarpa,
+                        descrizione:data,descrizione,
+                        avvertenze:data.avvertenze
+                    }
+                }
+            }
+            if(data.categoria=="portafoglio"){
+                if(data.materiale_esterno_portafoglio=="" || data.fodera_portafoglio=="" || data.lunghezza_portafoglio=="" ||data.altezza_portafoglio==""){
+                    req.flash('infoError','Errore di Compilazione "nei dati basilari del portafoglio"');
+                    return res.redirect('/uploadType/gioielli');
+                }else{
+                    dettagli={
+                        materiale_esterno:data.materiale_esterno_portafoglio,
+                        materiale_fodera:data.fodera_portafoglio,
+                        descrizione:data.descrizione,
+                        avvertenze:data.avvertenze
+                    },
+                    taglia_fit={
+                        cm_altezza:data.altezza_portafoglio,
+                        cm_lunghezza:data.lunghezza_portafoglio
+                    }
+                }
+            }
+            if(data.categoria=="occhiali"){
+                if(data.forma_occhiale=="" || data.colore_lenti_occhiale=="" || data.astine_occhiale==""){
+                    req.flash('infoError','Errore di Compilazione "nei dati basilari dei occhiali"');
+                    return res.redirect('/uploadType/gioielli');
+                }else{
+                    dettagli={
+                        forma_occhiale:data.forma_occhiale,
+                        colore_lenti:data.colore_lenti_occhiale,
+                        tipo_astine:data.astine_occhiale,
+                        protezione_uv:data.uv_occhiali,
+                        descrizione:data.descrizione,
+                        avvertenze:data.avvertenze
+                    }
+                }
+            }
+            //contollo compilazione campo condizioni
+            if(data.usato=="true" & data.condizione=="null"){
+                req.flash('infoError','!Errore di Compilazione "Nella sezione Condizione prodotto"!');
+                req.flash('infoSubmit',null);
+                return res.redirect('/uploadType/gioielli');
+            }
+            if(data.colore_1=="null" || data.colore_2=="null" || data.colore_3=="null" || data.colore_4=="null"){
+                req.flash('infoError','!Errore di Compilazione "Nella sezione Colore Immagine"!');
+                req.flash('infoSubmit',null);
+                return res.redirect('/uploadType/gioielli');
+            }
+
+            
+        }
+        req.flash('infoSubmit','Inserimento Completato');
+        //CONTROLLI SUL PREZZO . AL POSTO DELLA ,
+        var prezzo=data.prezzo.replace(',','.');
+        console.log(prezzo);
+        //brand in minuscolo
+        var brand=data.marca.toLowerCase();
+        brand=brand.replace(' ','_');
+        console.log(brand);
+        
+        //save imagine
+        var fileKeys = Object.keys(req.files);
+        fileKeys.forEach(function(key) {
+            var upload_path='../e-commerce/public/upload/'+user._id+req.files[key].name;
+            req.files[key].mv(upload_path, function(err) {
+                if (err) return console.log(err);
+            });
+        });
+
+        //Query di inserimento
+        var upload= new myaccessori({
+            categoria:data.categoria,
+            sesso:data.sesso,
+            nome_prodotto:data.nome_prodotto,
+            brand:brand,
+            second_hand:{usato:data.usato,condizione:data.condizione},
+            foto:[{
+                colore:data.colore_1,
+                url:req.files.immagine1.name
+            },{
+                colore:data.colore_2,
+                url:req.files.immagine2.name
+            },{
+                colore:data.colore_3,
+                url:req.files.immagine3.name
+            },{
+                colore:data.colore_4,
+                url:req.files.immagine4.name
+            }],
+            prodotti_disponibili:[{
+                colore:data.colore,
+                taglia:{
+                    quantita:data.quantita,
+                    size:data.taglia,
+                    prezzo:prezzo
+                }
+            }],
+            dettagli:dettagli,
+            taglia_fit:taglia_fit,
+            utente:user._id,
+        });
+        upload.save();
+
+        res.redirect('/uploadType/accessori');
     });
 
 

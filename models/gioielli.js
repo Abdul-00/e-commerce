@@ -9,12 +9,11 @@ var gioielli=new Schema({
     nome_prodotto:{type:String,required:true},
     brand:{type:String,required:true},
     second_hand:{usato:{type:Boolean,required:true},condizione:{type:String,required:true}},
-    more_materiali:{type:Boolean, required:true},
     materiali_carati:[{
         materiale:{type:String, required:true},
-        carati:{type:String, required:true}
+        carati:{type:String}
     }],
-    foto:[{type:String}],
+    foto:[{url:{type:String}}],
     quantita:{type:String,required:true},
     prezzo:{type:Number,required:true},
     dettagli:{
