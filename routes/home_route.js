@@ -960,10 +960,10 @@ const { update, updateOne } = require('../models/user');
             second_hand:{usato:data.usato,condizione:data.condizione},
             materiali_carati:materiali_carati,
             foto:[
-                {url:req.files.immagine1.name},
-                {url:req.files.immagine2.name},
-                {url:req.files.immagine3.name},
-                {url:req.files.immagine4.name}],
+                {url:user._id+req.files.immagine1.name},
+                {url:user._id+req.files.immagine1.name},
+                {url:user._id+req.files.immagine1.name},
+                {url:user._id+req.files.immagine1.name}],
             quantita:data.quantita,
             prezzo:prezzo,
             dettagli:{
@@ -1140,16 +1140,16 @@ const { update, updateOne } = require('../models/user');
             second_hand:{usato:data.usato,condizione:data.condizione},
             foto:[{
                 colore:data.colore_1,
-                url:req.files.immagine1.name
+                url:user._id+req.files.immagine1.name
             },{
                 colore:data.colore_2,
-                url:req.files.immagine2.name
+                url:user._id+req.files.immagine2.name
             },{
                 colore:data.colore_3,
-                url:req.files.immagine3.name
+                url:user._id+req.files.immagine3.name
             },{
                 colore:data.colore_4,
-                url:req.files.immagine4.name
+                url:user._id+req.files.immagine4.name
             }],
             prodotti_disponibili:[{
                 colore:data.colore,
@@ -1244,7 +1244,7 @@ const { update, updateOne } = require('../models/user');
                     //contolli necessari sul risultato 
                     var conta=myres.length;
                     var mess;
-                    if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTA CATEGORIA",myres});
+                    if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO BRAND",myres});
                     return res.render('product_list',{mess,myres});
                 });
             }   
@@ -1278,10 +1278,233 @@ const { update, updateOne } = require('../models/user');
                     //contolli necessari sul risultato 
                     var conta=myres.length;
                     var mess;
-                    if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTA CATEGORIA",myres});
+                    if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO BRAND",myres});
                     return res.render('product_list',{mess,myres});
                 });
             }   
+        }
+        if(req.params.category=="accessori"){
+            
+            if(req.params.subcategory=="all"){
+                myaccessori.find({},function(err,myres){
+                    if(err) return handleError(err);
+                    //contolli necessari sul risultato 
+                    var conta=myres.length;
+                    var mess;
+                    if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTA CATEGORIA",myres});
+                    return res.render('product_list',{mess,myres});
+                });
+            }
+            if(subcat=="borsa" || subcat=="cintura" || subcat=="cravatta" || subcat=="papillon" || subcat=="sciarpa" || subcat=="portafoglio" || subcat=="occhiali"){
+                myaccessori.find({categoria:subcat},function(err,myres){
+                    if(err) return handleError(err);
+                    //contolli necessari sul risultato 
+                    var conta=myres.length;
+                    var mess;
+                    if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTA CATEGORIA",myres});
+                    return res.render('product_list',{mess,myres});
+                });
+            }
+            if(subcat=="prada" || subcat=="dolce_gabbana" || subcat=="louise_vuitton" || subcat=="salvatore_ferragamo" || subcat=="bulgari" || subcat=="versace" || subcat=="gucci" || subcat=="fendi"){
+                myaccessori.find({brand:subcat},function(err,myres){
+                    if(err) return handleError(err);
+                    //contolli necessari sul risultato 
+                    var conta=myres.length;
+                    var mess;
+                    if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO BRAND",myres});
+                    return res.render('product_list',{mess,myres});
+                });
+            }   
+        }
+
+        if(req.params.category=="gioielli"){
+            
+            if(req.params.subcategory=="all"){
+                mygioielli.find({},function(err,myres){
+                    if(err) return handleError(err);
+                    //contolli necessari sul risultato 
+                    var conta=myres.length;
+                    var mess;
+                    if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTA CATEGORIA",myres});
+                    return res.render('product_list',{mess,myres});
+                });
+            }
+            if(subcat=="anello" || subcat=="bracciale" || subcat=="collana" || subcat=="orecchino"){
+                mygioielli.find({categoria:subcat},function(err,myres){
+                    if(err) return handleError(err);
+                    //contolli necessari sul risultato 
+                    var conta=myres.length;
+                    var mess;
+                    if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTA CATEGORIA",myres});
+                    return res.render('product_list',{mess,myres});
+                });
+            }
+            if(subcat=="cartier" || subcat=="chopard" || subcat=="tiffany_co" || subcat=="bulgari" || subcat=="chanel" || subcat=="gucci" || subcat=="bucellati"){
+                mygioielli.find({brand:subcat},function(err,myres){
+                    if(err) return handleError(err);
+                    //contolli necessari sul risultato 
+                    var conta=myres.length;
+                    var mess;
+                    if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO BRAND",myres});
+                    return res.render('product_list',{mess,myres});
+                });
+            }   
+        }
+    });
+    /**Root per le categorie,sottocategorie e brand per SECOND HAND 
+     * input-->richiesta per vizualizzare prodotti usati + categoria o marca
+     * output--> reindirizzamento alle pagine/root--> /product-list + oggetto contenete i prodotti a seconda della categoria/sottocategoria o brand 
+    */
+    router.get('/second_hand/:category&:subcategory',isAuth,async(req,res)=>{
+        const cat=req.params.category;
+        const subcat=req.params.subcategory;
+
+        /*if(cat=="all"){
+            var myres;
+            myabbigliamento.find({'second_hand.usato':true},async function(err,resprodotto){
+                if(err) throw handleError(err);
+                myres= await myres+resprodotto;
+            });
+            myscarpe.find({'second_hand.usato':true},async function(err,resprodotto){
+                if(err) throw handleError(err);
+                myres= await  myres+resprodotto;
+            });
+            mygioielli.find({'second_hand.usato':true},async function(err,resprodotto){
+                if(err) throw handleError(err);
+                myres=await myres+resprodotto;
+            });
+            myorologi.find({'second_hand.usato':true},async function(err,resprodotto){
+                if(err) throw handleError(err);
+                myres= await myres+resprodotto;
+            });
+            myaccessori.find({'second_hand.usato':true},async function(err,resprodotto){
+                if(err) throw handleError(err);
+                myres=await myres+resprodotto;
+            });
+            console.log(myres);
+            var mess;
+            if(myres=="") return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTA CATEGORIA",myres});
+            return res.render('product_list',{mess,myres});
+        }*/
+
+        if(cat=="abbigliamento"){
+            if(subcat=="all"){
+                myabbigliamento.find({'second_hand.usato':true},function(err,myres){
+                    if(err) return handleError(err);
+                    //contolli necessari sul risultato 
+                    var conta=myres.length;
+                    var mess;
+                    if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO BRAND",myres});
+                    console.log("abbigliamento usato")
+                    return res.render('product_list',{mess,myres});
+                });
+            }else{
+                myabbigliamento.find({'second_hand.usato':true,brand:subcat},function(err,myres){
+                    if(err) return handleError(err);
+                    //contolli necessari sul risultato 
+                    var conta=myres.length;
+                    var mess;
+                    if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO BRAND",myres});
+                    console.log("abbigliamento brand")
+                    return res.render('product_list',{mess,myres});
+                });
+            }
+        }
+
+        if(cat=="scarpe"){
+            if(subcat=="all"){
+                myscarpe.find({'second_hand.usato':true},function(err,myres){
+                    if(err) return handleError(err);
+                    //contolli necessari sul risultato 
+                    var conta=myres.length;
+                    var mess;
+                    if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO BRAND",myres});
+                    console.log("abbigliamento usato")
+                    return res.render('product_list',{mess,myres});
+                });
+            }else{
+                myscarpe.find({'second_hand.usato':true,brand:subcat},function(err,myres){
+                    if(err) return handleError(err);
+                    //contolli necessari sul risultato 
+                    var conta=myres.length;
+                    var mess;
+                    if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO BRAND",myres});
+                    console.log("abbigliamento brand")
+                    return res.render('product_list',{mess,myres});
+                });
+            }
+        }
+
+        if(cat=="orologi"){
+            if(subcat=="all"){
+                console.log("ciao");
+                myorologi.find({'second_hand.usato':true},function(err,myres){
+                    if(err) return handleError(err);
+                    //contolli necessari sul risultato 
+                    var conta=myres.length;
+                    var mess;
+                    if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO BRAND",myres});
+                    console.log("abbigliamento usato")
+                    return res.render('product_list',{mess,myres});
+                });
+            }else{
+                myorologi.find({'second_hand.usato':true,brand:subcat},function(err,myres){
+                    if(err) return handleError(err);
+                    //contolli necessari sul risultato 
+                    var conta=myres.length;
+                    var mess;
+                    if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO BRAND",myres});
+                    console.log("abbigliamento brand")
+                    return res.render('product_list',{mess,myres});
+                });
+            }
+        }
+        if(cat=="gioielli"){
+            if(subcat=="all"){
+                console.log("ciao");
+                mygioielli.find({'second_hand.usato':true},function(err,myres){
+                    if(err) return handleError(err);
+                    //contolli necessari sul risultato 
+                    var conta=myres.length;
+                    var mess;
+                    if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO BRAND",myres});
+                    console.log("abbigliamento usato")
+                    return res.render('product_list',{mess,myres});
+                });
+            }else{
+                mygioielli.find({'second_hand.usato':true,brand:subcat},function(err,myres){
+                    if(err) return handleError(err);
+                    //contolli necessari sul risultato 
+                    var conta=myres.length;
+                    var mess;
+                    if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO BRAND",myres});
+                    console.log("abbigliamento brand")
+                    return res.render('product_list',{mess,myres});
+                });
+            }
+        }
+        if(cat=="borse" || cat=="cintura" || cat=="occhiali"){
+            if(subcat=="all"){
+                myaccessori.find({'second_hand.usato':true,categoria:cat},function(err,myres){
+                    if(err) return handleError(err);
+                    //contolli necessari sul risultato 
+                    var conta=myres.length;
+                    var mess;
+                    if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO BRAND",myres});
+                    console.log("abbigliamento usato")
+                    return res.render('product_list',{mess,myres});
+                });
+            }else{
+                myaccessori.find({'second_hand.usato':true,brand:subcat},function(err,myres){
+                    if(err) return handleError(err);
+                    //contolli necessari sul risultato 
+                    var conta=myres.length;
+                    var mess;
+                    if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO BRAND",myres});
+                    console.log("abbigliamento brand")
+                    return res.render('product_list',{mess,myres});
+                });
+            }
         }
 
     });

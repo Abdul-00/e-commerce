@@ -7,9 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/product-list.css">
-
+    <script src="../javascript/Steky_anteprima.js"></script>
     <!--NAV BAR-->
     <link rel="stylesheet" href="../css/navbar.css">
+    <!--FOOETR-->
+    <link rel="stylesheet" href="../css/foter.css">
 
 </head>
 <body>
@@ -18,67 +20,64 @@
     <br>
     <main>
         <div></div>
-        <div>
+        <div id="side_menu" class="sticky">
             <ul>
-                <li class="list_element"><h3>Abbigliamento</h3>
-                    <ul class="ul_style">
-                        <li class="list_element"> T-shirt & Polo</li>
-                        <li class="list_element">Maglieria e Felpe</li>
-                        <li class="list_element">Jeans</li>
-                        <li class="list_element">Giacche</li>  
-                        <li class="list_element">Cappotti</li>  
-                        <li class="list_element">Completi</li>  
-                        <li class="list_element">Camicie</li>  
-                        <li class="list_element">Pantaloni</li>  
+                <li class="list_element"><h3 onclick="mymenu('abbigliamento')">Abbigliamento</h3>
+                    <ul class="ul_style" id="ul_abbigliamento">
+                        <li class="list_element"> <a href="/product-list/abbigliamento&tshirt_polo">T-shirt & Polo</a></li>
+                        <li class="list_element"><a href="/product-list/abbigliamento&maglieria">Maglieria e Felpe</a></li>
+                        <li class="list_element"><a href="/product-list/abbigliamento&jeans">Jeans</a></li>
+                        <li class="list_element"><a href="/product-list/abbigliamento&giacca">Giacche</a></li>  
+                        <li class="list_element"><a href="/product-list/abbigliamento&cappotto">Cappotti</a></li>  
+                        <li class="list_element"><a href="/product-list/abbigliamento&completo">Completi</a></li>  
+                        <li class="list_element"><a href="/product-list/abbigliamento&camicia">Camicie</a></li>  
+                        <li class="list_element"><a href="/product-list/abbigliamento&pantalone">Pantaloni</a></li>  
                     </ul>
                 </li>
-                <li class="list_element"><h3>Scarpe</h3></li>
-                <ul class="ul_style">
-                    <li class="list_element">Scarpe</li>
-                    <li class="list_element">Scarpe Eleganti</li>
-                    <li class="list_element">Mocassini</li>
-                    <li class="list_element">Stivali</li>  
+                <li class="list_element"><h3 onclick="mymenu('scarpe')">Scarpe</h3></li>
+                <ul class="ul_style" id="ul_scarpe">
+                    <li class="list_element"><a href="/product-list/scarpe&scarpe">Scarpe</a></li>
+                    <li class="list_element"><a href="/product-list/scarpe&scarpe_eleganti">Scarpe Eleganti</a></li>
+                    <li class="list_element"><a href="/product-list/scarpe&mocassini">Mocassini</a></li>
+                    <li class="list_element"><a href="/product-list/scarpe&stivali">Stivali</a></li>  
                 </ul>
-                <li class="list_element"><h3>Accessori</h3></li>
-                <ul class="ul_style">
-                    <li class="list_element">Borse</li>
-                    <li class="list_element">Cinture</li>
-                    <li class="list_element">Cravatte</li>
-                    <li class="list_element">Papillon</li>
-                    <li class="list_element">Sciarpe</li>
-                    <li class="list_element">Portafogli</li>
-                    <li class="list_element">Occhiali</li> 
+                <li class="list_element"><h3 onclick="mymenu('accessori')">Accessori</h3></li>
+                <ul class="ul_style" id="ul_accessori">
+                    <li class="list_element"><a href="/product-list/accessori&borsa">Borse</a></li>
+                    <li class="list_element"><a href="/product-list/accessori&cintura">Cinture</a></li>
+                    <li class="list_element"><a href="/product-list/accessori&cravatta">Cravatte</a></li>
+                    <li class="list_element"><a href="/product-list/accessori&papillon">Papillon</a></li>
+                    <li class="list_element"><a href="/product-list/accessori&sciarpa">Sciarpe</a></li>
+                    <li class="list_element"><a href="/product-list/accessori&portafoglio">Portafogli</a></li>
+                    <li class="list_element"><a href="/product-list/accessori&occhiali">Occhiali</a></li> 
                 </ul>
-                <li class="list_element"><h3>Gioelli</h3></li>
-                <ul class="ul_style">
-                    <li class="list_element">Collane</li>
-                    <li class="list_element">Bracciali</li>
-                    <li class="list_element">Anelli</li>
-                    <li class="list_element">Orecchini</li>
-                    <li class="list_element">Oro Giallo</li>
-                    <li class="list_element">Oro Bianco</li>
-                    <li class="list_element">Oro Rosa</li>
+                <li class="list_element"><h3 onclick="mymenu('gioielli')">Gioelli</h3></li>
+                <ul class="ul_style" id="ul_gioielli">
+                    <li class="list_element"><a href="/product-list/gioielli&collana">Collane</a></li>
+                    <li class="list_element"><a href="/product-list/gioielli&bracciale">Bracciali</a></li>
+                    <li class="list_element"><a href="/product-list/gioielli&anello">Anelli</a></li>
+                    <li class="list_element"><a href="/product-list/gioielli&orecchino">Orecchini</a></li>
                 </ul>
-                <li class="list_element"><h3>Orologi</h3></li>
-                <ul class="ul_style">
-                    <li class="list_element">Orologi Meccanici</li>
-                    <li class="list_element">Orologi Automatici</li>
-                    <li class="list_element">Orologi Vintage</li>
-                    <li class="list_element">Cronografo</li>
-                    <li class="list_element">Orologi Subacquei</li>
-                    <li class="list_element">Orologi da Aviatore</li>
-                    <li class="list_element">Orologi Militari</li>
-                    <li class="list_element">Orologi Nautici</li>
+                <li class="list_element"><h3 onclick="mymenu('orologi')">Orologi</h3></li>
+                <ul class="ul_style" id="ul_orologi">
+                    <li class="list_element"><a href="/product-list/orologi&meccanico"Orologi Meccanici</a></li>
+                    <li class="list_element"><a href="/product-list/orologi&automatico">Orologi Automatici</a></li>
+                    <li class="list_element"><a href="/product-list/orologi&vintage">Orologi Vintage</a></li>
+                    <li class="list_element"><a href="/product-list/orologi&cronografo">Cronografo</a></li>
+                    <li class="list_element"><a href="/product-list/orologi&subacqueo">Orologi Subacquei</a></li>
+                    <li class="list_element"><a href="/product-list/orologi&aviatore">Orologi da Aviatore</a></li>
+                    <li class="list_element"><a href="/product-list/orologi&militare">Orologi Militari</a></li>
+                    <li class="list_element"><a href="/product-list/orologi&nautico">Orologi Nautici</a></li>
                 </ul>
-                <li class="list_element"><h3>Second Hand</h3></li>
-                <ul class="ul_style">
-                    <li class="list_element">Orologi</li>
-                    <li class="list_element">Gioelli</li>
-                    <li class="list_element">Abbigliamento</li>
-                    <li class="list_element">Scarpe</li>
-                    <li class="list_element">Borse</li>
-                    <li class="list_element">Cinture</li>
-                    <li class="list_element">Occhiali</li>
+                <li class="list_element"><h3 onclick="mymenu('secondHand')">Second Hand</h3></li>
+                <ul class="ul_style" id="ul_secondHand">
+                    <li class="list_element"><a href="/second_hand/orologi&all">Orologi</a></li>
+                    <li class="list_element"><a href="/second_hand/gioielli&all">Gioelli</a></li>
+                    <li class="list_element"><a href="/second_hand/abbigliamento&all">Abbigliamento</a></li>
+                    <li class="list_element"><a href="/second_hand/scarpe&all">Scarpe</a></li>
+                    <li class="list_element"><a href="/second_hand/borse&all">Borse</a></li>
+                    <li class="list_element"><a href="/second_hand/cinture&all">Cinture</a></li>
+                    <li class="list_element"><a href="/second_hand/occhiali&all">Occhiali</a></li>
                 </ul>
             </ul>
         </div>
@@ -112,10 +111,15 @@
                                 <% if(value.modello){ %>
                                     <h4> <%= value.modello %> - <%= value.categoria %> - <%= value.dettagli.carica %></h4>
                                     <h4><%= value.prezzo %>$</h4>
+                                <% }else{ %>
+                                    <% if(value.nome_prodotto!="" & value.categoria!="anello" & value.categoria!="bracciale" & value.categoria!="collana" & value.categoria!="orecchino" ){ %>
+                                        <h4> <%= value.nome_prodotto %> - <%= value.categoria %> - <%= value.prodotti_disponibili[0].colore %></h4>
+                                        <h4><%= value.prodotti_disponibili[0].taglia.prezzo %>$</h4>
+                                    <% } %>
                                 <% } %>
-                                <% if(value.nome_prodotto){ %>
-                                    <h4> <%= value.nome_prodotto %> - <%= value.categoria %> - <%= value.prodotti_disponibili[0].colore %></h4>
-                                    <h4><%= value.prodotti_disponibili[0].taglia.prezzo %>$</h4>
+                                <% if(value.categoria=="anello" || value.categoria=="bracciale"|| value.categoria=="collana" || value.categoria=="orecchino"){ %>
+                                    <h4> <%= value.nome_prodotto %> - <%= value.categoria %> - <%= value.materiali_carati[0].materiale %></h4>
+                                    <h4><%= value.prezzo %>$</h4>
                                 <% } %>
 
                             </div>
@@ -128,5 +132,7 @@
         </div>
         <div></div>
     </main>
+    <br>
+    <%- include('../public/html/foter.html')%>
 </body>
 </html>

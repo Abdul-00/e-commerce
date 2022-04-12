@@ -11,9 +11,26 @@ main{
   color: black;
   font-size: 14pt;
 }
+
+
 .list_element{
   list-style: none;
 }
+
+.ul_style{
+  padding-left:20px;
+  display:none;
+}
+.ul_style li a{
+  text-decoration: none;
+  color: black;
+  transition: 0.5s;
+}
+
+.ul_style li a:hover{
+  border-bottom: solid 2px black;
+}
+
 .filter {
   display: grid;
   grid-template-columns: auto auto auto auto auto;
@@ -33,17 +50,18 @@ main{
 }
 
 .container {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  padding: 10px;
-  row-gap: 20px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
   }
- .prodotto {
+ 
+  .prodotto {
     box-sizing: border-box;
-    width: auto;
+    width: 45%;
     max-height: 600px;
     height: 600px;
     padding: 20px;
+    margin:10px;
 }
   .prodotto .image {
     width: 100%;
@@ -61,4 +79,5 @@ main{
     text-align: left;
     color: black;
   }
+  
   
