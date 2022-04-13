@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/lista_preferiti.css">
+    <!--NAV BAR-->
+    <link rel="stylesheet" href="../css/navbar.css">
+    <!--FOOETR-->
+    <link rel="stylesheet" href="../css/foter.css">
+</head>
+<body>
+    <%- include('../public/html/navbar.html') %>
+    <br>
+    <main>
+        <div><h1>Preferiti</h1></div>
+        <div class="main">
+            <div class="container">
+                <div class="prodotto">
+                    <div>
+                        <a href="#"><button id="bottone1"><img src="../img/img_login/rimuovi.png" alt="" style="width: auto; height: 20px;"></button></a>
+                    </div>
+                    <div class="image">
+                        <a href="#"><img src="../img/img_choose_product/abbigliamento.jpg"></a>
+                    </div>
+                    <div class="dettagli">
+                        <h2> Brand </h2>
+                        <h4> Nome prodotto - Categoria prodotto - Colore prodotto</h4>
+                        <div class="flex">
+                            <h4> Prezzo prodotto</h4>
+                            <a href="#"><button id="bottone2"><img src="../img/img_login/aggiungi.png" alt="" style="width: auto; height: 22px;"></button></a>
+                        </div>
+                    </div>
+                </div>
+                <!--Da duplicare-->
+
+                <div class="prodotto">
+                    <div class="image">
+                        <a href="#"><img src="#"></a>
+                    </div>
+                    <div class="dettagli">
+                        <h2> Brand </h2>
+                        <h4> Nome prodotto - Categoria prodotto - Colore prodotto</h4>
+                        <h4> Prezzo prodotto</h4>
+                    </div>
+                </div>
+                <div class="prodotto">
+                    <div class="image">
+                        <a href="#"><img src="#"></a>
+                    </div>
+                    <div class="dettagli">
+                        <h2> Brand </h2>
+                        <h4> Nome prodotto - Categoria prodotto - Colore prodotto</h4>
+                        <h4> Prezzo prodotto</h4>
+                    </div>
+                </div>
+                <div class="prodotto">
+                    <div class="image">
+                        <a href="#"><img src="#"></a>
+                    </div>
+                    <div class="dettagli">
+                        <h2> Brand </h2>
+                        <h4> Nome prodotto - Categoria prodotto - Colore prodotto</h4>
+                        <h4> Prezzo prodotto</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <br>
+    <%- include('../public/html/foter.html')%>
+</body>
+</html>

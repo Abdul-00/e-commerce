@@ -815,7 +815,7 @@ const { update, updateOne } = require('../models/user');
             dettagli:{
                 anno_produzione:data.anno_produzione,
                 carica:data.carica,
-                descrizione:data.descrizone,
+                descrizione:data.descrizione,
                 avvertenze:data.avvertenze
             },
             taglia_fit:{
@@ -1355,7 +1355,7 @@ const { update, updateOne } = require('../models/user');
      * input-->richiesta per vizualizzare prodotti usati + categoria o marca
      * output--> reindirizzamento alle pagine/root--> /product-list + oggetto contenete i prodotti a seconda della categoria/sottocategoria o brand 
     */
-    router.get('/second_hand/:category&:subcategory',isAuth,async(req,res)=>{
+    router.get('/second_hand/:category&:subcategory',async(req,res)=>{
         const cat=req.params.category;
         const subcat=req.params.subcategory;
 
@@ -1507,6 +1507,129 @@ const { update, updateOne } = require('../models/user');
             }
         }
 
+    });
+
+/**Root per la pagina singola
+ * input-->richiesta per vizualizzare prodotto + id prodotto
+ * output--> reindirizzamento alle pagine/root--> prodotto.ejs + con informazioni relative al prodotto richiesto
+*/
+    router.get('/prodotto/:category&:id',(req,res)=>{
+        var cat=req.params.category;
+        var id=req.params.id;
+        var collection;
+        console.log(cat);
+        if(cat=="tshirt_polo" || cat=="camicia" || cat=="maglieria" || cat=="completo" || cat=="giacca" || cat=="cappotto" || cat=="jeans" || cat=="pantalone"){
+            myabbigliamento.findById(id,function(err,myres){
+                if(err) throw handleError(err);
+                collection="abbigliamento";
+                res.render('prodotto',{myres,collection});
+            });
+        }
+        if(cat=="borsa" || cat=="cintura" || cat=="cravatta" || cat=="papillion" || cat=="sciarpa" || cat=="portafoglio" || cat=="occhiali"){
+            myaccessori.findById(id,function(err,myres){
+                if(err) throw handleError(err);
+                collection="accessori";
+                res.render('prodotto',{myres,collection});
+            });
+        }
+        if(cat=="anello" || cat=="bracciale" || cat=="collana" || cat=="orecchino"){
+            mygioielli.findById(id,function(err,myres){
+                if(err) throw handleError(err);
+                collection="gioielli";
+                res.render('prodotto',{myres,collection});
+            });
+        }
+        if(cat=="cronografo" || cat=="automatico" || cat=="aviatore" || cat=="meccanico" || cat=="militare" || cat=="nautico" || cat=="vintage" || cat=="subacqueo" || cat=="svizzero"){
+            myorologi.findById(id,function(err,myres){
+                if(err) throw handleError(err);
+                collection="orologi";
+                res.render('prodotto',{myres,collection});
+            });
+        }
+        if(cat=="scarpe" || cat=="scarpe_eleganti" || cat=="stivali" || cat=="mocassini"){
+            myscarpe.findById(id,function(err,myres){
+                if(err) throw handleError(err);
+                collection="scarpe";
+                res.render('prodotto',{myres,collection});
+            });
+        }
+    });
+
+    /**Aggiungi carrello*/
+        router.get('/addCarrello/:id',isAuth,async(req,res)=>{
+            var user=req.session.result;
+            var id_prodotto=req.params.id;
+            await myuser.findByIdAndUpdate(user._id,{$push:{
+                carrello:{prodotto:id_prodotto}
+            }});
+            res.redirect('/carrello');
+        });
+    /**Rimuovi carrello*/
+    router.get('/rimuoviCarrello/:id',isAuth,async(req,res)=>{
+        var user=req.session.result;
+        var id_prodotto=req.params.id;
+        myuser.updateOne({ _id: user._id }, { "$pull": { "carrello": { "prodotto": id_prodotto } }}, { safe: true, multi:true }, function(err, obj) {
+            if(err)return handleError(err);
+            return res.redirect('/carrello');
+        });
+        
+    });
+    /**Aggiungi preferiti*/
+
+    /**Rimuovi preferiti*/
+        router.get('/addPreferiti/:id',isAuth,async(req,res)=>{
+            var user=req.session.result;
+            var id_prodotto=req.params.id;
+            myuser.find({preferiti:{prodotto:id_prodotto}},async(err,flag)=>{
+                if(err) throw err;
+                console.log(flag.length);
+                if(flag.length>0){
+                    res.redirect('/lista_preferiti');
+                }else{
+                    await myuser.findByIdAndUpdate(user._id,{$push:{
+                        preferiti:{prodotto:id_prodotto}
+                    }});
+                    console.log("aggiunto");
+                    res.redirect('/lista_preferiti');
+                }
+            });
+        });
+
+/**ROOT CARRELLO */
+    router.get('/carrello',isAuth,async(req,res)=>{
+        var user=req.session.result;
+        var db_user=await myuser.findById(user._id);
+        var len=db_user.carrello.length;
+        var ilMioCarrello=[];
+        
+        db_user.carrello.forEach(async function(value,key){
+            ilMioCarrello.push(await myabbigliamento.findById(value.prodotto));
+            ilMioCarrello.push(await myscarpe.findById(value.prodotto));
+            ilMioCarrello.push(await myaccessori.findById(value.prodotto));
+            ilMioCarrello.push(await mygioielli.findById(value.prodotto));
+            ilMioCarrello.push(await myorologi.findById(value.prodotto));
+            if(key==len-1){
+                return res.render('carrello',{ilMioCarrello,len});
+            }
+        });
+    });
+
+/**ROOT LISTA PREFERITI */
+    router.get('/lista_preferiti',isAuth,async(req,res)=>{
+        var user=req.session.result;
+        var db_user=await myuser.findById(user._id);
+        var len=db_user.preferiti.length;
+        var mieipreferiti=[];
+        db_user.preferiti.forEach(async function(value,key){
+            mieipreferiti.push(await myabbigliamento.findById(value.prodotto));
+            mieipreferiti.push(await myscarpe.findById(value.prodotto));
+            mieipreferiti.push(await myaccessori.findById(value.prodotto));
+            mieipreferiti.push(await mygioielli.findById(value.prodotto));
+            mieipreferiti.push(await myorologi.findById(value.prodotto));
+            if(key==len-1){
+                return res.render('lista_preferiti',{mieipreferiti});
+            }
+        });
     });
 
 module.exports=router;

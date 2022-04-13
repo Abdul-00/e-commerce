@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/prodotto.css">
+
+    <!--NAV BAR-->
+    <link rel="stylesheet" href="../css/navbar.css">
+    <!--FOOETR-->
+    <link rel="stylesheet" href="../css/foter.css">
+</head>
+<body>
+    <%- include('../public/html/navbar.html') %>
+    <br>
+    <main>
+        <section id="section1">
+            <div class="container">
+                <div class="prodotto">
+                    <div class="image">
+                        <img src="../upload/<%= myres.foto[0].url %>">
+                    </div>
+                </div>
+                <div class="prodotto">
+                    <div class="image">
+                        <img src="../upload/<%= myres.foto[1].url %>">
+                    </div>
+                </div>
+                <div class="prodotto">
+                    <div class="image">
+                        <img src="../upload/<%= myres.foto[2].url %>">
+                    </div>
+                </div>
+                <div class="prodotto">
+                    <div class="image">
+                        <img src="../upload/<%= myres.foto[3].url %>">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <% if(collection=="orologi"){ %>
+            <section id="section2">
+                <div class="div_lato_destro">
+                    <h2><%= myres.brand %></h2>
+                    <h3><span><%= myres.modello %></span> - <%= myres.categoria %></h3>
+                    
+                    
+                    <h4><%= myres.prezzo %> € <span>Iva inclusa</span></h4>
+                    <p>Tipologia: <span><%= myres.tipologia %></span></p>
+
+                    <select name="taglia" id="taglia">
+                        <option value="null">Seleziona una taglia</option>
+                        <option value="one_size">One-Size</option>
+                    </select>
+
+                    
+                    <div class="flex">
+                        <a href="/addCarrello/<%= myres._id %>" id="button_carrello"> <p>Aggiungi al carrello</p> </a>
+                        <a href="/addPreferiti/<%= myres._id %>" id="button_preferiti"><img src="../img/img_navbar/preferiti.png" alt="" style="width: auto; height: 40px;"></a>
+                    </div>
+                    <div class="dettagli">
+                        <section class="section_dettagli">
+                            <div><img src="../img/img_prodotto/camion.png" alt="" style="width: auto; height: 30px;"></div>
+                            <div><p>Consegna standard:</p></div>
+                            <div class="flex_dettagli">
+                                <p>1-4 giorni lavorativi</p>
+                                <p>Gratis</p>
+                            </div>
+                        </section>
+
+                        <section class="section_dettagli">
+                            <div class="flex_dettagli2">
+                                <img src="../img/img_prodotto/scatola.png" alt="" style="width: auto; height: 30px;">
+                                <p>Spedizione e reso gratuiti</p>
+                            </div>
+                        </section>
+
+                        <section class="section_dettagli">
+                            <div class="flex_dettagli2">
+                                <img src="../img/img_prodotto/ritorno.png" alt="" style="width: auto; height: 30px;">
+                                <p>100 giorni per restituire il tuo ordine</p>
+                            </div>
+                        </section>
+
+                        <section class="section_dettagli">
+                            <div class="section_dettagli_prodotto">
+                                <h3>Dettagli del prodotto :</h3>
+                                <div>
+                                    <p><span>Anno di produzione : </span> <%= myres.dettagli.anno_produzione %></p>
+                                    <p><span>Carica : </span> <%= myres.dettagli.carica%> </p>
+                                    <p><span>descrizione : </span> S<%= myres.dettagli.descrizione %></p>
+                                    <% if(myres.dettagli.avvertenze==""){ %>
+                                        <p><span>avvertenze : </span> nessuna </p>
+                                    <% }else{%>
+                                        <p><span>avvertenze : </span> <%= myres.dettagli.avvertenze %></p>
+                                    <% } %>
+                                    <% if(myres.second_hand.usato==true){ %>
+                                        <p><span>Usato : </span> Si </p>
+                                        <p><span>Condizioni : </span> <%= myres.second_hand.condizione %> </p>
+                                    <% }%>
+
+                                </div>
+                            </div>
+                        </section>
+                        <section class="section_dettagli" style="border: none;">
+                            <div class="section_dettagli_prodotto">
+                                <h3>Taglia e fit :</h3>
+                                <div>
+                                    <p><span>Diametro : </span> <%= myres.taglia_fit.mm_diametro %> mm</p>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </section>
+        <% } %>
+
+        <% if(collection=="gioielli"){ %>
+            <section id="section2">
+                <div class="div_lato_destro">
+                    <h2><%= myres.brand %></h2>
+                    <h3><span><%= myres.nome_prodotto %></span> - <%= myres.categoria %></h3>
+                    
+                    
+                    <h4><%= myres.prezzo %> € <span>Iva inclusa</span></h4>
+                    <% myres.materiali_carati.forEach(function(value,key){ %>
+                        <p>Materiale: <span><%= value.materiale %></span></p>
+                        <p>Carati: <span><%= value.carati %></span></p>
+                    <% }) %>
+                    <select name="taglia" id="taglia">
+                        <option value="null">Seleziona una taglia</option>
+                        <option value="one_size">One-Size</option>
+                    </select>
+
+                    
+                    <div class="flex">
+                        <a href="/addCarrello/<%= myres._id %>" id="button_carrello"> <p>Aggiungi al carrello</p> </a>
+                        <a href="/addPreferiti/<%= myres._id %>" id="button_preferiti"><img src="../img/img_navbar/preferiti.png" alt="" style="width: auto; height: 40px;"></a>
+                    </div>
+                    <div class="dettagli">
+                        <section class="section_dettagli">
+                            <div><img src="../img/img_prodotto/camion.png" alt="" style="width: auto; height: 30px;"></div>
+                            <div><p>Consegna standard:</p></div>
+                            <div class="flex_dettagli">
+                                <p>1-4 giorni lavorativi</p>
+                                <p>Gratis</p>
+                            </div>
+                        </section>
+
+                        <section class="section_dettagli">
+                            <div class="flex_dettagli2">
+                                <img src="../img/img_prodotto/scatola.png" alt="" style="width: auto; height: 30px;">
+                                <p>Spedizione e reso gratuiti</p>
+                            </div>
+                        </section>
+
+                        <section class="section_dettagli">
+                            <div class="flex_dettagli2">
+                                <img src="../img/img_prodotto/ritorno.png" alt="" style="width: auto; height: 30px;">
+                                <p>100 giorni per restituire il tuo ordine</p>
+                            </div>
+                        </section>
+
+                        <section class="section_dettagli">
+                            <div class="section_dettagli_prodotto">
+                                <h3>Dettagli del prodotto :</h3>
+                                <div>
+                                    <p><span>Anno produzione : </span> <%= myres.dettagli.anno_produzione %> </p>
+                                    <% if(myres.dettagli.provenienza==""){ %>
+                                        <p><span>Provenienza : </span> Nuovo </p>
+                                    <% }else{%>
+                                        <p><span>Provenienza : </span> <%= myres.dettagli.provenienza %></p>
+                                    <% } %>
+                                    <p><span>descrizione : </span> <%= myres.dettagli.descrizione%></p>
+                                    <% if(myres.dettagli.avvertenze==""){ %>
+                                        <p><span>avvertenze : </span> nessuna </p>
+                                    <% }else{%>
+                                        <p><span>avvertenze : </span> <%= myres.dettagli.avvertenze %></p>
+                                    <% } %>
+                                    <% if(myres.second_hand.usato==true){ %>
+                                        <p><span>Usato : </span> Si </p>
+                                        <p><span>Condizioni : </span> <%= myres.second_hand.condizione %> </p>
+                                    <% }%>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="section_dettagli" style="border: none;">
+                            <div class="section_dettagli_prodotto">
+                                <h3>Taglia e fit :</h3>
+                                <div>
+                                    <p><span>Diametro : </span> <%= myres.taglia_fit.mm_diametro%> mm</p>
+                                    <p><span>Spessore : </span> <%= myres.taglia_fit.mm_spessore%> mm</p>
+                                    <p><span>Lunghezza : </span> <%= myres.taglia_fit.cm_lunghezza%> mm</p>
+                                    <p><span>pendente : </span> <%= myres.taglia_fit.pendente%> </p>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </section>
+        <% } %>
+
+        <% if(collection=="abbigliamento" || collection=="scarpe" || collection=="accessori"){ %>
+            <section id="section2">
+                <div class="div_lato_destro">
+                    <h2><%= myres.brand %></h2>
+                    <h3><span><%= myres.nome_prodotto %></span> - <%= myres.categoria %></h3>
+                    
+                    
+                    <h4><%= myres.prodotti_disponibili[0].taglia.prezzo %> € <span>Iva inclusa</span></h4>
+                    
+                    <select name="colore" id="taglia">
+                        <option value="null"><%= myres.prodotti_disponibili[0].colore%></option>
+                        <option value="nero">Nero /Tendente al nero</option>
+                        <option value="grigio">Grigio /Tendente al grigio</option>
+                        <option value="bianco">Bianco /Tendente al bianco</option>
+                        <option value="blu">Blu /Tendente al blu</option>
+                        <option value="marrone">Marrone /Tendente al marrone</option>
+                        <option value="rosso">Rosso-Bordeaou /Tendente al rosso-bordeaou</option>
+                        <option value="vedre">Vedre /Tendente al verde</option>
+                        <option value="giallo">Giallo /Tendente al giallo</option>
+                        <option value="arancione">Marrone /Tendente all'arancio</option>
+                    </select>
+                    
+                    <select name="taglia" id="taglia">
+                        <option value="null">Seleziona una taglia</option>
+                        <option value="one_size">One-Size</option>
+                    </select>
+
+                    
+                    <div class="flex">
+                        <a href="/addCarrello/<%= myres._id %>" id="button_carrello"> <p>Aggiungi al carrello</p> </a>
+                        <a href="/addPreferiti/<%= myres._id %>" id="button_preferiti"><img src="../img/img_navbar/preferiti.png" alt="" style="width: auto; height: 40px;"></a>
+                    </div>
+                    <div class="dettagli">
+                        <section class="section_dettagli">
+                            <div><img src="../img/img_prodotto/camion.png" alt="" style="width: auto; height: 30px;"></div>
+                            <div><p>Consegna standard:</p></div>
+                            <div class="flex_dettagli">
+                                <p>1-4 giorni lavorativi</p>
+                                <p>Gratis</p>
+                            </div>
+                        </section>
+
+                        <section class="section_dettagli">
+                            <div class="flex_dettagli2">
+                                <img src="../img/img_prodotto/scatola.png" alt="" style="width: auto; height: 30px;">
+                                <p>Spedizione e reso gratuiti</p>
+                            </div>
+                        </section>
+
+                        <section class="section_dettagli">
+                            <div class="flex_dettagli2">
+                                <img src="../img/img_prodotto/ritorno.png" alt="" style="width: auto; height: 30px;">
+                                <p>100 giorni per restituire il tuo ordine</p>
+                            </div>
+                        </section>
+
+                        <% if(collection=="abbigliamento"){%>
+                            <section class="section_dettagli">
+                                <div class="section_dettagli_prodotto">
+                                    <h3>Dettagli del prodotto :</h3>
+                                    <div>
+                                        <p><span>Composizione : </span> <%= myres.dettagli.composizione %> </p>
+                                        <p><span>Descrizione : </span> <%= myres.dettagli.descrizione %> </p>
+                                        <% if(myres.dettagli.avvertenze==""){ %>
+                                            <p><span>avvertenze : </span> nessuna </p>
+                                        <% }else{%>
+                                            <p><span>avvertenze : </span> <%= myres.dettagli.avvertenze %></p>
+                                        <% } %>
+                                        <% if(myres.second_hand.usato==true){ %>
+                                            <p><span>Usato : </span> Si </p>
+                                            <p><span>Condizioni : </span> <%= myres.second_hand.condizione %> </p>
+                                        <% }%>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="section_dettagli" style="border: none;">
+                                <div class="section_dettagli_prodotto">
+                                    <h3>Taglia e fit :</h3>
+                                    <div>
+                                        <p><span>Vestibilità : </span> <%= myres.taglia_fit.Vestibilità%> </p>
+                                        <p><span>Lunghezza manica : </span> <%= myres.taglia_fit.cm_manica %> cm</p>
+                                        <p><span>Lunghezza Schienale : </span> <%= myres.taglia_fit.cm_schienale %> cm</p>
+                                        <p><span>lunghezza gamba interna : </span> <%= myres.taglia_fit.cm_gamba_interna %> cm</p>
+                                        <p><span>lunghezza gamba esterna : </span> <%= myres.taglia_fit.cm_gamba_esterna%> cm</p>
+                                    </div>
+                                </div>
+                            </section>
+                        <% } %>
+                        <% if(collection=="scarpe"){%>
+                            <section class="section_dettagli">
+                                <div class="section_dettagli_prodotto">
+                                    <h3>Dettagli del prodotto :</h3>
+                                    <div>
+                                        <p><span>Composizione : </span> <%= myres.dettagli.composizione %> </p>
+                                        <p><span>Materiale esterno : </span> <%= myres.dettagli.materiale_superiore %> </p>
+                                        <p><span>Rivestimento : </span> <%= myres.dettagli.materiale_rivestimento %> </p>
+                                        <p><span>Solette : </span> <%= myres.dettagli.materiale_solette %> </p>
+                                        <p><span>Suola : </span> <%= myres.dettagli.materiale_Suola %> </p>
+                                        <p><span>Fodera : </span> <%= myres.dettagli.materiale_fodera %> </p>
+                                        <p><span>Punta : </span> <%= myres.dettagli.tipo_punta %> </p>
+                                        <p><span>Chiusura : </span> <%= myres.dettagli.tipo_chiusura %> </p>
+                                        <p><span>Tacco : </span> <%= myres.dettagli.tacco %> </p>
+                                        <p><span>Descrizione : </span> <%= myres.dettagli.descrizione %> </p>
+                                        <% if(myres.dettagli.avvertenze==""){ %>
+                                            <p><span>avvertenze : </span> nessuna </p>
+                                        <% }else{%>
+                                            <p><span>avvertenze : </span> <%= myres.dettagli.avvertenze %></p>
+                                        <% } %>
+                                        <% if(myres.second_hand.usato==true){ %>
+                                            <p><span>Usato : </span> Si </p>
+                                            <p><span>Condizioni : </span> <%= myres.second_hand.condizione %> </p>
+                                        <% }%>
+                                    </div>
+                                </div>
+                            </section>
+                        <% } %>
+                        <% if(collection=="accessori"){%>
+                            <section class="section_dettagli">
+                                <div class="section_dettagli_prodotto">
+                                    <h3>Dettagli del prodotto :</h3>
+                                    <div>
+                                        <p><span>Materiale esterno : </span> <%= myres.dettagli.materiale_esterno %> </p>
+                                        <p><span>Fodera : </span> <%= myres.dettagli.materiale_fodera %> </p>
+                                        <p><span>Chiusura : </span> <%= myres.dettagli.tipologia_chiusura %> </p>
+                                        <p><span>Forma occhiali : </span> <%= myres.dettagli.Forma_occhiale%> </p>
+                                        <p><span>Colore Lenti : </span> <%= myres.dettagli.colore_lenti %> </p>
+                                        <p><span>Tipo Astine : </span> <%= myres.dettagli.tipo_astine %> </p>
+                                        <p><span>Protezione uv : </span> <%= myres.dettagli.protezione_uv %> </p>
+                                        <p><span>Composizione : </span> <%= myres.dettagli.composizione %> </p>
+                                        <p><span>Descrizione : </span> <%= myres.dettagli.descrizione %> </p>
+                                        <% if(myres.dettagli.avvertenze==""){ %>
+                                            <p><span>avvertenze : </span> nessuna </p>
+                                        <% }else{%>
+                                            <p><span>avvertenze : </span> <%= myres.dettagli.avvertenze %></p>
+                                        <% } %>
+                                        <% if(myres.second_hand.usato==true){ %>
+                                            <p><span>Usato : </span> Si </p>
+                                            <p><span>Condizioni : </span> <%= myres.second_hand.condizione %> </p>
+                                        <% }%>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="section_dettagli" style="border: none;">
+                                <div class="section_dettagli_prodotto">
+                                    <h3>Taglia e fit :</h3>
+                                    <div>
+                                        <p><span>Altezza : </span> <%= myres.taglia_fit.cm_altezza %> cm</p>
+                                        <p><span>Lunghezza : </span> <%= myres.taglia_fit.cm_lunghezza %> cm</p>
+                                    </div>
+                                </div>
+                            </section>
+                        <% } %>
+                    </div>
+                </div>
+            </section>
+        <% } %>
+
+    </main>
+    <br>
+    <%- include('../public/html/foter.html')%>
+</body>
+</html>

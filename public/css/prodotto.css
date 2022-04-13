@@ -135,20 +135,28 @@ main{
     width: 100%;
 }
 #button_carrello{
-    color: white;
+    text-decoration: none;
     background-color: black;
     width: 85%;
     margin-right: 3%;
     height: 50px;
-    font-size: 14pt;
-    font-weight: 600;
     cursor: pointer;
+}
+#button_carrello p{
+    text-align: center;
+    color: white;
+    font-size: 12pt;
+    font-weight: 600;
 }
 #button_preferiti{
     background-color: white;
     width: 12%;
     height: 50px;
     cursor: pointer;
+    border: black solid 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .dettagli{

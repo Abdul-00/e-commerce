@@ -34,6 +34,8 @@ var user = new Schema({
         scadenza:{type:Date,required:true},
         cvv:{type:String,max:3,min:3}
     }],
+    carrello:[{prodotto:{type:Schema.Types.ObjectId}}],
+    preferiti:[{prodotto:{type:Schema.Types.ObjectId}}],
     iban:{type:String,min:27,max:27},
 });
 
