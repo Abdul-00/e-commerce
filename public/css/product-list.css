@@ -7,28 +7,26 @@ main{
   display: grid;
   grid-template-columns:5% 20% 65% 5%;
 }
-.list_element h3{
-  color: black;
-  font-size: 14pt;
-}
-
 
 .list_element{
   list-style: none;
+  color: black;
+  font-size: 14pt;
+  font-weight: 600;
+  margin-bottom: 15px;
 }
 
 .ul_style{
-  padding-left:20px;
+  padding-left: 20px;
   display:none;
 }
 .ul_style li a{
   text-decoration: none;
   color: black;
-  transition: 0.5s;
 }
 
 .ul_style li a:hover{
-  border-bottom: solid 2px black;
+  border-bottom: solid 1px black;
 }
 
 .filter {
@@ -58,26 +56,40 @@ main{
   .prodotto {
     box-sizing: border-box;
     width: 30%;
-    max-height: 600px;
-    height: 600px;
-    padding: 20px;
-    margin:10px;
+    height: auto;
+    margin-right: 3%;
+    margin-bottom: 55px;
 }
   .prodotto .image {
     width: 100%;
-    height: 73%;
+    
     overflow: hidden;
   }
   .prodotto .image img {
     width: 100%;
+    height: 100%;
     transition: .5s;
   }
   .prodotto:hover .image img {
-    transform: translateY(-4%);
+    transform: translateY(-2%);
   }
   .prodotto .dettagli{
     text-align: left;
     color: black;
+    min-height: 120px;
+    height: 120px;
+    max-height: 120px;
   }
   
-  
+#side_menu{
+  cursor: pointer;
+  padding-right: 30px;
+}  
+.list_element_top{
+  list-style: none;
+  color: slategray;
+  font-size: 14pt;
+}
+.list_element_top h3:hover{
+  border-bottom: 2px solid slategray;
+}
