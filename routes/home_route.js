@@ -106,13 +106,11 @@ const { update, updateOne } = require('../models/user');
         //query se esite gia un utente con la mail inserita o codicefiscale
         myuser.findOne({ $or:[{'email':result.email[0]},{'codicefiscale':result.codice_fiscale}] },async function (err, myres) {
                 if (err) return handleError(err);
-                console.log(myres);
                 if (myres) {
                     req.flash('infoError'," Errore di compilazione");
                     res.redirect('/register');
                     return;
                 }
-                console.log("okay");
                 req.flash('infoSubmit','Registrazione Completata');
                 res.redirect('/register');
                 //hash the password
@@ -409,19 +407,24 @@ const { update, updateOne } = require('../models/user');
                 req.flash('infoSubmit',null);
                 return res.redirect('/uploadType/abbigliamento');
             }
-            if(data.colore_1=="null" || data.colore_2=="null" || data.colore_3=="null" || data.colore_4=="null"){
-                req.flash('infoError','!Errore di Compilazione "Nella sezione Colore Immagine"!');
-                req.flash('infoSubmit',null);
-                return res.redirect('/uploadType/abbigliamento');
-            }
+            
 
         }
         //CONTROLLI SUL PREZZO . AL POSTO DELLA ,
-        var prezzo=data.prezzo.replace(',','.');
+        const search = ',';
+        const replacer = new RegExp(search, 'g');
+
+        var prezzo=data.prezzo.replace(replacer,'.');
         console.log(prezzo);
         //brand in minuscolo
+        const search_b = ' ';
+        const replacer_b = new RegExp(search_b, 'g');
+        const search_and = '&';
+        const replacer_and = new RegExp(search_and, 'g');
+
         var brand=data.brand.toLowerCase();
-        brand=brand.replace(' ','_');
+        brand=brand.replace(replacer_b,'_');
+        brand=brand.replace(replacer_and,'_');
         console.log(brand);
         
         //save imagine
@@ -443,17 +446,15 @@ const { update, updateOne } = require('../models/user');
                 brand:brand,
                 second_hand:{usato:data.usato,condizione:data.condizione},
                 foto:[{
-                    colore:data.colore_1,
                     url: user._id+req.files.immagine1.name,
                 },{
-                    colore:data.colore_2,
                     url:user._id+req.files.immagine2.name,
                 },{
-                    colore:data.colore_3,
                     url:user._id+req.files.immagine3.name,
                 },{
-                    colore:data.colore_4,
                     url:user._id+req.files.immagine4.name,
+                },{
+                    url:user._id+req.files.immagine5.name,
                 }],
                 prodotti_disponibili:[{
                     colore:data.colore_superiore,
@@ -486,17 +487,15 @@ const { update, updateOne } = require('../models/user');
                 brand:brand,
                 second_hand:{usato:data.usato,condizione:data.condizione},
                 foto:[{
-                    colore:data.colore_1,
-                    url:user._id+req.files.immagine1.name,
+                    url: user._id+req.files.immagine1.name,
                 },{
-                    colore:data.colore_2,
                     url:user._id+req.files.immagine2.name,
                 },{
-                    colore:data.colore_3,
                     url:user._id+req.files.immagine3.name,
                 },{
-                    colore:data.colore_4,
                     url:user._id+req.files.immagine4.name,
+                },{
+                    url:user._id+req.files.immagine5.name,
                 }],
                 prodotti_disponibili:[{
                     colore:data.colore_inferiore,
@@ -530,17 +529,15 @@ const { update, updateOne } = require('../models/user');
                 brand:brand,
                 second_hand:{usato:data.usato,condizione:data.condizione},
                 foto:[{
-                    colore:data.colore_1,
-                    url:user._id+req.files.immagine1.name,
+                    url: user._id+req.files.immagine1.name,
                 },{
-                    colore:data.colore_2,
                     url:user._id+req.files.immagine2.name,
                 },{
-                    colore:data.colore_3,
                     url:user._id+req.files.immagine3.name,
                 },{
-                    colore:data.colore_4,
                     url:user._id+req.files.immagine4.name,
+                },{
+                    url:user._id+req.files.immagine5.name,
                 }],
                 prodotti_disponibili:[{
                     colore:data.colore,
@@ -633,19 +630,23 @@ const { update, updateOne } = require('../models/user');
                 req.flash('infoSubmit',null);
                 return res.redirect('/uploadType/scarpe');
             }
-            if(data.colore_1=="null" || data.colore_2=="null" || data.colore_3=="null" || data.colore_4=="null"){
-                req.flash('infoError','!Errore di Compilazione "Nella sezione Colore Immagine"!');
-                req.flash('infoSubmit',null);
-                return res.redirect('/uploadType/scarpe');
-            }
         }
         
         //CONTROLLI SUL PREZZO . AL POSTO DELLA ,
-        var prezzo=data.prezzo.replace(',','.');
+        const search = ',';
+        const replacer = new RegExp(search, 'g');
+
+        var prezzo=data.prezzo.replace(replacer,'.');
         console.log(prezzo);
         //brand in minuscolo
+        const search_b = ' ';
+        const replacer_b = new RegExp(search_b, 'g');
+        const search_and = '&';
+        const replacer_and = new RegExp(search_and, 'g');
+
         var brand=data.brand.toLowerCase();
-        brand=brand.replace(' ','_');
+        brand=brand.replace(replacer_b,'_');
+        brand=brand.replace(replacer_and,'_');
         console.log(brand);
 
        //save imagine
@@ -724,17 +725,15 @@ const { update, updateOne } = require('../models/user');
             brand:brand,
             second_hand:{usato:data.usato,condizione:data.condizione},
             foto:[{
-                colore:data.colore_1,
-                url:user._id+req.files.immagine1.name
+                url: user._id+req.files.immagine1.name,
             },{
-                colore:data.colore_2,
-                url:user._id+req.files.immagine2.name
+                url:user._id+req.files.immagine2.name,
             },{
-                colore:data.colore_3,
-                url:user._id+req.files.immagine3.name
+                url:user._id+req.files.immagine3.name,
             },{
-                colore:data.colore_4,
-                url:user._id+req.files.immagine4.name
+                url:user._id+req.files.immagine4.name,
+            },{
+                url:user._id+req.files.immagine5.name,
             }],
             prodotti_disponibili:[{
                 colore:data.colore,
@@ -779,11 +778,20 @@ const { update, updateOne } = require('../models/user');
         }
         req.flash('infoSubmit','Inserimento Completato');
         //CONTROLLI SUL PREZZO . AL POSTO DELLA ,
-        var prezzo=data.prezzo.replace(',','.');
+        const search = ',';
+        const replacer = new RegExp(search, 'g');
+
+        var prezzo=data.prezzo.replace(replacer,'.');
         console.log(prezzo);
         //brand in minuscolo
-        var brand=data.marca.toLowerCase();
-        brand=brand.replace(' ','_');
+        const search_b = ' ';
+        const replacer_b = new RegExp(search_b, 'g');
+        const search_and = '&';
+        const replacer_and = new RegExp(search_and, 'g');
+
+        var brand=data.brand.toLowerCase();
+        brand=brand.replace(replacer_b,'_');
+        brand=brand.replace(replacer_and,'_');
         console.log(brand);
        
         //save imagine
@@ -804,12 +812,17 @@ const { update, updateOne } = require('../models/user');
             brand:brand,
             corredo:data.corredo,
             second_hand:{usato:data.usato,condizione:data.condizione},
-            foto:[
-                {url:user._id+req.files.immagine1.name},
-                {url:user._id+req.files.immagine1.name},
-                {url:user._id+req.files.immagine1.name},
-                {url:user._id+req.files.immagine1.name}
-            ],
+            foto:[{
+                url: user._id+req.files.immagine1.name,
+            },{
+                url:user._id+req.files.immagine2.name,
+            },{
+                url:user._id+req.files.immagine3.name,
+            },{
+                url:user._id+req.files.immagine4.name,
+            },{
+                url:user._id+req.files.immagine5.name,
+            }],
             quantita:data.quantita,
             prezzo:prezzo,
             dettagli:{
@@ -935,11 +948,20 @@ const { update, updateOne } = require('../models/user');
         }
         req.flash('infoSubmit','Inserimento Completato');
         //CONTROLLI SUL PREZZO . AL POSTO DELLA ,
-        var prezzo=data.prezzo.replace(',','.');
+        const search = ',';
+        const replacer = new RegExp(search, 'g');
+
+        var prezzo=data.prezzo.replace(replacer,'.');
         console.log(prezzo);
         //brand in minuscolo
-        var brand=data.marca.toLowerCase();
-        brand=brand.replace(' ','_');
+        const search_b = ' ';
+        const replacer_b = new RegExp(search_b, 'g');
+        const search_and = '&';
+        const replacer_and = new RegExp(search_and, 'g');
+
+        var brand=data.brand.toLowerCase();
+        brand=brand.replace(replacer_b,'_');
+        brand=brand.replace(replacer_and,'_');
         console.log(brand);
         
         //save imagine
@@ -959,11 +981,17 @@ const { update, updateOne } = require('../models/user');
             brand:brand,
             second_hand:{usato:data.usato,condizione:data.condizione},
             materiali_carati:materiali_carati,
-            foto:[
-                {url:user._id+req.files.immagine1.name},
-                {url:user._id+req.files.immagine1.name},
-                {url:user._id+req.files.immagine1.name},
-                {url:user._id+req.files.immagine1.name}],
+            foto:[{
+                url: user._id+req.files.immagine1.name,
+            },{
+                url:user._id+req.files.immagine2.name,
+            },{
+                url:user._id+req.files.immagine3.name,
+            },{
+                url:user._id+req.files.immagine4.name,
+            },{
+                url:user._id+req.files.immagine5.name,
+            }],
             quantita:data.quantita,
             prezzo:prezzo,
             dettagli:{
@@ -1105,21 +1133,24 @@ const { update, updateOne } = require('../models/user');
                 req.flash('infoSubmit',null);
                 return res.redirect('/uploadType/gioielli');
             }
-            if(data.colore_1=="null" || data.colore_2=="null" || data.colore_3=="null" || data.colore_4=="null"){
-                req.flash('infoError','!Errore di Compilazione "Nella sezione Colore Immagine"!');
-                req.flash('infoSubmit',null);
-                return res.redirect('/uploadType/gioielli');
-            }
-
             
         }
         req.flash('infoSubmit','Inserimento Completato');
         //CONTROLLI SUL PREZZO . AL POSTO DELLA ,
-        var prezzo=data.prezzo.replace(',','.');
+        const search = ',';
+        const replacer = new RegExp(search, 'g');
+
+        var prezzo=data.prezzo.replace(replacer,'.');
         console.log(prezzo);
         //brand in minuscolo
-        var brand=data.marca.toLowerCase();
-        brand=brand.replace(' ','_');
+        const search_b = ' ';
+        const replacer_b = new RegExp(search_b, 'g');
+        const search_and = '&';
+        const replacer_and = new RegExp(search_and, 'g');
+
+        var brand=data.brand.toLowerCase();
+        brand=brand.replace(replacer_b,'_');
+        brand=brand.replace(replacer_and,'_');
         console.log(brand);
         
         //save imagine
@@ -1139,17 +1170,15 @@ const { update, updateOne } = require('../models/user');
             brand:brand,
             second_hand:{usato:data.usato,condizione:data.condizione},
             foto:[{
-                colore:data.colore_1,
-                url:user._id+req.files.immagine1.name
+                url: user._id+req.files.immagine1.name,
             },{
-                colore:data.colore_2,
-                url:user._id+req.files.immagine2.name
+                url:user._id+req.files.immagine2.name,
             },{
-                colore:data.colore_3,
-                url:user._id+req.files.immagine3.name
+                url:user._id+req.files.immagine3.name,
             },{
-                colore:data.colore_4,
-                url:user._id+req.files.immagine4.name
+                url:user._id+req.files.immagine4.name,
+            },{
+                url:user._id+req.files.immagine5.name,
             }],
             prodotti_disponibili:[{
                 colore:data.colore,

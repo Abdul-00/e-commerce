@@ -10,7 +10,6 @@ var accessori=new Schema({
     brand:{type:String,required:true},
     second_hand:{usato:{type:Boolean,required:true},condizione:{type:String,required:true}},
     foto:[{
-        colore:{type:String,required:true},
         url:{type:String}
     }],
     prodotti_disponibili:[{
