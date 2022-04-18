@@ -18,6 +18,10 @@ main{
     padding-left: 5px;
     padding-right: 5px;
 }
+.first_image{
+    width: 100%;
+    height: auto;
+}
 .container {
     display: grid;
     grid-template-columns: auto auto;
