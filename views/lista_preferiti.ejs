@@ -17,54 +17,70 @@
         <div><h1>Preferiti</h1></div>
         <div class="main">
             <div class="container">
-                <div class="prodotto">
-                    <div>
-                        <a href="#"><button id="bottone1"><img src="../img/img_login/rimuovi.png" alt="" style="width: auto; height: 20px;"></button></a>
-                    </div>
-                    <div class="image">
-                        <a href="#"><img src="../img/img_choose_product/abbigliamento.jpg"></a>
-                    </div>
-                    <div class="dettagli">
-                        <h2> Brand </h2>
-                        <h4> Nome prodotto - Categoria prodotto - Colore prodotto</h4>
-                        <div class="flex">
-                            <h4> Prezzo prodotto</h4>
-                            <a href="#"><button id="bottone2"><img src="../img/img_login/aggiungi.png" alt="" style="width: auto; height: 22px;"></button></a>
-                        </div>
-                    </div>
-                </div>
-                <!--Da duplicare-->
-
-                <div class="prodotto">
-                    <div class="image">
-                        <a href="#"><img src="#"></a>
-                    </div>
-                    <div class="dettagli">
-                        <h2> Brand </h2>
-                        <h4> Nome prodotto - Categoria prodotto - Colore prodotto</h4>
-                        <h4> Prezzo prodotto</h4>
-                    </div>
-                </div>
-                <div class="prodotto">
-                    <div class="image">
-                        <a href="#"><img src="#"></a>
-                    </div>
-                    <div class="dettagli">
-                        <h2> Brand </h2>
-                        <h4> Nome prodotto - Categoria prodotto - Colore prodotto</h4>
-                        <h4> Prezzo prodotto</h4>
-                    </div>
-                </div>
-                <div class="prodotto">
-                    <div class="image">
-                        <a href="#"><img src="#"></a>
-                    </div>
-                    <div class="dettagli">
-                        <h2> Brand </h2>
-                        <h4> Nome prodotto - Categoria prodotto - Colore prodotto</h4>
-                        <h4> Prezzo prodotto</h4>
-                    </div>
-                </div>
+                <% if(mess){ %>
+                    <div class="prodotto" >
+                        <h2><%= mess %></h2>
+                    </div>    
+                <% }else{ %>
+                    <% mieipreferiti.forEach(function(value,key){  %>
+                        <% if(value!=null){ %>
+                            <% if(value.categoria=="cronografo" || value.categoria=="automatico" || value.categoria=="aviatore" || value.categoria=="meccanico" || value.categoria=="militare" || value.categoria=="nautico" || value.categoria=="vintage" || value.categoria=="subacqueo" || value.categoria=="svizzero"){ %>
+                                <div class="prodotto">
+                                    <div>
+                                        <a href="/removePreferiti/<%= value._id %>"><button id="bottone1"><img src="../img/img_login/rimuovi.png" alt="" style="width: auto; height: 20px;"></button></a>
+                                    </div>
+                                    <div class="image">
+                                        <a href="/prodotto/<%= value.categoria %>&<%= value._id %>"><img src="../upload/<%= value.foto[0].url %>"></a>
+                                    </div>
+                                    <div class="dettagli">
+                                        <h2> <%= value.brand %> </h2>
+                                        <h4> <%= value.modello %> - <%= value.categoria %> - <%= value.tipologia %> </h4>
+                                        <div class="flex">
+                                            <h4> <%= value.prezzo %>€</h4>
+                                            <a href="/addCarrello/<%= value._id %>"><button id="bottone2"><img src="../img/img_login/aggiungi.png" alt="" style="width: auto; height: 22px;"></button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% }else{ %>
+                                <% if(value.categoria=="anello" || value.categoria=="bracciale" || value.categoria=="collana" || value.categoria=="orecchino"){ %>
+                                    <div class="prodotto">
+                                        <div>
+                                            <a href="/removePreferiti/<%= value._id %>"><button id="bottone1"><img src="../img/img_login/rimuovi.png" alt="" style="width: auto; height: 20px;"></button></a>
+                                        </div>
+                                        <div class="image">
+                                            <a href="/prodotto/<%= value.categoria %>&<%= value._id %>"><img src="../upload/<%= value.foto[0].url %>"></a>
+                                        </div>
+                                        <div class="dettagli">
+                                            <h2> <%= value.brand %> </h2>
+                                            <h4> <%= value.nome_prodotto %> - <%= value.categoria %> - <%= value.materiali_carati[0].materiale %> </h4>
+                                            <div class="flex">
+                                                <h4> <%= value.prezzo %>€</h4>
+                                                <a href="/addCarrello/<%= value._id %>"><button id="bottone2"><img src="../img/img_login/aggiungi.png" alt="" style="width: auto; height: 22px;"></button></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% }else{ %>
+                                    <div class="prodotto">
+                                        <div>
+                                            <a href="/removePreferiti/<%= value._id %>"><button id="bottone1"><img src="../img/img_login/rimuovi.png" alt="" style="width: auto; height: 20px;"></button></a>
+                                        </div>
+                                        <div class="image">
+                                            <a href="/prodotto/<%= value.categoria %>&<%= value._id %>"><img src="../upload/<%= value.foto[0].url %>"></a>
+                                        </div>
+                                        <div class="dettagli">
+                                            <h2> <%= value.brand %> </h2>
+                                            <h4> <%= value.nome_prodotto %> - <%= value.categoria %> - <%= value.prodotti_disponibili[0].colore %> </h4>
+                                            <div class="flex">
+                                                <h4> <%= value.prodotti_disponibili[0].taglia.prezzo %>€</h4>
+                                                <a href="/addCarrello/<%= value._id %>"><button id="bottone2"><img src="../img/img_login/aggiungi.png" alt="" style="width: auto; height: 22px;"></button></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% } %>
+                            <% } %>
+                        <% } %>
+                    <% }) %>
+                <% } %>
             </div>
         </div>
     </main>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/lista_acquisti_vendite.css">
+
+    <!--NAV BAR-->
+    <link rel="stylesheet" href="../css/navbar.css">
+    <!--FOOETR-->
+    <link rel="stylesheet" href="../css/foter.css">
+</head>
+<body>
+    <%- include('../public/html/navbar.html') %>
+    <br>
+    <main>
+        <section id="indice">
+            <h1>I miei acquisti</h1>
+        </section>
+        <div class="main_flex">
+            <section id="section1">
+                <div id="nav_bar">
+                    <div class="nav_container">
+                        <div class="div_img">
+                            <img src="../img/img_navbar/user.png" alt="Profilo">
+                        </div>
+                        <center>
+                            <a href="/profilo">Il mio profilo</a>
+                        </center>
+                    </div>
+                    <div class="nav_container">
+                        <div class="div_img">
+                            <img src="../img/img_footer/pagamenti.png" alt="Ordini">
+                        </div>
+                        <center>
+                            <a href="/lista_acquisti">I miei ordini</a>
+                        </center>
+                    </div>
+                    <div class="nav_container">
+                        <div class="div_img">
+                            <img src="../img/img_navbar/carrello.png" alt="Vendite">
+                        </div>
+                        <center>
+                            <a href="/lista_vendite">Le mie vendite</a>
+                        </center>
+                    </div>
+                    <div class="nav_container">
+                        <div class="div_img">
+                            <img src="../img/img_login/cestino_1.png" alt="Elimina account">
+                        </div>
+                        <center>
+                            <a href="/eliminaProfilo">Elimina account</a>
+                        </center>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section2">
+                <h1>Ordini</h1>
+                <div class="section_flex">
+                    <select name="filtro_data" id="filtro_data">
+                        <option value="sei_mesi">Ultimi 6 mesi</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                        <option value="2018">2018</option>
+                    </select>
+                    <a href="#"><button>Restituisci un articolo</button></a>
+                </div>
+                <% if(mess){ %>
+                    <div class="main">
+                        <h2><%= mess %></h2>
+                    </div>
+                <% }else{ %>
+                    <div class="main">
+                        <h2>Mese e anno</h2>
+                        <hr>
+                        <% myres.aquisti.forEach(function(value,key){ %>
+                            <h3>Numero dell'ordine : <%= value._id %></h3>
+                            <div class="flex">
+                                <div>
+                                    <b>Data dell'ordine</b>
+                                    <p><%= value.data.toISOString().split('T')[0] %></p>
+                                </div>
+                                <div>
+                                    <b>Totale</b>
+                                    <p><%= value.importo_pagato %> <span>euro</span></p>
+                                </div>
+                                <div>
+                                    <b>Metodo di pagamento</b>
+                                    <p>Mastercard</p>
+                                </div>
+                                <div>
+                                    <b>Consegnato entro</b>
+                                    <p>6 giorni</p>
+                                </div>
+                            </div>
+                            <div class="carosello">
+                                <% mieiAquisti.forEach(function(value2,key2){ %>
+                                    <% if(value2){ %>
+                                        <% value.articoli.forEach(function(value3,key3){ %>
+                                            <% if(value3.equals(value2._id)){ %>
+                                                <% if(value2.categoria=="cronografo" || value2.categoria=="automatico" || value2.categoria=="aviatore" || value2.categoria=="meccanico" || value2.categoria=="militare" || value2.categoria=="nautico" || value2.categoria=="vintage" || value2.categoria=="subacqueo" || value2.categoria=="svizzero"){ %>
+                                                    <div class="prodotti">
+                                                        <a href="">
+                                                            <div class="image">
+                                                                <img src="../upload/<%= value2.foto[0].url %>" alt="">
+                                                            </div>
+                                                        </a>
+                                                        <h2> <%= value2.brand %> - <%= value2.categoria %></h2>
+                                                        <p><%= value2.prezzo %> <span>euro</span></p>
+                                                    </div>
+                                                <% }else{ %>
+                                                    <% if(value2.categoria=="anello" || value2.categoria=="bracciale" || value2.categoria=="collana" || value2.categoria=="orecchino"){ %>
+                                                        <div class="prodotti">
+                                                            <a href="">
+                                                                <div class="image">
+                                                                    <img src="../upload/<%= value2.foto[0].url %>" alt="">
+                                                                </div>
+                                                            </a>
+                                                            <h2> <%= value2.brand %> - <%= value2.categoria %></h2>
+                                                            <p><%= value2.prezzo %> <span>euro</span></p>
+                                                        </div>
+                                                    <% }else{ %>
+                                                        <div class="prodotti">
+                                                            <a href="">
+                                                                <div class="image">
+                                                                    <img src="../upload/<%= value2.foto[0].url %>" alt="">
+                                                                </div>
+                                                            </a>
+                                                            <h2> <%= value2.brand %> - <%= value2.categoria %></h2>
+                                                            <p><%= value2.prodotti_disponibili[0].taglia.prezzo %> <span>euro</span></p>
+                                                        </div>
+                                                    <% } %>
+                                                <% } %>
+                                            <% } %>
+                                        <% }) %>
+                                        
+                                    <% } %>
+                                <% }) %>
+                            </div>
+                        <% }) %>
+                    </div>
+                <% } %>
+            
+            </section>
+
+        </div>
+    </main>
+    <br><br>
+    <%- include('../public/html/foter.html')%>
+</body>
+</html>

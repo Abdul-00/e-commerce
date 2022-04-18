@@ -1180,7 +1180,7 @@ const { update, updateOne } = require('../models/user');
         //Abbigliamento , sotto categorie e Brand
         if(req.params.category=="abbigliamento"){
             if(req.params.subcategory=="all"){
-                myabbigliamento.find({},function(err,myres){
+                myabbigliamento.find({'second_hand.usato':false},function(err,myres){
                     if(err) return handleError(err);
                     //contolli necessari sul risultato 
                     var conta=myres.length;
@@ -1192,7 +1192,7 @@ const { update, updateOne } = require('../models/user');
                 });
             }
             if(subcat=="tshirt_polo" || subcat=="maglieria" || subcat=="jeans" || subcat=="giacca" || subcat=="cappotto" || subcat=="completo" || subcat=="camicia" || subcat=="pantalone"){
-                myabbigliamento.find({categoria:subcat},function(err,myres){
+                myabbigliamento.find({categoria:subcat,'second_hand.usato':false},function(err,myres){
                     if(err) return handleError(err);
                     //contolli necessari sul risultato 
                     var conta=myres.length;
@@ -1203,7 +1203,7 @@ const { update, updateOne } = require('../models/user');
                 });
             }
             if(subcat=="prada" || subcat=="dolce_gabbana" || subcat=="louis_vuitton" || subcat=="salvatore_ferragamo" || subcat=="bulgari" || subcat=="gucci" || subcat=="fendi" || subcat=="versace" || subcat=="Burberry"){
-                myabbigliamento.find({brand:subcat},function(err,myres){
+                myabbigliamento.find({brand:subcat,'second_hand.usato':false},function(err,myres){
                     if(err) return handleError(err);
                     //contolli necessari sul risultato 
                     var conta=myres.length;
@@ -1219,7 +1219,7 @@ const { update, updateOne } = require('../models/user');
         if(req.params.category=="scarpe"){
             
             if(req.params.subcategory=="all"){
-                myscarpe.find({},function(err,myres){
+                myscarpe.find({'second_hand.usato':false},function(err,myres){
                     if(err) return handleError(err);
                     //contolli necessari sul risultato 
                     var conta=myres.length;
@@ -1229,7 +1229,7 @@ const { update, updateOne } = require('../models/user');
                 });
             }
             if(subcat=="scarpe" || subcat=="scarpe_eleganti" || subcat=="mocassini" ||subcat=="stivali"){
-                myscarpe.find({categoria:subcat},function(err,myres){
+                myscarpe.find({categoria:subcat,'second_hand.usato':false},function(err,myres){
                     if(err) return handleError(err);
                     //contolli necessari sul risultato 
                     var conta=myres.length;
@@ -1239,7 +1239,7 @@ const { update, updateOne } = require('../models/user');
                 });
             }
             if(subcat=="prada" || subcat=="dolce_gabbana" || subcat=="louis_vuitton" || subcat=="salvatore_ferragamo" || subcat=="bulgari" || subcat=="gucci" || subcat=="versace"){
-                myscarpe.find({brand:subcat},function(err,myres){
+                myscarpe.find({brand:subcat,'second_hand.usato':false},function(err,myres){
                     if(err) return handleError(err);
                     //contolli necessari sul risultato 
                     var conta=myres.length;
@@ -1253,7 +1253,7 @@ const { update, updateOne } = require('../models/user');
         if(req.params.category=="orologi"){
             
             if(req.params.subcategory=="all"){
-                myorologi.find({},function(err,myres){
+                myorologi.find({'second_hand.usato':false},function(err,myres){
                     if(err) return handleError(err);
                     //contolli necessari sul risultato 
                     var conta=myres.length;
@@ -1263,7 +1263,7 @@ const { update, updateOne } = require('../models/user');
                 });
             }
             if(subcat=="meccanico" || subcat=="automatico" || subcat=="vintage" || subcat=="cronografo" || subcat=="subacqueo" || subcat=="aviatore" || subcat=="militare" || subcat=="nautico"){
-                myorologi.find({categoria:subcat},function(err,myres){
+                myorologi.find({categoria:subcat,'second_hand.usato':false},function(err,myres){
                     if(err) return handleError(err);
                     //contolli necessari sul risultato 
                     var conta=myres.length;
@@ -1273,7 +1273,7 @@ const { update, updateOne } = require('../models/user');
                 });
             }
             if(subcat=="rolex" || subcat=="audemar_piguet" || subcat=="cartier" || subcat=="patek_philippe" || subcat=="bulgari" || subcat=="richard_mille" || subcat=="panerai"){
-                myorologi.find({brand:subcat},function(err,myres){
+                myorologi.find({brand:subcat,'second_hand.usato':false},function(err,myres){
                     if(err) return handleError(err);
                     //contolli necessari sul risultato 
                     var conta=myres.length;
@@ -1286,7 +1286,7 @@ const { update, updateOne } = require('../models/user');
         if(req.params.category=="accessori"){
             
             if(req.params.subcategory=="all"){
-                myaccessori.find({},function(err,myres){
+                myaccessori.find({'second_hand.usato':false},function(err,myres){
                     if(err) return handleError(err);
                     //contolli necessari sul risultato 
                     var conta=myres.length;
@@ -1296,7 +1296,7 @@ const { update, updateOne } = require('../models/user');
                 });
             }
             if(subcat=="borsa" || subcat=="cintura" || subcat=="cravatta" || subcat=="papillon" || subcat=="sciarpa" || subcat=="portafoglio" || subcat=="occhiali"){
-                myaccessori.find({categoria:subcat},function(err,myres){
+                myaccessori.find({categoria:subcat,'second_hand.usato':false},function(err,myres){
                     if(err) return handleError(err);
                     //contolli necessari sul risultato 
                     var conta=myres.length;
@@ -1306,7 +1306,7 @@ const { update, updateOne } = require('../models/user');
                 });
             }
             if(subcat=="prada" || subcat=="dolce_gabbana" || subcat=="louise_vuitton" || subcat=="salvatore_ferragamo" || subcat=="bulgari" || subcat=="versace" || subcat=="gucci" || subcat=="fendi"){
-                myaccessori.find({brand:subcat},function(err,myres){
+                myaccessori.find({brand:subcat,'second_hand.usato':false},function(err,myres){
                     if(err) return handleError(err);
                     //contolli necessari sul risultato 
                     var conta=myres.length;
@@ -1320,7 +1320,7 @@ const { update, updateOne } = require('../models/user');
         if(req.params.category=="gioielli"){
             
             if(req.params.subcategory=="all"){
-                mygioielli.find({},function(err,myres){
+                mygioielli.find({'second_hand.usato':false},function(err,myres){
                     if(err) return handleError(err);
                     //contolli necessari sul risultato 
                     var conta=myres.length;
@@ -1330,7 +1330,7 @@ const { update, updateOne } = require('../models/user');
                 });
             }
             if(subcat=="anello" || subcat=="bracciale" || subcat=="collana" || subcat=="orecchino"){
-                mygioielli.find({categoria:subcat},function(err,myres){
+                mygioielli.find({categoria:subcat,'second_hand.usato':false},function(err,myres){
                     if(err) return handleError(err);
                     //contolli necessari sul risultato 
                     var conta=myres.length;
@@ -1340,7 +1340,7 @@ const { update, updateOne } = require('../models/user');
                 });
             }
             if(subcat=="cartier" || subcat=="chopard" || subcat=="tiffany_co" || subcat=="bulgari" || subcat=="chanel" || subcat=="gucci" || subcat=="bucellati"){
-                mygioielli.find({brand:subcat},function(err,myres){
+                mygioielli.find({brand:subcat,'second_hand.usato':false},function(err,myres){
                     if(err) return handleError(err);
                     //contolli necessari sul risultato 
                     var conta=myres.length;
@@ -1358,32 +1358,20 @@ const { update, updateOne } = require('../models/user');
     router.get('/second_hand/:category&:subcategory',async(req,res)=>{
         const cat=req.params.category;
         const subcat=req.params.subcategory;
-
+        
         /*if(cat=="all"){
-            var myres;
-            myabbigliamento.find({'second_hand.usato':true},async function(err,resprodotto){
-                if(err) throw handleError(err);
-                myres= await myres+resprodotto;
-            });
-            myscarpe.find({'second_hand.usato':true},async function(err,resprodotto){
-                if(err) throw handleError(err);
-                myres= await  myres+resprodotto;
-            });
-            mygioielli.find({'second_hand.usato':true},async function(err,resprodotto){
-                if(err) throw handleError(err);
-                myres=await myres+resprodotto;
-            });
-            myorologi.find({'second_hand.usato':true},async function(err,resprodotto){
-                if(err) throw handleError(err);
-                myres= await myres+resprodotto;
-            });
-            myaccessori.find({'second_hand.usato':true},async function(err,resprodotto){
-                if(err) throw handleError(err);
-                myres=await myres+resprodotto;
-            });
+            var myres=[];
+
+            myres.push(await myabbigliamento.find({'second_hand.usato':true}));
+            myres.push(await myscarpe.find({'second_hand.usato':true}));
+            myres.push(await myorologi.find({'second_hand.usato':true}));
+            myres.push(await mygioielli.find({'second_hand.usato':true}));
+            myres.push(await myaccessori.find({'second_hand.usato':true}));
             console.log(myres);
+            var conta=myres.length;
             var mess;
-            if(myres=="") return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTA CATEGORIA",myres});
+            if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO CATEGORIA",myres});
+            console.log("tutto usato");
             return res.render('product_list',{mess,myres});
         }*/
 
@@ -1391,7 +1379,7 @@ const { update, updateOne } = require('../models/user');
             if(subcat=="all"){
                 myabbigliamento.find({'second_hand.usato':true},function(err,myres){
                     if(err) return handleError(err);
-                    //contolli necessari sul risultato 
+                    //contolli necessari sul risultato
                     var conta=myres.length;
                     var mess;
                     if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO BRAND",myres});
@@ -1559,28 +1547,36 @@ const { update, updateOne } = require('../models/user');
         router.get('/addCarrello/:id',isAuth,async(req,res)=>{
             var user=req.session.result;
             var id_prodotto=req.params.id;
-            await myuser.findByIdAndUpdate(user._id,{$push:{
-                carrello:{prodotto:id_prodotto}
-            }});
-            res.redirect('/carrello');
+            myuser.find({'carrello.prodotto':id_prodotto},async(err,flag)=>{
+                if(err) throw err;
+                if(flag.length>0){
+                    res.redirect('/carrello');
+                }else{
+                    await myuser.findByIdAndUpdate(user._id,{$push:{
+                        carrello:{prodotto:id_prodotto}
+                    }});
+                    res.redirect('/carrello');
+                }
+            });
         });
-    /**Rimuovi carrello*/
-    router.get('/rimuoviCarrello/:id',isAuth,async(req,res)=>{
-        var user=req.session.result;
-        var id_prodotto=req.params.id;
-        myuser.updateOne({ _id: user._id }, { "$pull": { "carrello": { "prodotto": id_prodotto } }}, { safe: true, multi:true }, function(err, obj) {
-            if(err)return handleError(err);
-            return res.redirect('/carrello');
-        });
-        
-    });
-    /**Aggiungi preferiti*/
 
-    /**Rimuovi preferiti*/
+    /**Rimuovi carrello*/
+        router.get('/rimuoviCarrello/:id',isAuth,async(req,res)=>{
+            var user=req.session.result;
+            var id_prodotto=req.params.id;
+            myuser.updateOne({ _id: user._id }, { "$pull": { "carrello": { "prodotto": id_prodotto } }}, { safe: true, multi:true }, function(err, obj) {
+                if(err)return handleError(err);
+                return res.redirect('/carrello');
+            });
+            
+        });
+
+    /**Aggiungi preferiti*/
         router.get('/addPreferiti/:id',isAuth,async(req,res)=>{
             var user=req.session.result;
             var id_prodotto=req.params.id;
-            myuser.find({preferiti:{prodotto:id_prodotto}},async(err,flag)=>{
+            console.log(id_prodotto);
+            myuser.find({'preferiti.prodotto':id_prodotto},async(err,flag)=>{
                 if(err) throw err;
                 console.log(flag.length);
                 if(flag.length>0){
@@ -1594,6 +1590,17 @@ const { update, updateOne } = require('../models/user');
                 }
             });
         });
+        
+    /**Rimuovi preferiti*/
+    router.get('/removePreferiti/:id',isAuth,(req,res)=>{
+        var user=req.session.result;
+        var id_prodotto=req.params.id;
+        myuser.updateOne({ _id: user._id }, { "$pull": { "preferiti": { "prodotto": id_prodotto } }}, { safe: true, multi:true }, function(err, obj) {
+            if(err)return handleError(err);
+            return res.redirect('/lista_preferiti');
+        });
+    });
+        
 
 /**ROOT CARRELLO */
     router.get('/carrello',isAuth,async(req,res)=>{
@@ -1601,17 +1608,23 @@ const { update, updateOne } = require('../models/user');
         var db_user=await myuser.findById(user._id);
         var len=db_user.carrello.length;
         var ilMioCarrello=[];
-        
-        db_user.carrello.forEach(async function(value,key){
-            ilMioCarrello.push(await myabbigliamento.findById(value.prodotto));
-            ilMioCarrello.push(await myscarpe.findById(value.prodotto));
-            ilMioCarrello.push(await myaccessori.findById(value.prodotto));
-            ilMioCarrello.push(await mygioielli.findById(value.prodotto));
-            ilMioCarrello.push(await myorologi.findById(value.prodotto));
-            if(key==len-1){
-                return res.render('carrello',{ilMioCarrello,len});
-            }
-        });
+        //qui sarebbero necessarie le query composte (come su sql la congiunzione)
+        //ho barato un po perchè su mongodb non sono intuitive per niente
+        //questo metodo pero puo dare problemi relativi al tempo
+        if(len<=0){
+            return res.render('carrello',{ilMioCarrello,len,mess:"non ci sono prodotti nel carrello"});
+        }else{
+            db_user.carrello.forEach(async function(value,key){
+                ilMioCarrello.push(await myabbigliamento.findById(value.prodotto));
+                ilMioCarrello.push(await myscarpe.findById(value.prodotto));
+                ilMioCarrello.push(await myaccessori.findById(value.prodotto));
+                ilMioCarrello.push(await mygioielli.findById(value.prodotto));
+                ilMioCarrello.push(await myorologi.findById(value.prodotto));
+                if(key==len-1){
+                    return res.render('carrello',{ilMioCarrello,len,mess:null});
+                }
+            });
+        }
     });
 
 /**ROOT LISTA PREFERITI */
@@ -1620,15 +1633,137 @@ const { update, updateOne } = require('../models/user');
         var db_user=await myuser.findById(user._id);
         var len=db_user.preferiti.length;
         var mieipreferiti=[];
-        db_user.preferiti.forEach(async function(value,key){
-            mieipreferiti.push(await myabbigliamento.findById(value.prodotto));
-            mieipreferiti.push(await myscarpe.findById(value.prodotto));
-            mieipreferiti.push(await myaccessori.findById(value.prodotto));
-            mieipreferiti.push(await mygioielli.findById(value.prodotto));
-            mieipreferiti.push(await myorologi.findById(value.prodotto));
-            if(key==len-1){
-                return res.render('lista_preferiti',{mieipreferiti});
+        if(len<=0){
+            return res.render('lista_preferiti',{mieipreferiti,mess:"non ci sono preferiti"});
+        }else{
+            db_user.preferiti.forEach(async function(value,key){
+                mieipreferiti.push(await myabbigliamento.findById(value.prodotto));
+                mieipreferiti.push(await myscarpe.findById(value.prodotto));
+                mieipreferiti.push(await myaccessori.findById(value.prodotto));
+                mieipreferiti.push(await mygioielli.findById(value.prodotto));
+                mieipreferiti.push(await myorologi.findById(value.prodotto));
+                if(key==len-1){                    
+                    return res.render('lista_preferiti',{mieipreferiti,mess:null});
+                }
+            });
+        }
+    });
+
+
+/**Root per effettuare un'acquisto */
+    router.get('/aquisti/:totale',isAuth,async(req,res)=>{
+        var user=req.session.result;
+        var totale=req.params.totale;
+        var articoli=[];
+        var comprati=[];
+        myuser.findById(user._id,async(err,db_user)=>{
+            if(err) throw handleError(err);
+            if(db_user.carrello.length<=0){
+                return res.redirect('/lista_acquisti');
+            }else{
+                var len=db_user.carrello.length;
+                db_user.carrello.forEach(async function(value,key){
+                    articoli.push(value.prodotto);
+                    //vado a cercare l'utente he ha caricato i prodotti per segnalare la vendita
+                    comprati.push(await myabbigliamento.findById(value.prodotto,('_id utente')));
+                    comprati.push(await myscarpe.findById(value.prodotto,('_id utente')));
+                    comprati.push(await myorologi.findById(value.prodotto,('_id utente')));
+                    comprati.push(await mygioielli.findById(value.prodotto,('_id utente')));
+                    comprati.push(await myaccessori.findById(value.prodotto,('_id utente')));
+                    console.log("nel carrello-->",comprati);
+                    if(key==len-1){
+                        comprati.forEach(async function(value,key){
+                            console.log("nelle vendite-->",value);
+                            if(value!=null){
+                                await myuser.findByIdAndUpdate(value.utente,{$push:{
+                                    vendite:{
+                                        prodotto:value._id
+                                    }
+                                }});
+                            }
+                        });
+                    }
+
+                });
+                
+                //aggiungo gli articoli alla lista dei acquisti
+                await myuser.findByIdAndUpdate(user._id,{$push:{
+                    aquisti:{
+                        articoli:articoli,
+                        importo_pagato:totale
+                    }
+                }});
+                //elimino gli articoli dal carrello
+                var len=db_user.carrello.length;
+                db_user.carrello.forEach(function(value,key){
+                    myuser.updateOne({ _id: user._id }, { "$pull": { "carrello": { "prodotto": value.prodotto} }}, { safe: true, multi:true }, function(err, obj) {
+                        if(err)return handleError(err);
+                    });
+                    if(key==len-1){
+                        return res.redirect('/lista_acquisti');
+                    }
+                });
+                
             }
+        });
+
+    });
+
+/**Roote per vizualizzare la lista dei propri acquisti */
+    router.get('/lista_acquisti',isAuth,(req,res)=>{
+        var user=req.session.result;
+        var len,len2;
+        var mieiAquisti=[];
+        myuser.findById(user._id,(err,myres)=>{
+            if(err) throw handleError(err);
+
+            if(myres.aquisti.length<=0){
+                return res.render('lista_acquisti',{myres,mieiAquisti,mess:"non hai ancora comprato niente"});
+            }else{
+                len=myres.aquisti.length;
+                myres.aquisti.forEach(async function(value,key){
+                    len2=value.articoli.length;
+                    value.articoli.forEach(async function(value,key2){
+                        mieiAquisti.push(await myabbigliamento.findById(value._id));
+                        mieiAquisti.push(await myscarpe.findById(value._id));
+                        mieiAquisti.push(await myaccessori.findById(value._id));
+                        mieiAquisti.push(await mygioielli.findById(value._id));
+                        mieiAquisti.push(await myorologi.findById(value._id));
+                        if(key==len-1 & key2==len2-1){
+                            return res.render('lista_acquisti',{myres,mieiAquisti,mess:null});
+                        }
+                    });
+                });
+            }
+        });
+    });
+
+/**Roote per la lista dei prodotto  venduti */
+    router.get('/lista_vendite',isAuth,(req,res)=>{
+        var user=req.session.result;
+        var prodotti=[];
+        var len;
+        myuser.findById(user._id,(err,myres)=>{
+            if(err) throw handleError(err);
+            len=myres.vendite.length;
+            if(len<=0){
+                return res.render('lista_vendite',{myres,mess:"non ha ancora venduto nessun prodotto"});
+            }else{
+                myres.vendite.forEach(async function(value,key){
+                    prodotti.push(await myabbigliamento.findById(value.prodotto));
+                    prodotti.push(await myscarpe.findById(value.prodotto));
+                    prodotti.push(await myorologi.findById(value.prodotto));
+                    prodotti.push(await mygioielli.findById(value.prodotto));
+                    prodotti.push(await myaccessori.findById(value.prodotto));
+
+                    if(key==len-1){
+                        console.log(prodotti);
+                        return res.render('lista_vendite',{prodotti,mess:null});
+                    }
+                    
+                });
+            }
+
         });
     });
 

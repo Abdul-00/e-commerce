@@ -101,30 +101,30 @@
                      </div>
                 <% } else{ %>
                     <% myres.forEach(function(value,key){ %>
-                    
-                        <div class="prodotto">
-                            <div class="image">
-                                <a href="/prodotto/<%= value.categoria %>&<%= value._id %>"><img src="../upload/<%= value.foto[0].url %>"></a>
-                            </div>
-                            <div class="dettagli">
-                                <h2> <%= value.brand %> </h2>
-                                <% if(value.modello){ %>
-                                    <h4> <%= value.modello %> - <%= value.categoria %> - <%= value.dettagli.carica %></h4>
-                                    <h4><%= value.prezzo %>$</h4>
-                                <% }else{ %>
-                                    <% if(value.nome_prodotto!="" & value.categoria!="anello" & value.categoria!="bracciale" & value.categoria!="collana" & value.categoria!="orecchino" ){ %>
-                                        <h4> <%= value.nome_prodotto %> - <%= value.categoria %> - <%= value.prodotti_disponibili[0].colore %></h4>
-                                        <h4><%= value.prodotti_disponibili[0].taglia.prezzo %>$</h4>
+                        <% if(value){ %>
+                            <div class="prodotto">
+                                <div class="image">
+                                    <a href="/prodotto/<%= value.categoria %>&<%= value._id %>"><img src="../upload/<%= value.foto[0].url %>"></a>
+                                </div>
+                                <div class="dettagli">
+                                    <h2> <%= value.brand %> </h2>
+                                    <% if(value.modello){ %>
+                                        <h4> <%= value.modello %> - <%= value.categoria %> - <%= value.dettagli.carica %></h4>
+                                        <h4><%= value.prezzo %>$</h4>
+                                    <% }else{ %>
+                                        <% if(value.nome_prodotto!="" & value.categoria!="anello" & value.categoria!="bracciale" & value.categoria!="collana" & value.categoria!="orecchino" ){ %>
+                                            <h4> <%= value.nome_prodotto %> - <%= value.categoria %> - <%= value.prodotti_disponibili[0].colore %></h4>
+                                            <h4><%= value.prodotti_disponibili[0].taglia.prezzo %>$</h4>
+                                        <% } %>
                                     <% } %>
-                                <% } %>
-                                <% if(value.categoria=="anello" || value.categoria=="bracciale"|| value.categoria=="collana" || value.categoria=="orecchino"){ %>
-                                    <h4> <%= value.nome_prodotto %> - <%= value.categoria %> - <%= value.materiali_carati[0].materiale %></h4>
-                                    <h4><%= value.prezzo %>  €</h4>
-                                <% } %>
+                                    <% if(value.categoria=="anello" || value.categoria=="bracciale"|| value.categoria=="collana" || value.categoria=="orecchino"){ %>
+                                        <h4> <%= value.nome_prodotto %> - <%= value.categoria %> - <%= value.materiali_carati[0].materiale %></h4>
+                                        <h4><%= value.prezzo %>  €</h4>
+                                    <% } %>
 
+                                </div>
                             </div>
-                        </div>
-                    
+                        <% } %>
                     <% });  %>
                 <% }; %>
                 

@@ -11,17 +11,16 @@ var user = new Schema({
     numeroTelefono:{type:String,required:true,min:10,max:10},
     email:{type:String ,email:true,required:true,min:9,max:50},
     password:{type:String,require:true, min:6},
-    lista_desideri:[{type:Schema.Types.ObjectId, ref:'prodotto'}],
     aquisti:[
         {
-            data:Date,
-            articoli:[{type:Schema.Types.ObjectId, ref:'prodotto'}],
+            data:{type:Date,default:Date.now},
+            articoli:[],
             importo_pagato:{type:Number,required:true}
         }],
-    vendite:{
+    vendite:[{
         data:{type:Date,default:Date.now},
         prodotto:{type:Schema.Types.ObjectId,ref:'prodotto'}
-    },
+    }],
     indirizzi:[{
         via:{type:String,required:true},
         numero_civico:{type:Number,max:5,required:true},

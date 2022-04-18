@@ -20,58 +20,27 @@
                     <h1>Carrello (<%= len %> articoli)</h1>
                     <h4>Spedito da NEXT GEN AGENCY</h4>
                     <% var totale=0; %>
-                    <% ilMioCarrello.forEach(async function(value,key){ %>
-                        <% if(value!=null){ %>
-                            <% if(value.categoria=="cronografo" || value.categoria=="automatico" || value.categoria=="aviatore" || value.categoria=="meccanico" || value.categoria=="militare" || value.categoria=="nautico" || value.categoria=="vintage" || value.categoria=="subacqueo" || value.categoria=="svizzero"){ %>
-                                <div class="div_grid">
-                                    
-                                    <a href="#"><div class="prodotto">
-                                        <div class="image"><img src="../upload/<%= value.foto[0].url %>" alt=""></div>
-                                    </div></a>
-                                    <div class="div_grid_descrizione">
-                                        <p><span><%= value.brand %> (Brand)</span></p>
-                                        <p><%= value.modello %> (Nome)</p>
-                                        <p>Tipologia : <%= value.tipologia %></p>
-                                        <p>Categoria : <%= value.categoria %></p>
-                                        <div class="div_grid_pulsanti">
-                                            <div><a href="/rimuoviCarrello/<%= value._id %>" id="bottone"><img src="../img/img_login/bin.png" alt="Cestino" style="width: auto; height: 20px;"></a>Elimina</div>
-                                            <div><a href="/addPreferiti//<%= value._id %>" id="bottone"><img src="../img/img_navbar/preferiti.png" alt="Preferiti" style="width: auto; height: 20px;"></a>Aggiungi a lista desideri</div>
-                                        </div>
-                                    </div>
-                                    <div class="div_grid_quantita">
-                                        <div>
-                                            <select name="quantita" id="quantita">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                <option value="10">10</option>
-                                            </select>
-                                        </div>
-                                        <p><%= value.prezzo %> <span>€</span></p>
-                                        <% totale=totale+value.prezzo %>
-                                    </div>
-                                </div>
-                            <% }else{ %>
-                                <% if(value.categoria=="anello" || value.categoria=="bracciale" || value.categoria=="collana" || value.categoria=="orecchino"){ %>
+                    <% if(mess){ %>
+                        <div class="div_grid">
+                            <h3><%= mess %></h3>
+                        </div>
+                    <% }else{ %>
+                        <% ilMioCarrello.forEach(async function(value,key){ %>
+                            <% if(value!=null){ %>
+                                <% if(value.categoria=="cronografo" || value.categoria=="automatico" || value.categoria=="aviatore" || value.categoria=="meccanico" || value.categoria=="militare" || value.categoria=="nautico" || value.categoria=="vintage" || value.categoria=="subacqueo" || value.categoria=="svizzero"){ %>
                                     <div class="div_grid">
-                                    
-                                        <a href="#"><div class="prodotto">
+                                        
+                                        <a href="/prodotto/<%= value.categoria %>&<%= value._id %>"><div class="prodotto">
                                             <div class="image"><img src="../upload/<%= value.foto[0].url %>" alt=""></div>
                                         </div></a>
                                         <div class="div_grid_descrizione">
                                             <p><span><%= value.brand %> (Brand)</span></p>
-                                            <p><%= value.nome_prodotto %> (Nome)</p>
-                                            <p>Materiale principale : <%= value.materiali_carati[0].materiale %></p>
-                                            <p>Carati : <%= value.materiali_carati[0].carati %></p>
+                                            <p><%= value.modello %> (Nome)</p>
+                                            <p>Tipologia : <%= value.tipologia %></p>
+                                            <p>Categoria : <%= value.categoria %></p>
                                             <div class="div_grid_pulsanti">
                                                 <div><a href="/rimuoviCarrello/<%= value._id %>" id="bottone"><img src="../img/img_login/bin.png" alt="Cestino" style="width: auto; height: 20px;"></a>Elimina</div>
-                                                <div><a href="/addPreferiti//<%= value._id %>" id="bottone"><img src="../img/img_navbar/preferiti.png" alt="Preferiti" style="width: auto; height: 20px;"></a>Aggiungi a lista desideri</div>
+                                                <div><a href="/addPreferiti/<%= value._id %>" id="bottone"><img src="../img/img_navbar/preferiti.png" alt="Preferiti" style="width: auto; height: 20px;"></a>Aggiungi a lista desideri</div>
                                             </div>
                                         </div>
                                         <div class="div_grid_quantita">
@@ -94,44 +63,81 @@
                                         </div>
                                     </div>
                                 <% }else{ %>
-                                    <div class="div_grid">
-                                    
-                                        <a href="#"><div class="prodotto">
-                                            <div class="image"><img src="../upload/<%= value.foto[0].url %>" alt=""></div>
-                                        </div></a>
-                                        <div class="div_grid_descrizione">
-                                            <p><span><%= value.brand %> (Brand)</span></p>
-                                            <p><%= value.nome_prodotto %> (Nome)</p>
-                                            <p>Colore : <%= value.prodotti_disponibili[0].colore %></p>
-                                            <p>Taglia : <%= value.prodotti_disponibili[0].taglia.size %></p>
-                                            <div class="div_grid_pulsanti">
-                                                <div><a href="/rimuoviCarrello/<%= value._id %>" id="bottone"><img src="../img/img_login/bin.png" alt="Cestino" style="width: auto; height: 20px;"></a>Elimina</div>
-                                                <div><a href="/addPreferiti//<%= value._id %>" id="bottone"><img src="../img/img_navbar/preferiti.png" alt="Preferiti" style="width: auto; height: 20px;"></a>Aggiungi a lista desideri</div>
+                                    <% if(value.categoria=="anello" || value.categoria=="bracciale" || value.categoria=="collana" || value.categoria=="orecchino"){ %>
+                                        <div class="div_grid">
+                                        
+                                            <a href="/prodotto/<%= value.categoria %>&<%= value._id %>"><div class="prodotto">
+                                                <div class="image"><img src="../upload/<%= value.foto[0].url %>" alt=""></div>
+                                            </div></a>
+                                            <div class="div_grid_descrizione">
+                                                <p><span><%= value.brand %> (Brand)</span></p>
+                                                <p><%= value.nome_prodotto %> (Nome)</p>
+                                                <p>Materiale principale : <%= value.materiali_carati[0].materiale %></p>
+                                                <p>Carati : <%= value.materiali_carati[0].carati %></p>
+                                                <div class="div_grid_pulsanti">
+                                                    <div><a href="/rimuoviCarrello/<%= value._id %>" id="bottone"><img src="../img/img_login/bin.png" alt="Cestino" style="width: auto; height: 20px;"></a>Elimina</div>
+                                                    <div><a href="/addPreferiti/<%= value._id %>" id="bottone"><img src="../img/img_navbar/preferiti.png" alt="Preferiti" style="width: auto; height: 20px;"></a>Aggiungi a lista desideri</div>
+                                                </div>
+                                            </div>
+                                            <div class="div_grid_quantita">
+                                                <div>
+                                                    <select name="quantita" id="quantita">
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                    </select>
+                                                </div>
+                                                <p><%= value.prezzo %> <span>€</span></p>
+                                                <% totale=totale+value.prezzo %>
                                             </div>
                                         </div>
-                                        <div class="div_grid_quantita">
-                                            <div>
-                                                <select name="quantita" id="quantita">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                    <option value="10">10</option>
-                                                </select>
+                                    <% }else{ %>
+                                        <div class="div_grid">
+                                        
+                                            <a href="/prodotto/<%= value.categoria %>&<%= value._id %>"><div class="prodotto">
+                                                <div class="image"><img src="../upload/<%= value.foto[0].url %>" alt=""></div>
+                                            </div></a>
+                                            <div class="div_grid_descrizione">
+                                                <p><span><%= value.brand %> (Brand)</span></p>
+                                                <p><%= value.nome_prodotto %> (Nome)</p>
+                                                <p>Colore : <%= value.prodotti_disponibili[0].colore %></p>
+                                                <p>Taglia : <%= value.prodotti_disponibili[0].taglia.size %></p>
+                                                <div class="div_grid_pulsanti">
+                                                    <div><a href="/rimuoviCarrello/<%= value._id %>" id="bottone"><img src="../img/img_login/bin.png" alt="Cestino" style="width: auto; height: 20px;"></a>Elimina</div>
+                                                    <div><a href="/addPreferiti/<%= value._id %>" id="bottone"><img src="../img/img_navbar/preferiti.png" alt="Preferiti" style="width: auto; height: 20px;"></a>Aggiungi a lista desideri</div>
+                                                </div>
                                             </div>
-                                            <p><%= value.prodotti_disponibili[0].taglia.prezzo %> <span>€</span></p>
-                                            <% totale=totale+value.prodotti_disponibili[0].taglia.prezzo %>
+                                            <div class="div_grid_quantita">
+                                                <div>
+                                                    <select name="quantita" id="quantita">
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                    </select>
+                                                </div>
+                                                <p><%= value.prodotti_disponibili[0].taglia.prezzo %> <span>€</span></p>
+                                                <% totale=totale+value.prodotti_disponibili[0].taglia.prezzo %>
+                                            </div>
                                         </div>
-                                    </div>
+                                    <% } %>
                                 <% } %>
                             <% } %>
-                        <% } %>
-                    <% }) %>
+                        <% }) %>
+                    <% } %>
                 </div>
                 <div class="div_main">
                     <h1>Consegna previstra tra</h1>
@@ -167,7 +173,7 @@
                         <h3><%= totale %> <span>€</span></h3>
                     </div>
                     <div>
-                        <a href="#"><button id="bottone_procedi">Procedi</button></a>
+                        <a href="/aquisti/<%= totale %>"><button id="bottone_procedi">Procedi</button></a>
                     </div>
                 </div>
             </section>
