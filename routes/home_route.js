@@ -1220,7 +1220,6 @@ const { update, updateOne } = require('../models/user');
                     //contolli necessari sul risultato 
                     var conta=myres.length;
                     var mess;
-                    console.log(conta);
                     if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTA CATEGORIA",myres});
                     return res.render('product_list',{mess,myres});
                 });
