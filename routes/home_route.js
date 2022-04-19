@@ -1059,7 +1059,7 @@ const { update, updateOne } = require('../models/user');
                     dettagli={
                         tipologia_chiusura:data.chiusura_cintura,
                         composizione:data.composizione_cintura,
-                        descrizione:data,descrizione,
+                        descrizione:data.descrizione,
                         avvertenze:data.avvertenze
                     },
                     taglia_fit={
@@ -1074,7 +1074,7 @@ const { update, updateOne } = require('../models/user');
                 }else{
                     dettagli={
                         composizione:data.composizione_cravatta,
-                        descrizione:data,descrizione,
+                        descrizione:data.descrizione,
                         avvertenze:data.avvertenze
                     }
                 }
@@ -1086,7 +1086,7 @@ const { update, updateOne } = require('../models/user');
                 }else{
                     dettagli={
                         composizione:data.composizione_papillion,
-                        descrizione:data,descrizione,
+                        descrizione:data.descrizione,
                         avvertenze:data.avvertenze
                     }
                 }
@@ -1098,7 +1098,7 @@ const { update, updateOne } = require('../models/user');
                 }else{
                     dettagli={
                         composizione:data.composizione_sciarpa,
-                        descrizione:data,descrizione,
+                        descrizione:data.descrizione,
                         avvertenze:data.avvertenze
                     }
                 }
