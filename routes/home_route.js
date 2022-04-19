@@ -29,6 +29,7 @@ const { update, updateOne } = require('../models/user');
 *output-->reindirizzamento alle pagina/root-->homepage.ejs
 */
     router.get('/',(req, res) =>{
+        console.log('-/home');
         res.render('home_page');
     });
 
@@ -38,6 +39,7 @@ const { update, updateOne } = require('../models/user');
     *output-->login.ejs
     */
     router.get('/login' ,(req,res,next) =>{
+        console.log('-get/login');
         res.render('login');
     });
     /*Post login + controlli sui dati
@@ -45,6 +47,7 @@ const { update, updateOne } = require('../models/user');
     *output-->reindirizzamento alle pagine/root-->home page,login,register
     */
     router.post('/login', async (req,res) =>{
+        console.log('-post/login');
         var result=req.body;
         
         //query per verificare i dati
@@ -75,6 +78,7 @@ const { update, updateOne } = require('../models/user');
  * input-->session id
  * output-->reindirizzamento alle pagine/root-->home_page.ejs */ 
     router.get('/logout',(req,res)=>{
+        console.log('-/logout');
         req.session.destroy((err)=>{
             if(err) throw err;
             res.redirect('/');
@@ -87,6 +91,7 @@ const { update, updateOne } = require('../models/user');
      * output-->reindirizzamento alle pagine/root-->register.ejs
     */
     router.get('/register',(req,res)=>{
+        console.log('-get/register');
         const infoErrorObj= req.flash('infoError');
         const infoSubmitObj= req.flash('infoSubmit');
         res.render('register',{infoErrorObj,infoSubmitObj});
@@ -96,6 +101,7 @@ const { update, updateOne } = require('../models/user');
      * output-->reindirizzamento alle pagine/root-->login.ejs 
     */
     router.post('/register', async (req,res)=>{
+        console.log('-post/register');
         var result=req.body;
         //verificare i dati
         if(result.email[0]!=result.email[1] || result.password[0]!=result.password[1] || result.codice_fiscale.length>16 || result.codice_fiscale.length<16 || result.password[0].length<8 || result.numero_cell.length<10 || result.numero_cell.length>10){
@@ -141,6 +147,7 @@ const { update, updateOne } = require('../models/user');
      * output-->reindirizzamento alle pagine/root-->update_user.ejs + campi pre compilati
     */
     router.get('/updateUser', isAuth ,(req,res)=>{
+        console.log('-get/updateUser');
         //user from session
         var user=req.session.result;
         /**the line bellow is used to get only the date 
@@ -155,6 +162,7 @@ const { update, updateOne } = require('../models/user');
      * output-->reindirizzamento alle pagine/root-->update_user.ejs + messaggio di okay o fail
      */
     router.post('/updateUser',isAuth, async (req,res)=>{
+        console.log('-post/updateUser');
         //user from session
         var user=req.session.result;
         var result=req.body;
@@ -196,6 +204,7 @@ const { update, updateOne } = require('../models/user');
  * output-->reindirizzamento alle pagine/root-->pagina_profilo.ejs + query sui dati personali 
  */
     router.get('/profilo',isAuth, async(req,res)=>{
+        console.log('-/profilo');
         var user_s=req.session.result;
 
         myuser.findById(user_s._id,function(err,myres){
@@ -211,7 +220,7 @@ const { update, updateOne } = require('../models/user');
          * output-->reindirizzamento alle pagine/root-->pagina_profilo.ejs 
         */
         router.post('/addAdress',isAuth, async(req,res)=>{
-            //my var
+            console.log('-post/addAdress');
             var user=req.session.result;
             var data=req.body;
         
@@ -231,9 +240,9 @@ const { update, updateOne } = require('../models/user');
          * output-->reindirizzamento alle pagine/root-->pagina_profilo.ejs 
         */
         router.get('/deleteAddress/:indice', isAuth,async(req,res)=>{
+            console.log('-get/deleteAddress');
             var parm=req.params.indice;
             var user=req.session.result;
-            console.log(parm);
             myuser.updateOne({ _id: user._id }, { "$pull": { "indirizzi": { "_id": parm } }}, { safe: true, multi:true }, function(err, obj) {
                 if(err)return handleError(err);
                 return res.redirect('/profilo');
@@ -246,7 +255,7 @@ const { update, updateOne } = require('../models/user');
          * output-->reindirizzamento alle pagine/root-->pagina_profilo.ejs 
         */
         router.post('/addCard',isAuth, async(req,res)=>{
-            //my var
+            console.log('-post/addCard');
             var user=req.session.result;
             var data=req.body;
         
@@ -266,6 +275,7 @@ const { update, updateOne } = require('../models/user');
          * output-->reindirizzamento alle pagine/root-->pagina_profilo.ejs
         */
         router.get('/deleteCard/:indice', isAuth,async(req,res)=>{
+            console.log('-get/deleteCard');
             var parm=req.params.indice;
             var user=req.session.result;
             myuser.updateOne({ _id: user._id }, { "$pull": { "carte": { "_id": parm } }}, { safe: true, multi:true }, function(err, obj) {
@@ -281,6 +291,7 @@ const { update, updateOne } = require('../models/user');
          * output-->reindirizzamento alle pagine/root-->delete_account.ejs
         */
         router.get('/eliminaProfilo',isAuth,(req,res)=>{
+            console.log('-get/eliminaProfilo');
             res.render('delete_account');
         });
         /**Post eliminaProfilo
@@ -288,6 +299,7 @@ const { update, updateOne } = require('../models/user');
          * output-->reindirizzamento alle pagine/root-->  /logout
         */
         router.post('/eliminaProfilo',isAuth,(req,res)=>{
+            console.log('-post/eliminaProfilo');
             var data=req.body;
             var user=req.session.result;
             if(data.email==user.email){
@@ -315,6 +327,7 @@ const { update, updateOne } = require('../models/user');
      * output-->reindirizzamento alle pagine/root-->choose-prodotto.ejs
      */
     router.get('/chooseProduct',isAuth,(req,res)=>{
+        console.log('-/chooseProduct');
         var user= req.session.result;
         var flag=null;
         myuser.find({_id:user._id},('iban'),function(err,myres){
@@ -334,6 +347,7 @@ const { update, updateOne } = require('../models/user');
      * output-->reindirizzamento alle pagine/root--> /chooseProduct
     */
     router.post('/addIban',isAuth,async(req,res)=>{
+        console.log('-/addIban');
         var user=req.session.result;
         var iban=req.body;
         await myuser.findByIdAndUpdate(user._id,{
@@ -349,6 +363,7 @@ const { update, updateOne } = require('../models/user');
      * output--> reindirizzamento alle pagine/root--> inserisci_"tipo prodotto".ejs
      */
     router.get('/uploadType/:type',isAuth,(req,res)=>{
+            console.log('-/uploadType');
             var type=req.params.type;
             var myroute="inserisci_"+type;
             const infoErrorObj= req.flash('infoError');
@@ -361,6 +376,7 @@ const { update, updateOne } = require('../models/user');
      * output-->reindirizzamento alle pagine/root--> /uploadType/abbigliamento + messaggio di okay o fail
      */
     router.post('/upload_abbigliamento',isAuth,async(req,res)=>{
+        console.log('-/upload_abbigliamento');
         var data=req.body;
         var user=req.session.result;
         var sezione=["","",""];
@@ -415,7 +431,6 @@ const { update, updateOne } = require('../models/user');
         const replacer = new RegExp(search, 'g');
 
         var prezzo=data.prezzo.replace(replacer,'.');
-        console.log(prezzo);
         //brand in minuscolo
         const search_b = ' ';
         const replacer_b = new RegExp(search_b, 'g');
@@ -425,7 +440,6 @@ const { update, updateOne } = require('../models/user');
         var brand=data.brand.toLowerCase();
         brand=brand.replace(replacer_b,'_');
         brand=brand.replace(replacer_and,'_');
-        console.log(brand);
         
         //save imagine
         var fileKeys = Object.keys(req.files);
@@ -571,6 +585,7 @@ const { update, updateOne } = require('../models/user');
      * output-->reindirizzamento alle pagine/root-->/uploadType/scarpe + messaggio di okay o fail
     */
     router.post('/upload_scarpe',isAuth,(req,res)=>{
+        console.log('-/upload_scarpe');
         var data=req.body;
         var user=req.session.result;
         var sezione=["","","",""];
@@ -637,7 +652,6 @@ const { update, updateOne } = require('../models/user');
         const replacer = new RegExp(search, 'g');
 
         var prezzo=data.prezzo.replace(replacer,'.');
-        console.log(prezzo);
         //brand in minuscolo
         const search_b = ' ';
         const replacer_b = new RegExp(search_b, 'g');
@@ -647,7 +661,6 @@ const { update, updateOne } = require('../models/user');
         var brand=data.brand.toLowerCase();
         brand=brand.replace(replacer_b,'_');
         brand=brand.replace(replacer_and,'_');
-        console.log(brand);
 
        //save imagine
         var fileKeys = Object.keys(req.files);
@@ -662,7 +675,6 @@ const { update, updateOne } = require('../models/user');
         //Dettagli a seconsa della categoria
         var mydettagli;
         if(sezione[0]=="scarpe" & sezione[1]=="" & sezione[2]=="" & sezione[3]==""){
-            console.log("sono in scarpe");
             mydettagli={
                 composizione:data.materiale_scarpe,
                 materiale_solette:data.solette_scarpe,
@@ -673,7 +685,6 @@ const { update, updateOne } = require('../models/user');
             };
         }
         if(sezione[0]=="" & sezione[1]=="scarpe_eleganti" & sezione[2]=="" & sezione[3]==""){
-            console.log("sono in scarpe eleganti");
             mydettagli={
                 materiale_superiore:data.materiale_scarpe_eleganti,
                 materiale_rivestimento:data.rivestimento_scarpe_eleganti,
@@ -687,7 +698,6 @@ const { update, updateOne } = require('../models/user');
             };
         }
         if(sezione[0]=="" & sezione[1]=="" & sezione[2]=="stivali" & sezione[3]==""){
-            console.log("sono in stivali");
             mydettagli={
                 materiale_superiore:data.materiale_stivali,
                 materiale_rivestimento:data.rivestimento_stivali,
@@ -702,7 +712,6 @@ const { update, updateOne } = require('../models/user');
             };
         }
         if(sezione[0]=="" & sezione[1]=="" & sezione[2]=="" & sezione[3]=="mocassini"){
-            console.log("sono in mocassini");
             mydettagli={
                 materiale_superiore:data.materiale_mocassini,
                 materiale_rivestimento:data.rivestimento_mocassini,
@@ -756,6 +765,7 @@ const { update, updateOne } = require('../models/user');
      * output-->reindirizzamento alle pagine/root-->/uploadType/orologi + messaggio di okay o fail
     */
     router.post('/upload_orologi',isAuth,(req,res)=>{
+        console.log('-/upload_orologi');
         var data=req.body;
         var user=req.session.result;
 
@@ -782,7 +792,6 @@ const { update, updateOne } = require('../models/user');
         const replacer = new RegExp(search, 'g');
 
         var prezzo=data.prezzo.replace(replacer,'.');
-        console.log(prezzo);
         //brand in minuscolo
         const search_b = ' ';
         const replacer_b = new RegExp(search_b, 'g');
@@ -792,7 +801,6 @@ const { update, updateOne } = require('../models/user');
         var brand=data.brand.toLowerCase();
         brand=brand.replace(replacer_b,'_');
         brand=brand.replace(replacer_and,'_');
-        console.log(brand);
        
         //save imagine
         var fileKeys = Object.keys(req.files);
@@ -845,6 +853,7 @@ const { update, updateOne } = require('../models/user');
      * output-->reindirizzamento alle pagine/root-->/uploadType/gioielli + messaggio di okay o fail
     */
     router.post('/upload_gioielli',isAuth,(req,res)=>{
+        console.log('-/upload_gioielli');
         var user=req.session.result;
         var data=req.body;
         var materiali_carati,pendente;
@@ -952,7 +961,6 @@ const { update, updateOne } = require('../models/user');
         const replacer = new RegExp(search, 'g');
 
         var prezzo=data.prezzo.replace(replacer,'.');
-        console.log(prezzo);
         //brand in minuscolo
         const search_b = ' ';
         const replacer_b = new RegExp(search_b, 'g');
@@ -962,7 +970,6 @@ const { update, updateOne } = require('../models/user');
         var brand=data.brand.toLowerCase();
         brand=brand.replace(replacer_b,'_');
         brand=brand.replace(replacer_and,'_');
-        console.log(brand);
         
         //save imagine
         var fileKeys = Object.keys(req.files);
@@ -1018,6 +1025,7 @@ const { update, updateOne } = require('../models/user');
      * output-->reindirizzamento alle pagine/root-->/uploadType/accessori + messaggio di okay o fail
     */
      router.post('/upload_accessori',isAuth,(req,res)=>{
+        console.log('-/upload_accessori');
         var user=req.session.result;
         var data=req.body;
         var dettagli,taglia_fit;
@@ -1141,7 +1149,6 @@ const { update, updateOne } = require('../models/user');
         const replacer = new RegExp(search, 'g');
 
         var prezzo=data.prezzo.replace(replacer,'.');
-        console.log(prezzo);
         //brand in minuscolo
         const search_b = ' ';
         const replacer_b = new RegExp(search_b, 'g');
@@ -1151,7 +1158,6 @@ const { update, updateOne } = require('../models/user');
         var brand=data.brand.toLowerCase();
         brand=brand.replace(replacer_b,'_');
         brand=brand.replace(replacer_and,'_');
-        console.log(brand);
         
         //save imagine
         var fileKeys = Object.keys(req.files);
@@ -1203,7 +1209,7 @@ const { update, updateOne } = require('../models/user');
  * output-->reindirizzamento alle pagine/root--> /product-list + oggetto contenete i prodotti a seconda della categoria/sottocategoria o brand 
 */
     router.get('/product-list/:category&:subcategory',(req,res)=>{
-        
+        console.log('-/product-list');
         const cat=req.params.category;
         const subcat=req.params.subcategory;
         //Abbigliamento , sotto categorie e Brand
@@ -1216,7 +1222,6 @@ const { update, updateOne } = require('../models/user');
                     var mess;
                     console.log(conta);
                     if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTA CATEGORIA",myres});
-                    console.log("Abbigliamento all")
                     return res.render('product_list',{mess,myres});
                 });
             }
@@ -1227,7 +1232,6 @@ const { update, updateOne } = require('../models/user');
                     var conta=myres.length;
                     var mess;
                     if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTA CATEGORIA",myres});
-                    console.log("abbigliamento categoria")
                     return res.render('product_list',{mess,myres});
                 });
             }
@@ -1238,7 +1242,6 @@ const { update, updateOne } = require('../models/user');
                     var conta=myres.length;
                     var mess;
                     if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO BRAND",myres});
-                    console.log("abbigliamento brand")
                     return res.render('product_list',{mess,myres});
                 });
             }
@@ -1385,9 +1388,12 @@ const { update, updateOne } = require('../models/user');
      * output--> reindirizzamento alle pagine/root--> /product-list + oggetto contenete i prodotti a seconda della categoria/sottocategoria o brand 
     */
     router.get('/second_hand/:category&:subcategory',async(req,res)=>{
+        console.log('-/second_hand');
         const cat=req.params.category;
         const subcat=req.params.subcategory;
-        
+        /**condizione per mostrare tutti i prodotti usati
+         * non va acausa di problemi conle query congiunte
+        */
         /*if(cat=="all"){
             var myres=[];
 
@@ -1412,7 +1418,6 @@ const { update, updateOne } = require('../models/user');
                     var conta=myres.length;
                     var mess;
                     if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO BRAND",myres});
-                    console.log("abbigliamento usato")
                     return res.render('product_list',{mess,myres});
                 });
             }else{
@@ -1422,7 +1427,6 @@ const { update, updateOne } = require('../models/user');
                     var conta=myres.length;
                     var mess;
                     if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO BRAND",myres});
-                    console.log("abbigliamento brand")
                     return res.render('product_list',{mess,myres});
                 });
             }
@@ -1436,7 +1440,6 @@ const { update, updateOne } = require('../models/user');
                     var conta=myres.length;
                     var mess;
                     if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO BRAND",myres});
-                    console.log("abbigliamento usato")
                     return res.render('product_list',{mess,myres});
                 });
             }else{
@@ -1446,7 +1449,6 @@ const { update, updateOne } = require('../models/user');
                     var conta=myres.length;
                     var mess;
                     if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO BRAND",myres});
-                    console.log("abbigliamento brand")
                     return res.render('product_list',{mess,myres});
                 });
             }
@@ -1454,14 +1456,12 @@ const { update, updateOne } = require('../models/user');
 
         if(cat=="orologi"){
             if(subcat=="all"){
-                console.log("ciao");
                 myorologi.find({'second_hand.usato':true},function(err,myres){
                     if(err) return handleError(err);
                     //contolli necessari sul risultato 
                     var conta=myres.length;
                     var mess;
                     if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO BRAND",myres});
-                    console.log("abbigliamento usato")
                     return res.render('product_list',{mess,myres});
                 });
             }else{
@@ -1471,21 +1471,18 @@ const { update, updateOne } = require('../models/user');
                     var conta=myres.length;
                     var mess;
                     if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO BRAND",myres});
-                    console.log("abbigliamento brand")
                     return res.render('product_list',{mess,myres});
                 });
             }
         }
         if(cat=="gioielli"){
             if(subcat=="all"){
-                console.log("ciao");
                 mygioielli.find({'second_hand.usato':true},function(err,myres){
                     if(err) return handleError(err);
                     //contolli necessari sul risultato 
                     var conta=myres.length;
                     var mess;
                     if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO BRAND",myres});
-                    console.log("abbigliamento usato")
                     return res.render('product_list',{mess,myres});
                 });
             }else{
@@ -1495,7 +1492,6 @@ const { update, updateOne } = require('../models/user');
                     var conta=myres.length;
                     var mess;
                     if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO BRAND",myres});
-                    console.log("abbigliamento brand")
                     return res.render('product_list',{mess,myres});
                 });
             }
@@ -1508,7 +1504,6 @@ const { update, updateOne } = require('../models/user');
                     var conta=myres.length;
                     var mess;
                     if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO BRAND",myres});
-                    console.log("abbigliamento usato")
                     return res.render('product_list',{mess,myres});
                 });
             }else{
@@ -1518,7 +1513,6 @@ const { update, updateOne } = require('../models/user');
                     var conta=myres.length;
                     var mess;
                     if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO BRAND",myres});
-                    console.log("abbigliamento brand")
                     return res.render('product_list',{mess,myres});
                 });
             }
@@ -1534,7 +1528,7 @@ const { update, updateOne } = require('../models/user');
         var cat=req.params.category;
         var id=req.params.id;
         var collection;
-        console.log(cat);
+        console.log('-/prodotto/'+cat);
         if(cat=="tshirt_polo" || cat=="camicia" || cat=="maglieria" || cat=="completo" || cat=="giacca" || cat=="cappotto" || cat=="jeans" || cat=="pantalone"){
             myabbigliamento.findById(id,function(err,myres){
                 if(err) throw handleError(err);
@@ -1572,8 +1566,12 @@ const { update, updateOne } = require('../models/user');
         }
     });
 
-    /**Aggiungi carrello*/
+    /**Aggiungi carrello
+     * va a cercare nel campo carrello dell'utente che ne fa richiesta il prodotto passato per parametro
+     * se presente ridirige alla root /carrello ,altrimenti aggiunge l'id del prodotto al campo carrello e ridirige alla root /carrello
+    */
         router.get('/addCarrello/:id',isAuth,async(req,res)=>{
+            console.log('-/addCarrello');
             var user=req.session.result;
             var id_prodotto=req.params.id;
             myuser.find({'carrello.prodotto':id_prodotto},async(err,flag)=>{
@@ -1589,8 +1587,11 @@ const { update, updateOne } = require('../models/user');
             });
         });
 
-    /**Rimuovi carrello*/
+    /**Rimuovi carrello
+     * va a cercare l'utente che ne fa la richiesta e aggiorna il campo carrello rimuovendo l'id del prodotto passato per parametro
+    */
         router.get('/rimuoviCarrello/:id',isAuth,async(req,res)=>{
+            console.log('-/rimuoviCarrello');
             var user=req.session.result;
             var id_prodotto=req.params.id;
             myuser.updateOne({ _id: user._id }, { "$pull": { "carrello": { "prodotto": id_prodotto } }}, { safe: true, multi:true }, function(err, obj) {
@@ -1600,39 +1601,47 @@ const { update, updateOne } = require('../models/user');
             
         });
 
-    /**Aggiungi preferiti*/
+    /**Aggiungi preferiti
+     * va a cercare nel campo preferiti dell'utente che ne fa richiesta il prodotto passato per parametro
+     * se presente ridirige alla root /lista_preferiti ,altrimenti aggiunge l'id del prodotto al campo preferiti e ridirige alla root /lista_preferiti
+    */
         router.get('/addPreferiti/:id',isAuth,async(req,res)=>{
+            console.log('-/addPreferiti');
             var user=req.session.result;
             var id_prodotto=req.params.id;
-            console.log(id_prodotto);
             myuser.find({'preferiti.prodotto':id_prodotto},async(err,flag)=>{
                 if(err) throw err;
-                console.log(flag.length);
                 if(flag.length>0){
                     res.redirect('/lista_preferiti');
                 }else{
                     await myuser.findByIdAndUpdate(user._id,{$push:{
                         preferiti:{prodotto:id_prodotto}
                     }});
-                    console.log("aggiunto");
                     res.redirect('/lista_preferiti');
                 }
             });
         });
         
-    /**Rimuovi preferiti*/
-    router.get('/removePreferiti/:id',isAuth,(req,res)=>{
-        var user=req.session.result;
-        var id_prodotto=req.params.id;
-        myuser.updateOne({ _id: user._id }, { "$pull": { "preferiti": { "prodotto": id_prodotto } }}, { safe: true, multi:true }, function(err, obj) {
-            if(err)return handleError(err);
-            return res.redirect('/lista_preferiti');
+    /**Rimuovi preferiti
+     * va a cercare l'utente che ne fa la richiesta e aggiorna il campo preferiti rimuovendo l'id del prodotto passato per parametro
+    */
+        router.get('/removePreferiti/:id',isAuth,(req,res)=>{
+            console.log('-/removePreferiti')
+            var user=req.session.result;
+            var id_prodotto=req.params.id;
+            myuser.updateOne({ _id: user._id }, { "$pull": { "preferiti": { "prodotto": id_prodotto } }}, { safe: true, multi:true }, function(err, obj) {
+                if(err)return handleError(err);
+                return res.redirect('/lista_preferiti');
+            });
         });
-    });
         
 
-/**ROOT CARRELLO */
+/**ROOT CARRELLO 
+ * va cercare gli id dei prodotti nel campo carrello di chi ne fa richiesta(id dalla sessione)
+ * cerca gli effettivi prodotti e li renderizza insieme alla pagina carrello
+*/
     router.get('/carrello',isAuth,async(req,res)=>{
+        console.log('-/carrello');
         var user=req.session.result;
         var db_user=await myuser.findById(user._id);
         var len=db_user.carrello.length;
@@ -1656,8 +1665,12 @@ const { update, updateOne } = require('../models/user');
         }
     });
 
-/**ROOT LISTA PREFERITI */
+/**ROOT LISTA PREFERITI 
+ * va cercare gli id dei prodotti nel campo preferiti di chi ne fa richiesta(id dalla sessione)
+ * cerca gli effettivi prodotti e li renderizza insieme alla pagina lisa_preferiti
+*/
     router.get('/lista_preferiti',isAuth,async(req,res)=>{
+        console.log('-/lista_preferiti');
         var user=req.session.result;
         var db_user=await myuser.findById(user._id);
         var len=db_user.preferiti.length;
@@ -1679,8 +1692,17 @@ const { update, updateOne } = require('../models/user');
     });
 
 
-/**Root per effettuare un'acquisto */
+/**ROOT PER EFFETTUARE UN ACQUISTO 
+ * QUESTO VIENE RICHIAMATO DALLA PAGINA CARRELLO E PERMETTE DI ACQUISTARE UNO O PIU PRODOTTI INSIEME (ORDINE).
+ * VA A CERACRE NEL CAMPO CARRELLO DEL UTENTE CHE FA LA RICHIESTA(ID DALLA SESSIONE) ,
+ * PRENDE GLI ID DEI PRODOTTI E L'UTENTE CHE LI VENDE,
+ * AGGIUNGE I PRODOTTI(DEL CARRELLO ,COMPRATI) NEL CAMPO ACQUISTI DEL UTENTE CHE FA LA RICHIESTA
+ * CERCA I VENDITORI DEI SINGOLI PRODOTTI E AGGIUNGE NEI LORO RELATIVI CAMPI VENDITE I PRODOTTI VENDUTI 
+ * ELIMINA I PRODOTTI DAL CARRELLO
+ * (DA AGGIUNGERE)--> IL CONTROLLO SULLE QUANTITA DI UN PRODOTTO E ANDARE A SCALARE IN CASO DI VENDITA   
+*/
     router.get('/aquisti/:totale',isAuth,async(req,res)=>{
+        console.log('-/acquisti');
         var user=req.session.result;
         var totale=req.params.totale;
         var articoli=[];
@@ -1699,10 +1721,8 @@ const { update, updateOne } = require('../models/user');
                     comprati.push(await myorologi.findById(value.prodotto,('_id utente')));
                     comprati.push(await mygioielli.findById(value.prodotto,('_id utente')));
                     comprati.push(await myaccessori.findById(value.prodotto,('_id utente')));
-                    console.log("nel carrello-->",comprati);
                     if(key==len-1){
                         comprati.forEach(async function(value,key){
-                            console.log("nelle vendite-->",value);
                             if(value!=null){
                                 await myuser.findByIdAndUpdate(value.utente,{$push:{
                                     vendite:{
@@ -1738,8 +1758,12 @@ const { update, updateOne } = require('../models/user');
 
     });
 
-/**Roote per vizualizzare la lista dei propri acquisti */
+/**Roote per vizualizzare la lista dei propri acquisti 
+ * cerco l'utente per id(preso dalla sessione) e per ogni id di prodotto presente nel campo acquisti vado a cercare 
+ * l'effettivo prodotto nelle varie collezioni e lo renderizzo insieme alla pagina lista_acquisti   
+*/
     router.get('/lista_acquisti',isAuth,(req,res)=>{
+        console.log('-/lista_acquisti');
         var user=req.session.result;
         var len,len2;
         var mieiAquisti=[];
@@ -1767,8 +1791,12 @@ const { update, updateOne } = require('../models/user');
         });
     });
 
-/**Roote per la lista dei prodotto  venduti */
+/**Roote per la lista dei prodotto  venduti
+ * cerco l'utente per id(preso dallo sessione) e per ogni id di prodotto presente nel campo vendite cerco 
+ * gli effettivi prodotti per id.li salvo in un array e li renderizzo insieme alla pagina lisata_vendite
+ */
     router.get('/lista_vendite',isAuth,(req,res)=>{
+        console.log("-/lista_vendite");
         var user=req.session.result;
         var prodotti=[];
         var len;
@@ -1786,7 +1814,6 @@ const { update, updateOne } = require('../models/user');
                     prodotti.push(await myaccessori.findById(value.prodotto));
 
                     if(key==len-1){
-                        console.log(prodotti);
                         return res.render('lista_vendite',{prodotti,mess:null});
                     }
                     

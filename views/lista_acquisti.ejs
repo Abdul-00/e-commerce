@@ -104,7 +104,7 @@
                                             <% if(value3.equals(value2._id)){ %>
                                                 <% if(value2.categoria=="cronografo" || value2.categoria=="automatico" || value2.categoria=="aviatore" || value2.categoria=="meccanico" || value2.categoria=="militare" || value2.categoria=="nautico" || value2.categoria=="vintage" || value2.categoria=="subacqueo" || value2.categoria=="svizzero"){ %>
                                                     <div class="prodotti">
-                                                        <a href="">
+                                                        <a href="/prodotto/<%= value2.categoria %>&<%= value2._id %>">
                                                             <div class="image">
                                                                 <img src="../upload/<%= value2.foto[0].url %>" alt="">
                                                             </div>
@@ -115,7 +115,7 @@
                                                 <% }else{ %>
                                                     <% if(value2.categoria=="anello" || value2.categoria=="bracciale" || value2.categoria=="collana" || value2.categoria=="orecchino"){ %>
                                                         <div class="prodotti">
-                                                            <a href="">
+                                                            <a href="/prodotto/<%= value2.categoria %>&<%= value2._id %>">
                                                                 <div class="image">
                                                                     <img src="../upload/<%= value2.foto[0].url %>" alt="">
                                                                 </div>
@@ -125,7 +125,7 @@
                                                         </div>
                                                     <% }else{ %>
                                                         <div class="prodotti">
-                                                            <a href="">
+                                                            <a href="/prodotto/<%= value2.categoria %>&<%= value2._id %>">
                                                                 <div class="image">
                                                                     <img src="../upload/<%= value2.foto[0].url %>" alt="">
                                                                 </div>
