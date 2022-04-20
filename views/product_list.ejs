@@ -96,9 +96,44 @@
                 
                 <!-- E J S   Q U I -->
                 <% if(mess){ %>
-                     <div class="prodotto">
-                        <h2> <%= mess %> </h2>
-                     </div>
+                    <% if(mess!="seconda_hand_all"){ %>
+                        <div class="prodotto">
+                            <h2> <%= mess %> </h2>
+                        </div>
+                    <% }else{ %>
+                        
+                        <% myres.forEach(function(value,key){ %>
+                            <% if(value){ %>
+                                <% value.forEach(function(value2,key2){ %>
+                                    <% if(value2){ %>
+                                        <div class="prodotto">
+                                            <div class="image">
+                                                <a href="/prodotto/<%= value2.categoria %>&<%= value2._id %>"><img src="../upload/<%= value2.foto[0].url %>"></a>
+                                            </div>
+                                            <div class="dettagli">
+                                                <h2> <%= value2.brand %> </h2>
+                                                <% if(value2.modello){ %>
+                                                    <h4> <%= value2.modello %> - <%= value2.categoria %> - <%= value2.dettagli.carica %></h4>
+                                                    <h4><%= value2.prezzo %>€</h4>
+                                                <% }else{ %>
+                                                    <% if(value2.nome_prodotto!="" & value2.categoria!="anello" & value2.categoria!="bracciale" & value2.categoria!="collana" & value2.categoria!="orecchino" ){ %>
+                                                        <h4> <%= value2.nome_prodotto %> - <%= value2.categoria %> - <%= value2.prodotti_disponibili[0].colore %></h4>
+                                                        <h4><%= value2.prodotti_disponibili[0].taglia.prezzo %>€</h4>
+                                                    <% } %>
+                                                <% } %>
+                                                <% if(value2.categoria=="anello" || value2.categoria=="bracciale"|| value2.categoria=="collana" || value2.categoria=="orecchino"){ %>
+                                                    <h4> <%= value2.nome_prodotto %> - <%= value2.categoria %> - <%= value2.materiali_carati[0].materiale %></h4>
+                                                    <h4><%= value2.prezzo %>  €</h4>
+                                                <% } %>
+            
+                                            </div>
+                                        </div>
+                                    <% } %>
+                                <% }) %>
+                            <% } %>
+                        <% });  %>
+
+                    <% } %>
                 <% } else{ %>
                     <% myres.forEach(function(value,key){ %>
                         <% if(value){ %>

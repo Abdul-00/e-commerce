@@ -857,6 +857,7 @@ const { update, updateOne } = require('../models/user');
         var user=req.session.result;
         var data=req.body;
         var materiali_carati,pendente;
+        var tagliaFit;
         if(data.categoria=="null" || data.usato=="null" || data.more_materials=="null" || data.sesso=="null"){
             req.flash('infoError','Errore di Compilazione "nelle opzioni a tendina"');
             return res.redirect('/uploadType/gioielli');
@@ -954,6 +955,57 @@ const { update, updateOne } = require('../models/user');
             }else{
                 pendente=null;
             }
+        
+            if(data.categoria=="anello"){
+                if(data.diamentro_anello=="" || data.spessore_anello==""){
+                    req.flash('infoError','!Errore di Compilazione "Sezione dati basilari anello"!');
+                    req.flash('infoSubmit',null);
+                    return res.redirect('/uploadType/gioielli');
+                }else{
+                    tagliaFit={
+                        mm_diametro:data.diametro_anello,
+                        mm_spessore:data.spessore_anello
+                    }
+                }
+            }
+            if(data.categoria=="bracciale"){
+                if(data.lunghezza_bracciale=="" || data.spessore_bracciale==""){
+                    req.flash('infoError','!Errore di Compilazione "Sezione dati basilari bracciale"!');
+                    req.flash('infoSubmit',null);
+                    return res.redirect('/uploadType/gioielli');
+                }else{
+                    tagliaFit={
+                        mm_spessore:data.spessore_bracciale,
+                        cm_lunghezza:data.lunghezza_bracciale
+                    }
+                }
+            }
+            if(data.categoria=="collana"){
+                if(data.lunghezza_collana=="" || data.spessore_collana==""){
+                    req.flash('infoError','!Errore di Compilazione "Sezione dati basilari collana"!');
+                    req.flash('infoSubmit',null);
+                    return res.redirect('/uploadType/gioielli');
+                }else{
+                    tagliaFit={
+                        mm_spessore:data.spassore_collana,
+                        cm_lunghezza:data.lunghezza_collana,
+                        pendente:pendente
+                    }
+                }
+            }
+            if(data.categoria=="orecchino"){
+                if(data.diamentro_orecchino=="" || data.spessore_orecchino==""){
+                    req.flash('infoError','!Errore di Compilazione "Sezione dati basilari orecchino"!');
+                    req.flash('infoSubmit',null);
+                    return res.redirect('/uploadType/gioielli');
+                }else{
+                    tagliaFit={
+                        mm_diametro:data.diametro_orecchino,
+                        mm_spessore:data.spessore_orecchio,
+                        pendente:pendente
+                    }
+                }
+            }
         }
         req.flash('infoSubmit','Inserimento Completato');
         //CONTROLLI SUL PREZZO . AL POSTO DELLA ,
@@ -1007,12 +1059,7 @@ const { update, updateOne } = require('../models/user');
                 descrizione:data.descrizione,
                 avvertenze:data.avvertenze
             },
-            taglia_fit:{
-                mm_diametro:data.mm_diametro,
-                mm_spessore:data.mm_spessore,
-                cm_lunghezza:data.cm_lunghezza,
-                pendente:pendente
-            },
+            taglia_fit:tagliaFit,
             utente:user._id,
         });
         upload.save();
@@ -1390,10 +1437,8 @@ const { update, updateOne } = require('../models/user');
         console.log('-/second_hand');
         const cat=req.params.category;
         const subcat=req.params.subcategory;
-        /**condizione per mostrare tutti i prodotti usati
-         * non va acausa di problemi conle query congiunte
-        */
-        /*if(cat=="all"){
+        
+        if(cat=="all"){
             var myres=[];
 
             myres.push(await myabbigliamento.find({'second_hand.usato':true}));
@@ -1401,13 +1446,13 @@ const { update, updateOne } = require('../models/user');
             myres.push(await myorologi.find({'second_hand.usato':true}));
             myres.push(await mygioielli.find({'second_hand.usato':true}));
             myres.push(await myaccessori.find({'second_hand.usato':true}));
-            console.log(myres);
+            console.log("MYRES-->",myres);
             var conta=myres.length;
-            var mess;
+            
             if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO CATEGORIA",myres});
             console.log("tutto usato");
-            return res.render('product_list',{mess,myres});
-        }*/
+            return res.render('product_list',{mess:"seconda_hand_all",myres});
+        }
 
         if(cat=="abbigliamento"){
             if(subcat=="all"){
@@ -1495,9 +1540,9 @@ const { update, updateOne } = require('../models/user');
                 });
             }
         }
-        if(cat=="borse" || cat=="cintura" || cat=="occhiali"){
+        if(cat=="accessori"){
             if(subcat=="all"){
-                myaccessori.find({'second_hand.usato':true,categoria:cat},function(err,myres){
+                myaccessori.find({'second_hand.usato':true},function(err,myres){
                     if(err) return handleError(err);
                     //contolli necessari sul risultato 
                     var conta=myres.length;
