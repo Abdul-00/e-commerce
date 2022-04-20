@@ -1446,11 +1446,9 @@ const { update, updateOne } = require('../models/user');
             myres.push(await myorologi.find({'second_hand.usato':true}));
             myres.push(await mygioielli.find({'second_hand.usato':true}));
             myres.push(await myaccessori.find({'second_hand.usato':true}));
-            console.log("MYRES-->",myres);
             var conta=myres.length;
             
             if(conta<1) return res.render('product_list',{ mess:"NON CI SONO PRODOTTI PER QUESTO CATEGORIA",myres});
-            console.log("tutto usato");
             return res.render('product_list',{mess:"seconda_hand_all",myres});
         }
 
