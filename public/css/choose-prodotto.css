@@ -116,7 +116,6 @@ main{
 }
 
 #iban{
-  border: red solid 1px;
   padding: 10px;
   height: auto;
   width: 40%;
